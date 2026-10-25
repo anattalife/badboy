@@ -69,6 +69,19 @@ export const SiteSettings: GlobalConfig = {
     },
     { name: 'facebookUrl', type: 'text' },
     {
+      name: 'creditApplicationRetentionDays',
+      label: 'Delete credit applications after (days)',
+      type: 'number',
+      min: 30,
+      defaultValue: 365,
+      required: true,
+      access: { read: ({ req }) => Boolean(req.user) },
+      admin: {
+        description:
+          'Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.',
+      },
+    },
+    {
       name: 'announcement',
       type: 'text',
       admin: { description: 'Optional banner across the top of every page (e.g. a sale or holiday hours).' },

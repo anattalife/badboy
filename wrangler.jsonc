@@ -23,6 +23,9 @@
       "remote": true,
     },
   ],
+  // Cloudflare Email Sending, used for lead alerts and staff password resets.
+  // The sending domain must be onboarded in Cloudflare Email Service (see docs/DEPLOY.md).
+  "send_email": [{ "name": "EMAIL" }],
   "services": [
     // The service should match the "name" of your worker
     // {

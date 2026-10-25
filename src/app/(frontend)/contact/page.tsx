@@ -1,71 +1,79 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
+import { LeadForm } from '@/components/forms/LeadForm'
 import { PageIntro } from '@/components/PageIntro'
 import { fullAddress, telHref } from '@/lib/format'
-import { getModelBySlug, getSiteSettings, getPayloadClient } from '@/lib/payload'
+import { getSiteSettings, resolveInterest } from '@/lib/payload'
+import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
 export const metadata: Metadata = {
   title: 'Contact us',
-  description: 'Call, visit or get directions to Roanoke Mowers on Melrose Ave NW in Roanoke, VA.',
+  description: 'Get a quote, ask a question, or get directions to Roanoke Mowers on Melrose Ave NW in Roanoke, VA.',
 }
 
 export default async function ContactPage(props: PageProps<'/contact'>) {
-  const { model: modelSlug, unit: stockNumber } = await props.searchParams
-  const [settings, model, unit] = await Promise.all([
-    getSiteSettings(),
-    typeof modelSlug === 'string' ? getModelBySlug(modelSlug) : Promise.resolve(null),
-    typeof stockNumber === 'string' ? findUnitByStock(stockNumber) : Promise.resolve(null),
-  ])
-  const subject = unit ? `${unit.title} (stock ${unit.stockNumber})` : model ? `the Bad Boy ${model.name}` : null
+  const [settings, interest] = await Promise.all([getSiteSettings(), resolveInterest(await props.searchParams)])
+  const isQuote = Boolean(interest.subject)
 
   return (
     <>
       <PageIntro
-        title={unit ? `Ask about stock ${unit.stockNumber}` : model ? `Get a quote on the ${model.name}` : 'Contact us'}
-        lede="Call or stop by the shop. Online quote and contact forms are coming next."
-        trail={[{ href: '/', label: 'Home' }, { label: 'Contact' }]}
+        title={isQuote ? 'Get a quote' : 'Contact us'}
+        lede={
+          isQuote
+            ? 'Tell us how to reach you and we’ll send pricing and availability.'
+            : 'Questions about equipment, financing, parts or service? Send us a note or give us a call.'
+        }
+        trail={[{ href: '/', label: 'Home' }, { label: isQuote ? 'Get a quote' : 'Contact' }]}
       />
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 pt-12 sm:px-6 md:grid-cols-2">
-        <div>
-          <h2 className="type-decal-md text-2xl text-ridge">Call us</h2>
-          <a href={telHref(settings.phone)} className="mt-3 block text-3xl font-bold text-ink hover:underline">
-            {settings.phone}
-          </a>
-          {subject ? (
-            <p className="mt-2 text-steel">Mention {subject} and we’ll have pricing ready.</p>
-          ) : null}
-          <h2 className="type-decal-md mt-10 text-2xl text-ridge">Visit</h2>
-          <p className="mt-3 text-lg">{fullAddress(settings)}</p>
-          {settings.address?.mapUrl ? (
-            <a href={settings.address.mapUrl} className="btn btn-quiet mt-4 text-ridge">
-              Get directions
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 pt-10 sm:px-6 lg:grid-cols-[1fr_22rem]">
+        <div className="rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-8">
+          <LeadForm
+            type={isQuote ? 'quote' : 'contact'}
+            modelSlug={interest.modelSlug}
+            stockNumber={interest.stockNumber}
+            subject={interest.subject}
+            page={isQuote ? `/contact (quote: ${interest.subject})` : '/contact'}
+            siteKey={turnstileSiteKey()}
+            renderedAt={formRenderedAt()}
+          />
+        </div>
+        <aside className="space-y-8">
+          <div>
+            <h2 className="type-decal-md text-xl text-ridge">Call us</h2>
+            <a href={telHref(settings.phone)} className="mt-2 block text-2xl font-bold text-ink hover:underline">
+              {settings.phone}
             </a>
-          ) : null}
-        </div>
-        <div>
-          <h2 className="type-decal-md text-2xl text-ridge">Hours</h2>
-          <dl className="mt-3 text-lg">
-            {settings.hours?.map((row) => (
-              <div key={row.id ?? row.days} className="flex justify-between border-b border-haze py-2.5">
-                <dt>{row.days}</dt>
-                <dd className="font-semibold">{row.hours}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+          </div>
+          <div>
+            <h2 className="type-decal-md text-xl text-ridge">Visit</h2>
+            <p className="mt-2">{fullAddress(settings)}</p>
+            {settings.address?.mapUrl ? (
+              <a href={settings.address.mapUrl} className="mt-2 inline-block font-semibold text-ridge underline">
+                Get directions
+              </a>
+            ) : null}
+          </div>
+          <div>
+            <h2 className="type-decal-md text-xl text-ridge">Hours</h2>
+            <dl className="mt-2">
+              {settings.hours?.map((row) => (
+                <div key={row.id ?? row.days} className="flex justify-between border-b border-haze py-2">
+                  <dt>{row.days}</dt>
+                  <dd className="font-semibold">{row.hours}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div className="rounded-[var(--radius-plate)] bg-fescue p-5">
+            <p className="font-semibold">Trading in your old mower?</p>
+            <Link href="/trade-in" className="mt-1 inline-block font-semibold text-ridge underline">
+              Get a trade-in value
+            </Link>
+          </div>
+        </aside>
       </div>
     </>
   )
-}
-
-async function findUnitByStock(stockNumber: string) {
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'inventory',
-    where: { stockNumber: { equals: stockNumber.slice(0, 40) } },
-    limit: 1,
-    depth: 0,
-    overrideAccess: false,
-  })
-  return docs[0] ?? null
 }

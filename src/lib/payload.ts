@@ -184,3 +184,28 @@ export async function getModelsBySlugs(slugs: string[]): Promise<Model[]> {
   const bySlug = new Map(docs.map((m) => [m.slug, m]))
   return slugs.map((s) => bySlug.get(s)).filter((m): m is Model => Boolean(m))
 }
+
+/** Resolves `?model=` / `?unit=` from a quote or financing link into what the customer is asking about. */
+export async function resolveInterest(params: { model?: string | string[]; unit?: string | string[] }) {
+  const modelSlug = typeof params.model === 'string' ? params.model.slice(0, 80) : undefined
+  const stockNumber = typeof params.unit === 'string' ? params.unit.slice(0, 40) : undefined
+  const payload = await getPayloadClient()
+  const unit = stockNumber
+    ? ((
+        await payload.find({
+          collection: 'inventory',
+          where: { stockNumber: { equals: stockNumber } },
+          limit: 1,
+          depth: 0,
+          overrideAccess: false,
+        })
+      ).docs[0] ?? null)
+    : null
+  const model = !unit && modelSlug ? await getModelBySlug(modelSlug) : null
+  return {
+    modelSlug: model?.slug ?? undefined,
+    stockNumber: unit?.stockNumber ?? undefined,
+    subject: unit ? `${unit.title} (stock ${unit.stockNumber})` : model ? `Bad Boy ${model.name}` : null,
+    price: unit?.price ?? model?.startingPrice ?? null,
+  }
+}

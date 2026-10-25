@@ -25,6 +25,23 @@ export function Footer({ settings, categories }: { settings: SiteSetting; catego
               Get directions
             </a>
           ) : null}
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+            <li>
+              <Link href="/financing" className="underline hover:text-white">
+                Apply for financing
+              </Link>
+            </li>
+            <li>
+              <Link href="/trade-in" className="underline hover:text-white">
+                Value your trade
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="underline hover:text-white">
+                Contact us
+              </Link>
+            </li>
+          </ul>
         </div>
 
         <div>

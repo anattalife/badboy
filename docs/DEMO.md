@@ -24,6 +24,13 @@ The first page load after starting can take 20–30 seconds while the site compi
 - **In stock**: eight sample units (stock numbers starting with `DEMO-`). Try the filters, then open a unit
 - **Compare**: tick “Compare” on two to four models, then **Compare now** at the bottom of the screen.
   Copy the page address to share the comparison
+- **Get a quote** on any model or unit: the form already knows what you were looking at
+- **Value your trade** (footer, or the link on any unit page)
+- **Financing**: fill in the credit application with made-up details. Use a fake SSN that passes the
+  format check, such as `123-45-6789`. **Never enter real personal information in the demo.**
+- Every form shows a small “Testing only” Cloudflare box; that's the spam check in test mode
+- Alert emails aren't sent from the demo. To see what would have been emailed, look in the terminal
+  running the site for lines starting with `[email:log-only]`
 - Resize the window narrow to see the phone layout
 
 **Admin panel** — add `/admin` to the end of the site address.
@@ -35,6 +42,12 @@ The first page load after starting can take 20–30 seconds while the site compi
 
 This login exists only inside your Codespace's demo database. It is never used on the live site.
 
+- **Leads**: every quote, trade-in and contact form lands here. Set the status, assign it, add notes
+- **Credit applications**: open one and look at the **Applicant** tab. You'll see the SSN because the
+  demo login is an Admin. Create a staff account with only the **Sales** role and the menu item
+  disappears
+- **Access log**: every time someone opened an application's sensitive details
+- **Dealership info**: set how many days to keep credit applications before they're deleted
 - **Inventory**: add a unit (pick the Bad Boy model, enter a stock number and price, upload photos),
   then find it under **In stock**. Mark it **Sold** and it disappears from the website
 - **Equipment models**: edit a model, add a “starting at” price, or upload a photo, then click

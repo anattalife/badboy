@@ -20,6 +20,8 @@ jobs:
     env:
       PAYLOAD_SECRET: ci-only-not-a-real-secret
       PAYLOAD_LOCAL_BINDINGS: 'true'
+      # Test-only key (not used anywhere real).
+      FIELD_ENCRYPTION_KEY: q2Yh6Xr0vYb3cJ7n0Z3m9w1k5Tz8fQe2LpUa4sDgHjM=
     steps:
       - uses: actions/checkout@v4
 

@@ -20,8 +20,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 | # | Stage | Status |
 | --- | --- | --- |
 | 1 | Foundation, admin, roles, full model catalog | Done, approved |
-| 2 | Inventory (stock units, photos, prices), search/filters, side-by-side compare; catalog expanded with configurations, model numbers, MSRP and implement sizes | **Done, awaiting review** |
-| 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | Not started |
+| 2 | Inventory (stock units, photos, prices), search/filters, side-by-side compare; catalog expanded with configurations, model numbers, MSRP and implement sizes | Done |
+| 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | **Done, awaiting review** |
 | 4 | Parts store: cart, Stripe checkout (test mode), shipping and pickup | Not started |
 | 5 | Service info pages and service request form | Not started |
 | 6 | Launch prep: SEO, caching, Cloudflare Images, security docs for loan data | Not started |
@@ -68,6 +68,37 @@ Running notes for whoever works on this next (including future AI sessions). Kee
   floating tray store a per-visitor selection in localStorage.
 - `buildComparison` (`src/lib/compare.ts`) lines specs up by group and label and flags rows that
   differ.
+
+## Leads and financing (stage 3)
+
+- **Forms** (`src/app/(frontend)/actions.ts`): quote (`/contact?model=` or `?unit=`), contact
+  (`/contact`), trade-in (`/trade-in`) and credit application (`/financing`). Server actions validate
+  everything server-side, run spam checks, save with `overrideAccess`, then email an alert. The
+  `leads` and `credit-applications` collections have `create: () => false`, so nothing can be created
+  through the public API, only through these handlers.
+- **Spam** (`src/lib/spam.ts`): Cloudflare Turnstile (required in production; the forms refuse to
+  submit if it isn't configured), a honeypot field and a minimum fill time. Local/Codespaces use
+  Cloudflare's public test keys.
+- **Email** (`src/lib/email.ts`): a Payload email adapter on Cloudflare Email Sending (`send_email`
+  binding `EMAIL`). Outside the deployed Worker, emails are written to the log. A failed alert never
+  loses a lead; it's saved first. Staff password resets use the same adapter. No customer
+  confirmation emails yet (Email Sending may only deliver to verified addresses; confirm at launch).
+- **Credit applications** (`src/collections/CreditApplications.ts`):
+  - SSN, date of birth, monthly income and other income are AES-256-GCM encrypted
+    (`src/lib/crypto.ts`, key `FIELD_ENCRYPTION_KEY`). The form refuses to save if the key is missing.
+  - Only finance and admin can read them. Single-document reads decrypt and write an `audit-log`
+    entry; lists always show masked values. Saving a masked value back keeps the stored ciphertext.
+  - Alert emails contain no sensitive data, only a link to the admin.
+  - Retention: applications older than `site-settings.creditApplicationRetentionDays` (default 365,
+    **owner to decide**) are deleted after each new submission. A daily Cloudflare cron for this is
+    planned in stage 6.
+  - The co-applicant is stored as an array (max 1 row) in its own table. Keeping both people as flat
+    columns exceeded **D1's 100-parameter-per-query limit** on updates. A test fails if any table gets
+    wider than 50 columns.
+  - Consent wording is in `src/app/(frontend)/financing/consent.ts` and is a **draft for lender and
+    attorney review**. The exact text, time, IP and browser are stored with each application.
+- React 19 clears forms after an `action` submit, so forms submit via `onSubmit` plus
+  `startTransition` to keep what people typed when validation fails.
 
 ## Catalog data
 

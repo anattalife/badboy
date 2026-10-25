@@ -108,7 +108,7 @@ export default async function ModelPage(props: Params) {
                 <Link href={quoteHref} className="btn btn-primary">
                   Get a quote
                 </Link>
-                <Link href="/financing" className="btn btn-quiet text-ridge">
+                <Link href={`/financing?model=${encodeURIComponent(model.slug ?? '')}`} className="btn btn-quiet text-ridge">
                   Apply for financing
                 </Link>
                 <a href={telHref(settings.phone)} className="btn btn-quiet text-ridge">

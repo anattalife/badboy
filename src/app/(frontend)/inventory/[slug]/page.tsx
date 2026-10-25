@@ -114,13 +114,19 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
                 <Link href={quoteHref} className="btn btn-primary">
                   Ask about this unit
                 </Link>
-                <Link href="/financing" className="btn btn-quiet text-ridge">
+                <Link href={`/financing?unit=${encodeURIComponent(unit.stockNumber)}`} className="btn btn-quiet text-ridge">
                   Apply for financing
                 </Link>
                 <a href={telHref(settings.phone)} className="btn btn-quiet text-ridge">
                   Call {settings.phone}
                 </a>
               </div>
+              <Link
+                href={`/trade-in?unit=${encodeURIComponent(unit.stockNumber)}`}
+                className="mt-4 inline-block text-sm font-semibold text-ridge underline underline-offset-4"
+              >
+                Have a trade-in? Get a value
+              </Link>
               <dl className="mt-8 grid grid-cols-2 gap-x-6 border-t border-haze">
                 {details
                   .filter(([, v]) => v != null && v !== '')

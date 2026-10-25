@@ -8,12 +8,16 @@ import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'
 import { r2Storage } from '@payloadcms/storage-r2'
 
+import { AuditLog } from './collections/AuditLog'
 import { Categories } from './collections/Categories'
+import { CreditApplications } from './collections/CreditApplications'
 import { Inventory } from './collections/Inventory'
+import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
 import { Models } from './collections/Models'
 import { Users } from './collections/Users'
 import { SiteSettings } from './globals/SiteSettings'
+import { cloudflareEmailAdapter } from './lib/email'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -73,9 +77,16 @@ export default buildConfig({
       titleSuffix: ' · Roanoke Mowers admin',
     },
   },
-  collections: [Inventory, Models, Categories, Media, Users],
+  collections: [Leads, CreditApplications, Inventory, Models, Categories, Media, Users, AuditLog],
   globals: [SiteSettings],
   editor: lexicalEditor(),
+  // Cloudflare Email Sending in the deployed Worker; written to the log everywhere else.
+  email: cloudflareEmailAdapter({
+    binding: (cloudflare.env as { EMAIL?: Parameters<typeof cloudflareEmailAdapter>[0]['binding'] }).EMAIL,
+    send: inWorker,
+    fromAddress: process.env.EMAIL_FROM_ADDRESS || 'leads@roanokemowers.com',
+    fromName: process.env.EMAIL_FROM_NAME || 'Roanoke Mowers website',
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

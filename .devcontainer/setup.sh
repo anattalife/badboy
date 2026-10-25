@@ -9,10 +9,14 @@ npm install -g pnpm@10.28.0 >/dev/null
 echo "==> Installing dependencies"
 pnpm install --frozen-lockfile
 
-if [ ! -f .env ]; then
-  echo "==> Creating .env with a random local secret"
-  echo "PAYLOAD_SECRET=$(openssl rand -hex 32)" > .env
-fi
+# Local secrets. Each is added only if missing, so re-running keeps existing values.
+touch .env
+add_env() { grep -q "^$1=" .env || echo "$1=$2" >> .env; }
+add_env PAYLOAD_SECRET "$(openssl rand -hex 32)"
+add_env FIELD_ENCRYPTION_KEY "$(openssl rand -base64 32)"
+# Cloudflare's official Turnstile *test* keys: the widget always passes and shows "testing only".
+add_env TURNSTILE_SITE_KEY 1x00000000000000000000AA
+add_env TURNSTILE_SECRET_KEY 1x0000000000000000000000000000000AA
 
 echo "==> Creating the local database"
 pnpm payload migrate

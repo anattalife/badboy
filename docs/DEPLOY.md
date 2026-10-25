@@ -22,8 +22,22 @@ pnpm wrangler d1 create roanokemowers
 pnpm wrangler r2 bucket create roanokemowers-media
 
 # 3. Secrets (you'll be prompted for each value)
-pnpm wrangler secret put PAYLOAD_SECRET   # paste the output of: openssl rand -hex 32
+pnpm wrangler secret put PAYLOAD_SECRET        # paste the output of: openssl rand -hex 32
+pnpm wrangler secret put FIELD_ENCRYPTION_KEY  # paste the output of: openssl rand -base64 32
+pnpm wrangler secret put TURNSTILE_SECRET_KEY  # from step 5 below
+pnpm wrangler secret put TURNSTILE_SITE_KEY    # from step 5 below
 ```
+
+> **Keep a copy of `FIELD_ENCRYPTION_KEY` somewhere safe** (for example a password manager). If it's
+> lost, stored credit applications can't be decrypted. Never reuse the demo/test keys.
+
+4. **Email alerts:** in the Cloudflare dashboard, open **Email Service** and onboard
+   `roanokemowers.com` as a sending domain (Cloudflare adds the DNS records). Add the lead address
+   (currently anattalife@icloud.com) as a verified destination if Cloudflare asks. The site sends
+   from `leads@roanokemowers.com` by default (change with the `EMAIL_FROM_ADDRESS` variable).
+5. **Spam protection:** in the dashboard, open **Turnstile**, add a widget for `roanokemowers.com`,
+   and copy its site key and secret key into the two secrets above. The forms refuse to submit in
+   production until these are set.
 
 Then in the Cloudflare dashboard:
 
@@ -57,10 +71,8 @@ planned without the owner's approval.
 
 | Item | Used for |
 | --- | --- |
-| Cloudflare Email Sending (`send_email` binding) | Lead and request alerts from your own domain |
-| `TURNSTILE_SECRET_KEY` (Cloudflare Turnstile) | Spam protection on forms |
-| `FIELD_ENCRYPTION_KEY` | Encrypting SSN and income on loan applications |
 | Payment processor for parts checkout | **Not decided.** Owner to choose; ideally the processor the shop already uses |
+| Daily cleanup of old credit applications (Cloudflare cron) | Stage 6 |
 
 ## Images
 

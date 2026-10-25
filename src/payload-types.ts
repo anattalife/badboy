@@ -67,11 +67,14 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    leads: Lead;
+    'credit-applications': CreditApplication;
     inventory: Inventory;
     models: Model;
     categories: Category;
     media: Media;
     users: User;
+    'audit-log': AuditLog;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,11 +82,14 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    leads: LeadsSelect<false> | LeadsSelect<true>;
+    'credit-applications': CreditApplicationsSelect<false> | CreditApplicationsSelect<true>;
     inventory: InventorySelect<false> | InventorySelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -128,73 +134,80 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Machines on the lot or on order. Sold and hidden units never show on the website.
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "inventory".
+ * via the `definition` "leads".
  */
-export interface Inventory {
+export interface Lead {
   id: number;
-  stockNumber: string;
-  condition: 'new' | 'used' | 'demo';
-  status: 'available' | 'on-order' | 'pending' | 'sold' | 'hidden';
-  /**
-   * Pick the Bad Boy model. Leave empty for other brands (trade-ins).
-   */
+  type: 'quote' | 'trade-in' | 'contact';
+  status: 'new' | 'contacted' | 'won' | 'lost' | 'spam';
+  assignedTo?: (number | null) | User;
+  summary?: string | null;
+  name: string;
+  email?: string | null;
+  phone?: string | null;
+  preferredContact?: ('phone' | 'text' | 'email') | null;
+  zip?: string | null;
+  timeframe?: ('now' | 'month' | 'researching') | null;
+  message?: string | null;
   model?: (number | null) | Model;
-  year: number;
+  unit?: (number | null) | Inventory;
+  tradeIn?: {
+    year?: number | null;
+    make?: string | null;
+    model?: string | null;
+    hours?: number | null;
+    condition?: ('excellent' | 'good' | 'fair' | 'needs-work') | null;
+    details?: string | null;
+  };
   /**
-   * Engine hours (used units).
+   * Calls made, quotes given, next steps.
    */
-  hours?: number | null;
-  make?: string | null;
-  otherModelName?: string | null;
-  /**
-   * Filled in automatically from the Bad Boy model.
-   */
-  category?: (number | null) | Category;
-  /**
-   * e.g. 61" Kawasaki FX1000V EFI
-   */
-  configuration?: string | null;
-  /**
-   * e.g. 61"
-   */
-  deck?: string | null;
-  engine?: string | null;
-  /**
-   * Your price in dollars. Leave blank for “Call for price”.
-   */
-  price?: number | null;
-  /**
-   * Optional. Shown crossed out when higher than your price.
-   */
-  msrp?: number | null;
-  /**
-   * Staff only. Never shown on the website.
-   */
-  serialNumber?: string | null;
-  /**
-   * First photo is the main image.
-   */
-  photos?: (number | Media)[] | null;
-  /**
-   * Condition notes, included attachments, warranty remaining, etc.
-   */
-  description?: string | null;
-  /**
-   * Show first on the In Stock page.
-   */
-  featured?: boolean | null;
-  /**
-   * Built from year, make, model and configuration.
-   */
-  title?: string | null;
-  slug?: string | null;
-  deckInches?: number | null;
-  soldAt?: string | null;
+  staffNotes?:
+    | {
+        note: string;
+        author?: (number | null) | User;
+        at?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  source?: {
+    page?: string | null;
+    ip?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  /**
+   * Admin can do everything. Finance is the only other role that can see loan applicants’ SSN and income.
+   */
+  roles: ('admin' | 'manager' | 'sales' | 'finance' | 'service' | 'parts')[];
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -341,35 +354,212 @@ export interface Media {
   height?: number | null;
 }
 /**
+ * Machines on the lot or on order. Sold and hidden units never show on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "inventory".
  */
-export interface User {
+export interface Inventory {
   id: number;
-  name: string;
+  stockNumber: string;
+  condition: 'new' | 'used' | 'demo';
+  status: 'available' | 'on-order' | 'pending' | 'sold' | 'hidden';
   /**
-   * Admin can do everything. Finance is the only other role that can see loan applicants’ SSN and income.
+   * Pick the Bad Boy model. Leave empty for other brands (trade-ins).
    */
-  roles: ('admin' | 'manager' | 'sales' | 'finance' | 'service' | 'parts')[];
+  model?: (number | null) | Model;
+  year: number;
+  /**
+   * Engine hours (used units).
+   */
+  hours?: number | null;
+  make?: string | null;
+  otherModelName?: string | null;
+  /**
+   * Filled in automatically from the Bad Boy model.
+   */
+  category?: (number | null) | Category;
+  /**
+   * e.g. 61" Kawasaki FX1000V EFI
+   */
+  configuration?: string | null;
+  /**
+   * e.g. 61"
+   */
+  deck?: string | null;
+  engine?: string | null;
+  /**
+   * Your price in dollars. Leave blank for “Call for price”.
+   */
+  price?: number | null;
+  /**
+   * Optional. Shown crossed out when higher than your price.
+   */
+  msrp?: number | null;
+  /**
+   * Staff only. Never shown on the website.
+   */
+  serialNumber?: string | null;
+  /**
+   * First photo is the main image.
+   */
+  photos?: (number | Media)[] | null;
+  /**
+   * Condition notes, included attachments, warranty remaining, etc.
+   */
+  description?: string | null;
+  /**
+   * Show first on the In Stock page.
+   */
+  featured?: boolean | null;
+  /**
+   * Built from year, make, model and configuration.
+   */
+  title?: string | null;
+  slug?: string | null;
+  deckInches?: number | null;
+  soldAt?: string | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  resetPasswordRequestedAt?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
+}
+/**
+ * Finance and Admin only. SSN, date of birth and income are encrypted and every view is logged.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "credit-applications".
+ */
+export interface CreditApplication {
+  id: number;
+  status: 'new' | 'reviewing' | 'submitted' | 'approved' | 'declined' | 'withdrawn';
+  lender?: string | null;
+  assignedTo?: (number | null) | User;
+  summary?: string | null;
+  model?: (number | null) | Model;
+  unit?: (number | null) | Inventory;
+  equipmentDescription?: string | null;
+  purchasePrice?: number | null;
+  downPayment?: number | null;
+  amountRequested?: number | null;
+  applicant: {
+    firstName: string;
+    middleInitial?: string | null;
+    lastName: string;
+    email?: string | null;
+    phone?: string | null;
+    /**
+     * Encrypted. Only Finance and Admin can read it, and each view is logged.
+     */
+    ssn?: string | null;
+    /**
+     * Encrypted. Only Finance and Admin can read it, and each view is logged.
+     */
+    dateOfBirth?: string | null;
+    address?: {
+      street?: string | null;
+      city?: string | null;
+      state?: string | null;
+      zip?: string | null;
+      yearsAtAddress?: number | null;
+      monthsAtAddress?: number | null;
+      housing?: ('own' | 'rent' | 'family' | 'other') | null;
+      monthlyHousingPayment?: number | null;
+    };
+    employment?: {
+      status?: ('employed' | 'self-employed' | 'retired' | 'other') | null;
+      employer?: string | null;
+      jobTitle?: string | null;
+      employerPhone?: string | null;
+      yearsEmployed?: number | null;
+      monthsEmployed?: number | null;
+    };
+    /**
+     * Encrypted. Only Finance and Admin can read it, and each view is logged.
+     */
+    monthlyIncome?: string | null;
+    /**
+     * Encrypted. Only Finance and Admin can read it, and each view is logged.
+     */
+    otherMonthlyIncome?: string | null;
+    otherIncomeSource?: string | null;
+  };
+  coApplicant?:
     | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
+        firstName?: string | null;
+        middleInitial?: string | null;
+        lastName?: string | null;
+        email?: string | null;
+        phone?: string | null;
+        /**
+         * Encrypted. Only Finance and Admin can read it, and each view is logged.
+         */
+        ssn?: string | null;
+        /**
+         * Encrypted. Only Finance and Admin can read it, and each view is logged.
+         */
+        dateOfBirth?: string | null;
+        address?: {
+          street?: string | null;
+          city?: string | null;
+          state?: string | null;
+          zip?: string | null;
+          yearsAtAddress?: number | null;
+          monthsAtAddress?: number | null;
+          housing?: ('own' | 'rent' | 'family' | 'other') | null;
+          monthlyHousingPayment?: number | null;
+        };
+        employment?: {
+          status?: ('employed' | 'self-employed' | 'retired' | 'other') | null;
+          employer?: string | null;
+          jobTitle?: string | null;
+          employerPhone?: string | null;
+          yearsEmployed?: number | null;
+          monthsEmployed?: number | null;
+        };
+        /**
+         * Encrypted. Only Finance and Admin can read it, and each view is logged.
+         */
+        monthlyIncome?: string | null;
+        /**
+         * Encrypted. Only Finance and Admin can read it, and each view is logged.
+         */
+        otherMonthlyIncome?: string | null;
+        otherIncomeSource?: string | null;
+        id?: string | null;
       }[]
     | null;
-  password?: string | null;
-  collection: 'users';
+  staffNotes?:
+    | {
+        note: string;
+        author?: (number | null) | User;
+        at?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  consent?: {
+    agreedAt?: string | null;
+    text?: string | null;
+    ip?: string | null;
+    userAgent?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Every time someone opens a credit application’s sensitive details. Entries cannot be changed.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audit-log".
+ */
+export interface AuditLog {
+  id: number;
+  summary: string;
+  action: 'view-sensitive' | 'purge' | 'export';
+  collectionSlug: string;
+  docId?: string | null;
+  user?: (number | null) | User;
+  ip?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -396,6 +586,14 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'leads';
+        value: number | Lead;
+      } | null)
+    | ({
+        relationTo: 'credit-applications';
+        value: number | CreditApplication;
+      } | null)
+    | ({
         relationTo: 'inventory';
         value: number | Inventory;
       } | null)
@@ -414,6 +612,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'audit-log';
+        value: number | AuditLog;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -456,6 +658,158 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads_select".
+ */
+export interface LeadsSelect<T extends boolean = true> {
+  type?: T;
+  status?: T;
+  assignedTo?: T;
+  summary?: T;
+  name?: T;
+  email?: T;
+  phone?: T;
+  preferredContact?: T;
+  zip?: T;
+  timeframe?: T;
+  message?: T;
+  model?: T;
+  unit?: T;
+  tradeIn?:
+    | T
+    | {
+        year?: T;
+        make?: T;
+        model?: T;
+        hours?: T;
+        condition?: T;
+        details?: T;
+      };
+  staffNotes?:
+    | T
+    | {
+        note?: T;
+        author?: T;
+        at?: T;
+        id?: T;
+      };
+  source?:
+    | T
+    | {
+        page?: T;
+        ip?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "credit-applications_select".
+ */
+export interface CreditApplicationsSelect<T extends boolean = true> {
+  status?: T;
+  lender?: T;
+  assignedTo?: T;
+  summary?: T;
+  model?: T;
+  unit?: T;
+  equipmentDescription?: T;
+  purchasePrice?: T;
+  downPayment?: T;
+  amountRequested?: T;
+  applicant?:
+    | T
+    | {
+        firstName?: T;
+        middleInitial?: T;
+        lastName?: T;
+        email?: T;
+        phone?: T;
+        ssn?: T;
+        dateOfBirth?: T;
+        address?:
+          | T
+          | {
+              street?: T;
+              city?: T;
+              state?: T;
+              zip?: T;
+              yearsAtAddress?: T;
+              monthsAtAddress?: T;
+              housing?: T;
+              monthlyHousingPayment?: T;
+            };
+        employment?:
+          | T
+          | {
+              status?: T;
+              employer?: T;
+              jobTitle?: T;
+              employerPhone?: T;
+              yearsEmployed?: T;
+              monthsEmployed?: T;
+            };
+        monthlyIncome?: T;
+        otherMonthlyIncome?: T;
+        otherIncomeSource?: T;
+      };
+  coApplicant?:
+    | T
+    | {
+        firstName?: T;
+        middleInitial?: T;
+        lastName?: T;
+        email?: T;
+        phone?: T;
+        ssn?: T;
+        dateOfBirth?: T;
+        address?:
+          | T
+          | {
+              street?: T;
+              city?: T;
+              state?: T;
+              zip?: T;
+              yearsAtAddress?: T;
+              monthsAtAddress?: T;
+              housing?: T;
+              monthlyHousingPayment?: T;
+            };
+        employment?:
+          | T
+          | {
+              status?: T;
+              employer?: T;
+              jobTitle?: T;
+              employerPhone?: T;
+              yearsEmployed?: T;
+              monthsEmployed?: T;
+            };
+        monthlyIncome?: T;
+        otherMonthlyIncome?: T;
+        otherIncomeSource?: T;
+        id?: T;
+      };
+  staffNotes?:
+    | T
+    | {
+        note?: T;
+        author?: T;
+        at?: T;
+        id?: T;
+      };
+  consent?:
+    | T
+    | {
+        agreedAt?: T;
+        text?: T;
+        ip?: T;
+        userAgent?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -591,6 +945,20 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audit-log_select".
+ */
+export interface AuditLogSelect<T extends boolean = true> {
+  summary?: T;
+  action?: T;
+  collectionSlug?: T;
+  docId?: T;
+  user?: T;
+  ip?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -666,6 +1034,10 @@ export interface SiteSetting {
   serviceArea?: string | null;
   facebookUrl?: string | null;
   /**
+   * Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.
+   */
+  creditApplicationRetentionDays: number;
+  /**
    * Optional banner across the top of every page (e.g. a sale or holiday hours).
    */
   announcement?: string | null;
@@ -700,6 +1072,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
       };
   serviceArea?: T;
   facebookUrl?: T;
+  creditApplicationRetentionDays?: T;
   announcement?: T;
   updatedAt?: T;
   createdAt?: T;
