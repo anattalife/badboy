@@ -13,10 +13,14 @@ import { Categories } from './collections/Categories'
 import { CreditApplications } from './collections/CreditApplications'
 import { Inventory } from './collections/Inventory'
 import { Leads } from './collections/Leads'
+import { Orders } from './collections/Orders'
+import { PartImports } from './collections/PartImports'
+import { Parts } from './collections/Parts'
 import { Media } from './collections/Media'
 import { Models } from './collections/Models'
 import { Users } from './collections/Users'
 import { SiteSettings } from './globals/SiteSettings'
+import { StoreSettings } from './globals/StoreSettings'
 import { cloudflareEmailAdapter } from './lib/email'
 
 const filename = fileURLToPath(import.meta.url)
@@ -77,8 +81,20 @@ export default buildConfig({
       titleSuffix: ' · Roanoke Mowers admin',
     },
   },
-  collections: [Leads, CreditApplications, Inventory, Models, Categories, Media, Users, AuditLog],
-  globals: [SiteSettings],
+  collections: [
+    Leads,
+    CreditApplications,
+    Orders,
+    Inventory,
+    Models,
+    Categories,
+    Parts,
+    PartImports,
+    Media,
+    Users,
+    AuditLog,
+  ],
+  globals: [SiteSettings, StoreSettings],
   editor: lexicalEditor(),
   // Cloudflare Email Sending in the deployed Worker; written to the log everywhere else.
   email: cloudflareEmailAdapter({
@@ -99,7 +115,7 @@ export default buildConfig({
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
-      collections: { media: true },
+      collections: { media: true, 'part-imports': true },
     }),
   ],
 })

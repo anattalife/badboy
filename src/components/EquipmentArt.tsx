@@ -11,7 +11,16 @@ const Wheel = ({ cx, cy, r }: { cx: number; cy: number; r: number }) => (
   </g>
 )
 
-const shapes: Record<EquipmentKind, React.ReactNode> = {
+const shapes: Record<EquipmentKind | 'part', React.ReactNode> = {
+  part: (
+    <g>
+      <circle cx="120" cy="72" r="34" fill="currentColor" opacity="0.85" />
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
+        <rect key={a} x="113" y="28" width="14" height="16" rx="2" fill="currentColor" transform={`rotate(${a} 120 72)`} />
+      ))}
+      <circle cx="120" cy="72" r="13" fill="var(--art-bg)" />
+    </g>
+  ),
   'zero-turn': (
     <g>
       <rect x="44" y="96" width="132" height="12" rx="3" fill="currentColor" />
@@ -104,7 +113,7 @@ export function EquipmentArt({
   label,
   notice = true,
 }: {
-  kind: EquipmentKind
+  kind: EquipmentKind | 'part'
   className?: string
   label?: string
   /** Show the “Photo coming soon” tag (off for category icons). */

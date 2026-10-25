@@ -7,12 +7,14 @@ import { CompareToggle } from '@/components/CompareControls'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { ModelCard } from '@/components/ModelCard'
 import { UnitCard } from '@/components/UnitCard'
+import { PartCard } from '@/components/store/PartCard'
 import { Breadcrumbs } from '@/components/PageIntro'
 import { categoryOf, firstImage, formatPrice, kindForCategory, telHref } from '@/lib/format'
 import { toSizeMatrix } from '@/lib/specs'
 import {
   getModelBySlug,
   getModelsByCategory,
+  getPartsForModel,
   getSiteSettings,
   getUnitsForModel,
 } from '@/lib/payload'
@@ -41,10 +43,11 @@ export default async function ModelPage(props: Params) {
   const data = await load(props)
   if (!data) notFound()
   const { model, category } = data
-  const [settings, siblings, units] = await Promise.all([
+  const [settings, siblings, units, parts] = await Promise.all([
     getSiteSettings(),
     getModelsByCategory(category.id),
     getUnitsForModel(model.id),
+    getPartsForModel(model.id),
   ])
 
   const image = firstImage(model)
@@ -108,7 +111,10 @@ export default async function ModelPage(props: Params) {
                 <Link href={quoteHref} className="btn btn-primary">
                   Get a quote
                 </Link>
-                <Link href={`/financing?model=${encodeURIComponent(model.slug ?? '')}`} className="btn btn-quiet text-ridge">
+                <Link
+                  href={`/financing?model=${encodeURIComponent(model.slug ?? '')}`}
+                  className="btn btn-quiet text-ridge"
+                >
                   Apply for financing
                 </Link>
                 <a href={telHref(settings.phone)} className="btn btn-quiet text-ridge">
@@ -285,6 +291,27 @@ export default async function ModelPage(props: Params) {
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {units.map((u) => (
               <UnitCard key={u.id} unit={u} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {parts.docs.length ? (
+        <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6" aria-labelledby="parts-h">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 id="parts-h" className="type-decal-md text-2xl text-ridge">
+              Parts and accessories for the {model.name}
+            </h2>
+            <Link
+              href={`/parts?model=${model.slug}`}
+              className="font-semibold text-ridge hover:underline"
+            >
+              See all {parts.totalDocs}
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {parts.docs.slice(0, 4).map((p) => (
+              <PartCard key={p.id} part={p} />
             ))}
           </div>
         </section>

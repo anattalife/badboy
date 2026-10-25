@@ -69,9 +69,12 @@ export interface Config {
   collections: {
     leads: Lead;
     'credit-applications': CreditApplication;
+    orders: Order;
     inventory: Inventory;
     models: Model;
     categories: Category;
+    parts: Part;
+    'part-imports': PartImport;
     media: Media;
     users: User;
     'audit-log': AuditLog;
@@ -84,9 +87,12 @@ export interface Config {
   collectionsSelect: {
     leads: LeadsSelect<false> | LeadsSelect<true>;
     'credit-applications': CreditApplicationsSelect<false> | CreditApplicationsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     inventory: InventorySelect<false> | InventorySelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    parts: PartsSelect<false> | PartsSelect<true>;
+    'part-imports': PartImportsSelect<false> | PartImportsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
@@ -101,9 +107,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
+    'store-settings': StoreSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'store-settings': StoreSettingsSelect<false> | StoreSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -545,6 +553,140 @@ export interface CreditApplication {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  orderNumber: string;
+  status: 'pending-payment' | 'paid' | 'shipped' | 'cancelled' | 'refunded';
+  trackingNumber?: string | null;
+  accessToken: string;
+  customerName: string;
+  email: string;
+  phone?: string | null;
+  shipTo: {
+    street: string;
+    street2?: string | null;
+    city: string;
+    state: string;
+    zip: string;
+    residential?: boolean | null;
+  };
+  items: {
+    part?: (number | null) | Part;
+    partNumber?: string | null;
+    name: string;
+    unitPrice: number;
+    qty: number;
+    lineTotal: number;
+    id?: string | null;
+  }[];
+  subtotal: number;
+  shippingAmount: number;
+  taxAmount: number;
+  total: number;
+  shippingService?: string | null;
+  shippingServiceCode?: string | null;
+  taxRatePercent?: number | null;
+  payment?: {
+    provider?: string | null;
+    reference?: string | null;
+    paidAt?: string | null;
+  };
+  customerNotes?: string | null;
+  staffNotes?:
+    | {
+        note: string;
+        author?: (number | null) | User;
+        id?: string | null;
+      }[]
+    | null;
+  ip?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Parts need a price and a shipping weight to be sold online. Without them they show “Call to order”.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parts".
+ */
+export interface Part {
+  id: number;
+  name: string;
+  /**
+   * Used in the page address. Leave blank to generate it from the name.
+   */
+  slug?: string | null;
+  partNumber?: string | null;
+  category: 'mower-accessories' | 'utv-accessories' | 'e-series' | 'maintenance' | 'other';
+  /**
+   * Optional sub-group, e.g. Comfort, Lighting.
+   */
+  group?: string | null;
+  description?: string | null;
+  /**
+   * Your price in dollars.
+   */
+  price?: number | null;
+  msrp?: number | null;
+  availability?: ('in-stock' | 'special-order' | 'discontinued') | null;
+  stockQty?: number | null;
+  /**
+   * Packed weight. Required to ship.
+   */
+  weightLb?: number | null;
+  lengthIn?: number | null;
+  widthIn?: number | null;
+  heightIn?: number | null;
+  /**
+   * Used for “Parts for your machine” on model pages.
+   */
+  models?: (number | Model)[] | null;
+  fits?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  images?: (number | Media)[] | null;
+  /**
+   * Show on the website.
+   */
+  active?: boolean | null;
+  source?: ('manual' | 'import' | 'bad-boy') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Upload a CSV price list to add or update parts. Rows are matched by part number. A template is at /parts-import-template.csv on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "part-imports".
+ */
+export interface PartImport {
+  id: number;
+  created?: number | null;
+  updated?: number | null;
+  skipped?: number | null;
+  columnsFound?: string | null;
+  problems?: string | null;
+  importedBy?: (number | null) | User;
+  _objectKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
  * Every time someone opens a credit application’s sensitive details. Entries cannot be changed.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -594,6 +736,10 @@ export interface PayloadLockedDocument {
         value: number | CreditApplication;
       } | null)
     | ({
+        relationTo: 'orders';
+        value: number | Order;
+      } | null)
+    | ({
         relationTo: 'inventory';
         value: number | Inventory;
       } | null)
@@ -604,6 +750,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'parts';
+        value: number | Part;
+      } | null)
+    | ({
+        relationTo: 'part-imports';
+        value: number | PartImport;
       } | null)
     | ({
         relationTo: 'media';
@@ -813,6 +967,65 @@ export interface CreditApplicationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderNumber?: T;
+  status?: T;
+  trackingNumber?: T;
+  accessToken?: T;
+  customerName?: T;
+  email?: T;
+  phone?: T;
+  shipTo?:
+    | T
+    | {
+        street?: T;
+        street2?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+        residential?: T;
+      };
+  items?:
+    | T
+    | {
+        part?: T;
+        partNumber?: T;
+        name?: T;
+        unitPrice?: T;
+        qty?: T;
+        lineTotal?: T;
+        id?: T;
+      };
+  subtotal?: T;
+  shippingAmount?: T;
+  taxAmount?: T;
+  total?: T;
+  shippingService?: T;
+  shippingServiceCode?: T;
+  taxRatePercent?: T;
+  payment?:
+    | T
+    | {
+        provider?: T;
+        reference?: T;
+        paidAt?: T;
+      };
+  customerNotes?: T;
+  staffNotes?:
+    | T
+    | {
+        note?: T;
+        author?: T;
+        id?: T;
+      };
+  ip?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "inventory_select".
  */
 export interface InventorySelect<T extends boolean = true> {
@@ -900,6 +1113,62 @@ export interface CategoriesSelect<T extends boolean = true> {
   order?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "parts_select".
+ */
+export interface PartsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  partNumber?: T;
+  category?: T;
+  group?: T;
+  description?: T;
+  price?: T;
+  msrp?: T;
+  availability?: T;
+  stockQty?: T;
+  weightLb?: T;
+  lengthIn?: T;
+  widthIn?: T;
+  heightIn?: T;
+  models?: T;
+  fits?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  images?: T;
+  active?: T;
+  source?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "part-imports_select".
+ */
+export interface PartImportsSelect<T extends boolean = true> {
+  created?: T;
+  updated?: T;
+  skipped?: T;
+  columnsFound?: T;
+  problems?: T;
+  importedBy?: T;
+  _objectKey?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1046,6 +1315,49 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "store-settings".
+ */
+export interface StoreSetting {
+  id: number;
+  /**
+   * Turn off to pause checkout (parts stay visible with “Call to order”).
+   */
+  storeOpen?: boolean | null;
+  /**
+   * Where new order alerts go. Leave blank to use the lead email in Dealership info.
+   */
+  orderEmail?: string | null;
+  upsServices?: ('03' | '12' | '02' | '13' | '01')[] | null;
+  handlingFee?: number | null;
+  /**
+   * Leave blank for no free shipping.
+   */
+  freeShippingOver?: number | null;
+  /**
+   * The address packages ship from.
+   */
+  shipFrom?: {
+    name?: string | null;
+    phone?: string | null;
+    street?: string | null;
+    city?: string | null;
+    state?: string | null;
+    zip?: string | null;
+  };
+  defaultBox?: {
+    length?: number | null;
+    width?: number | null;
+    height?: number | null;
+  };
+  taxEnabled?: boolean | null;
+  taxState?: string | null;
+  taxRatePercent?: number | null;
+  taxShipping?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1074,6 +1386,41 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   facebookUrl?: T;
   creditApplicationRetentionDays?: T;
   announcement?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "store-settings_select".
+ */
+export interface StoreSettingsSelect<T extends boolean = true> {
+  storeOpen?: T;
+  orderEmail?: T;
+  upsServices?: T;
+  handlingFee?: T;
+  freeShippingOver?: T;
+  shipFrom?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        street?: T;
+        city?: T;
+        state?: T;
+        zip?: T;
+      };
+  defaultBox?:
+    | T
+    | {
+        length?: T;
+        width?: T;
+        height?: T;
+      };
+  taxEnabled?: T;
+  taxState?: T;
+  taxRatePercent?: T;
+  taxShipping?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

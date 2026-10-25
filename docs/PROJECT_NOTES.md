@@ -14,6 +14,7 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **No third-party services without explicit owner approval.** Default to what Cloudflare already
   provides (email sending, Turnstile, D1, R2). The owner does not want SaaS vendors suggested by default.
   The parts-store payment processor is undecided; ask which processor the shop already uses.
+  UPS (live shipping rates) was requested by the owner.
 
 ## Stages
 
@@ -21,8 +22,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 | --- | --- | --- |
 | 1 | Foundation, admin, roles, full model catalog | Done, approved |
 | 2 | Inventory (stock units, photos, prices), search/filters, side-by-side compare; catalog expanded with configurations, model numbers, MSRP and implement sizes | Done |
-| 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | **Done, awaiting review** |
-| 4 | Parts store: cart, Stripe checkout (test mode), shipping and pickup | Not started |
+| 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | Done |
+| 4 | Parts store: catalog, CSV price-list import, cart, checkout, UPS live rates, VA sales tax, orders (shipping only) | **Done, awaiting review; payment processor not yet chosen** |
 | 5 | Service info pages and service request form | Not started |
 | 6 | Launch prep: SEO, caching, Cloudflare Images, security docs for loan data | Not started |
 
@@ -99,6 +100,40 @@ Running notes for whoever works on this next (including future AI sessions). Kee
     attorney review**. The exact text, time, IP and browser are stored with each application.
 - React 19 clears forms after an `action` submit, so forms submit via `onSubmit` plus
   `startTransition` to keep what people typed when validation fails.
+
+## Parts store (stage 4)
+
+- **Owner's choices:** online card payment (processor TBD), **shipping only** (no pickup), parts from
+  both the Bad Boy accessory catalog and the dealer's own price list, **UPS live rates**.
+- **Parts** (`src/collections/Parts.ts`): part number (unique, import key), price, MSRP, availability,
+  stock, weight/dimensions, models it fits, fitment notes. `canBuyOnline` = active + price + weight +
+  not discontinued. Parts over 150 lb can't ship UPS and show "call for freight".
+- **Price list import** (`src/collections/PartImports.ts`, `src/lib/partsImport.ts`): upload a CSV in
+  the admin. Matches on part number; updates only the columns present; accepts common header names
+  (`src/lib/csv.ts` `PART_COLUMNS`); links models mentioned in a fitment column; up to 3,000 rows per
+  file; results and problems saved on the import record. Template: `/parts-import-template.csv`.
+  Upload files are stored in R2.
+- **Bad Boy accessories** are seeded as 106 parts (one per part number) with MSRP as the price.
+  Bad Boy doesn't publish weights, so **in production they show "Call to order" until staff add a
+  shipping weight**. The demo seed adds sample weights (price ÷ 25 lb) so checkout can be tried.
+- **Cart** lives in localStorage as `{id, qty}` only. `priceCart` re-prices from the database.
+- **Shipping** (`src/lib/ups.ts`): OAuth client credentials + Rating API v2409 `Shop`, built from
+  UPS's published OpenAPI specs (github.com/UPS-API/api-documentation). Negotiated rates are preferred.
+  Packing (`src/lib/store.ts`): parts with dimensions ship alone; small parts combine into the default
+  box up to 50 lb. Handling fee, free Ground threshold, offered services and ship-from address are in
+  **Store settings**. Without UPS credentials: sample rates outside production (clearly labeled);
+  in production checkout shows an error instead.
+- **Signed quotes:** each rate shown is HMAC-signed with the cart and address fingerprints and a
+  30-minute expiry, so the price can't be edited in the browser and stale quotes are rejected.
+- **Tax:** charged only when shipping to `taxState` (default VA, 5.3%; shipping not taxed by default).
+  Editable in Store settings; **owner to confirm with accountant**.
+- **Orders** (`src/collections/Orders.ts`): created only by `placeOrder`; parts and manager roles
+  manage them. Customers see their order at `/order/<number>?t=<token>`; the token is unreadable even
+  to staff. Paid orders decrement `stockQty` when set and email an alert (no customer email yet).
+- **Payment** (`src/lib/payments.ts`): only a demo `test` provider (marks paid, no card). In
+  production `getPaymentProvider()` returns null, so **checkout stays closed until the shop's
+  processor is implemented**. `markOrderPaid` lives in `src/lib/orders.ts` (server-only) so it can't
+  be called from the browser. Never export privileged helpers from a `'use server'` file.
 
 ## Catalog data
 

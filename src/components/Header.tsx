@@ -4,6 +4,7 @@ import { telHref } from '@/lib/format'
 import type { SiteSetting } from '@/payload-types'
 
 import { MobileNav } from './MobileNav'
+import { CartLink } from './store/CartWidgets'
 
 export const NAV = [
   { href: '/equipment', label: 'Equipment' },
@@ -64,6 +65,7 @@ export function Header({ settings }: { settings: SiteSetting }) {
           </nav>
 
           <div className="flex items-center gap-3">
+            <CartLink />
             <Link href="/contact" className="btn btn-primary hidden sm:inline-flex">
               Get a quote
             </Link>

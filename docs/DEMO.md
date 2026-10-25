@@ -31,6 +31,11 @@ The first page load after starting can take 20–30 seconds while the site compi
 - Every form shows a small “Testing only” Cloudflare box; that's the spam check in test mode
 - Alert emails aren't sent from the demo. To see what would have been emailed, look in the terminal
   running the site for lines starting with `[email:log-only]`
+- **Parts**: search by name or part number (try `088-4020-00`), or pick your machine under “Fits my
+  machine”. Model pages also show matching parts
+- **Cart and checkout**: add parts, check out with any US address, choose a UPS service and place
+  the order. The demo uses **sample shipping rates** (UPS isn't connected yet) and a **test payment**
+  (no card is asked for or charged). Try a Virginia address to see sales tax added
 - Resize the window narrow to see the phone layout
 
 **Admin panel** — add `/admin` to the end of the site address.
@@ -48,6 +53,12 @@ This login exists only inside your Codespace's demo database. It is never used o
   disappears
 - **Access log**: every time someone opened an application's sensitive details
 - **Dealership info**: set how many days to keep credit applications before they're deleted
+- **Parts store → Orders**: orders from the demo checkout. Add a UPS tracking number and the
+  customer's order page shows a tracking link
+- **Parts store → Price list imports**: upload a CSV to add or update parts in bulk. Download the
+  template from `/parts-import-template.csv` on the demo site
+- **Parts store → Parts**: add a price and shipping weight to make a part orderable online
+- **Parts store → Store settings**: UPS services, handling fee, free shipping threshold, sales tax
 - **Inventory**: add a unit (pick the Bad Boy model, enter a stock number and price, upload photos),
   then find it under **In stock**. Mark it **Sold** and it disappears from the website
 - **Equipment models**: edit a model, add a “starting at” price, or upload a photo, then click

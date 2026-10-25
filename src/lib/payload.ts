@@ -209,3 +209,59 @@ export async function resolveInterest(params: { model?: string | string[]; unit?
     price: unit?.price ?? model?.startingPrice ?? null,
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Parts store                                                         */
+/* ------------------------------------------------------------------ */
+
+export const PARTS_PAGE_SIZE = 24
+
+export async function getParts(filters: { q?: string; category?: string; model?: string; page?: number }) {
+  const payload = await getPayloadClient()
+  const and: Where[] = []
+  const q = filters.q?.trim().slice(0, 80)
+  if (q) {
+    and.push({
+      or: [{ name: { like: q } }, { partNumber: { like: q } }, { description: { like: q } }],
+    })
+  }
+  if (filters.category) and.push({ category: { equals: filters.category } })
+  if (filters.model) {
+    const model = await getModelBySlug(filters.model)
+    and.push({ models: { contains: model?.id ?? -1 } })
+  }
+  return payload.find({
+    collection: 'parts',
+    where: and.length ? { and } : undefined,
+    sort: 'name',
+    limit: PARTS_PAGE_SIZE,
+    page: filters.page ?? 1,
+    depth: 1,
+    overrideAccess: false,
+  })
+}
+
+export const getPartBySlug = cache(async (slug: string) => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'parts',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 1,
+    overrideAccess: false,
+  })
+  return docs[0] ?? null
+})
+
+export const getPartsForModel = cache(async (modelId: number) => {
+  const payload = await getPayloadClient()
+  const { docs, totalDocs } = await payload.find({
+    collection: 'parts',
+    where: { models: { contains: modelId } },
+    sort: 'name',
+    limit: 8,
+    depth: 1,
+    overrideAccess: false,
+  })
+  return { docs, totalDocs }
+})

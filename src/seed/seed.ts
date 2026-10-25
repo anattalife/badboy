@@ -146,6 +146,8 @@ export async function seed(payload: Payload): Promise<void> {
   }
   log(`${catalog.models.length} models saved`)
 
+  await seedAccessories(payload)
+
   if (process.env.NODE_ENV !== 'production') {
     await seedSampleInventory(payload)
   }
@@ -225,4 +227,76 @@ async function seedSampleInventory(payload: Payload) {
     }
   }
   payload.logger.info(`[seed] ${samples.length} sample inventory units saved (stock numbers DEMO-…)`)
+}
+
+type Accessory = {
+  name: string
+  line: string
+  group?: string | null
+  description?: string | null
+  msrp?: number | null
+  partNumber?: string | null
+  variants?: { name: string; partNumber?: string | null; msrp?: number | null; fits?: string[] }[]
+  fits?: string[]
+}
+
+/**
+ * Loads Bad Boy accessories as store parts: one part per part number, with the models it fits.
+ * MSRP is used as the starting price. Shipping weights aren't published by Bad Boy, so in
+ * production these show “Call to order” until staff enter a weight. Outside production a
+ * sample weight is set so the demo checkout works.
+ */
+export async function seedAccessories(payload: Payload) {
+  const { default: data } = await import('./data/accessories.json')
+  const { matchModels } = await import('../lib/partsImport')
+  const { slugify } = await import('../fields/slug')
+  const models = (await payload.find({ collection: 'models', limit: 500, depth: 0, draft: true })).docs
+  const demo = process.env.NODE_ENV !== 'production'
+  const category = (line: string) =>
+    line === 'bandit' ? 'utv-accessories' : line === 'e-series' ? 'e-series' : 'mower-accessories'
+
+  let count = 0
+  for (const acc of data.accessories as Accessory[]) {
+    const variants = acc.variants?.length
+      ? acc.variants
+      : [{ name: '', partNumber: acc.partNumber, msrp: acc.msrp, fits: acc.fits ?? [] }]
+    const groups = new Map<string, typeof variants>()
+    for (const v of variants) {
+      const key = v.partNumber ?? `no-number:${v.name}`
+      groups.set(key, [...(groups.get(key) ?? []), v])
+    }
+
+    for (const group of groups.values()) {
+      const partNumber = group[0].partNumber ?? null
+      const suffix = groups.size > 1 ? group.map((v) => v.name).filter(Boolean).join(', ') : ''
+      const name = suffix ? `${acc.name} — ${suffix}` : acc.name
+      const price = group.find((v) => v.msrp)?.msrp ?? acc.msrp ?? null
+      const fitsText = [...new Set(group.flatMap((v) => [v.name, ...(v.fits ?? [])]).filter(Boolean))]
+      const modelIds = matchModels(fitsText.join(' ; '), models)
+      const slug = slugify(`${name} ${partNumber ?? ''}`)
+
+      const doc = {
+        name,
+        slug,
+        partNumber: partNumber ?? undefined,
+        category: category(acc.line) as 'mower-accessories',
+        group: acc.group ?? undefined,
+        description: acc.description ?? undefined,
+        price: price ?? undefined,
+        msrp: price ?? undefined,
+        availability: 'special-order' as const,
+        models: modelIds,
+        fits: group.map((v) => v.name).filter(Boolean).slice(0, 10).map((text) => ({ text })),
+        source: 'bad-boy' as const,
+        active: true,
+        ...(demo && price ? { weightLb: Math.min(40, Math.max(1, Math.round(price / 25))) } : {}),
+      }
+      const where = partNumber ? { partNumber: { equals: partNumber } } : { slug: { equals: slug } }
+      const existing = await payload.find({ collection: 'parts', where, limit: 1, depth: 0 })
+      if (existing.docs[0]) await payload.update({ collection: 'parts', id: existing.docs[0].id, data: doc })
+      else await payload.create({ collection: 'parts', data: doc })
+      count++
+    }
+  }
+  payload.logger.info(`[seed] ${count} accessory parts saved${demo ? ' (with sample shipping weights for the demo)' : ''}`)
 }

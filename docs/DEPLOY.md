@@ -38,6 +38,10 @@ pnpm wrangler secret put TURNSTILE_SITE_KEY    # from step 5 below
 5. **Spam protection:** in the dashboard, open **Turnstile**, add a widget for `roanokemowers.com`,
    and copy its site key and secret key into the two secrets above. The forms refuse to submit in
    production until these are set.
+6. **UPS live rates:** at developer.ups.com, sign in with the shop's UPS account, create an app,
+   add the **Rating** product and link your UPS account number. Then add three secrets:
+   `UPS_CLIENT_ID`, `UPS_CLIENT_SECRET`, `UPS_ACCOUNT_NUMBER`, and the variable `UPS_ENV=production`.
+   Check the ship-from address in Admin → Store settings.
 
 Then in the Cloudflare dashboard:
 
@@ -66,12 +70,12 @@ the demo admin there if an account already exists.
 
 ## Later stages will add
 
-Everything runs on Cloudflare unless the owner decides otherwise. No other outside services are
-planned without the owner's approval.
+Everything runs on Cloudflare, plus UPS for shipping rates (the owner's choice). No other outside
+services are planned without the owner's approval.
 
 | Item | Used for |
 | --- | --- |
-| Payment processor for parts checkout | **Not decided.** Owner to choose; ideally the processor the shop already uses |
+| Payment processor for parts checkout | **Not decided.** Checkout stays closed on the live site until the shop's processor is connected |
 | Daily cleanup of old credit applications (Cloudflare cron) | Stage 6 |
 
 ## Images
