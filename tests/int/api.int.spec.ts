@@ -22,6 +22,23 @@ describe('Access rules', () => {
     categoryId = category.id
     created.push({ collection: 'categories', id: category.id })
 
+    // On an empty database the first account becomes admin automatically,
+    // so make sure an admin exists before creating the sales user.
+    const { totalDocs } = await payload.count({ collection: 'users' })
+    if (totalDocs === 0) {
+      const admin = await payload.create({
+        collection: 'users',
+        data: {
+          name: 'Test Admin',
+          email: `admin-${Date.now()}@roanokemowers.test`,
+          password: 'test-password-123',
+          roles: ['admin'],
+        },
+      })
+      expect(admin.roles).toEqual(['admin'])
+      created.push({ collection: 'users', id: admin.id })
+    }
+
     salesUser = await payload.create({
       collection: 'users',
       data: {
