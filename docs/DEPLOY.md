@@ -52,12 +52,15 @@ the demo admin there if an account already exists.
 
 ## Later stages will add
 
-| Secret | Used for |
+Everything runs on Cloudflare unless the owner decides otherwise. No other outside services are
+planned without the owner's approval.
+
+| Item | Used for |
 | --- | --- |
-| `RESEND_API_KEY` (or Postmark) | Lead and request emails |
-| `TURNSTILE_SECRET_KEY` | Spam protection on forms |
+| Cloudflare Email Sending (`send_email` binding) | Lead and request alerts from your own domain |
+| `TURNSTILE_SECRET_KEY` (Cloudflare Turnstile) | Spam protection on forms |
 | `FIELD_ENCRYPTION_KEY` | Encrypting SSN and income on loan applications |
-| `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | Parts checkout |
+| Payment processor for parts checkout | **Not decided.** Owner to choose; ideally the processor the shop already uses |
 
 ## Images
 

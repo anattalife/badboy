@@ -11,6 +11,9 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Photos:** placeholders until real/dealer media is available.
 - **Working agreement:** the owner wants to be consulted before major decisions. Build in stages and
   stop for review after each.
+- **No third-party services without explicit owner approval.** Default to what Cloudflare already
+  provides (email sending, Turnstile, D1, R2). The owner does not want SaaS vendors suggested by default.
+  The parts-store payment processor is undecided; ask which processor the shop already uses.
 
 ## Stages
 
