@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { categoryOf, firstImage, formatPrice, kindForCategory, modelHref } from '@/lib/format'
 import type { Model } from '@/payload-types'
 
+import { CompareToggle } from './CompareControls'
 import { EquipmentArt } from './EquipmentArt'
 
 export function ModelCard({ model, showCategory = false }: { model: Model; showCategory?: boolean }) {
@@ -50,9 +51,10 @@ export function ModelCard({ model, showCategory = false }: { model: Model; showC
             ) : null}
           </dl>
         ) : null}
-        <p className="mt-auto pt-4 font-semibold text-ridge">
-          {price ? `From ${price}` : 'Call for price'}
-        </p>
+        <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+          <p className="font-semibold text-ridge">{price ? `From ${price}` : 'Call for price'}</p>
+          {model.slug ? <CompareToggle slug={model.slug} name={model.name} /> : null}
+        </div>
       </div>
     </article>
   )

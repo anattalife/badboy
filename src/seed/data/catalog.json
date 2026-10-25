@@ -156,13 +156,18 @@
       ],
       "configurations": [
         {
-          "name": "61\" Perkins 1.1L 3-cylinder diesel",
+          "name": "61\" Perkins Diesel 1100CC, 24.7 HP 1.1L 3 CYLINDER",
           "deck": "61\"",
-          "engine": "Perkins 1.1L 3-cylinder diesel (1100cc, liquid-cooled)",
-          "horsepower": "24.7 hp"
+          "engine": "Perkins Diesel 1100CC, 1.1L 3 CYLINDER",
+          "horsepower": "24.7 hp",
+          "discharge": "side",
+          "modelNumber": "BRN61247PM",
+          "msrp": 19695.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/renegade-diesel"
+      "sourceUrl": "https://badboycountry.com/mowers/renegade-diesel",
+      "msrp": 19695.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/renegade-diesel"
     },
     {
       "slug": "renegade-gas",
@@ -267,13 +272,27 @@
       ],
       "configurations": [
         {
-          "name": "61\"/72\" Rehlko ECH980 EFI",
-          "deck": "61\"/72\"",
-          "engine": "Rehlko ECH980 EFI (999cc, air-cooled)",
-          "horsepower": "38.5 hp"
+          "name": "61\" Rehlko ECH980 EFI 38.5HP",
+          "deck": "61\"",
+          "engine": "Rehlko ECH980 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRN61ECH980",
+          "msrp": 14711.0
+        },
+        {
+          "name": "72\" Rehlko ECH980 EFI 38.5HP",
+          "deck": "72\"",
+          "engine": "Rehlko ECH980 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRN72ECH980",
+          "msrp": 14855.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/renegade-gas"
+      "sourceUrl": "https://badboycountry.com/mowers/renegade-gas",
+      "msrp": 14711.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/renegade-gas"
     },
     {
       "slug": "rogue",
@@ -378,31 +397,108 @@
       ],
       "configurations": [
         {
-          "name": "54\"/61\"/72\" Kawasaki FX1000V",
-          "deck": "54\"/61\"/72\"",
-          "engine": "Kawasaki FX1000V (999cc, air-cooled V-twin)",
-          "horsepower": "35 hp"
+          "name": "54\" Kawasaki FX1000 35HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FX1000",
+          "horsepower": "35 hp",
+          "discharge": "side",
+          "modelNumber": "BRG5435KA",
+          "msrp": 15471.0
         },
         {
-          "name": "61\"/72\" Kawasaki FX1000V EFI",
-          "deck": "61\"/72\"",
-          "engine": "Kawasaki FX1000V EFI (999cc, air-cooled V-twin; also offered with 61\"/72\" rear discharge deck)",
-          "horsepower": "38.5 hp"
+          "name": "61\" Kawasaki FX1000 35HP",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000",
+          "horsepower": "35 hp",
+          "discharge": "side",
+          "modelNumber": "BRG6135KA",
+          "msrp": 15608.0
         },
         {
-          "name": "61\"/72\" Rehlko ECV980 EFI",
-          "deck": "61\"/72\"",
-          "engine": "Rehlko ECV980 EFI (999cc, air-cooled V-twin)",
-          "horsepower": "38.5 hp"
+          "name": "72\" Kawasaki FX1000 35HP",
+          "deck": "72\"",
+          "engine": "Kawasaki FX1000",
+          "horsepower": "35 hp",
+          "discharge": "side",
+          "modelNumber": "BRG7235KA",
+          "msrp": 15817.0
         },
         {
-          "name": "61\"/72\" Vanguard EFI",
-          "deck": "61\"/72\"",
-          "engine": "Vanguard EFI (993cc, air-cooled V-twin)",
-          "horsepower": "40 hp"
+          "name": "61\" Rehlko EFI 38.5HP",
+          "deck": "61\"",
+          "engine": "Rehlko EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRG61ECV980",
+          "msrp": 15620.0
+        },
+        {
+          "name": "72\" Rehlko EFI 38.5HP",
+          "deck": "72\"",
+          "engine": "Rehlko EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRG72ECV980",
+          "msrp": 15930.0
+        },
+        {
+          "name": "61\" Kawasaki FX1000 EFI 38.5HP",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRG61385KA",
+          "msrp": 16208.0
+        },
+        {
+          "name": "72\" Kawasaki FX1000 EFI 38.5HP",
+          "deck": "72\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRG72385KA",
+          "msrp": 16450.0
+        },
+        {
+          "name": "61\" Kawasaki FX1000 EFI 38.5HP - Rear Discharge",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "rear",
+          "modelNumber": "BRG61RD385KA",
+          "msrp": 16147.0
+        },
+        {
+          "name": "72\" Kawasaki FX1000 EFI 38.5HP - Rear Discharge",
+          "deck": "72\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "rear",
+          "modelNumber": "BRG72RD385KA",
+          "msrp": 16298.0
+        },
+        {
+          "name": "61\" Vanguard EFI 40HP",
+          "deck": "61\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "40 hp",
+          "discharge": "side",
+          "modelNumber": "BRG6140EVG",
+          "msrp": 15692.0
+        },
+        {
+          "name": "72\" Vanguard EFI 40HP",
+          "deck": "72\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "40 hp",
+          "discharge": "side",
+          "modelNumber": "BRG7240EVG",
+          "msrp": 15880.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/rogue"
+      "sourceUrl": "https://badboycountry.com/mowers/rogue",
+      "msrp": 15471.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/rogue"
     },
     {
       "slug": "rebel-x",
@@ -514,7 +610,8 @@
           "horsepower": "40 hp"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/rebel-x"
+      "sourceUrl": "https://badboycountry.com/mowers/rebel-x",
+      "configSourceUrl": "https://badboycountry.com/mowers/build/rebel-x"
     },
     {
       "slug": "rebel",
@@ -614,37 +711,72 @@
       ],
       "configurations": [
         {
-          "name": "54\"/61\" Kawasaki FX850V",
-          "deck": "54\"/61\"",
-          "engine": "Kawasaki FX850V (852cc, air-cooled V-twin)",
-          "horsepower": "27 hp"
-        },
-        {
-          "name": "54\" Kawasaki FX781V EVO EFI (California compliant)",
+          "name": "54\" Kawasaki FX850 27HP",
           "deck": "54\"",
-          "engine": "Kawasaki FX781V EVO EFI (California compliant) (822cc, air-cooled V-twin)",
-          "horsepower": "31 hp"
+          "engine": "Kawasaki FX850",
+          "horsepower": "27 hp",
+          "discharge": "side",
+          "modelNumber": "BRB54FX850",
+          "msrp": 12353.0
         },
         {
-          "name": "61\"/72\" Kawasaki FX820V EVO EFI (California compliant)",
-          "deck": "61\"/72\"",
-          "engine": "Kawasaki FX820V EVO EFI (California compliant) (822cc, air-cooled V-twin)",
-          "horsepower": "34 hp"
-        },
-        {
-          "name": "61\"/72\" Kawasaki FX1000V",
-          "deck": "61\"/72\"",
-          "engine": "Kawasaki FX1000V (999cc, air-cooled V-twin)",
-          "horsepower": "35 hp"
-        },
-        {
-          "name": "61\" Kawasaki FX1000V EFI 25th Anniversary Edition",
+          "name": "61\" Kawasaki FX850 27HP",
           "deck": "61\"",
-          "engine": "Kawasaki FX1000V EFI 25th Anniversary Edition (999cc, air-cooled V-twin)",
-          "horsepower": "38.5 hp"
+          "engine": "Kawasaki FX850",
+          "horsepower": "27 hp",
+          "discharge": "side",
+          "modelNumber": "BRB61FX850",
+          "msrp": 12473.0
+        },
+        {
+          "name": "54\" Kawasaki EVO781 EFI 31HP",
+          "deck": "54\"",
+          "engine": "Kawasaki EVO781 EFI",
+          "horsepower": "31 hp",
+          "discharge": "side",
+          "modelNumber": "BRB54EVO781",
+          "msrp": 13032.0
+        },
+        {
+          "name": "61\" Kawasaki EVO820 EFI 34HP",
+          "deck": "61\"",
+          "engine": "Kawasaki EVO820 EFI",
+          "horsepower": "34 hp",
+          "discharge": "side",
+          "modelNumber": "BRB61EVO820",
+          "msrp": 13262.0
+        },
+        {
+          "name": "72\" Kawasaki EVO820 EFI 34HP",
+          "deck": "72\"",
+          "engine": "Kawasaki EVO820 EFI",
+          "horsepower": "34 hp",
+          "discharge": "side",
+          "modelNumber": "BRB72EVO820",
+          "msrp": 13389.0
+        },
+        {
+          "name": "61\" Kawasaki FX1000 35HP",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000",
+          "horsepower": "35 hp",
+          "discharge": "side",
+          "modelNumber": "BRB6135KA",
+          "msrp": 13188.0
+        },
+        {
+          "name": "72\" Kawasaki FX1000 35HP",
+          "deck": "72\"",
+          "engine": "Kawasaki FX1000",
+          "horsepower": "35 hp",
+          "discharge": "side",
+          "modelNumber": "BRB7235KA",
+          "msrp": 13488.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/rebel"
+      "sourceUrl": "https://badboycountry.com/mowers/rebel",
+      "msrp": 12353.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/rebel"
     },
     {
       "slug": "rebel-sd",
@@ -744,13 +876,27 @@
       ],
       "configurations": [
         {
-          "name": "54\"/61\" Rehlko Confidant ZT740",
-          "deck": "54\"/61\"",
-          "engine": "Rehlko Confidant ZT740 (747cc, air-cooled)",
-          "horsepower": "25 hp"
+          "name": "54\" Rehlko Confidant 25HP",
+          "deck": "54\"",
+          "engine": "Rehlko Confidant",
+          "horsepower": "25 hp",
+          "discharge": "side",
+          "modelNumber": "BRB54ZT740",
+          "msrp": 10983.0
+        },
+        {
+          "name": "61\" Rehlko Confidant 25HP",
+          "deck": "61\"",
+          "engine": "Rehlko Confidant",
+          "horsepower": "25 hp",
+          "discharge": "side",
+          "modelNumber": "BRB61ZT740",
+          "msrp": 11029.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/rebel-sd"
+      "sourceUrl": "https://badboycountry.com/mowers/rebel-sd",
+      "msrp": 10983.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/rebel-sd"
     },
     {
       "slug": "maverick-hd",
@@ -855,25 +1001,63 @@
       ],
       "configurations": [
         {
-          "name": "42\"/48\" Kawasaki FX691V",
-          "deck": "42\"/48\"",
-          "engine": "Kawasaki FX691V (726cc, air-cooled 90° V-twin)",
-          "horsepower": "22 hp"
+          "name": "42\" Kawasaki FX691 22HP",
+          "deck": "42\"",
+          "engine": "Kawasaki FX691",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BMH42FX691",
+          "msrp": 10464.0
         },
         {
-          "name": "54\"/60\" Kawasaki FX730V",
-          "deck": "54\"/60\"",
-          "engine": "Kawasaki FX730V (726cc, air-cooled 90° V-twin)",
-          "horsepower": "23.5 hp"
+          "name": "48\" Kawasaki FX691 22HP",
+          "deck": "48\"",
+          "engine": "Kawasaki FX691",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BMH48FX691",
+          "msrp": 10695.0
         },
         {
-          "name": "54\"/60\" Vanguard EFI (California compliant)",
-          "deck": "54\"/60\"",
-          "engine": "Vanguard EFI (California compliant) (810cc, air-cooled V-twin)",
-          "horsepower": "28 hp"
+          "name": "54\" Kawasaki FX730 23.5HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FX730",
+          "horsepower": "23.5 hp",
+          "discharge": "side",
+          "modelNumber": "BMH54FX730",
+          "msrp": 10847.0
+        },
+        {
+          "name": "60\" Kawasaki FX730 23.5HP",
+          "deck": "60\"",
+          "engine": "Kawasaki FX730",
+          "horsepower": "23.5 hp",
+          "discharge": "side",
+          "modelNumber": "BMH60FX730",
+          "msrp": 10977.0
+        },
+        {
+          "name": "54\" Vanguard EFI 28HP",
+          "deck": "54\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "28 hp",
+          "discharge": "side",
+          "modelNumber": "BMH5428EVG",
+          "msrp": 10724.0
+        },
+        {
+          "name": "60\" Vanguard EFI 28HP",
+          "deck": "60\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "28 hp",
+          "discharge": "side",
+          "modelNumber": "BMH6028EVG",
+          "msrp": 10850.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/maverick-hd"
+      "sourceUrl": "https://badboycountry.com/mowers/maverick-hd",
+      "msrp": 10464.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/maverick-hd"
     },
     {
       "slug": "maverick",
@@ -978,25 +1162,54 @@
       ],
       "configurations": [
         {
-          "name": "48\"/54\"/60\" Rehlko Confidant ZT740",
-          "deck": "48\"/54\"/60\"",
-          "engine": "Rehlko Confidant ZT740 (747cc, air-cooled)",
-          "horsepower": "25 hp"
+          "name": "54\" Rehlko Confidant 25HP",
+          "deck": "54\"",
+          "engine": "Rehlko Confidant",
+          "horsepower": "25 hp",
+          "discharge": "side",
+          "modelNumber": "BMR54ZT740",
+          "msrp": 8853.0
         },
         {
-          "name": "48\"/54\"/60\" Kawasaki FS730V",
-          "deck": "48\"/54\"/60\"",
-          "engine": "Kawasaki FS730V (726cc, air-cooled)",
-          "horsepower": "24 hp"
+          "name": "60\" Rehlko Confidant 25HP",
+          "deck": "60\"",
+          "engine": "Rehlko Confidant",
+          "horsepower": "25 hp",
+          "discharge": "side",
+          "modelNumber": "BMR60ZT740",
+          "msrp": 8992.0
         },
         {
-          "name": "54\"/60\" Vanguard CXi 2700 (California compliant)",
-          "deck": "54\"/60\"",
-          "engine": "Vanguard CXi 2700 (California compliant) (810cc, air-cooled)",
-          "horsepower": "27 hp"
+          "name": "48\" Kawasaki FS730 24HP",
+          "deck": "48\"",
+          "engine": "Kawasaki FS730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMR48FS730",
+          "msrp": 8982.0
+        },
+        {
+          "name": "54\" Kawasaki FS730 24HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FS730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMR54FS730",
+          "msrp": 9115.0
+        },
+        {
+          "name": "60\" Kawasaki FS730 24HP",
+          "deck": "60\"",
+          "engine": "Kawasaki FS730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMR60FS730",
+          "msrp": 9227.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/maverick"
+      "sourceUrl": "https://badboycountry.com/mowers/maverick",
+      "msrp": 8853.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/maverick"
     },
     {
       "slug": "zt-elite",
@@ -1101,25 +1314,63 @@
       ],
       "configurations": [
         {
-          "name": "48\"/54\"/60\" Rehlko Pro 7000 KT726",
-          "deck": "48\"/54\"/60\"",
-          "engine": "Rehlko Pro 7000 KT726 (747cc, air-cooled)",
-          "horsepower": "26 hp"
+          "name": "48\" Rehlko Pro 7000 26HP",
+          "deck": "48\"",
+          "engine": "Rehlko Pro 7000",
+          "horsepower": "26 hp",
+          "discharge": "side",
+          "modelNumber": "BZS48KT726",
+          "msrp": 7167.0
         },
         {
-          "name": "48\"/54\"/60\" Kawasaki FR730V",
-          "deck": "48\"/54\"/60\"",
-          "engine": "Kawasaki FR730V (726cc, air-cooled)",
-          "horsepower": "24 hp"
+          "name": "54\" Rehlko Pro 7000 26HP",
+          "deck": "54\"",
+          "engine": "Rehlko Pro 7000",
+          "horsepower": "26 hp",
+          "discharge": "side",
+          "modelNumber": "BZS54KT726",
+          "msrp": 7323.0
         },
         {
-          "name": "54\"/60\" Vanguard CXi 2700 (California compliant)",
-          "deck": "54\"/60\"",
-          "engine": "Vanguard CXi 2700 (California compliant) (810cc, air-cooled)",
-          "horsepower": "27 hp"
+          "name": "60\" Rehlko Pro 7000 26HP",
+          "deck": "60\"",
+          "engine": "Rehlko Pro 7000",
+          "horsepower": "26 hp",
+          "discharge": "side",
+          "modelNumber": "BZS60KT726",
+          "msrp": 7568.0
+        },
+        {
+          "name": "48\" Kawasaki FR730 24HP",
+          "deck": "48\"",
+          "engine": "Kawasaki FR730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BZS48FR730",
+          "msrp": 7588.0
+        },
+        {
+          "name": "54\" Kawasaki FR730 24HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FR730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BZS54FR730",
+          "msrp": 7711.0
+        },
+        {
+          "name": "60\" Kawasaki FR730 24HP",
+          "deck": "60\"",
+          "engine": "Kawasaki FR730",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BZS60FR730",
+          "msrp": 7847.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/zt-elite"
+      "sourceUrl": "https://badboycountry.com/mowers/zt-elite",
+      "msrp": 7167.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/zt-elite"
     },
     {
       "slug": "zt-avenger",
@@ -1219,25 +1470,45 @@
       ],
       "configurations": [
         {
-          "name": "54\"/60\" Rehlko Pro 7000 KT726",
-          "deck": "54\"/60\"",
-          "engine": "Rehlko Pro 7000 KT726 (747cc, air-cooled)",
-          "horsepower": "26 hp"
+          "name": "54\" KT726 Rehlko Pro 7000 26HP",
+          "deck": "54\"",
+          "engine": "KT726 Rehlko Pro 7000",
+          "horsepower": "26 hp",
+          "discharge": "side",
+          "modelNumber": "BAZ54KT726",
+          "msrp": 6286.0
         },
         {
-          "name": "54\"/60\" Kawasaki FR691V",
-          "deck": "54\"/60\"",
-          "engine": "Kawasaki FR691V (726cc, air-cooled)",
-          "horsepower": "23 hp"
-        },
-        {
-          "name": "60\" Kawasaki FR730V 25th Anniversary Edition",
+          "name": "60\" KT726 Rehlko Pro 7000 26HP",
           "deck": "60\"",
-          "engine": "Kawasaki FR730V 25th Anniversary Edition (726cc, air-cooled)",
-          "horsepower": "24 hp"
+          "engine": "KT726 Rehlko Pro 7000",
+          "horsepower": "26 hp",
+          "discharge": "side",
+          "modelNumber": "BAZ60KT726",
+          "msrp": 6602.0
+        },
+        {
+          "name": "54\" Kawasaki FR691 23HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FR691",
+          "horsepower": "23 hp",
+          "discharge": "side",
+          "modelNumber": "BAZ54FR691",
+          "msrp": 6682.0
+        },
+        {
+          "name": "60\" Kawasaki FR691 23HP",
+          "deck": "60\"",
+          "engine": "Kawasaki FR691",
+          "horsepower": "23 hp",
+          "discharge": "side",
+          "modelNumber": "BAZ60FR691",
+          "msrp": 6738.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/zt-avenger"
+      "sourceUrl": "https://badboycountry.com/mowers/zt-avenger",
+      "msrp": 6286.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/zt-avenger"
     },
     {
       "slug": "mz-magnum",
@@ -1337,25 +1608,63 @@
       ],
       "configurations": [
         {
-          "name": "48\"/54\"/60\" Kawasaki FR651V",
-          "deck": "48\"/54\"/60\"",
-          "engine": "Kawasaki FR651V (726cc, air-cooled)",
-          "horsepower": "21.5 hp"
-        },
-        {
-          "name": "54\"/60\" Rehlko 7000 KT724",
-          "deck": "54\"/60\"",
-          "engine": "Rehlko 7000 KT724 (747cc, air-cooled)",
-          "horsepower": "24 hp"
-        },
-        {
-          "name": "54\" Briggs PXi2400",
+          "name": "54\" Briggs PXi2400 24HP",
           "deck": "54\"",
-          "engine": "Briggs PXi2400 (724cc, air-cooled)",
-          "horsepower": "24 hp"
+          "engine": "Briggs PXi2400",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ54PXI24",
+          "msrp": 5029.0
+        },
+        {
+          "name": "54\" Rehlko 7000 24HP",
+          "deck": "54\"",
+          "engine": "Rehlko 7000",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ54KT724",
+          "msrp": 5462.0
+        },
+        {
+          "name": "60\" Rehlko 7000 24HP",
+          "deck": "60\"",
+          "engine": "Rehlko 7000",
+          "horsepower": "24 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ60KT724",
+          "msrp": 5535.0
+        },
+        {
+          "name": "48\" Kawasaki FR651 22HP",
+          "deck": "48\"",
+          "engine": "Kawasaki FR651",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ48FR651",
+          "msrp": 5430.0
+        },
+        {
+          "name": "54\" Kawasaki FR651 22HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FR651",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ54FR651",
+          "msrp": 5586.0
+        },
+        {
+          "name": "60\" Kawasaki FR651 22HP",
+          "deck": "60\"",
+          "engine": "Kawasaki FR651",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BMZ60FR651",
+          "msrp": 5723.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/mz-magnum"
+      "sourceUrl": "https://badboycountry.com/mowers/mz-magnum",
+      "msrp": 5029.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/mz-magnum"
     },
     {
       "slug": "mz-rambler",
@@ -1671,13 +1980,36 @@
       ],
       "configurations": [
         {
-          "name": "36\"/48\"/54\" Kawasaki FS600V",
-          "deck": "36\"/48\"/54\"",
-          "engine": "Kawasaki FS600V (603cc, air-cooled)",
-          "horsepower": "18.5 hp"
+          "name": "36\" Kawasaki FS600 18.5HP",
+          "deck": "36\"",
+          "engine": "Kawasaki FS600",
+          "horsepower": "18.5 hp",
+          "discharge": "side",
+          "modelNumber": "BWE36FS600",
+          "msrp": 6718.0
+        },
+        {
+          "name": "48\" Kawasaki FS600 18.5HP",
+          "deck": "48\"",
+          "engine": "Kawasaki FS600",
+          "horsepower": "18.5 hp",
+          "discharge": "side",
+          "modelNumber": "BWE48FS600",
+          "msrp": 7067.0
+        },
+        {
+          "name": "54\" Kawasaki FS600 18.5HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FS600",
+          "horsepower": "18.5 hp",
+          "discharge": "side",
+          "modelNumber": "BWE54FS600",
+          "msrp": 7248.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/raider"
+      "sourceUrl": "https://badboycountry.com/mowers/raider",
+      "msrp": 6718.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/raider"
     },
     {
       "slug": "revolt-x",
@@ -1777,25 +2109,54 @@
       ],
       "configurations": [
         {
-          "name": "54\" Kawasaki FX781V EVO EFI",
+          "name": "54\" Kawasaki EVO781 EFI 31HP",
           "deck": "54\"",
-          "engine": "Kawasaki FX781V EVO EFI (822cc, air-cooled)",
-          "horsepower": "31 hp"
+          "engine": "Kawasaki EVO781 EFI",
+          "horsepower": "31 hp",
+          "discharge": "side",
+          "modelNumber": "BRVX54EVO781",
+          "msrp": 15165.0
         },
         {
-          "name": "61\"/72\" Kawasaki FX1000V EFI",
-          "deck": "61\"/72\"",
-          "engine": "Kawasaki FX1000V EFI (999cc, air-cooled V-twin)",
-          "horsepower": "38.5 hp"
+          "name": "61\" Kawasaki FX1000 EFI 38.5HP",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRVX61385KA",
+          "msrp": 15648.0
         },
         {
-          "name": "61\"/72\" Vanguard EFI",
-          "deck": "61\"/72\"",
-          "engine": "Vanguard EFI (993cc, air-cooled V-twin)",
-          "horsepower": "40 hp"
+          "name": "72\" Kawasaki FX1000 EFI 38.5HP",
+          "deck": "72\"",
+          "engine": "Kawasaki FX1000 EFI",
+          "horsepower": "38.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRVX72385KA",
+          "msrp": 15771.0
+        },
+        {
+          "name": "61\" Vanguard EFI 40HP",
+          "deck": "61\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "40 hp",
+          "discharge": "side",
+          "modelNumber": "BRVX6140EVG",
+          "msrp": 15653.0
+        },
+        {
+          "name": "72\" Vanguard EFI 40HP",
+          "deck": "72\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "40 hp",
+          "discharge": "side",
+          "modelNumber": "BRVX7240EVG",
+          "msrp": 15683.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/revolt-x"
+      "sourceUrl": "https://badboycountry.com/mowers/revolt-x",
+      "msrp": 15165.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/revolt-x"
     },
     {
       "slug": "revolt",
@@ -1895,37 +2256,81 @@
       ],
       "configurations": [
         {
-          "name": "36\" Kawasaki FX691V",
+          "name": "36\" Kawasaki FX691 22HP",
           "deck": "36\"",
-          "engine": "Kawasaki FX691V (726cc, air-cooled)",
-          "horsepower": "22 hp"
+          "engine": "Kawasaki FX691",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BRV36FX691",
+          "msrp": 9479.0
         },
         {
-          "name": "48\" Kawasaki FX730V",
+          "name": "48\" Kawasaki FX730 23.5HP",
           "deck": "48\"",
-          "engine": "Kawasaki FX730V (726cc, air-cooled)",
-          "horsepower": "23.5 hp"
+          "engine": "Kawasaki FX730",
+          "horsepower": "23.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRV48FX730",
+          "msrp": 9795.0
         },
         {
-          "name": "54\"/61\" Kawasaki FX850V",
-          "deck": "54\"/61\"",
-          "engine": "Kawasaki FX850V (852cc, air-cooled)",
-          "horsepower": "27 hp"
+          "name": "54\" Kawasaki FX850 27HP",
+          "deck": "54\"",
+          "engine": "Kawasaki FX850",
+          "horsepower": "27 hp",
+          "discharge": "side",
+          "modelNumber": "BRV54FX850",
+          "msrp": 10212.0
         },
         {
-          "name": "54\"/61\" Kawasaki FX781V EVO EFI (California compliant)",
-          "deck": "54\"/61\"",
-          "engine": "Kawasaki FX781V EVO EFI (California compliant) (822cc, air-cooled)",
-          "horsepower": "31 hp"
+          "name": "61\" Kawasaki FX850 27HP",
+          "deck": "61\"",
+          "engine": "Kawasaki FX850",
+          "horsepower": "27 hp",
+          "discharge": "side",
+          "modelNumber": "BRV61FX850",
+          "msrp": 10436.0
         },
         {
-          "name": "54\"/61\" Vanguard EFI (California compliant)",
-          "deck": "54\"/61\"",
-          "engine": "Vanguard EFI (California compliant) (810cc, air-cooled)",
-          "horsepower": "28 hp"
+          "name": "54\" Kawasaki EVO781 EFI 31HP",
+          "deck": "54\"",
+          "engine": "Kawasaki EVO781 EFI",
+          "horsepower": "31 hp",
+          "discharge": "side",
+          "modelNumber": "BRV54EVO781",
+          "msrp": 10924.0
+        },
+        {
+          "name": "61\" Kawasaki EVO781 EFI 31HP",
+          "deck": "61\"",
+          "engine": "Kawasaki EVO781 EFI",
+          "horsepower": "31 hp",
+          "discharge": "side",
+          "modelNumber": "BRV61EVO781",
+          "msrp": 11086.0
+        },
+        {
+          "name": "54\" Vanguard EFI 28HP",
+          "deck": "54\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "28 hp",
+          "discharge": "side",
+          "modelNumber": "BRV5428EVG",
+          "msrp": 9733.0
+        },
+        {
+          "name": "61\" Vanguard EFI 28HP",
+          "deck": "61\"",
+          "engine": "Vanguard EFI",
+          "horsepower": "28 hp",
+          "discharge": "side",
+          "modelNumber": "BRV6128EVG",
+          "msrp": 9847.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/revolt"
+      "sourceUrl": "https://badboycountry.com/mowers/revolt",
+      "msrp": 9479.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/revolt"
     },
     {
       "slug": "revolt-sd",
@@ -2025,19 +2430,36 @@
       ],
       "configurations": [
         {
-          "name": "34\"/42\" Kawasaki FS600V",
-          "deck": "34\"/42\"",
-          "engine": "Kawasaki FS600V (603cc, air-cooled)",
-          "horsepower": "18.5 hp"
+          "name": "34\" Rehlko KT722 22HP",
+          "deck": "34\"",
+          "engine": "Rehlko KT722",
+          "horsepower": "22 hp",
+          "discharge": "side",
+          "modelNumber": "BRV34KT722",
+          "msrp": 6921.0
         },
         {
-          "name": "34\" Rehlko 7000 KT722",
+          "name": "34\" Kawasaki FS600 18.5HP",
           "deck": "34\"",
-          "engine": "Rehlko 7000 KT722 (747cc, air-cooled)",
-          "horsepower": "22 hp"
+          "engine": "Kawasaki FS600",
+          "horsepower": "18.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRV34FS600",
+          "msrp": 7202.0
+        },
+        {
+          "name": "42\" Kawasaki FS600 18.5HP",
+          "deck": "42\"",
+          "engine": "Kawasaki FS600",
+          "horsepower": "18.5 hp",
+          "discharge": "side",
+          "modelNumber": "BRV42FS600",
+          "msrp": 7353.0
         }
       ],
-      "sourceUrl": "https://badboycountry.com/mowers/revolt-sd"
+      "sourceUrl": "https://badboycountry.com/mowers/revolt-sd",
+      "msrp": 6921.0,
+      "configSourceUrl": "https://badboycountry.com/mowers/build/revolt-sd"
     },
     {
       "slug": "revolt-fury-blower",
@@ -3237,7 +3659,7 @@
       "name": "Rotary Cutters",
       "category": "implements",
       "tagline": "Standard- and heavy-duty brush cutters, 4' to 10'",
-      "summary": "Bad Boy's 3-point rotary cutters come in standard-duty and heavy-duty versions for clearing brush and pasture. Decks are 10-gauge on heavy-duty models (11-gauge on standard-duty), with adjustable tail wheels and a stump-jumper gearbox mount.",
+      "summary": "3-point rotary cutters for brush and pasture mowing, offered in standard-duty and heavy-duty builds from 4 to 10 feet wide. Decks are 10- or 11-gauge steel with pin-adjustable tail wheels and a stump-jumper gearbox mount.",
       "highlights": [
         "Available in 4', 5', 6', 7' and 10' widths",
         "Standard-duty (4'-6') and heavy-duty (5'-10') lines",
@@ -3246,29 +3668,93 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6, 7 & 10 ft"
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "4' SD Cutter: 48\" | 5' SD Cutter: 60\" | 6' SD Cutter: 72\" | 4' Cutter: 48\" | 5' Cutter: 60\" | 6' Cutter: 72\" | 7' Cutter: 84\" | 10' Cutter: 130\""
         },
         {
           "group": "General",
           "label": "HP Rating",
-          "value": "24-40 hp (4') up to 60-120 hp (10')"
+          "value": "4' SD Cutter: 24-40 | 5' SD Cutter: 24-55 | 6' SD Cutter: 24-55 | 4' Cutter: 24-40 | 5' Cutter: 24-55 | 6' Cutter: 35-72 | 7' Cutter: 35-83 | 10' Cutter: 60-120"
+        },
+        {
+          "group": "General",
+          "label": "Side Skirt Depth",
+          "value": "4' SD Cutter: 7\" | 5' SD Cutter: 7\" | 6' SD Cutter: 7\" | 4' Cutter: 7\" | 5' Cutter: 7\" | 6' Cutter: 8.25\" | 7' Cutter: 9\" | 10' Cutter: 12\""
+        },
+        {
+          "group": "General",
+          "label": "Blades (Thickness & Width)",
+          "value": "4' SD Cutter: 1/2\" x 3\" | 5' SD Cutter: 1/2\" x 3\" | 6' SD Cutter: 1/2\" x 3\" | 4' Cutter: 1/2\" x 3\" | 5' Cutter: 1/2\" x 3\" | 6' Cutter: 1/2\" x 3.5\" | 7' Cutter: 1/2\" x 3.5\" | 10' Cutter: 1/2\" x 4\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "4' SD Cutter: 425 lbs. | 5' SD Cutter: 500 lbs. | 6' SD Cutter: 892 lbs. | 4' Cutter: 600 lbs. | 5' Cutter: 718 lbs. | 6' Cutter: 880 lbs. | 7' Cutter: 1,187 lbs. | 10' Cutter: 2,050 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Gear Box",
+          "value": "4' SD Cutter: 40 HP | 5' SD Cutter: 50 HP | 6' SD Cutter: 50 HP | 4' Cutter: 40 HP | 5' Cutter: 50 HP | 6' Cutter: 75 HP | 7' Cutter: 85 HP | 10' Cutter: 100 HP Center 2-75 HP Outer"
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "4' SD Cutter: CAT 1 | 5' SD Cutter: CAT 1 | 6' SD Cutter: CAT 1 | 4' Cutter: CAT 1 or Quick Hitch | 5' Cutter: CAT 1 or Quick Hitch | 6' Cutter: CAT 1 or Quick Hitch | 7' Cutter: CAT 1 or CAT 2 & Quick Hitch | 10' Cutter: CAT 3 Pull Type"
+        },
+        {
+          "group": "General",
+          "label": "Construction/Clutch",
+          "value": "4' SD Cutter: 11 ga deck, slip clutch or shear pin: CAT 4 Driveline | 5' SD Cutter: 11 ga deck, slip clutch or shear pin: CAT 4 Driveline | 6' SD Cutter: 11 ga deck, slip clutch or shear pin: CAT 4 Driveline | 4' Cutter: 10 ga deck, slip clutch or shear pin: CAT 4 Driveline | 5' Cutter: 10 ga deck, slip clutch or shear pin: CAT 4 Driveline | 6' Cutter: 10 ga deck, slip clutch or shear pin: CAT 6 Driveline | 7' Cutter: 10 ga and 7 ga, slip clutch: CAT 6 Driveline | 10' Cutter: 10 ga, slip clutch: Cat 6 Driveline: Tail Wheels Hydraulic Height Adjust"
         },
         {
           "group": "Warranty",
           "label": "Warranty",
-          "value": "Heavy-duty: 2 years; standard-duty: 1 year; 5-year limited on gearboxes"
+          "value": "Heavy-Duty models: two year warranty against manufacturer defects, five year limited warranty on gear boxes. Standard-Duty models: one year warranty against manufacturer defects, five year limited warranty on gear boxes."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "4' SD Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "5' SD Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "6' SD Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "4' Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "5' Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Cutter",
+          "modelNumber": null
+        },
+        {
+          "name": "10' Cutter",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-flex-wing-cutter",
       "name": "Flex Wing Cutter",
       "category": "implements",
       "tagline": "12-foot pull-type flex wing cutter",
-      "summary": "The flex wing cutter is a 12-foot pull-type mower for covering large open areas quickly. It uses a 10-gauge deck and a slip clutch with a CV U-joint driveline.",
+      "summary": "A 12-foot pull-type flex wing cutter for covering large acreage quickly. It runs multiple Omni gearboxes and a slip clutch with a CV U-joint driveline.",
       "highlights": [
         "154\" overall cutting width",
         "Pull-type hitch",
@@ -3277,39 +3763,65 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "12 ft"
-        },
-        {
-          "group": "General",
+          "group": "Dimensions",
           "label": "Width",
           "value": "154\""
         },
         {
           "group": "General",
           "label": "PTO HP Rating",
-          "value": "35-60 hp"
+          "value": "35-60"
         },
         {
           "group": "General",
+          "label": "Deck Height",
+          "value": "9.5\""
+        },
+        {
+          "group": "General",
+          "label": "Blades(Length x Thickness x Width)",
+          "value": "17.6\" x ½\" x 2\""
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
           "value": "2,994 lbs."
         },
         {
+          "group": "General",
+          "label": "Gear Box",
+          "value": "Omni RCD-90, (2) Omni RC-71, Omni RC-71R"
+        },
+        {
+          "group": "General",
+          "label": "Category",
+          "value": "Pull"
+        },
+        {
+          "group": "General",
+          "label": "Construction/Clutch",
+          "value": "10 ga. Deck, Slip Clutch with CV U-Joint"
+        },
+        {
           "group": "Warranty",
           "label": "Warranty",
-          "value": "1 year; 5-year limited on gearboxes"
+          "value": "One year warranty against manufacturer defects; five year limited warranty on gear boxes."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "12' Flex Wing Cutter",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-box-blades",
       "name": "Box Blades",
       "category": "implements",
       "tagline": "Box blades for grading and leveling, 4' to 7'",
-      "summary": "Box blades handle grading, leveling and spreading material behind the tractor. They have adjustable shanks, two blades for scalping or cutting, and a square-tube main frame.",
+      "summary": "Box blades for leveling, spreading and scarifying gravel or soil, sized 4 to 7 feet. Each has adjustable shanks, two blades and a square-tube main frame.",
       "highlights": [
         "Available in 4', 5', 6' and 7' widths",
         "Adjustable shanks (4 to 7 depending on width)",
@@ -3318,24 +3830,72 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6 & 7 ft"
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "4' Box Blade: 48\" | 5' Box Blade: 60\" | 6' Box Blade: 72\" | 7' Box Blade: 84\""
         },
         {
           "group": "General",
+          "label": "HP Rating",
+          "value": "4' Box Blade: 20-55 | 5' Box Blade: 25-55 | 6' Box Blade: 25-55 | 7' Box Blade: 80 Max"
+        },
+        {
+          "group": "General",
+          "label": "Moldboard Depth",
+          "value": "18"
+        },
+        {
+          "group": "General",
+          "label": "Shanks",
+          "value": "4' Box Blade: 4 Adjustable | 5' Box Blade: 4 Adjustable | 6' Box Blade: 6 Adjustable | 7' Box Blade: 7 Adjustable"
+        },
+        {
+          "group": "General",
+          "label": "Blades (Scalping or Cutting)",
+          "value": "2"
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
-          "value": "389-568 lbs. depending on width"
+          "value": "4' Box Blade: 389 lbs. | 5' Box Blade: 436 lbs. | 6' Box Blade: 510 lbs. | 7' Box Blade: 568 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "4' Box Blade: CAT 1 or Quick Hitch | 5' Box Blade: CAT 1 or Quick Hitch | 6' Box Blade: CAT 1 or Quick Hitch | 7' Box Blade: CAT 1 or CAT 2 & Quick Hitch"
+        },
+        {
+          "group": "General",
+          "label": "Construction Features",
+          "value": "1/4\" sides and 3/16\" moldboard; Optional replaceable skids; 4\" x 1/4\" wall square tubing main frame"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "4' Box Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "5' Box Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Box Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Box Blade",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-land-graders",
       "name": "Land Graders",
       "category": "implements",
       "tagline": "Land graders for driveways and site prep, 5' to 7'",
-      "summary": "Land graders shape and smooth driveways, gravel and dirt. They feature fully adjustable blades, replaceable skids and adjustable shanks.",
+      "summary": "Land graders for driveway and lot finishing work in 5, 6 and 7 foot widths. They feature adjustable shanks, fully adjustable blades and replaceable skids.",
       "highlights": [
         "Available in 5', 6' and 7' widths",
         "Fully adjustable blades and replaceable skids",
@@ -3344,24 +3904,68 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "5, 6 & 7 ft"
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "5' Land Grader: 60\" | 6' Land Grader: 72\" | 7' Land Grader: 84\""
         },
         {
           "group": "General",
+          "label": "HP Rating",
+          "value": "5' Land Grader: 18-55 | 6' Land Grader: 18-55 | 7' Land Grader: 80 Max"
+        },
+        {
+          "group": "General",
+          "label": "Moldboard Depth",
+          "value": "16.5"
+        },
+        {
+          "group": "General",
+          "label": "Shanks",
+          "value": "5' Land Grader: 4 Adjustable | 6' Land Grader: 6 Adjustable | 7' Land Grader: 7 Adjustable"
+        },
+        {
+          "group": "General",
+          "label": "Blades (Scalping or Cutting)",
+          "value": "2"
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
-          "value": "463-570 lbs. depending on width"
+          "value": "5' Land Grader: 463 lbs. | 6' Land Grader: 499 lbs. | 7' Land Grader: 570 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "5' Land Grader: CAT 1 or Quick Hitch | 6' Land Grader: CAT 1 or Quick Hitch | 7' Land Grader: CAT 1 or CAT 2 & Quick Hitch"
+        },
+        {
+          "group": "General",
+          "label": "Construction Features",
+          "value": "1/4\" sides; 4\" x 1/4\" wall square tubing main frame; Replaceable skids; Fully adjustable blades"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "5' Land Grader",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Land Grader",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Land Grader",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-rotary-tillers",
       "name": "Rotary Tillers",
       "category": "implements",
       "tagline": "Gear-driven PTO tillers, 4' to 7'",
-      "summary": "Rotary tillers break and prepare soil for planting using a gearbox-driven 540 RPM PTO. They offer forward or reverse till options, adjustable skids and slip-clutch protection.",
+      "summary": "Gear-driven 540 PTO rotary tillers for breaking ground and preparing seedbeds, in four working widths. All models are quick-hitch compatible with slip-clutch driveline protection and adjustable skids.",
       "highlights": [
         "Available in 4', 5', 6' and 7' widths",
         "Gearbox drive at 540 PTO RPM",
@@ -3371,28 +3975,111 @@
       "specs": [
         {
           "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6 & 7 ft"
+          "label": "Tractor HP Range",
+          "value": "Rotary Tiller - BBRT48: 25 to 45 | Rotary Tiller - BBRT60: 25 to 45 | Rotary Tiller - BBRT72: 25 to 45 | Rotary Tiller - BBRT84: 50 to 65"
+        },
+        {
+          "group": "General",
+          "label": "Tractor Hitch",
+          "value": "CAT 1 & 2 and Quick Hitch"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Working Width",
+          "value": "Rotary Tiller - BBRT48: 42 3/4\" | Rotary Tiller - BBRT60: 54 1/2\" | Rotary Tiller - BBRT72: 64 3/4\" | Rotary Tiller - BBRT84: 82\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "Rotary Tiller - BBRT48: 51 3/4\" | Rotary Tiller - BBRT60: 63 1/2\" | Rotary Tiller - BBRT72: 77 1/2\" | Rotary Tiller - BBRT84: 89\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "Rotary Tiller - BBRT48: 658 lbs. | Rotary Tiller - BBRT60: 698 lbs. | Rotary Tiller - BBRT72: 738 lbs. | Rotary Tiller - BBRT84: 810 lbs."
         },
         {
           "group": "General",
           "label": "Max Tilling Depth",
-          "value": "6.5\" (BBRT48/BBRT60)"
+          "value": "6.5\""
+        },
+        {
+          "group": "General",
+          "label": "Drive Type",
+          "value": "Gearbox"
+        },
+        {
+          "group": "General",
+          "label": "Number Of Tines/Flanges",
+          "value": "Rotary Tiller - BBRT48: 36/6 | Rotary Tiller - BBRT60: 42/7 | Rotary Tiller - BBRT72: 54/9 | Rotary Tiller - BBRT84: 66/11"
+        },
+        {
+          "group": "General",
+          "label": "Tines Per Flange",
+          "value": "6"
+        },
+        {
+          "group": "General",
+          "label": "PTO Speed",
+          "value": "540"
+        },
+        {
+          "group": "General",
+          "label": "PTO Driveline Protection",
+          "value": "Slip Clutch"
+        },
+        {
+          "group": "General",
+          "label": "Till Direction",
+          "value": "Forward or Reverse Options Available"
+        },
+        {
+          "group": "General",
+          "label": "Adjustable Skids",
+          "value": "Yes"
+        },
+        {
+          "group": "General",
+          "label": "Quick Hitch Compatible",
+          "value": "Yes"
+        },
+        {
+          "group": "General",
+          "label": "Gearbox Warranty",
+          "value": "5 Year Limited Warranty"
         },
         {
           "group": "Warranty",
           "label": "Warranty",
-          "value": "5-year limited gearbox warranty"
+          "value": "5 year limited gearbox warranty."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "Rotary Tiller - BBRT48",
+          "modelNumber": "BBRT48"
+        },
+        {
+          "name": "Rotary Tiller - BBRT60",
+          "modelNumber": "BBRT60"
+        },
+        {
+          "name": "Rotary Tiller - BBRT72",
+          "modelNumber": "BBRT72"
+        },
+        {
+          "name": "Rotary Tiller - BBRT84",
+          "modelNumber": "BBRT84"
+        }
+      ]
     },
     {
       "slug": "implement-disc-harrow",
       "name": "Disc Harrow",
       "category": "implements",
       "tagline": "Disc harrows for breaking ground, 4' to 7'",
-      "summary": "Disc harrows cut and break up soil and residue ahead of planting. Gang angles are adjustable, and the frames are built from carbon steel tube.",
+      "summary": "3-point disc harrows for breaking up soil and residue, in 4 to 7 foot sizes. Front and rear gangs adjust to several angles.",
       "highlights": [
         "Available in 4', 5', 6' and 7' widths",
         "Adjustable front and rear gang angles",
@@ -3402,38 +4089,148 @@
       "specs": [
         {
           "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6 & 7 ft"
+          "label": "Hitch",
+          "value": "4' Disc Harrow: CAT 1 | 5' Disc Harrow: CAT 1 | 6' Disc Harrow: CAT 1, CAT 2 | 7' Disc Harrow: CAT 1, CAT 2"
         },
         {
           "group": "General",
+          "label": "Disc Blade Size",
+          "value": "4' Disc Harrow: 16\" | 5' Disc Harrow: 16\" | 6' Disc Harrow: 18\" | 7' Disc Harrow: 18\""
+        },
+        {
+          "group": "General",
+          "label": "Number of Disc/Gang",
+          "value": "4' Disc Harrow: 3 | 5' Disc Harrow: 4 | 6' Disc Harrow: 5 | 7' Disc Harrow: 6"
+        },
+        {
+          "group": "General",
+          "label": "Disc Spacing",
+          "value": "7 1/2\""
+        },
+        {
+          "group": "General",
+          "label": "Main Frame",
+          "value": "4' Disc Harrow: 2\" x 2\" x .180\" Carbon Steel Tube | 5' Disc Harrow: 2\" x 2\" x .180\" Carbon Steel Tube | 6' Disc Harrow: 2.5\" x 2.5\" x 0.25\" Carbon Steel Tube | 7' Disc Harrow: 2.5\" x 2.5\" x 0.25\" Carbon Steel Tube"
+        },
+        {
+          "group": "General",
+          "label": "Disc Gang Tube",
+          "value": "4' Disc Harrow: 2\" x 2\" x .180\" Carbon Steel Tube | 5' Disc Harrow: 2\" x 2\" x .180\" Carbon Steel Tube | 6' Disc Harrow: 2\" x 3\" x 0.25\" Carbon Steel Tube | 7' Disc Harrow: 2\" x 3\" x 0.25\" Carbon Steel Tube"
+        },
+        {
+          "group": "General",
+          "label": "Disc Gang Axle",
+          "value": "1\" Carbon Steel"
+        },
+        {
+          "group": "General",
+          "label": "Angle - Front Gang",
+          "value": "4' Disc Harrow: 0°, 7° & 14° to the Front | 5' Disc Harrow: 0°, 7° & 14° to the Front | 6' Disc Harrow: 0°, 7°, 14°, 21° | 7' Disc Harrow: 0°, 7°, 14°, 21°"
+        },
+        {
+          "group": "General",
+          "label": "Angle - Rear Gang",
+          "value": "4' Disc Harrow: 0°, 7° & 14° to the Rear | 5' Disc Harrow: 0°, 7°, & 14° to the Rear | 6' Disc Harrow: 0°, 7°, 14°, 21° | 7' Disc Harrow: 0°, 7°, 14°, 21°"
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
-          "value": "402-770 lbs. depending on width"
+          "value": "4' Disc Harrow: 402 lbs. | 5' Disc Harrow: 449 lbs. | 6' Disc Harrow: 702 lbs. | 7' Disc Harrow: 770 lbs."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "4' Disc Harrow",
+          "modelNumber": null
+        },
+        {
+          "name": "5' Disc Harrow",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Disc Harrow",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Disc Harrow",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-forks-and-hitches",
       "name": "Forks & Hitches",
       "category": "implements",
       "tagline": "Hay spears, pallet forks and trailer movers",
-      "summary": "This group covers hay spears, pallet forks and 3-point trailer movers for handling bales, pallets and trailers. Loader-mounted items use quick attach, while the 3-point items fit a CAT 1 hitch.",
+      "summary": "Hay spears, hay forks, trailer movers and pallet forks for moving bales, trailers and loads. Options mount to the 3-point hitch or the front loader quick attach.",
       "highlights": [
         "Quick-attach front hay spear rated at 1,800 lbs.",
         "3-point hay forks and a hay fork/trailer mover combo",
         "Heavy-duty pallet forks, Class 2, 3,500 lb capacity",
         "Standard pallet forks, Class 2, 2,200 lb capacity"
       ],
-      "specs": [],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "specs": [
+        {
+          "group": "General",
+          "label": "Spear Length",
+          "value": "QA Front Hay Spear: Top: 49\"; Bottom: 17\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "QA Front Hay Spear: 150 lbs. | 3 Prong-3PT Hay Fork: 79 lbs. | 2 Prong-3PT Hay Fork & Trailer Mover Combo: 107 lbs. | 3 PT Trailer Mover: 43 lbs. | Heavy-Duty Pallet Forks: 350 lbs. | Standard Pallet Forks: 310 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "QA Front Hay Spear: Skid Steer Quick Attach | 3 Prong-3PT Hay Fork: CAT 1 | 2 Prong-3PT Hay Fork & Trailer Mover Combo: CAT 1 | 3 PT Trailer Mover: CAT 1 | Heavy-Duty Pallet Forks: Quick Attach | Standard Pallet Forks: Quick Attach"
+        },
+        {
+          "group": "General",
+          "label": "Features",
+          "value": "QA Front Hay Spear: 3\" 1/4\" wall tubing frame: Mounts to Front Loader 2-17\" stabilizer bars. Spear rated at 1,800 lbs. | 3 Prong-3PT Hay Fork: 49˝ Main Spear; 3˝ x 1/4˝ wall tubing frame; 2 17˝ stabilizer bars; Spear rated at 1,800 lbs. | 2 Prong-3PT Hay Fork & Trailer Mover Combo: 3˝ x 1/4˝ wall tubing frame; 2@ 49˝ spears rated at 1,800 lbs.Receiver hitch2 5/16˝ ball mount included | 3 PT Trailer Mover: 3\" x 1/4\" wall tubing frameReceiver hitch2 5/16˝ ball mount included | Heavy-Duty Pallet Forks: Class 2 3,500 lb capacity4\" x 48\" forksD-Ring | Standard Pallet Forks: Class 2 2,200 lb capacity3” x 42” forks"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "3 Prong-3PT Hay Fork: 26.5\" | 2 Prong-3PT Hay Fork & Trailer Mover Combo: 26.5\" | 3 PT Trailer Mover: 26.5\" | Heavy-Duty Pallet Forks: 47\" | Standard Pallet Forks: 47\""
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "QA Front Hay Spear",
+          "modelNumber": null
+        },
+        {
+          "name": "3 Prong-3PT Hay Fork",
+          "modelNumber": null
+        },
+        {
+          "name": "2 Prong-3PT Hay Fork & Trailer Mover Combo",
+          "modelNumber": null
+        },
+        {
+          "name": "3 PT Trailer Mover",
+          "modelNumber": null
+        },
+        {
+          "name": "Heavy-Duty Pallet Forks",
+          "modelNumber": null
+        },
+        {
+          "name": "Standard Pallet Forks",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-front-grapples",
       "name": "Front Grapples",
       "category": "implements",
       "tagline": "Quick-attach loader grapples, large and small",
-      "summary": "Front grapples attach to the loader to grab brush, logs and debris. They come with a hose kit and mount via quick attach.",
+      "summary": "Hydraulic front grapples for the loader quick attach, in 70-inch and 48-inch sizes. Both ship with a hose kit.",
       "highlights": [
         "Available in 70\" large and 48\" small sizes",
         "Quick-attach mounting",
@@ -3442,19 +4239,49 @@
       ],
       "specs": [
         {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "Large Grapples: 70\" | Small Grapples: 48\""
+        },
+        {
           "group": "General",
-          "label": "Available Sizes",
-          "value": "70\" large, 48\" small"
+          "label": "Shanks",
+          "value": "Large Grapples: 6 | Small Grapples: 4"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "Large Grapples: 375 lbs. | Small Grapples: 255 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "Quick Attach"
+        },
+        {
+          "group": "General",
+          "label": "Features",
+          "value": "Large Grapples: (2) 2,500psi cylinders, Comes with hose kit, HP Rating 17-40, Quick Attach | Small Grapples: 2,500psi cylinder, Comes with hose kit, HP Rating 17-25"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "Large Grapples",
+          "modelNumber": null
+        },
+        {
+          "name": "Small Grapples",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-grader-blades",
       "name": "Grader Blades",
       "category": "implements",
       "tagline": "Rear blades with 5 forward and 5 reverse positions",
-      "summary": "Grader blades are rear-mounted blades for moving snow, gravel and dirt. Every size offers five forward and five reverse blade positions.",
+      "summary": "Rear grader blades for moving dirt, gravel and snow, offered from 4 to 7 feet. The blade angles to 5 forward and 5 reverse positions and tilts both directions.",
       "highlights": [
         "Available in 4', 5', 6' and 7' widths",
         "5 forward and 5 reverse blade positions",
@@ -3463,19 +4290,57 @@
       ],
       "specs": [
         {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "4' Grader Blade: 48\" | 5' Grader Blade: 60\" | 6' Grader Blade: 72\" | 7' Grader Blade: 84\""
+        },
+        {
           "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6 & 7 ft"
+          "label": "HP Rating",
+          "value": "4' Grader Blade: 17-25 | 5' Grader Blade: 17-40 | 6' Grader Blade: 20-40 | 7' Grader Blade: 20-40"
+        },
+        {
+          "group": "General",
+          "label": "Blades (Scraping or Cutting)",
+          "value": "1"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "4' Grader Blade: 220 lbs. | 5' Grader Blade: 263 lbs. | 6' Grader Blade: 306 lbs. | 7' Grader Blade: 350 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "Cat 1 & Quick Hitch"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "4' Grader Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "5' Grader Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Grader Blade",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Grader Blade",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-landscape-rakes",
       "name": "Landscape Rakes",
       "category": "implements",
       "tagline": "Landscape rakes for debris and soil prep, 4' to 7'",
-      "summary": "Landscape rakes collect rocks and debris and prepare seedbeds. They have adjustable blade positions and individually mounted tines.",
+      "summary": "Landscape rakes for clearing debris and preparing soil, sized 4 to 7 feet. Tines are individually mounted and the rake angles to 5 forward and 5 reverse positions.",
       "highlights": [
         "Available in 4', 5', 6' and 7' widths",
         "5 forward and 5 reverse positions",
@@ -3484,24 +4349,52 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "4, 5, 6 & 7 ft"
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "4' Landscape Rake: 48\" | 5' Landscape Rake: 60\" | 6' Landscape Rake: 72\" | 7' Landscape Rake: 84\""
         },
         {
           "group": "General",
+          "label": "HP Rating",
+          "value": "4' Landscape Rake: 17-25 | 5' Landscape Rake: 17-40 | 6' Landscape Rake: 20-40 | 7' Landscape Rake: 20-40"
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
-          "value": "175-254 lbs. depending on width"
+          "value": "4' Landscape Rake: 175 lbs. | 5' Landscape Rake: 201 lbs. | 6' Landscape Rake: 227 lbs. | 7' Landscape Rake: 254 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch",
+          "value": "Cat 1 & Quick Hitch"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "4' Landscape Rake",
+          "modelNumber": null
+        },
+        {
+          "name": "5' Landscape Rake",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Landscape Rake",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Landscape Rake",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-mid-mount-mower-deck",
       "name": "Mid-Mount Mower Deck",
       "category": "implements",
       "tagline": "Drive-over decks for the 1022 and 1025H",
-      "summary": "Bad Boy offers drive-over mid-mount mower decks for its 1022 and 1025H sub-compact tractors, built with the same approach as its zero-turn mower decks. They are gearbox-over-belt driven and protected by a shear pin.",
+      "summary": "Drive-over mid-mount mower decks for the Bad Boy 1022 and 1025H sub-compact tractors. They are gearbox-over-belt decks driven by the tractor mid-PTO.",
       "highlights": [
         "60\" deck for the 1025H, 54\" deck for the 1022",
         "Drive-over mounting",
@@ -3511,23 +4404,83 @@
       "specs": [
         {
           "group": "General",
-          "label": "Available Sizes",
-          "value": "60\" (1025H), 54\" (1022)"
+          "label": "Gearbox",
+          "value": "1025H 60\" Mid-Mount Mower Deck: BB_GB_03642 | 1022 54\" Mid-Mount Mower Deck: 200C"
+        },
+        {
+          "group": "General",
+          "label": "Warranty",
+          "value": "24 Months on Deck / 12 Months on Gearbox"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "1025H 60\" Mid-Mount Mower Deck: 350 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Total Width (With Chute)",
+          "value": "1025H 60\" Mid-Mount Mower Deck: 73.5\" | 1022 54\" Mid-Mount Mower Deck: 67.5\""
+        },
+        {
+          "group": "General",
+          "label": "Cut Range",
+          "value": "1025H 60\" Mid-Mount Mower Deck: 1\"–5\" (Based on Factory Tires and Settings) | 1022 54\" Mid-Mount Mower Deck: 1\"–4\" (Based on Factory Tires and Settings)"
+        },
+        {
+          "group": "General",
+          "label": "Tractor Mid-PTO RPM",
+          "value": "2,000 RPM"
+        },
+        {
+          "group": "General",
+          "label": "Oil and Fluid",
+          "value": "1025H 60\" Mid-Mount Mower Deck: EP 80W-90 500ml / 16.9 oz. | 1022 54\" Mid-Mount Mower Deck: AGMA 5 EP Gear Oil 6oz"
+        },
+        {
+          "group": "General",
+          "label": "Drive Type",
+          "value": "Gearbox Over Belt"
+        },
+        {
+          "group": "General",
+          "label": "PTO Driveline Protection",
+          "value": "Shear Pin"
+        },
+        {
+          "group": "General",
+          "label": "Belt Tension",
+          "value": "1022 54\" Mid-Mount Mower Deck: 40-50 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Fits",
+          "value": "1022, 1025H"
         },
         {
           "group": "Warranty",
           "label": "Warranty",
-          "value": "24 months on deck / 12 months on gearbox"
+          "value": "24 months on deck / 12 months on gearbox."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "1025H 60\" Mid-Mount Mower Deck",
+          "modelNumber": null
+        },
+        {
+          "name": "1022 54\" Mid-Mount Mower Deck",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-spreaders",
       "name": "Spreaders",
       "category": "implements",
       "tagline": "Pull-behind and 3-point spreaders, 600 lb hopper",
-      "summary": "Spreaders broadcast seed, fertilizer and similar materials. Bad Boy offers a ground-driven pull-behind model and a PTO-driven 3-point model, both with galvanized 600 lb hoppers and stainless steel fins.",
+      "summary": "Spreaders for seed and fertilizer in pull-behind (ground-driven) and 3-point (PTO-driven) versions. Both have a 600 lb galvanized hopper and stainless steel fins.",
       "highlights": [
         "Pull-behind (BBS300PB) and 3-point (BBS300L) models",
         "Galvanized 600 lb hopper",
@@ -3537,18 +4490,83 @@
       "specs": [
         {
           "group": "General",
+          "label": "Hopper",
+          "value": "Galvanized"
+        },
+        {
+          "group": "General",
           "label": "Hopper Capacity",
           "value": "600 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Hitch Type",
+          "value": "Pull-Behind Spreader: Pull Behind | 3-Point Hitch Spreader: 3-Point"
+        },
+        {
+          "group": "General",
+          "label": "Frame Material",
+          "value": "Steel"
+        },
+        {
+          "group": "General",
+          "label": "Agitator",
+          "value": "Standard"
+        },
+        {
+          "group": "General",
+          "label": "Fins",
+          "value": "Stainless Steel"
+        },
+        {
+          "group": "General",
+          "label": "Number of Fins",
+          "value": "4"
+        },
+        {
+          "group": "General",
+          "label": "Adjustable Fins",
+          "value": "Yes"
+        },
+        {
+          "group": "General",
+          "label": "Drive Type",
+          "value": "Pull-Behind Spreader: Ground | 3-Point Hitch Spreader: PTO"
+        },
+        {
+          "group": "General",
+          "label": "Max PTO Speed",
+          "value": "Pull-Behind Spreader: n/a | 3-Point Hitch Spreader: 540 RPM"
+        },
+        {
+          "group": "General",
+          "label": "Hitch Coupler Size",
+          "value": "Pull-Behind Spreader: 2\" | 3-Point Hitch Spreader: Cat 1 Lift"
+        },
+        {
+          "group": "General",
+          "label": "Vinyl Cover",
+          "value": "Standard"
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "Pull-Behind Spreader",
+          "modelNumber": "BBS300PB"
+        },
+        {
+          "name": "3-Point Hitch Spreader",
+          "modelNumber": "BBS300L"
+        }
+      ]
     },
     {
       "slug": "implement-snow-pusher",
       "name": "Snow Pusher",
       "category": "implements",
       "tagline": "Loader-mounted snow pusher, 5' to 7'",
-      "summary": "The snow pusher mounts to the loader for clearing heavy snow from drives and lots. It has a 27-inch 7-gauge moldboard with 3/8-inch sidewalls and a choice of steel or UHMW edges and skids.",
+      "summary": "Quick-attach snow pushers for clearing heavy snow, in 5, 6 and 7 foot widths. They use reinforced sidewalls and a 7-gauge moldboard, with an optional backdrag hood.",
       "highlights": [
         "Available in 5', 6' and 7' widths",
         "27\" tall 7-gauge moldboard",
@@ -3557,29 +4575,88 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "5, 6 & 7 ft"
+          "group": "Dimensions",
+          "label": "Working Width",
+          "value": "5' Snow Pusher: 61\" | 6' Snow Pusher: 73\" | 7' Snow Pusher: 85\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "5' Snow Pusher: 65\" | 6' Snow Pusher: 77\" | 7' Snow Pusher: 83\""
         },
         {
           "group": "General",
-          "label": "Mounting",
-          "value": "Standard quick attach"
+          "label": "Sidewall Height",
+          "value": "29\""
         },
         {
           "group": "General",
+          "label": "Sidewall Thickness",
+          "value": "3/8\" Reinforced"
+        },
+        {
+          "group": "General",
+          "label": "Moldboard Height",
+          "value": "27\""
+        },
+        {
+          "group": "General",
+          "label": "Moldboard Thickness",
+          "value": "7 Gauge"
+        },
+        {
+          "group": "General",
+          "label": "Cutting Edge",
+          "value": "Steel or UHMW"
+        },
+        {
+          "group": "General",
+          "label": "Skids",
+          "value": "Steel or UHMW"
+        },
+        {
+          "group": "General",
+          "label": "HP Range",
+          "value": "5' Snow Pusher: 25 | 6' Snow Pusher: 35 | 7' Snow Pusher: 45"
+        },
+        {
+          "group": "General",
+          "label": "Mounting Style",
+          "value": "Standard Quick Attach"
+        },
+        {
+          "group": "Dimensions",
           "label": "Weight",
-          "value": "545 lbs. (710 lbs. with backdrag hood)"
+          "value": "5' Snow Pusher: 470 lbs. | 6' Snow Pusher: 510 lbs. | 7' Snow Pusher: 545 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Weight w/backdrag hood",
+          "value": "5' Snow Pusher: 560 lbs. | 6' Snow Pusher: 645 lbs. | 7' Snow Pusher: 710 lbs."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "5' Snow Pusher",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Snow Pusher",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Snow Pusher",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "implement-finish-mower",
       "name": "Finish Mower",
       "category": "implements",
       "tagline": "Rear-discharge 3-point finish mower, 5' to 7'",
-      "summary": "The finish mower gives a clean, even cut on large lawns, pastures and fields. It has a 1/4-inch deck, rear discharge and single-pin height adjustment, and is made in the USA.",
+      "summary": "Rear-discharge 3-point finish mowers for a clean cut on lawns and large properties, in 5, 6 and 7 foot widths. Each has three blades, single-pin height adjustment and quick-hitch compatibility.",
       "highlights": [
         "Available in 5', 6' and 7' widths",
         "1/4\" deck construction",
@@ -3588,22 +4665,101 @@
       ],
       "specs": [
         {
-          "group": "General",
-          "label": "Available Widths",
-          "value": "5, 6 & 7 ft"
+          "group": "Dimensions",
+          "label": "Working Width",
+          "value": "5' Finish Mower: 61\" | 6' Finish Mower: 72\" | 7' Finish Mower: 84\""
         },
         {
-          "group": "Deck",
-          "label": "Cutting Height",
-          "value": "1\" - 5\" (5' model)"
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "5' Finish Mower: 62.5\" | 6' Finish Mower: 72.5\" | 7' Finish Mower: 84.75\""
+        },
+        {
+          "group": "General",
+          "label": "Cutting Height Range",
+          "value": "1\" - 5\""
+        },
+        {
+          "group": "General",
+          "label": "Number of Blades",
+          "value": "3"
+        },
+        {
+          "group": "General",
+          "label": "Deck Construction",
+          "value": "¼”"
+        },
+        {
+          "group": "General",
+          "label": "PTO Requirements",
+          "value": "540"
+        },
+        {
+          "group": "General",
+          "label": "Hitch Type",
+          "value": "5' Finish Mower: Limited Cat 1 and Cat 1 | 6' Finish Mower: Cat 1 and Cat 2 | 7' Finish Mower: Cat 1 and Cat 2"
+        },
+        {
+          "group": "General",
+          "label": "Discharge",
+          "value": "Rear"
+        },
+        {
+          "group": "General",
+          "label": "Minimum PTO HP Range",
+          "value": "5' Finish Mower: 15.4 | 6' Finish Mower: 18 | 7' Finish Mower: 29.5"
+        },
+        {
+          "group": "General",
+          "label": "Height Adjustment",
+          "value": "Single Pin"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "5' Finish Mower: 632 lbs. | 6' Finish Mower: 780 lbs. | 7' Finish Mower: 931 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Tires",
+          "value": "Solid Rubber"
+        },
+        {
+          "group": "General",
+          "label": "Quick Hitch Compatible",
+          "value": "Yes"
+        },
+        {
+          "group": "General",
+          "label": "Gearbox Warranty",
+          "value": "5 Year Limited"
+        },
+        {
+          "group": "General",
+          "label": "Deck Warranty",
+          "value": "2 Year Limited"
         },
         {
           "group": "Warranty",
           "label": "Warranty",
-          "value": "5-year limited gearbox; 2-year limited deck"
+          "value": "5 year limited gearbox warranty; 2 year limited deck warranty."
         }
       ],
-      "sourceUrl": "https://badboycountry.com/tractors/implements"
+      "sourceUrl": "https://badboycountry.com/tractors/implements",
+      "configurations": [
+        {
+          "name": "5' Finish Mower",
+          "modelNumber": null
+        },
+        {
+          "name": "6' Finish Mower",
+          "modelNumber": null
+        },
+        {
+          "name": "7' Finish Mower",
+          "modelNumber": null
+        }
+      ]
     },
     {
       "slug": "bandit-550",
@@ -5133,6 +6289,13 @@
     "Gas handheld blower spec table labels 450 cfm as 'Air Velocity'; it was recorded as Air Volume 450 CFM.",
     "Implements: one entry per implement type on /tractors/implements (14 types); only summary-level specs (available sizes, warranties, select ratings) were included. The page lists more detailed per-size specs.",
     "Light construction: Recon and Terrain pages do not state a warranty. E-Magnum and both push mowers do not state a warranty except the E-Series self-propelled mower (4 years).",
-    "Prices and payment estimates appear on every page and were intentionally excluded."
+    "Prices and payment estimates appear on every page and were intentionally excluded.",
+    "Mower configurations, model numbers and per-configuration MSRP from badboycountry.com/mowers/build/* (2026-10-25). Engine/deck upcharge amounts on those pages look like placeholders and were not used.",
+    "Implements: No MSRP is shown anywhere on /tractors/implements; all implement msrp values are null. The page links to no separate implement detail pages; all specs come from that single page.",
+    "Implements: Implement size names and spec labels/values are copied verbatim from the page's spec tables. modelNumber is filled only where the page shows one (rotary tillers BBRT48/60/72/84, spreaders BBS300PB/BBS300L).",
+    "Implements: Rotary cutters: the section headings list '4, 5 & 6 Foot Standard-Duty' and '5 & 6 Foot Heavy-Duty' (plus 7' and 10' heavy-duty), but the spec tables also include a non-SD '4' Cutter' (10 ga deck). Recorded as published.",
+    "Implements: Snow pusher 7': page lists Working Width 85\" and Overall Width 83\" (overall smaller than working width, likely a site typo). Recorded as published.",
+    "Implements: Mid-mount mower deck: intro text says 1\"-5\" cutting height, but the 1022 54\" table says 1\"-4\" (the 1025H 60\" table says 1\"-5\"). No weight is listed for the 1022 deck.",
+    "Implements: Only the mid-mount decks state tractor fitment (1022 and 1025H). Other implements give HP ratings and hitch category but no specific Bad Boy tractor models, so their fits arrays are empty."
   ]
 }

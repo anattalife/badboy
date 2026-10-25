@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import React from 'react'
 
+import { CompareTray } from '@/components/CompareControls'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { getCategories, getSiteSettings } from '@/lib/payload'
@@ -39,6 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
         </main>
         <Footer settings={settings} categories={categories} />
+        <CompareTray />
       </body>
     </html>
   )

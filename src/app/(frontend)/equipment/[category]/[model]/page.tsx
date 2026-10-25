@@ -3,11 +3,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { CompareToggle } from '@/components/CompareControls'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { ModelCard } from '@/components/ModelCard'
+import { UnitCard } from '@/components/UnitCard'
 import { Breadcrumbs } from '@/components/PageIntro'
 import { categoryOf, firstImage, formatPrice, kindForCategory, telHref } from '@/lib/format'
-import { getModelBySlug, getModelsByCategory, getSiteSettings } from '@/lib/payload'
+import { toSizeMatrix } from '@/lib/specs'
+import {
+  getModelBySlug,
+  getModelsByCategory,
+  getSiteSettings,
+  getUnitsForModel,
+} from '@/lib/payload'
 
 type Params = PageProps<'/equipment/[category]/[model]'>
 
@@ -33,7 +41,11 @@ export default async function ModelPage(props: Params) {
   const data = await load(props)
   if (!data) notFound()
   const { model, category } = data
-  const [settings, siblings] = await Promise.all([getSiteSettings(), getModelsByCategory(category.id)])
+  const [settings, siblings, units] = await Promise.all([
+    getSiteSettings(),
+    getModelsByCategory(category.id),
+    getUnitsForModel(model.id),
+  ])
 
   const image = firstImage(model)
   const price = formatPrice(model.startingPrice)
@@ -41,6 +53,17 @@ export default async function ModelPage(props: Params) {
   for (const spec of model.specs ?? []) {
     const group = spec.group ?? 'General'
     specGroups.set(group, [...(specGroups.get(group) ?? []), spec])
+  }
+  const sizeMatrix = toSizeMatrix(
+    (model.specs ?? []).filter((s) => s.group !== 'Warranty'),
+    (model.configurations ?? []).map((c) => c.name),
+  )
+  const warranty = (model.specs ?? []).filter((s) => s.group === 'Warranty')
+  if (sizeMatrix && model.configurations?.some((c) => c.modelNumber)) {
+    sizeMatrix.rows.unshift({
+      label: 'Model number',
+      values: (model.configurations ?? []).map((c) => c.modelNumber ?? null),
+    })
   }
   const related = siblings.filter((m) => m.id !== model.id).slice(0, 3)
   const quoteHref = `/contact?model=${encodeURIComponent(model.slug ?? '')}`
@@ -92,6 +115,17 @@ export default async function ModelPage(props: Params) {
                   Call {settings.phone}
                 </a>
               </div>
+              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+                {model.slug ? <CompareToggle slug={model.slug} name={model.name} /> : null}
+                {units.length ? (
+                  <a
+                    href="#in-stock"
+                    className="text-sm font-semibold text-field underline underline-offset-4"
+                  >
+                    {units.length} in stock now
+                  </a>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
@@ -115,14 +149,17 @@ export default async function ModelPage(props: Params) {
               <ul className="mt-4 space-y-3">
                 {model.highlights.map((h) => (
                   <li key={h.id ?? h.text} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-field" />
+                    <span
+                      aria-hidden="true"
+                      className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-field"
+                    />
                     <span>{h.text}</span>
                   </li>
                 ))}
               </ul>
             </section>
           ) : null}
-          {model.configurations?.length ? (
+          {model.configurations?.length && !sizeMatrix ? (
             <section className="mt-10" aria-labelledby="configs">
               <h2 id="configs" className="type-decal-md text-2xl text-ridge">
                 Configurations
@@ -131,11 +168,17 @@ export default async function ModelPage(props: Params) {
                 {model.configurations.map((c) => (
                   <li key={c.id ?? c.name} className="py-3">
                     <p className="font-semibold">{c.name}</p>
-                    {[c.deck, c.engine, c.horsepower].filter(Boolean).length ? (
-                      <p className="text-sm text-steel">
-                        {[c.deck && `${c.deck} deck`, c.engine, c.horsepower].filter(Boolean).join(', ')}
-                      </p>
-                    ) : null}
+                    <p className="text-sm text-steel">
+                      {[
+                        c.deck && `${c.deck} deck`,
+                        c.engine,
+                        c.horsepower,
+                        c.discharge === 'rear' && 'rear discharge',
+                        c.modelNumber && `Model ${c.modelNumber}`,
+                      ]
+                        .filter(Boolean)
+                        .join(' · ')}
+                    </p>
                   </li>
                 ))}
               </ul>
@@ -143,11 +186,56 @@ export default async function ModelPage(props: Params) {
           ) : null}
         </div>
 
-        <section aria-labelledby="specs">
+        <section aria-labelledby="specs" className={sizeMatrix ? 'lg:col-span-2' : undefined}>
           <h2 id="specs" className="type-decal-md text-2xl text-ridge">
             Specifications
           </h2>
-          {specGroups.size ? (
+          {sizeMatrix ? (
+            <div className="mt-4 space-y-6">
+              <div className="overflow-x-auto rounded-[var(--radius-plate)] border border-haze bg-white">
+                <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+                  <caption className="sr-only">Specifications by size</caption>
+                  <thead>
+                    <tr className="bg-fescue">
+                      <td className="p-3" />
+                      {sizeMatrix.sizes.map((size) => (
+                        <th
+                          key={size}
+                          scope="col"
+                          className="p-3 font-bold text-ink [font-variation-settings:'wdth'_110]"
+                        >
+                          {size}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sizeMatrix.rows.map((row) => (
+                      <tr key={row.label} className="border-t border-haze align-top">
+                        <th scope="row" className="p-3 font-normal text-steel">
+                          {row.label}
+                        </th>
+                        {row.values.map((v, i) => (
+                          <td key={sizeMatrix.sizes[i]} className="p-3">
+                            {v ?? <span className="text-steel-light">—</span>}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {warranty.map((w) => (
+                <p key={w.label}>
+                  <span className="font-semibold">{w.label}:</span> {w.value}
+                </p>
+              ))}
+              <p className="text-sm text-steel">
+                Specs are from Bad Boy and can change by model year. Confirm details with our sales
+                team.
+              </p>
+            </div>
+          ) : specGroups.size ? (
             <div className="mt-4 space-y-8">
               {[...specGroups.entries()].map(([group, specs]) => (
                 <table key={group} className="w-full border-collapse text-left">
@@ -167,7 +255,8 @@ export default async function ModelPage(props: Params) {
                 </table>
               ))}
               <p className="text-sm text-steel">
-                Specs are from Bad Boy and can change by model year. Confirm details with our sales team.
+                Specs are from Bad Boy and can change by model year. Confirm details with our sales
+                team.
               </p>
             </div>
           ) : (
@@ -175,6 +264,31 @@ export default async function ModelPage(props: Params) {
           )}
         </section>
       </div>
+
+      {units.length ? (
+        <section
+          id="in-stock"
+          className="mx-auto max-w-7xl scroll-mt-6 px-4 pt-20 sm:px-6"
+          aria-labelledby="stock-h"
+        >
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 id="stock-h" className="type-decal-md text-2xl text-ridge">
+              {model.name} units on our lot
+            </h2>
+            <Link
+              href={`/inventory?model=${model.slug}`}
+              className="font-semibold text-ridge hover:underline"
+            >
+              See all in stock
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {units.map((u) => (
+              <UnitCard key={u.id} unit={u} />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {related.length ? (
         <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6" aria-labelledby="related">

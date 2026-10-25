@@ -7,6 +7,7 @@ import { MobileNav } from './MobileNav'
 
 export const NAV = [
   { href: '/equipment', label: 'Equipment' },
+  { href: '/inventory', label: 'In stock' },
   { href: '/compare', label: 'Compare' },
   { href: '/financing', label: 'Financing' },
   { href: '/parts', label: 'Parts' },

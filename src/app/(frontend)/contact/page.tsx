@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { PageIntro } from '@/components/PageIntro'
 import { fullAddress, telHref } from '@/lib/format'
-import { getModelBySlug, getSiteSettings } from '@/lib/payload'
+import { getModelBySlug, getSiteSettings, getPayloadClient } from '@/lib/payload'
 
 export const metadata: Metadata = {
   title: 'Contact us',
@@ -10,16 +10,18 @@ export const metadata: Metadata = {
 }
 
 export default async function ContactPage(props: PageProps<'/contact'>) {
-  const { model: modelSlug } = await props.searchParams
-  const [settings, model] = await Promise.all([
+  const { model: modelSlug, unit: stockNumber } = await props.searchParams
+  const [settings, model, unit] = await Promise.all([
     getSiteSettings(),
     typeof modelSlug === 'string' ? getModelBySlug(modelSlug) : Promise.resolve(null),
+    typeof stockNumber === 'string' ? findUnitByStock(stockNumber) : Promise.resolve(null),
   ])
+  const subject = unit ? `${unit.title} (stock ${unit.stockNumber})` : model ? `the Bad Boy ${model.name}` : null
 
   return (
     <>
       <PageIntro
-        title={model ? `Get a quote on the ${model.name}` : 'Contact us'}
+        title={unit ? `Ask about stock ${unit.stockNumber}` : model ? `Get a quote on the ${model.name}` : 'Contact us'}
         lede="Call or stop by the shop. Online quote and contact forms are coming next."
         trail={[{ href: '/', label: 'Home' }, { label: 'Contact' }]}
       />
@@ -29,8 +31,8 @@ export default async function ContactPage(props: PageProps<'/contact'>) {
           <a href={telHref(settings.phone)} className="mt-3 block text-3xl font-bold text-ink hover:underline">
             {settings.phone}
           </a>
-          {model ? (
-            <p className="mt-2 text-steel">Mention the Bad Boy {model.name} and we’ll have pricing ready.</p>
+          {subject ? (
+            <p className="mt-2 text-steel">Mention {subject} and we’ll have pricing ready.</p>
           ) : null}
           <h2 className="type-decal-md mt-10 text-2xl text-ridge">Visit</h2>
           <p className="mt-3 text-lg">{fullAddress(settings)}</p>
@@ -54,4 +56,16 @@ export default async function ContactPage(props: PageProps<'/contact'>) {
       </div>
     </>
   )
+}
+
+async function findUnitByStock(stockNumber: string) {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'inventory',
+    where: { stockNumber: { equals: stockNumber.slice(0, 40) } },
+    limit: 1,
+    depth: 0,
+    overrideAccess: false,
+  })
+  return docs[0] ?? null
 }

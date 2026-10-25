@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    inventory: Inventory;
     models: Model;
     categories: Category;
     media: Media;
@@ -78,6 +79,7 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    inventory: InventorySelect<false> | InventorySelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -126,6 +128,75 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Machines on the lot or on order. Sold and hidden units never show on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inventory".
+ */
+export interface Inventory {
+  id: number;
+  stockNumber: string;
+  condition: 'new' | 'used' | 'demo';
+  status: 'available' | 'on-order' | 'pending' | 'sold' | 'hidden';
+  /**
+   * Pick the Bad Boy model. Leave empty for other brands (trade-ins).
+   */
+  model?: (number | null) | Model;
+  year: number;
+  /**
+   * Engine hours (used units).
+   */
+  hours?: number | null;
+  make?: string | null;
+  otherModelName?: string | null;
+  /**
+   * Filled in automatically from the Bad Boy model.
+   */
+  category?: (number | null) | Category;
+  /**
+   * e.g. 61" Kawasaki FX1000V EFI
+   */
+  configuration?: string | null;
+  /**
+   * e.g. 61"
+   */
+  deck?: string | null;
+  engine?: string | null;
+  /**
+   * Your price in dollars. Leave blank for “Call for price”.
+   */
+  price?: number | null;
+  /**
+   * Optional. Shown crossed out when higher than your price.
+   */
+  msrp?: number | null;
+  /**
+   * Staff only. Never shown on the website.
+   */
+  serialNumber?: string | null;
+  /**
+   * First photo is the main image.
+   */
+  photos?: (number | Media)[] | null;
+  /**
+   * Condition notes, included attachments, warranty remaining, etc.
+   */
+  description?: string | null;
+  /**
+   * Show first on the In Stock page.
+   */
+  featured?: boolean | null;
+  /**
+   * Built from year, make, model and configuration.
+   */
+  title?: string | null;
+  slug?: string | null;
+  deckInches?: number | null;
+  soldAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "models".
  */
@@ -156,6 +227,10 @@ export interface Model {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Reference only, from Bad Boy’s build page for the base configuration. Not shown on the website.
+   */
+  msrp?: number | null;
   /**
    * Optional “starting at” price in dollars. Leave blank to show “Call for price”.
    */
@@ -193,6 +268,12 @@ export interface Model {
         deck?: string | null;
         engine?: string | null;
         horsepower?: string | null;
+        discharge?: ('side' | 'rear') | null;
+        modelNumber?: string | null;
+        /**
+         * Bad Boy MSRP for this configuration (reference).
+         */
+        msrp?: number | null;
         id?: string | null;
       }[]
     | null;
@@ -315,6 +396,10 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'inventory';
+        value: number | Inventory;
+      } | null)
+    | ({
         relationTo: 'models';
         value: number | Model;
       } | null)
@@ -374,6 +459,36 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inventory_select".
+ */
+export interface InventorySelect<T extends boolean = true> {
+  stockNumber?: T;
+  condition?: T;
+  status?: T;
+  model?: T;
+  year?: T;
+  hours?: T;
+  make?: T;
+  otherModelName?: T;
+  category?: T;
+  configuration?: T;
+  deck?: T;
+  engine?: T;
+  price?: T;
+  msrp?: T;
+  serialNumber?: T;
+  photos?: T;
+  description?: T;
+  featured?: T;
+  title?: T;
+  slug?: T;
+  deckInches?: T;
+  soldAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "models_select".
  */
 export interface ModelsSelect<T extends boolean = true> {
@@ -390,6 +505,7 @@ export interface ModelsSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
+  msrp?: T;
   startingPrice?: T;
   specs?:
     | T
@@ -406,6 +522,9 @@ export interface ModelsSelect<T extends boolean = true> {
         deck?: T;
         engine?: T;
         horsepower?: T;
+        discharge?: T;
+        modelNumber?: T;
+        msrp?: T;
         id?: T;
       };
   images?: T;

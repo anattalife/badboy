@@ -9,6 +9,7 @@ import { GetPlatformProxyOptions } from 'wrangler'
 import { r2Storage } from '@payloadcms/storage-r2'
 
 import { Categories } from './collections/Categories'
+import { Inventory } from './collections/Inventory'
 import { Media } from './collections/Media'
 import { Models } from './collections/Models'
 import { Users } from './collections/Users'
@@ -72,7 +73,7 @@ export default buildConfig({
       titleSuffix: ' · Roanoke Mowers admin',
     },
   },
-  collections: [Models, Categories, Media, Users],
+  collections: [Inventory, Models, Categories, Media, Users],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

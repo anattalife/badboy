@@ -84,6 +84,16 @@ export const Models: CollectionConfig = {
               fields: [{ name: 'text', type: 'text', required: true }],
             },
             {
+              name: 'msrp',
+              label: 'Bad Boy base MSRP',
+              type: 'number',
+              min: 0,
+              admin: {
+                description:
+                  'Reference only, from Bad Boy’s build page for the base configuration. Not shown on the website.',
+              },
+            },
+            {
               name: 'startingPrice',
               type: 'number',
               min: 0,
@@ -134,6 +144,27 @@ export const Models: CollectionConfig = {
                     { name: 'deck', type: 'text' },
                     { name: 'engine', type: 'text' },
                     { name: 'horsepower', type: 'text' },
+                  ],
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'discharge',
+                      type: 'select',
+                      options: [
+                        { label: 'Side', value: 'side' },
+                        { label: 'Rear', value: 'rear' },
+                      ],
+                    },
+                    { name: 'modelNumber', type: 'text' },
+                    {
+                      name: 'msrp',
+                      label: 'MSRP',
+                      type: 'number',
+                      min: 0,
+                      admin: { description: 'Bad Boy MSRP for this configuration (reference).' },
+                    },
                   ],
                 },
               ],

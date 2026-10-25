@@ -1,0 +1,1796 @@
+{
+  "fetchedAt": "2026-10-25",
+  "accessories": [
+    {
+      "name": "Advanced Chute System",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Adjustable all-steel discharge shield that can be closed to stop discharge or partly closed to force clippings down; also aids mulching.",
+      "msrp": 249.0,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue 54\" deck",
+          "partNumber": "088-5419-00",
+          "msrp": 249.0,
+          "fits": [
+            "Rogue 54\" deck, Kawasaki FX1000 35HP (BRG5435KA)"
+          ]
+        },
+        {
+          "name": "Rogue 61\"/72\" deck",
+          "partNumber": "088-6000-00",
+          "msrp": 249.0,
+          "fits": [
+            "Rogue 61\" deck, Kawasaki FX1000 35HP (BRG6135KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 35HP (BRG7235KA)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP (BRG61385KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP (BRG72385KA)",
+            "Rogue 61\" deck, Vanguard EFI 40HP (BRG6140EVG)",
+            "Rogue 72\" deck, Vanguard EFI 40HP (BRG7240EVG)",
+            "Rogue 61\" deck, Rehlko EFI 38.5HP (BRG61ECV980)",
+            "Rogue 72\" deck, Rehlko EFI 38.5HP (BRG72ECV980)"
+          ]
+        },
+        {
+          "name": "Revolt 36\" deck",
+          "partNumber": "088-6036-00",
+          "msrp": 249.0,
+          "fits": [
+            "Revolt 36\" deck, Kawasaki FX691 22HP (BRV36FX691)"
+          ]
+        },
+        {
+          "name": "Revolt 48\"/54\"/61\" deck",
+          "partNumber": "088-6048-00",
+          "msrp": 249.0,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)",
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Front Basket",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Metal tray with cargo netting that mounts in the front receiver (side receiver on Revolt) for carrying items.",
+      "msrp": 74.99,
+      "partNumber": "088-4020-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-4020-00",
+          "msrp": 74.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "Revolt 48\"/54\"/61\" deck",
+          "partNumber": "088-4020-00",
+          "msrp": 74.99,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)",
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ],
+          "requiresPartNumber": "093-1126-27"
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Storage Container Mount"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Bucket & Tong Set",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Receiver-mounted bucket with tongs for picking up trash without leaving the seat; bucket also sold separately.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-0201-27",
+          "msrp": 74.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "Revolt 48\"/54\"/61\" deck",
+          "partNumber": "088-0213-27",
+          "msrp": 79.6,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)",
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ],
+          "requiresPartNumber": "093-1126-27"
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Bucket And Tongs"
+      ],
+      "msrpNote": "MSRP varies by variant; see variants.",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Front Mount Toolbox",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Weather-sealed, high-impact tool box that mounts in the receiver hitch for handy tool storage.",
+      "msrp": 79.99,
+      "partNumber": "088-4025-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-4025-00",
+          "msrp": 79.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "Revolt 48\"/54\"/61\" deck",
+          "partNumber": "088-4025-00",
+          "msrp": 79.99,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)",
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ],
+          "requiresPartNumber": "093-1126-27"
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Mount Tool Box Rack"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Rear Mount Storage Basket",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Rear basket built for R-Series mowers to carry extra gear, tools or yard accessories.",
+      "msrp": 272.01,
+      "partNumber": "088-4055-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-4055-00",
+          "msrp": 272.01,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "R-Series Rear Basket"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Weed Trimmer Rack",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Rack that secures a string trimmer to the mower so it travels with you.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-0300-00",
+          "msrp": 119.41,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "Revolt",
+          "partNumber": "088-0301-00",
+          "msrp": 110.99,
+          "fits": [
+            "Revolt (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "ROPS String Trimmer Mount"
+      ],
+      "msrpNote": "MSRP varies by variant; see variants.",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Mulch Kit With Blades",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Deck-size-specific mulching kit supplied with mulching blades, replacing the standard cutting blades.",
+      "msrp": 318.45,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue 54\" deck",
+          "partNumber": "210-0355-27",
+          "msrp": 318.45,
+          "fits": [
+            "Rogue 54\" deck, Kawasaki FX1000 35HP (BRG5435KA)"
+          ]
+        },
+        {
+          "name": "Rogue 61\" deck",
+          "partNumber": "210-0361-27",
+          "msrp": 318.45,
+          "fits": [
+            "Rogue 61\" deck, Kawasaki FX1000 35HP (BRG6135KA)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP (BRG61385KA)",
+            "Rogue 61\" deck, Vanguard EFI 40HP (BRG6140EVG)",
+            "Rogue 61\" deck, Rehlko EFI 38.5HP (BRG61ECV980)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP - Rear Discharge (BRG61RD385KA)"
+          ]
+        },
+        {
+          "name": "Rogue 72\" deck",
+          "partNumber": "210-0372-27",
+          "msrp": 318.45,
+          "fits": [
+            "Rogue 72\" deck, Kawasaki FX1000 35HP (BRG7235KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP (BRG72385KA)",
+            "Rogue 72\" deck, Vanguard EFI 40HP (BRG7240EVG)",
+            "Rogue 72\" deck, Rehlko EFI 38.5HP (BRG72ECV980)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP - Rear Discharge (BRG72RD385KA)"
+          ]
+        },
+        {
+          "name": "Revolt 36\" deck",
+          "partNumber": "210-0136-27",
+          "msrp": 318.45,
+          "fits": [
+            "Revolt 36\" deck, Kawasaki FX691 22HP (BRV36FX691)"
+          ]
+        },
+        {
+          "name": "Revolt 48\" deck",
+          "partNumber": "210-0349-27",
+          "msrp": 318.45,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)"
+          ]
+        },
+        {
+          "name": "Revolt 54\" deck",
+          "partNumber": "210-0355-27",
+          "msrp": 318.45,
+          "fits": [
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)"
+          ]
+        },
+        {
+          "name": "Revolt 61\" deck",
+          "partNumber": "210-0361-27",
+          "msrp": 318.45,
+          "fits": [
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt"
+      ]
+    },
+    {
+      "name": "Front Caster Brakes",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Locks the front casters to hold straight lines when striping.",
+      "msrp": 699.99,
+      "partNumber": "088-2014-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-2014-00",
+          "msrp": 699.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Bagger System",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Powered bagging system with a mower-assisted blower and sealed bearings; bags remove for quick emptying.",
+      "msrp": 2399.99,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue 54\" deck",
+          "partNumber": "092-4004-23",
+          "msrp": 2399.99,
+          "fits": [
+            "Rogue 54\" deck, Kawasaki FX1000 35HP (BRG5435KA)"
+          ]
+        },
+        {
+          "name": "Rogue 61\" deck",
+          "partNumber": "092-4009-23",
+          "msrp": 2399.99,
+          "fits": [
+            "Rogue 61\" deck, Kawasaki FX1000 35HP (BRG6135KA)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP (BRG61385KA)",
+            "Rogue 61\" deck, Vanguard EFI 40HP (BRG6140EVG)",
+            "Rogue 61\" deck, Rehlko EFI 38.5HP (BRG61ECV980)"
+          ]
+        },
+        {
+          "name": "Rogue 72\" deck",
+          "partNumber": "092-4011-23",
+          "msrp": 2399.99,
+          "fits": [
+            "Rogue 72\" deck, Kawasaki FX1000 35HP (BRG7235KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP (BRG72385KA)",
+            "Rogue 72\" deck, Vanguard EFI 40HP (BRG7240EVG)",
+            "Rogue 72\" deck, Rehlko EFI 38.5HP (BRG72ECV980)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Powered 2 & 3 Bagger Systems"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Bolt On Hitch",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Bolt-on hitch that adds towing capability to the mower.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue 54\"/61\"/72\" deck",
+          "partNumber": "093-1128-27",
+          "msrp": 59.99,
+          "fits": [
+            "Rogue 54\" deck, Kawasaki FX1000 35HP (BRG5435KA)",
+            "Rogue 61\" deck, Kawasaki FX1000 35HP (BRG6135KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 35HP (BRG7235KA)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP (BRG61385KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP (BRG72385KA)",
+            "Rogue 61\" deck, Vanguard EFI 40HP (BRG6140EVG)",
+            "Rogue 72\" deck, Vanguard EFI 40HP (BRG7240EVG)",
+            "Rogue 61\" deck, Rehlko EFI 38.5HP (BRG61ECV980)",
+            "Rogue 72\" deck, Rehlko EFI 38.5HP (BRG72ECV980)"
+          ]
+        },
+        {
+          "name": "Rogue 61\"/72\" deck (rear discharge configurations)",
+          "partNumber": "093-1141-00",
+          "msrp": 17.99,
+          "fits": [
+            "Rogue BRG61RD35KA (code not among current build-page configurations)",
+            "Rogue BRG72RD35KA (code not among current build-page configurations)",
+            "Rogue 61\" deck, Kawasaki FX1000 EFI 38.5HP - Rear Discharge (BRG61RD385KA)",
+            "Rogue 72\" deck, Kawasaki FX1000 EFI 38.5HP - Rear Discharge (BRG72RD385KA)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "msrpNote": "MSRP varies by variant; see variants."
+    },
+    {
+      "name": "Slide In Hitch",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Hitch that slides into the receiver and is held by a removable pin.",
+      "msrp": 49.99,
+      "partNumber": "093-1111-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "093-1111-00",
+          "msrp": 49.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "R-Series Hitch"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Sprayer Holding Plate",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Mounting plate required before installing the front-mounted sprayer.",
+      "msrp": 53.06,
+      "partNumber": "026-4000-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "026-4000-00",
+          "msrp": 53.06,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue"
+    },
+    {
+      "name": "Sprayer - 15 Gallon",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "15-gallon powered sprayer that mounts in the R-Series front receiver; usable from the seat or off the mower. Requires holding plate.",
+      "msrp": 329.99,
+      "partNumber": "088-1001-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-1001-00",
+          "msrp": 329.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ],
+          "requiresPartNumber": "026-4000-00"
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Mount Sprayer"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Snow Plow",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Powered front plow for R-Series mowers, controlled by a fingertip switch on the steering levers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "60\" Snow Plow",
+          "partNumber": "088-1043-00",
+          "msrp": 3699.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "72\" Snow Plow",
+          "partNumber": "088-1044-00",
+          "msrp": 3999.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "msrpNote": "MSRP varies by variant; see variants.",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "2\" Receiver Assist Handle",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Grab handle that fits the 2-inch front receiver to steady you getting on and off.",
+      "msrp": 69.99,
+      "partNumber": "088-3503-98",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-3503-98",
+          "msrp": 69.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Mount Receiver Assist Handle"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "2\" Receiver Step",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Step that fits the 2-inch front receiver for easier mounting and dismounting.",
+      "msrp": 69.99,
+      "partNumber": "088-3520-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-3520-00",
+          "msrp": 69.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Mount Receiver Step"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "2\" Receiver Step with Assist Handle",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Combined step and grab handle for the 2-inch front receiver.",
+      "msrp": 79.99,
+      "partNumber": "088-3515-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-3515-00",
+          "msrp": 79.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Front Mount Receiver Step With Assist Handle"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Mount Assist Handle",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Front-frame grab handle for getting on and off the mower; fits all models.",
+      "msrp": 59.7,
+      "partNumber": "088-3505-27",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-3505-27",
+          "msrp": 59.7,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "All models"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Assist Handle"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Arm Rest Kit",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Pads that support the operator's arms on long mowing days, useful on models without arm rests.",
+      "msrp": 345.99,
+      "partNumber": "071-2024-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "071-2024-00",
+          "msrp": 345.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Steering Arm Pads"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Hard Top Canopy",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Polycarbonate shade top that mounts to ROPS-equipped mowers.",
+      "msrp": 899.99,
+      "partNumber": "088-1025-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-1025-00",
+          "msrp": 899.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "ROPS-equipped mowers"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "ROPS Mounted Hard Top Cover"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Seat Isolation Kit",
+      "line": "mowers",
+      "group": "Comfort",
+      "description": "Suspension plate between seat and mower that cuts vibration and fatigue. Not available for MZ line.",
+      "msrp": 309.99,
+      "partNumber": "088-0500-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-0500-00",
+          "msrp": 309.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "ROPS Light Kit",
+      "line": "mowers",
+      "group": "Lighting & Sound",
+      "description": "2000-lumen low-amp LED light bar in a cast aluminum housing, with harness and lighted rocker switch, for the ROPS.",
+      "msrp": 119.99,
+      "partNumber": "088-1000-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-1000-00",
+          "msrp": 119.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "ROPS LED Light Bar"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Tank Light Kit",
+      "line": "mowers",
+      "group": "Lighting & Sound",
+      "description": "Pre-assembled LED light kit on metal plates for R-Series mowers.",
+      "msrp": 389.0,
+      "partNumber": "088-0998-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-0998-00",
+          "msrp": 389.0,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "R-Series Tanks LED Light Kit"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "ROPS Soundbar",
+      "line": "mowers",
+      "group": "Lighting & Sound",
+      "description": "Wet Sounds Bluetooth six-speaker soundbar with RF wireless remote that mounts on the ROPS.",
+      "msrp": 899.99,
+      "partNumber": "088-2800-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "088-2800-00",
+          "msrp": 899.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "ROPS Mounted Soundbar"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Black Vector Wheels",
+      "line": "mowers",
+      "group": "Tires & Wheels",
+      "description": "Machined aluminum No Limit custom rear rims in the Black Vector style.",
+      "msrp": 252.99,
+      "partNumber": "022-4204-00",
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "022-4204-00",
+          "msrp": 252.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue"
+    },
+    {
+      "name": "Michelin Tweels Rear Tires",
+      "line": "mowers",
+      "group": "Tires & Wheels",
+      "description": "Airless Michelin Tweel rear tires that eliminate flats; price is per wheel.",
+      "msrp": 999.99,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Rogue",
+          "partNumber": "022-4093-00",
+          "msrp": 999.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "Revolt",
+          "partNumber": "022-4096-00",
+          "msrp": 999.99,
+          "fits": [
+            "Revolt (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue",
+        "Revolt",
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "aliases": [
+        "Michelin® Tweels Rear Tires",
+        "Tweels"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/build/revolt",
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Chrome Plated Wheel Covers",
+      "line": "mowers",
+      "group": "Tires & Wheels",
+      "description": "Chrome-plated front and rear rim covers; sold in pairs. Not available for MZ line.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "6\" Wheel Covers (Pair)",
+          "partNumber": "088-1079-00",
+          "msrp": 91.98,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        },
+        {
+          "name": "12\" Wheel Covers (Pair)",
+          "partNumber": "088-1085-00",
+          "msrp": 59.99,
+          "fits": [
+            "Rogue (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Rogue"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/rogue",
+      "msrpNote": "MSRP varies by variant; see variants.",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "2\" Side Receiver",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Side-mounted 2-inch receiver that lets Revolt owners add receiver accessories such as the tool box.",
+      "msrp": 32.99,
+      "partNumber": "093-1126-27",
+      "variants": [
+        {
+          "name": "Revolt 48\"/54\"/61\" deck",
+          "partNumber": "093-1126-27",
+          "msrp": 32.99,
+          "fits": [
+            "Revolt 48\" deck, Kawasaki FX730 23.5HP (BRV48FX730)",
+            "Revolt 54\" deck, Kawasaki FX850 27HP (BRV54FX850)",
+            "Revolt 61\" deck, Kawasaki FX850 27HP (BRV61FX850)",
+            "Revolt 54\" deck, Kawasaki EVO781 EFI 31HP (BRV54EVO781)",
+            "Revolt 61\" deck, Kawasaki EVO781 EFI 31HP (BRV61EVO781)",
+            "Revolt 54\" deck, Vanguard EFI 28HP (BRV5428EVG)",
+            "Revolt 61\" deck, Vanguard EFI 28HP (BRV6128EVG)"
+          ]
+        }
+      ],
+      "fits": [
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/revolt"
+    },
+    {
+      "name": "Accelerator Grass Catcher",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Quick-install catcher that replaces the discharge chute and unloads easily. Fits all decks except 72-inch.",
+      "msrp": 999.99,
+      "partNumber": "088-1005-00",
+      "variants": [
+        {
+          "name": "Revolt",
+          "partNumber": "088-1005-00",
+          "msrp": 999.99,
+          "fits": [
+            "Revolt (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/revolt",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Striping Kit - Deck Mounted",
+      "line": "mowers",
+      "group": "Tools & Attachments",
+      "description": "Striping kit that mounts to the rear deck edge and moves with deck height; fits ZT, Maverick and Diesel models.",
+      "msrp": 149.99,
+      "partNumber": "088-0081-23",
+      "variants": [
+        {
+          "name": "Revolt",
+          "partNumber": "088-0081-23",
+          "msrp": 149.99,
+          "fits": [
+            "Revolt (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Revolt",
+        "ZT",
+        "Maverick",
+        "Diesel models"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/revolt",
+      "aliases": [
+        "Rear Deck Mount Striping Kit"
+      ],
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Dual LED Lights",
+      "line": "mowers",
+      "group": "Lighting & Sound",
+      "description": "Pair of 8000-lumen low-amp LED lights in cast aluminum housings with hardware and lighted switch.",
+      "msrp": 248.99,
+      "partNumber": "088-0997-00",
+      "variants": [
+        {
+          "name": "Revolt",
+          "partNumber": "088-0997-00",
+          "msrp": 248.99,
+          "fits": [
+            "Revolt (all configurations on build page)"
+          ]
+        }
+      ],
+      "fits": [
+        "Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/build/revolt",
+      "additionalSourceUrls": [
+        "https://badboycountry.com/mowers/accessories"
+      ]
+    },
+    {
+      "name": "Michelin® Tweels Front Tires",
+      "line": "mowers",
+      "group": null,
+      "description": "Airless Michelin Tweel tires for the front casters of R-Series mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "R-Series"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Reaper® Turf Tires",
+      "line": "mowers",
+      "group": null,
+      "description": "Bad Boy-exclusive turf tires with softer sidewalls for a smoother ride and wrap-over edges for grip on uneven ground.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "FieldTrax® Tires",
+      "line": "mowers",
+      "group": null,
+      "description": "All-terrain traction tires for improved footing. Not available for the MZ line.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Bar-Lug Tires",
+      "line": "mowers",
+      "group": null,
+      "description": "Tractor-style bar-lug tread for maximum traction on rough terrain. Not available for ZT Avenger or MZ line.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "No-Flat Front Tires",
+      "line": "mowers",
+      "group": null,
+      "description": "Solid front tires that keep working even when punctured; sized for all models except ZT Avenger.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Custom Rims",
+      "line": "mowers",
+      "group": null,
+      "description": "Machined aluminum No Limit custom rear rims offered in several styles.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Roll-Over Protection System (ROPS)",
+      "line": "mowers",
+      "group": null,
+      "description": "Folding roll-over protection bar with required seat belt, recommended for slopes; optional on ZT and MZ class mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "ZT class",
+        "MZ class"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Soft Top Canopy",
+      "line": "mowers",
+      "group": null,
+      "description": "Attachable shade canopy for ZT and MZ models that does not require a ROPS.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "ZT",
+        "MZ"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "ROPS Mounted Hazard Light",
+      "line": "mowers",
+      "group": null,
+      "description": "ROPS-mounted warning light for mowing near traffic, parks, highways and businesses.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Headphone Audio System",
+      "line": "mowers",
+      "group": null,
+      "description": "Headphone setup that connects to a Bluetooth audio source so you can listen privately while mowing.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Rear Frame Mount Striping Kit",
+      "line": "mowers",
+      "group": null,
+      "description": "Frame-mounted rubber-flap striping kit for ballfield-style stripes; versions for R-Series and ZT class mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "R-Series version",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "ZT Class version",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        }
+      ],
+      "fits": [
+        "R-Series",
+        "ZT class"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Bumper Guard",
+      "line": "mowers",
+      "group": null,
+      "description": "Rubber front bumper guard for impact protection, offered in 8-inch and 14-inch lengths for ZT and MZ mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "8\" length",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "14\" length",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        }
+      ],
+      "fits": [
+        "ZT",
+        "MZ"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Mulching Kit",
+      "line": "mowers",
+      "group": null,
+      "description": "Closed-channel kit that bolts under the deck to block discharge for mulching; includes wavy mulching blades.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Mulching Blades",
+      "line": "mowers",
+      "group": null,
+      "description": "Mulching blades that replace the standard cutting blades; available for every deck width.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Fusion® Blades",
+      "line": "mowers",
+      "group": null,
+      "description": "Mower blades with a tungsten carbide cutting edge that stay sharp about twice as long as ordinary blades.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Belt Tension Guide",
+      "line": "mowers",
+      "group": null,
+      "description": "Calibrated tool for checking correct belt tension during do-it-yourself maintenance.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Adjustable Handles",
+      "line": "mowers",
+      "group": null,
+      "description": "Bolt-on steering lever handles that adjust for operator fit; for ZT and MZ models.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "ZT",
+        "MZ"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Mower Cover",
+      "line": "mowers",
+      "group": null,
+      "description": "One-size cover that fits Bad Boy mowers with or without a ROPS.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Rear Basket",
+      "line": "mowers",
+      "group": null,
+      "description": "Rear basket for MZ, ZT and Maverick mowers to carry yard tools or personal items.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "MZ",
+        "ZT",
+        "Maverick"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Powered Bagger For Revolt",
+      "line": "mowers",
+      "group": null,
+      "description": "Powered, mower-assisted bagging system for the stand-on Revolt with large, easy-to-empty bags.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "Stand-On Revolt"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Front Weights",
+      "line": "mowers",
+      "group": null,
+      "description": "Front counterweights intended for use with bagging systems.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Side Bagger",
+      "line": "mowers",
+      "group": null,
+      "description": "Quick-mount 3.75-bushel side bagger for popular models including the stand-on Revolt.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Tow Hitch",
+      "line": "mowers",
+      "group": null,
+      "description": "Rear tow hitch for Maverick, ZT and MZ mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "Maverick",
+        "ZT",
+        "MZ"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Trailer Sprayer",
+      "line": "mowers",
+      "group": null,
+      "description": "High-capacity pull-behind powered sprayer with a hand-held wand; boom sold separately.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "De-Thatcher",
+      "line": "mowers",
+      "group": null,
+      "description": "40-inch tow-behind de-thatcher with spring steel tines that pull embedded clippings from turf.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Aerator",
+      "line": "mowers",
+      "group": null,
+      "description": "40-inch tow-behind aerator whose blades punch holes in turf to improve its health.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Pull-Behind Roller",
+      "line": "mowers",
+      "group": null,
+      "description": "36-inch tow-behind lawn roller that is filled with water for weight.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Sweeper",
+      "line": "mowers",
+      "group": null,
+      "description": "42-inch tow-behind sweeper for collecting clippings or leaves, with easy dumping.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Spreader",
+      "line": "mowers",
+      "group": null,
+      "description": "Tow-behind spreader with variable output for seed or fertilizer.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Patented Sulky",
+      "line": "mowers",
+      "group": null,
+      "description": "EZ-Ride ride-on sulky for walk-behind mowers, including other brands.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Mower Lift",
+      "line": "mowers",
+      "group": null,
+      "description": "Lift that raises MZ and ZT class mowers for under-deck service, with a locking arm; not for commercial class mowers.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "MZ class",
+        "ZT class"
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Protective Sunglasses",
+      "line": "mowers",
+      "group": null,
+      "description": "Bad Boy branded wrap-around sunglasses with UV protection.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Pump & Drive Belts",
+      "line": "mowers",
+      "group": null,
+      "description": "Factory replacement Kevlar-reinforced pump and drive belts built for long life.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Synthetic Blend Engine Oil",
+      "line": "mowers",
+      "group": null,
+      "description": "Synthetic blend engine oil formulated for Bad Boy mower engines.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Full Synthetic Engine Oil",
+      "line": "mowers",
+      "group": null,
+      "description": "Full synthetic SAE 15W-50 engine oil for Bad Boy mowers that call for it.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Hydrostatic Oil",
+      "line": "mowers",
+      "group": null,
+      "description": "Synthetic blend hydrostatic oil formulated to keep Bad Boy drive systems cool and performing.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Fuel Stabilizer and Cleaner",
+      "line": "mowers",
+      "group": null,
+      "description": "Fuel additive that extends storage life, prevents corrosion and gum, and removes water.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/mowers/accessories"
+    },
+    {
+      "name": "Winter Kit",
+      "line": "bandit",
+      "group": "Accessory Kits",
+      "description": "Cold-weather bundle for snow clearing and chores: soft cab enclosure, cab heater, 2-inch snow blade and plow mount.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories",
+      "includes": [
+        "Soft Cab Enclosure",
+        "Cab Heater",
+        "2” Snow Blade",
+        "Plow Mount"
+      ]
+    },
+    {
+      "name": "Lawn & Garden Kit",
+      "line": "bandit",
+      "group": "Accessory Kits",
+      "description": "Storage bundle for hauling yard tools: utility rack, tool holder set and chainsaw holder.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories",
+      "includes": [
+        "Utility Rack",
+        "Tool Holder Set",
+        "Chainsaw Holder"
+      ]
+    },
+    {
+      "name": "Hunting Kit",
+      "line": "bandit",
+      "group": "Accessory Kits",
+      "description": "Hunting bundle with soft cab enclosure, cab heater and gun rack for warm, organized trips.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "Single cab Bandit",
+        "Crew cab Bandit"
+      ],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories",
+      "includes": [
+        "Soft Cab Enclosure",
+        "Cab Heater",
+        "Gun Rack"
+      ]
+    },
+    {
+      "name": "Light Bars",
+      "line": "bandit",
+      "group": null,
+      "description": "LED light bars for trail or jobsite lighting, offered in 12-inch and 48-inch lengths.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "12\"",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "48\"",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        }
+      ],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories"
+    },
+    {
+      "name": "Dual LED Light kit",
+      "line": "bandit",
+      "group": null,
+      "description": "Compact, high-intensity pair of LED lights for added visibility early and late.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories"
+    },
+    {
+      "name": "Wet Sounds® Soundbar",
+      "line": "bandit",
+      "group": null,
+      "description": "Rugged, all-weather Wet Sounds audio bar for the Bandit.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories"
+    },
+    {
+      "name": "Aftermarket Rear Bumper",
+      "line": "bandit",
+      "group": null,
+      "description": "Heavy-duty rear bumper that protects the back of the Bandit on rough terrain.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/bandit/accessories"
+    },
+    {
+      "name": "80V Work Light",
+      "line": "e-series",
+      "group": null,
+      "description": "Work light rated over 2,500 lumens with up to 10 hours runtime; runs on an 80V battery or extension cord and has a hanging hook.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "All 80V E-Series batteries (or extension cord)"
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "80V Universal Batteries",
+      "line": "e-series",
+      "group": null,
+      "description": "80V battery that powers every E-Series tool through the Universal Battery System.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "2.0 AH",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "2.5 AH",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "4.0 AH",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "5.0 AH",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        }
+      ],
+      "fits": [
+        "All E-Series 80V tools"
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "4A Single Port Battery Charger",
+      "line": "e-series",
+      "group": null,
+      "description": "Single-port 4-amp charger for any 80V E-Series battery.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "All 80V E-Series batteries"
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "80V Power Inverter",
+      "line": "e-series",
+      "group": null,
+      "description": "Inverter that runs off E-Series 80V batteries to power devices from phones up to televisions.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [
+        "All E-Series 80V batteries"
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "String Trimmer Line",
+      "line": "e-series",
+      "group": null,
+      "description": "Replacement trimmer line for cutting grass and weeds; offered in several sizes.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "String Trimmer Line With Cutter",
+      "line": "e-series",
+      "group": null,
+      "description": "Trimmer line packaged with a built-in cutter for measuring off the right length; offered in several sizes.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [],
+      "fits": [],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    },
+    {
+      "name": "String Trimmer Attachments",
+      "line": "e-series",
+      "group": null,
+      "description": "Blower, edger, pruner and hedge clipper heads that swap onto the E-Series string trimmer via its Universal Connection Point.",
+      "msrp": null,
+      "partNumber": null,
+      "variants": [
+        {
+          "name": "Blower",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "Edger",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "Pruner",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        },
+        {
+          "name": "Hedge Clipper",
+          "partNumber": null,
+          "msrp": null,
+          "fits": []
+        }
+      ],
+      "fits": [
+        "E-Series String Trimmer"
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/accessories"
+    }
+  ],
+  "notes": [
+    "Mower accessory MSRPs and part numbers come only from the Rogue and Revolt build pages (displayed price plus the data-stockcode attribute on each accessory's Select button). The /mowers/accessories, /bandit/accessories and /e-series/accessories pages show no prices or part numbers.",
+    "Build-page accessories were merged with /mowers/accessories entries where the build page reuses the same description text (e.g. 'Arm Rest Kit' = 'Steering Arm Pads', 'Weed Trimmer Rack' = 'ROPS String Trimmer Mount', 'Bagger System' = 'Powered 2 & 3 Bagger Systems'); the accessories-page name is kept in 'aliases'. 'Mulch Kit With Blades', 'Bolt On Hitch' and 'Black Vector Wheels' were kept separate from 'Mulching Kit'/'Mulching Blades', 'Tow Hitch' and 'Custom Rims' because the match is not certain.",
+    "Variant fits list the build-page engine/deck configurations from each accessory's data-only-available-on attribute (model codes such as BRG6135KA). Accessories with no such restriction are marked '(all configurations on build page)'.",
+    "Rogue build page: 'Bolt On Hitch' appears twice with different prices ($59.99 part 093-1128-27 for side-discharge configs; $17.99 part 093-1141-00 for rear-discharge config codes, two of which, BRG61RD35KA and BRG72RD35KA, are not among the page's current engine/deck options). Tweels part numbers differ by line (Rogue 022-4093-00, Revolt 022-4096-00); the build page notes the price is per wheel.",
+    "Mower accessories that appear only on /mowers/accessories have group null; that page has no category headings. Bandit and E-Series pages have no categories except the Bandit 'Accessory Kits' block.",
+    "Bandit kit components (soft cab enclosure, cab heater, 2\" snow blade, plow mount, utility rack, tool holder set, chainsaw holder, gun rack) are stated to be sold individually but have no separate entries or details on the page; they are listed only under each kit's 'includes'.",
+    "E-Series 80V battery text says 'Available in 2, 2.5, 4, 5 or 8AH', but the page's size list shows only 2.0/2.5/4.0/5.0 AH; variants follow the list. E-Series 'Shop Now' links go to shop.badboymowers.com and were not followed (outside badboycountry.com)."
+  ]
+}
