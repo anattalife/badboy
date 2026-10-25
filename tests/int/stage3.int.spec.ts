@@ -217,7 +217,23 @@ describe('Credit applications', () => {
       id: old.id,
       data: { createdAt: new Date(Date.now() - 400 * 86400000).toISOString() },
     })
-    await payload.updateGlobal({ slug: 'site-settings', data: { creditApplicationRetentionDays: 365 } })
+    // On an empty database (CI) dealership info hasn't been entered yet, so fill the required fields.
+    const settings = await payload.findGlobal({ slug: 'site-settings' })
+    await payload.updateGlobal({
+      slug: 'site-settings',
+      data: {
+        siteName: settings.siteName || 'Roanoke Mowers',
+        phone: settings.phone || '540.986.0098',
+        leadEmail: settings.leadEmail || 'test@roanokemowers.test',
+        address: {
+          street: settings.address?.street || '4802 Melrose Ave NW',
+          city: settings.address?.city || 'Roanoke',
+          state: settings.address?.state || 'VA',
+          zip: settings.address?.zip || '24017',
+        },
+        creditApplicationRetentionDays: 365,
+      },
+    })
     const removed = await purgeExpiredApplications(payload)
     expect(removed).toBeGreaterThanOrEqual(1)
     const ids = (
