@@ -1,0 +1,5138 @@
+{
+  "generatedAt": "2026-10-25",
+  "categories": [
+    {
+      "slug": "zero-turn-mowers",
+      "name": "Zero-Turn Mowers",
+      "description": "Riding zero-turn mowers from compact residential models to diesel commercial machines, all with welded steel decks."
+    },
+    {
+      "slug": "walk-behind-mowers",
+      "name": "Walk-Behind Mowers",
+      "description": "Commercial walk-behind mowers for crews that need maneuverability on slopes and in tight areas."
+    },
+    {
+      "slug": "stand-on-mowers",
+      "name": "Stand-On Mowers",
+      "description": "Stand-on zero-turn mowers and a stand-on blower that combine a small footprint with quick on-and-off operation."
+    },
+    {
+      "slug": "push-mowers",
+      "name": "Push Mowers",
+      "description": "Self-propelled walk mowers in gas and 80V battery versions for trimming and smaller lawns."
+    },
+    {
+      "slug": "tractors",
+      "name": "Tractors",
+      "description": "Sub-compact, compact and compact utility diesel tractors with loaders, hydrostatic or shuttle transmissions and optional cabs."
+    },
+    {
+      "slug": "implements",
+      "name": "Implements",
+      "description": "Three-point and loader-mounted attachments that put Bad Boy tractors to work on mowing, grading, tilling and material handling."
+    },
+    {
+      "slug": "utvs",
+      "name": "UTVs",
+      "description": "Bandit side-by-side utility vehicles in two-seat and four-seat crew cab layouts for work and recreation."
+    },
+    {
+      "slug": "light-construction",
+      "name": "Light Construction",
+      "description": "Compact construction machines, including a tracked mini skid steer and a small articulating loader."
+    },
+    {
+      "slug": "e-series-tools",
+      "name": "E-Series Tools",
+      "description": "80V battery-powered outdoor tools that share one interchangeable battery platform, plus a corded electric pressure washer."
+    },
+    {
+      "slug": "gas-tools",
+      "name": "Gas Tools",
+      "description": "Gas-powered handheld and pressure-washing equipment for homeowners and commercial users."
+    }
+  ],
+  "models": [
+    {
+      "slug": "renegade-diesel",
+      "name": "Renegade Diesel",
+      "category": "zero-turn-mowers",
+      "tagline": "Diesel-powered flagship commercial zero-turn",
+      "summary": "The Renegade Diesel is the top of Bad Boy's zero-turn range, pairing a liquid-cooled Perkins three-cylinder diesel with a 61-inch fabricated deck. It shares the Renegade's dual-pump belt system and 3-link rear suspension, and is aimed at professional crews and owners of large properties.",
+      "highlights": [
+        "Perkins 1.1L three-cylinder liquid-cooled diesel engine",
+        "61\" sloped fabricated deck in 1/4\" (3-gauge) steel with 3/8\" reinforced sides",
+        "Patented 3-link rear trailing arm suspension plus independent front suspension",
+        "Dual 16cc Hydro-Gear pumps with 18ci Parker wheel motors",
+        "13-gallon diesel capacity from dual feed tanks",
+        "Key fob start with digital diagnostic display"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Perkins 1.1L liquid-cooled 3-cylinder diesel, 1100cc"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "24.7 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "61\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel, sloped, with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "2\" - 6\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 16cc pumps; Parker 18ci wheel motors"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 13 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, diesel"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "15x6-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "26x12-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Patented 3-link rear trailing arm suspension with patented independent front suspension"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Premium adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "91\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "61\" - 63.5\"/75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "51\" ROPS down / 76.1\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "61\" - 1,862 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "61\" Perkins 1.1L 3-cylinder diesel",
+          "deck": "61\"",
+          "engine": "Perkins 1.1L 3-cylinder diesel (1100cc, liquid-cooled)",
+          "horsepower": "24.7 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/renegade-diesel"
+    },
+    {
+      "slug": "renegade-gas",
+      "name": "Renegade Gas",
+      "category": "zero-turn-mowers",
+      "tagline": "Top-tier commercial zero-turn with EFI gas power",
+      "summary": "The gas Renegade carries the same heavy fabricated deck and suspension package as the diesel model but runs on a Rehlko EFI V-twin. It comes in 61- and 72-inch widths and adds conveniences like key fob start and a built-in striping kit.",
+      "highlights": [
+        "Rehlko ECH980 EFI engine, 38.5 hp",
+        "61\" or 72\" sloped 1/4\" (3-gauge) fabricated deck",
+        "Dual-pump belt system with tensioner design",
+        "3-link rear trailing arm suspension and cast I-beam independent front suspension",
+        "Built-in deck-mounted striping kit",
+        "Key fob start and digital diagnostics display"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Rehlko ECH980 EFI, 999cc air-cooled"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "38.5 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "61\"/72\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel, sloped, with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "2\" - 6\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 16cc pumps; Parker 18ci wheel motors"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 13 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "15x6-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "26x12-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "3-link rear trailing arm suspension with patented independent front suspension"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Premium adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "91\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "61\" - 63.5\"/75.5\" | 72\" - 74.5\"/86.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "51\" ROPS down / 75.9\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "61\" - 1,628 lbs. | 72\" - 1,693 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "61\"/72\" Rehlko ECH980 EFI",
+          "deck": "61\"/72\"",
+          "engine": "Rehlko ECH980 EFI (999cc, air-cooled)",
+          "horsepower": "38.5 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/renegade-gas"
+    },
+    {
+      "slug": "rogue",
+      "name": "Rogue",
+      "category": "zero-turn-mowers",
+      "tagline": "Commercial-grade zero-turn with four engine choices",
+      "summary": "The Rogue is a commercial zero-turn offered in 54-, 61- and 72-inch widths with Kawasaki, Rehlko or Vanguard power. It uses Bad Boy's EZ-Ride GEN 2 3-link rear suspension with independent front suspension and a heavy fabricated deck.",
+      "highlights": [
+        "Kawasaki, Rehlko and Vanguard engine options from 35 to 40 hp",
+        "54\", 61\" or 72\" sloped 1/4\" (3-gauge) deck",
+        "EZ-Ride GEN 2 3-link rear suspension with independent front suspension",
+        "Dual 16cc Hydro-Gear pumps with 18ci Parker wheel motors",
+        "Adjustable suspension seat, striping kit and run-flat tires standard",
+        "Rear discharge deck available on select 61\"/72\" configurations"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX1000V / FX1000V EFI, Rehlko ECV980 EFI or Vanguard EFI V-twin"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "35 hp / 38.5 hp / 40 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "54\"/61\"/72\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel, sloped, with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "2\" - 6\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 16cc pump; Parker 18ci wheel motors"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 13 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "15x6-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "26x12-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Patented 3-link rear trailing arm suspension with patented independent front suspension"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "92\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "54\" - 56.5\"/68.5\" | 61\" - 63.5\"/75.5\" | 72\" - 74.5\"/86.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "53\" ROPS down / 76.7\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "54\" - 1,485 lbs. | 61\" - 1,538 lbs. | 72\" - 1,595 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "54\"/61\"/72\" Kawasaki FX1000V",
+          "deck": "54\"/61\"/72\"",
+          "engine": "Kawasaki FX1000V (999cc, air-cooled V-twin)",
+          "horsepower": "35 hp"
+        },
+        {
+          "name": "61\"/72\" Kawasaki FX1000V EFI",
+          "deck": "61\"/72\"",
+          "engine": "Kawasaki FX1000V EFI (999cc, air-cooled V-twin; also offered with 61\"/72\" rear discharge deck)",
+          "horsepower": "38.5 hp"
+        },
+        {
+          "name": "61\"/72\" Rehlko ECV980 EFI",
+          "deck": "61\"/72\"",
+          "engine": "Rehlko ECV980 EFI (999cc, air-cooled V-twin)",
+          "horsepower": "38.5 hp"
+        },
+        {
+          "name": "61\"/72\" Vanguard EFI",
+          "deck": "61\"/72\"",
+          "engine": "Vanguard EFI (993cc, air-cooled V-twin)",
+          "horsepower": "40 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/rogue"
+    },
+    {
+      "slug": "rebel-x",
+      "name": "Rebel X",
+      "category": "zero-turn-mowers",
+      "tagline": "Faster Rebel with 5400 transaxles and no-flat tires",
+      "summary": "The Rebel X builds on the Rebel with heavier Hydro-Gear 5400 integrated transaxles for more speed and VPO ReaPro no-flat rear tires. It comes with 61- or 72-inch Armor-Tek decks and Kawasaki or Vanguard EFI engines up to 40 hp.",
+      "highlights": [
+        "Dual Hydro-Gear 5400 series integrated drive systems",
+        "Kawasaki FX1000V EFI or Vanguard EFI engines (38.5-40 hp)",
+        "61\" or 72\" sloped 1/4\" (3-gauge) deck with 3/8\" sides",
+        "VPO ReaPro no-flat rear turf tires",
+        "Premium adjustable suspension seat, adjustable steering arms and pedals",
+        "Striping kit and deck step included"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX1000V EFI or Vanguard EFI V-twin"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "38.5 hp / 40 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "61\"/72\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel, sloped, with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 5400 16cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 12 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "24x12-12 VPO ReaPro no-flat turf"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Premium adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "92\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "61\" - 63.5\"/75.5\" | 72\" - 74.5\"/86.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "50\" ROPS down / 75.6\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "61\" - 1,494 lbs. | 72\" - 1,531 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "61\"/72\" Kawasaki FX1000V EFI",
+          "deck": "61\"/72\"",
+          "engine": "Kawasaki FX1000V EFI (999cc, air-cooled V-twin)",
+          "horsepower": "38.5 hp"
+        },
+        {
+          "name": "61\"/72\" Vanguard EFI",
+          "deck": "61\"/72\"",
+          "engine": "Vanguard EFI (993cc, air-cooled V-twin)",
+          "horsepower": "40 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/rebel-x"
+    },
+    {
+      "slug": "rebel",
+      "name": "Rebel",
+      "category": "zero-turn-mowers",
+      "tagline": "Commercial-strength zero-turn priced for homeowners",
+      "summary": "The Rebel brings Bad Boy's heavy Armor-Tek fabricated deck and Hydro-Gear 4400 drives to a homeowner-focused price point. Buyers can pick from several Kawasaki engines and three deck widths, with a seat that slides fore and aft plus adjustable steering arms and pedals.",
+      "highlights": [
+        "Dual Hydro-Gear 4400 series integrated drive systems",
+        "54\", 61\" or 72\" sloped 1/4\" (3-gauge) deck with 3/8\" sides",
+        "Kawasaki engine lineup from 27 to 38.5 hp, including EFI options",
+        "Reaper rear tires and no-flat front tires",
+        "Adjustable suspension seat with front-to-back travel",
+        "Electric PTO and built-in striping kit"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX850V, FX781V EVO EFI, FX820V EVO EFI, FX1000V or FX1000V EFI"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "27 hp - 38.5 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "54\"/61\"/72\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel, sloped, with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 4400 16cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 12 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "24x12-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "92\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "54\" - 56.5\"/68.5\" | 61\" - 63.5\"/75.5\" | 72\" - 74.5\"/86.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "50\" ROPS down / 76.2\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "54\" - 1,257 lbs. | 61\" - 1,382 lbs. | 72\" - 1,419 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "54\"/61\" Kawasaki FX850V",
+          "deck": "54\"/61\"",
+          "engine": "Kawasaki FX850V (852cc, air-cooled V-twin)",
+          "horsepower": "27 hp"
+        },
+        {
+          "name": "54\" Kawasaki FX781V EVO EFI (California compliant)",
+          "deck": "54\"",
+          "engine": "Kawasaki FX781V EVO EFI (California compliant) (822cc, air-cooled V-twin)",
+          "horsepower": "31 hp"
+        },
+        {
+          "name": "61\"/72\" Kawasaki FX820V EVO EFI (California compliant)",
+          "deck": "61\"/72\"",
+          "engine": "Kawasaki FX820V EVO EFI (California compliant) (822cc, air-cooled V-twin)",
+          "horsepower": "34 hp"
+        },
+        {
+          "name": "61\"/72\" Kawasaki FX1000V",
+          "deck": "61\"/72\"",
+          "engine": "Kawasaki FX1000V (999cc, air-cooled V-twin)",
+          "horsepower": "35 hp"
+        },
+        {
+          "name": "61\" Kawasaki FX1000V EFI 25th Anniversary Edition",
+          "deck": "61\"",
+          "engine": "Kawasaki FX1000V EFI 25th Anniversary Edition (999cc, air-cooled V-twin)",
+          "horsepower": "38.5 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/rebel"
+    },
+    {
+      "slug": "rebel-sd",
+      "name": "Rebel SD",
+      "category": "zero-turn-mowers",
+      "tagline": "Streamlined Rebel for homeowners wanting real power",
+      "summary": "The Rebel SD is built on the Rebel platform but simplified for homeowners, using a single 25 hp Rehlko Confidant engine. It keeps the 1/4-inch fabricated deck, Hydro-Gear 4400 drives and 13-gallon tank in 54- and 61-inch widths.",
+      "highlights": [
+        "25 hp Rehlko Confidant ZT740 engine",
+        "54\" or 61\" 1/4\" (3-gauge) deck with reinforced 3/8\" sides",
+        "Dual Hydro-Gear 4400 series integrated drive systems",
+        "Electric PTO with foot-assist deck lift",
+        "High-back comfort seat with adjustable handles and pedals",
+        "13-gallon fuel capacity"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Rehlko Confidant ZT740, 747cc air-cooled"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "25 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "54\"/61\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/4\" (3-gauge) solid steel with reinforced 3/8\" sides"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 4400 16cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 12 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "24x12-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "High-back comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "92\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "54\" - 56.5\"/68.5\" | 61\" - 63.5\"/75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "50\" ROPS down / 76.2\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "54\" - 1,257 lbs. | 61\" - 1,382 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "54\"/61\" Rehlko Confidant ZT740",
+          "deck": "54\"/61\"",
+          "engine": "Rehlko Confidant ZT740 (747cc, air-cooled)",
+          "horsepower": "25 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/rebel-sd"
+    },
+    {
+      "slug": "maverick-hd",
+      "name": "Maverick HD",
+      "category": "zero-turn-mowers",
+      "tagline": "Entry-level commercial zero-turn, 42\" to 60\"",
+      "summary": "The Maverick HD is Bad Boy's entry-level professional mower, upgrading the Maverick with Hydro-Gear ZT-3400 drives and pro-class spindles. Its range of deck sizes, from a gate-friendly 42 inches to 60 inches, suits both tight properties and larger lawns.",
+      "highlights": [
+        "Dual Hydro-Gear ZT-3400 commercial-grade integrated drives",
+        "42\", 48\", 54\" or 60\" 7-gauge formed and welded deck",
+        "Patented EZ-Ride rear suspension with independent front I-beam rails",
+        "3/8\" steel front forks",
+        "Premium adjustable suspension seat and adjustable steering arms",
+        "13-gallon fuel tank"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX691V, Kawasaki FX730V or Vanguard EFI V-twin"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "22 hp / 23.5 hp / 28 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "42\"/48\"/54\"/60\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 3400 12cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 9 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "42\"/48\" - 23x9-12 Reaper | 54\"/60\" - 23x11-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "EZ-Ride patented compression rear suspension with independent front suspension rails"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Premium adjustable suspension seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "80\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "42\" - 47\"/56\" | 48\" - 54\"/61\" | 54\" - 58\"/67\" | 60\" - 64\"/73\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "49\" ROPS down / 76\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "42\" - 1,062 lbs. | 48\" - 1,073 lbs. | 54\" - 1,110 lbs. | 60\" - 1,137 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "42\"/48\" Kawasaki FX691V",
+          "deck": "42\"/48\"",
+          "engine": "Kawasaki FX691V (726cc, air-cooled 90° V-twin)",
+          "horsepower": "22 hp"
+        },
+        {
+          "name": "54\"/60\" Kawasaki FX730V",
+          "deck": "54\"/60\"",
+          "engine": "Kawasaki FX730V (726cc, air-cooled 90° V-twin)",
+          "horsepower": "23.5 hp"
+        },
+        {
+          "name": "54\"/60\" Vanguard EFI (California compliant)",
+          "deck": "54\"/60\"",
+          "engine": "Vanguard EFI (California compliant) (810cc, air-cooled V-twin)",
+          "horsepower": "28 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/maverick-hd"
+    },
+    {
+      "slug": "maverick",
+      "name": "Maverick",
+      "category": "zero-turn-mowers",
+      "tagline": "Suspended residential zero-turn with commercial-style build",
+      "summary": "The Maverick is a residential zero-turn that brings Bad Boy's patented EZ-Ride suspension together with integrated Hydro-Gear 3200 drives. It offers 48- to 60-inch 7-gauge decks and a choice of Rehlko, Kawasaki or Vanguard engines.",
+      "highlights": [
+        "Patented EZ-Ride rear suspension with independent front suspension",
+        "Dual Hydro-Gear 3200 series integrated drives",
+        "48\", 54\" or 60\" 7-gauge formed and welded deck",
+        "Industry-leading 3/8\" steel front forks on I-beam rails",
+        "Electric PTO and adjustable steering arms",
+        "Flip-up floorboard and seat for cleaning and service access"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Rehlko Confidant ZT740, Kawasaki FS730V or Vanguard CXi 2700"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "24 hp / 25 hp / 27 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "48\"/54\"/60\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 3200 10cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 9 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6.5 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "48\" - 23x9-12 Reaper | 54\"/60\" - 23x11-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "EZ-Ride patented compression rear suspension with independent front suspension rails"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "80\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "48\" - 54\"/61\" | 54\" - 58\"/67\" | 60\" - 64\"/73\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "46\" ROPS down / 76\" ROPS up"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "48\" - 957 lbs. | 54\" - 1,005 lbs. | 60\" - 1,031 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "48\"/54\"/60\" Rehlko Confidant ZT740",
+          "deck": "48\"/54\"/60\"",
+          "engine": "Rehlko Confidant ZT740 (747cc, air-cooled)",
+          "horsepower": "25 hp"
+        },
+        {
+          "name": "48\"/54\"/60\" Kawasaki FS730V",
+          "deck": "48\"/54\"/60\"",
+          "engine": "Kawasaki FS730V (726cc, air-cooled)",
+          "horsepower": "24 hp"
+        },
+        {
+          "name": "54\"/60\" Vanguard CXi 2700 (California compliant)",
+          "deck": "54\"/60\"",
+          "engine": "Vanguard CXi 2700 (California compliant) (810cc, air-cooled)",
+          "horsepower": "27 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/maverick"
+    },
+    {
+      "slug": "zt-elite",
+      "name": "ZT Elite",
+      "category": "zero-turn-mowers",
+      "tagline": "Bad Boy's best-selling residential zero-turn",
+      "summary": "The ZT Elite is Bad Boy's most popular mower, combining a 2x2 steel frame, 7-gauge welded deck and patented independent front suspension at a residential price. It runs on Hydro-Gear 3100 drives with Rehlko, Kawasaki or Vanguard engines.",
+      "highlights": [
+        "Patented independent front suspension",
+        "48\", 54\" or 60\" 7-gauge formed and welded deck",
+        "Dual Hydro-Gear 3100 series integrated drives",
+        "3/8\" steel front forks and all-welded steel frame",
+        "6.5-gallon fuel capacity",
+        "High-back comfort seat, electric PTO and steering dampening"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Rehlko Pro 7000 KT726, Kawasaki FR730V or Vanguard CXi 2700"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "24 hp / 26 hp / 27 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "48\"/54\"/60\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 3100 10cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 7 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6.5 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "48\" - 22x10-10 Reaper | 54\"/60\" - 22x11-10 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Patented independent front suspension"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "74.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "48\" - 54\"/61\" | 54\" - 58\"/67\" | 60\" - 64\"/73\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "46\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "48\" - 812 lbs. | 54\" - 839 lbs. | 60\" - 865 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "48\"/54\"/60\" Rehlko Pro 7000 KT726",
+          "deck": "48\"/54\"/60\"",
+          "engine": "Rehlko Pro 7000 KT726 (747cc, air-cooled)",
+          "horsepower": "26 hp"
+        },
+        {
+          "name": "48\"/54\"/60\" Kawasaki FR730V",
+          "deck": "48\"/54\"/60\"",
+          "engine": "Kawasaki FR730V (726cc, air-cooled)",
+          "horsepower": "24 hp"
+        },
+        {
+          "name": "54\"/60\" Vanguard CXi 2700 (California compliant)",
+          "deck": "54\"/60\"",
+          "engine": "Vanguard CXi 2700 (California compliant) (810cc, air-cooled)",
+          "horsepower": "27 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/zt-elite"
+    },
+    {
+      "slug": "zt-avenger",
+      "name": "ZT Avenger",
+      "category": "zero-turn-mowers",
+      "tagline": "Value residential zero-turn with sloped welded deck",
+      "summary": "The ZT Avenger is derived from the ZT Elite and delivers an all-welded sloped steel deck and Hydro-Gear 2800 drives at a lower price. New for this generation are LED tank lights, updated tanks and a redesigned no-slip floor mat.",
+      "highlights": [
+        "Sloped 7-gauge fabricated deck in 54\" or 60\"",
+        "Dual Hydro-Gear 2800 series integrated drives",
+        "Standard LED tank lights",
+        "Ogura PTO clutch brake rated at 100 ft-lbs",
+        "3/8\" steel front forks on a 2x2 steel frame",
+        "Flip-up floorboard for maintenance access"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Rehlko Pro 7000 KT726, Kawasaki FR691V or Kawasaki FR730V"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "23 hp / 24 hp / 26 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "54\"/60\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, sloped, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 2800 10cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 7 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "12x6-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "20x10-8 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "74.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "54\" - 58\"/67\" | 60\" - 64\"/73\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "46\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "54\" - 746 lbs. | 60\" - 763 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "54\"/60\" Rehlko Pro 7000 KT726",
+          "deck": "54\"/60\"",
+          "engine": "Rehlko Pro 7000 KT726 (747cc, air-cooled)",
+          "horsepower": "26 hp"
+        },
+        {
+          "name": "54\"/60\" Kawasaki FR691V",
+          "deck": "54\"/60\"",
+          "engine": "Kawasaki FR691V (726cc, air-cooled)",
+          "horsepower": "23 hp"
+        },
+        {
+          "name": "60\" Kawasaki FR730V 25th Anniversary Edition",
+          "deck": "60\"",
+          "engine": "Kawasaki FR730V 25th Anniversary Edition (726cc, air-cooled)",
+          "horsepower": "24 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/zt-avenger"
+    },
+    {
+      "slug": "mz-magnum",
+      "name": "MZ Magnum",
+      "category": "zero-turn-mowers",
+      "tagline": "Affordable zero-turn with a welded, never-stamped deck",
+      "summary": "The MZ Magnum is a residential zero-turn built alongside Bad Boy's commercial mowers, featuring a sloped 7-gauge welded deck instead of a stamped one. It uses Hydro-Gear EZT-2200 drives and is offered with Kawasaki, Rehlko or Briggs engines.",
+      "highlights": [
+        "Sloped 3/16\" (7-gauge) all-welded deck in 48\", 54\" or 60\"",
+        "Dual Hydro-Gear ZT-2200 integrated drives",
+        "3/8\" steel front forks on a 2x2 steel frame",
+        "Deck lift pedal with Deck Dial height adjustment",
+        "Cushioned seat with front-to-back adjustment",
+        "Flip-up floorboard and 6-gallon fuel tank"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FR651V, Rehlko 7000 KT724 or Briggs PXi2400"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "21.5 hp / 24 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "48\"/54\"/60\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, sloped, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Dual Hydro-Gear EZT-2200 drive systems"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 6 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "11x6.00-5 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "18x9.5-8 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "76\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "48\" - 54\"/61\" | 54\" - 58\"/67\" | 60\" - 64\"/73\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "42\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "48\" - 659 lbs. | 54\" - 687 lbs. | 60\" - 715 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "48\"/54\"/60\" Kawasaki FR651V",
+          "deck": "48\"/54\"/60\"",
+          "engine": "Kawasaki FR651V (726cc, air-cooled)",
+          "horsepower": "21.5 hp"
+        },
+        {
+          "name": "54\"/60\" Rehlko 7000 KT724",
+          "deck": "54\"/60\"",
+          "engine": "Rehlko 7000 KT724 (747cc, air-cooled)",
+          "horsepower": "24 hp"
+        },
+        {
+          "name": "54\" Briggs PXi2400",
+          "deck": "54\"",
+          "engine": "Briggs PXi2400 (724cc, air-cooled)",
+          "horsepower": "24 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/mz-magnum"
+    },
+    {
+      "slug": "mz-rambler",
+      "name": "MZ Rambler",
+      "category": "zero-turn-mowers",
+      "tagline": "Bad Boy's smallest zero-turn, a 42\" gate-fitter",
+      "summary": "The MZ Rambler is Bad Boy's most compact gas zero-turn, sized for smaller lawns with a 42-inch sloped welded deck that fits through gates. It shares its steel frame with the ZT Elite and MZ Magnum and offers Briggs, Rehlko or Kawasaki power.",
+      "highlights": [
+        "42\" sloped 3/16\" (7-gauge) all-welded deck",
+        "Dual Hydro-Gear ZT-2200 integrated drives",
+        "5/16\" steel front forks",
+        "Deck lift pedal with Deck Dial adjustment",
+        "Flip-up floorboard with no-slip mat",
+        "Three engine options from 19 to 22 hp"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Briggs EX1900, Rehlko 7000 KT722 or Kawasaki FR651V"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "19 hp / 21.5 hp / 22 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "42\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, sloped, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Dual Hydro-Gear ZT-2200 drive systems"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 6 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "11x4-5 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "18x8.5-8 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seat",
+          "value": "Comfort seat"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "76\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "42\" - 47\"/56\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "42\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "42\" - 632 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "42\" Briggs EX1900",
+          "deck": "42\"",
+          "engine": "Briggs EX1900 (540cc, air-cooled)",
+          "horsepower": "19 hp"
+        },
+        {
+          "name": "42\" Rehlko 7000 KT722",
+          "deck": "42\"",
+          "engine": "Rehlko 7000 KT722 (747cc, air-cooled)",
+          "horsepower": "22 hp"
+        },
+        {
+          "name": "42\" Kawasaki FR651V",
+          "deck": "42\"",
+          "engine": "Kawasaki FR651V (726cc, air-cooled)",
+          "horsepower": "21.5 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/mz-rambler"
+    },
+    {
+      "slug": "e-magnum",
+      "name": "E-Magnum",
+      "category": "zero-turn-mowers",
+      "tagline": "Battery-electric zero-turn on the 80V E-Series platform",
+      "summary": "The E-Magnum is Bad Boy's first electric zero-turn, running quiet brushless motors on the same 80V batteries used across the E-Series tool line. It keeps a fabricated 42-inch steel deck and adds LED headlights, a digital display and on-board charging.",
+      "highlights": [
+        "Brushless electric drive powered by 80V E-Series batteries",
+        "42\" fabricated steel deck",
+        "Patent-pending independent front suspension",
+        "On- and off-board 120V charging, about 90-minute charge time",
+        "LED headlights, digital display and USB charging port",
+        "Batteries interchangeable with other 80V E-Series tools"
+      ],
+      "specs": [
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "Holds six 80V 8.0Ah batteries (four included)"
+        },
+        {
+          "group": "Battery",
+          "label": "Charging",
+          "value": "On- and off-board 120V charging"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "90 minutes"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "42\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "1/8\" (11-gauge) solid steel, fabricated"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Foot-assist manual lift with dial-style height adjustment"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Low 3 mph / Medium 5 mph / High 7 mph"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "11x4.00-5 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "20x10-8 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Patent-pending independent front suspension"
+        },
+        {
+          "group": "General",
+          "label": "Headlights",
+          "value": "LED"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "65\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "42\" - 48\"/57\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "48\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "42\" - 588 lbs."
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/e-magnum"
+    },
+    {
+      "slug": "raider",
+      "name": "Raider",
+      "category": "walk-behind-mowers",
+      "tagline": "Commercial walk-behind with optional EZ-Ride sulky",
+      "summary": "The Raider is a walk-behind commercial mower with a Kawasaki engine and 36-, 48- or 54-inch welded decks. All main controls sit on one control bar, and a central lock holds both transmissions for straight cuts; an optional patented sulky adds a ride-on option.",
+      "highlights": [
+        "Kawasaki FS600V 18.5 hp engine",
+        "36\", 48\" or 54\" 7-gauge formed and welded deck",
+        "Single-lever deck lift and adjustable two-position podium",
+        "Central lock engages both transmissions for straight cuts",
+        "Brake, PTO and drive levers grouped on the control bar",
+        "Optional sulky with EZ-Ride technology"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FS600V, 603cc air-cooled"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "18.5 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "36\"/48\"/54\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 5\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Manual lift (single lever)"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 3100 12cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 6 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "5 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "11x6-5 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "36\" - 21x7-10 Reaper | 48\"/54\" - 21x8.5-10 Reaper"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "63\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "36\" - 38.5\"/50.5\" | 48\" - 50.5\"/62.5\" | 54\" - 56.5\"/68.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "48\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "36\" - 652 lbs. | 48\" - 746 lbs. | 54\" - 791 lbs."
+        },
+        {
+          "group": "General",
+          "label": "Starting",
+          "value": "Electric start"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "36\"/48\"/54\" Kawasaki FS600V",
+          "deck": "36\"/48\"/54\"",
+          "engine": "Kawasaki FS600V (603cc, air-cooled)",
+          "horsepower": "18.5 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/raider"
+    },
+    {
+      "slug": "revolt-x",
+      "name": "Revolt X",
+      "category": "stand-on-mowers",
+      "tagline": "Top stand-on mower with pump-and-motor drive",
+      "summary": "The Revolt X is Bad Boy's premium stand-on mower, using independent Hydro-Gear pumps and wheel motors and engines up to 40 hp. A short frame, curved I-beam front rail and suspended operator platform aim for agility and a smooth ride on 54- to 72-inch decks.",
+      "highlights": [
+        "Dual Hydro-Gear 16cc pumps with 18ci wheel motors",
+        "Kawasaki EFI or Vanguard EFI engines, 31-40 hp",
+        "54\", 61\" or 72\" 7-gauge formed and welded deck",
+        "VPO ReaPro no-flat rear tires",
+        "Adjustable suspended riding platform with upgraded operator pad",
+        "Three-position speed control and R-Series style brake"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX781V EVO EFI, Kawasaki FX1000V EFI or Vanguard EFI V-twin"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "31 hp / 38.5 hp / 40 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "54\"/61\"/72\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "2\" - 5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Manual lift"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Dual Hydro-Gear 16cc pumps; dual Hydro-Gear 18ci wheel motors"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 13 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth no-flat"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "24x12-12 VPO ReaPro no-flat turf"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Adjustable rubber suspension riding platform"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "54\" - 70\" | 61\" - 71.75\" | 72\" - 72.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "54\" - 56.5\"/68.5\" | 61\" - 63.2\"/75.5\" | 72\" - 73.8\"/85.9\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "45.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "54\" - 1,199 lbs. | 61\" - 1,250 lbs. | 72\" - 1,318 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "54\" Kawasaki FX781V EVO EFI",
+          "deck": "54\"",
+          "engine": "Kawasaki FX781V EVO EFI (822cc, air-cooled)",
+          "horsepower": "31 hp"
+        },
+        {
+          "name": "61\"/72\" Kawasaki FX1000V EFI",
+          "deck": "61\"/72\"",
+          "engine": "Kawasaki FX1000V EFI (999cc, air-cooled V-twin)",
+          "horsepower": "38.5 hp"
+        },
+        {
+          "name": "61\"/72\" Vanguard EFI",
+          "deck": "61\"/72\"",
+          "engine": "Vanguard EFI (993cc, air-cooled V-twin)",
+          "horsepower": "40 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/revolt-x"
+    },
+    {
+      "slug": "revolt",
+      "name": "Revolt",
+      "category": "stand-on-mowers",
+      "tagline": "Compact commercial stand-on from 36\" to 61\"",
+      "summary": "The Revolt is a commercial stand-on mower with integrated Hydro-Gear drives and a short frame for visibility and maneuverability. It comes in four deck widths with Kawasaki or Vanguard engines and features a suspended platform and hand-operated height-of-cut control.",
+      "highlights": [
+        "36\", 48\", 54\" or 61\" 7-gauge formed and welded deck",
+        "Kawasaki and Vanguard engines from 22 to 31 hp",
+        "Curved I-beam front rail with 3/8\" steel forks",
+        "Adjustable rubber suspension riding platform and thigh pad",
+        "One-touch hand-operated height-of-cut adjustment",
+        "Three-position speed control, electric PTO and striping kit"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FX691V, FX730V, FX850V, FX781V EVO EFI or Vanguard EFI"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "22 hp - 31 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "36\"/48\"/54\"/61\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "2\" - 5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Manual lift"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "36\" - Hydro-Gear 3100 10cc integrated transaxle | 48\"/54\"/61\" - Hydro-Gear 3400 12cc integrated transaxle"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 9 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "8 gallons, unleaded gasoline (36\" has 5-gallon tank)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "36\" - 21x7-10 Reaper | 48\"/54\" - 23x9-12 Reaper | 61\" - 23x11-12 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Adjustable rubber suspension riding platform"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "63\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "36\" - 38.5\"/50.5\" | 48\" - 50.5\"/62.5\" | 54\" - 56.5\"/68.5\" | 61\" - 63.5\"/75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "48\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "36\" - 805 lbs. | 48\" - 930 lbs. | 54\" - 980 lbs. | 61\" - 1,040 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "36\" Kawasaki FX691V",
+          "deck": "36\"",
+          "engine": "Kawasaki FX691V (726cc, air-cooled)",
+          "horsepower": "22 hp"
+        },
+        {
+          "name": "48\" Kawasaki FX730V",
+          "deck": "48\"",
+          "engine": "Kawasaki FX730V (726cc, air-cooled)",
+          "horsepower": "23.5 hp"
+        },
+        {
+          "name": "54\"/61\" Kawasaki FX850V",
+          "deck": "54\"/61\"",
+          "engine": "Kawasaki FX850V (852cc, air-cooled)",
+          "horsepower": "27 hp"
+        },
+        {
+          "name": "54\"/61\" Kawasaki FX781V EVO EFI (California compliant)",
+          "deck": "54\"/61\"",
+          "engine": "Kawasaki FX781V EVO EFI (California compliant) (822cc, air-cooled)",
+          "horsepower": "31 hp"
+        },
+        {
+          "name": "54\"/61\" Vanguard EFI (California compliant)",
+          "deck": "54\"/61\"",
+          "engine": "Vanguard EFI (California compliant) (810cc, air-cooled)",
+          "horsepower": "28 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/revolt"
+    },
+    {
+      "slug": "revolt-sd",
+      "name": "Revolt SD",
+      "category": "stand-on-mowers",
+      "tagline": "Residential-size stand-on in 34\" and 42\" widths",
+      "summary": "The Revolt SD adapts the Revolt stand-on for homeowners and smaller properties, with gate-friendly 34- and 42-inch decks. It uses Hydro-Gear 2800 drives, a patented suspension platform and a quick-remove operator pad.",
+      "highlights": [
+        "34\" or 42\" 7-gauge formed and welded deck",
+        "Dual Hydro-Gear 2800 integrated drives",
+        "Patented full-suspension operator platform",
+        "Quick-remove operator pad for service access",
+        "Side-mount deck lift adjustment",
+        "Three-position speed control and electric PTO"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FS600V or Rehlko 7000 KT722"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "18.5 hp / 22 hp"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "34\"/42\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "3/16\" (7-gauge) solid steel, formed and welded, with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1.5\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Manual lift"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Hydro-Gear 2800 10cc integrated transaxles"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 9 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "5 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "21x7-10 Reaper"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Patented suspension platform"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "63.8\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width (Chute Up / Chute Down)",
+          "value": "34\" - 38.5\"/50.5\" | 42\" - 50.5\"/62.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "47\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "34\" - 722 lbs. | 42\" - 733 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "34\"/42\" Kawasaki FS600V",
+          "deck": "34\"/42\"",
+          "engine": "Kawasaki FS600V (603cc, air-cooled)",
+          "horsepower": "18.5 hp"
+        },
+        {
+          "name": "34\" Rehlko 7000 KT722",
+          "deck": "34\"",
+          "engine": "Rehlko 7000 KT722 (747cc, air-cooled)",
+          "horsepower": "22 hp"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/revolt-sd"
+    },
+    {
+      "slug": "revolt-fury-blower",
+      "name": "Revolt Fury Stand-On Blower",
+      "category": "stand-on-mowers",
+      "tagline": "7,500 CFM stand-on blower for commercial cleanup",
+      "summary": "The Revolt Fury is a dedicated stand-on debris blower built on the Revolt X platform. A 40 hp Vanguard EFI engine drives a 7,500 CFM blower with a chute that rotates 180 degrees and tilts 11 degrees, for clearing leaves and clippings on large properties.",
+      "highlights": [
+        "7,500 CFM blower driven by a 40 hp Vanguard EFI engine",
+        "180° horizontal and 11° vertical chute adjustment with hand controls",
+        "Built on the Revolt X stand-on platform with independent front suspension",
+        "Dual Hydro-Gear 16cc pumps and 18ci wheel motors, up to 12 mph",
+        "Standard LED work lights and 13-gallon fuel tank",
+        "2-year unlimited-hour warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Vanguard EFI, 993cc air-cooled V-twin"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "40 hp"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "7,500 CFM"
+        },
+        {
+          "group": "General",
+          "label": "Chute Vertical Tilt",
+          "value": "11 degrees up/down"
+        },
+        {
+          "group": "General",
+          "label": "Chute Horizontal Rotation",
+          "value": "180 degrees left/right"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Dual Hydro-Gear independent 16cc pumps; dual Hydro-Gear independent 18ci wheel motors"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 12 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "13x6.5-6 flat-free smooth"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "23x11-12 Reaper turf"
+        },
+        {
+          "group": "Comfort",
+          "label": "Suspension",
+          "value": "Independent front suspension"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "81.8\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "53.2\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "48.4\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "1,221 lbs."
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years, unlimited hours"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/revolt-fury-blower"
+    },
+    {
+      "slug": "push-mower",
+      "name": "Push Mower",
+      "category": "push-mowers",
+      "tagline": "Commercial-grade self-propelled gas push mower",
+      "summary": "Bad Boy's gas push mower is a self-propelled, commercial-grade walk mower with a 14-gauge steel deck in 21- or 25-inch widths. A Kawasaki engine and a patented two-speed transmission power the rear wheels, and it can bag or mulch.",
+      "highlights": [
+        "Kawasaki FJ180 179cc engine",
+        "21\" or 25\" all-steel 14-gauge deck with reinforced edges",
+        "Patented two-speed (high/low) self-propelled transmission",
+        "Forged blade spindle shaft",
+        "Quick-release rear bagger or mulching",
+        "9\" non-pneumatic wheels and adjustable handles"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kawasaki FJ180, 179cc air-cooled"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Widths",
+          "value": "21\"/25\""
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Construction",
+          "value": "14-gauge solid steel with reinforced edges"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 4.5\" with Deck Height Control System"
+        },
+        {
+          "group": "Deck",
+          "label": "Deck Lift",
+          "value": "Lever-action manual lift"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Two-speed self-propelled rear-wheel drive"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "0.5 gallons, unleaded gasoline"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "9\" non-pneumatic"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "9\" non-pneumatic"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "21\" - 62\" | 25\" - 67\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "39\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "21\" - 123 lbs. | 25\" - 136 lbs."
+        }
+      ],
+      "configurations": [
+        {
+          "name": "21\"/25\" Kawasaki FJ180",
+          "deck": "21\"/25\"",
+          "engine": "Kawasaki FJ180 (179cc, air-cooled)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/mowers/push-mower"
+    },
+    {
+      "slug": "e-series-self-propelled-mower",
+      "name": "E-Series Self-Propelled Mower",
+      "category": "push-mowers",
+      "tagline": "80V battery self-propelled 21\" mower",
+      "summary": "The E-Series Self-Propelled Mower is an 80V battery walk mower with a brushless motor and a 21-inch steel deck. Smart Cut technology adjusts blade speed in thick or wet grass, and it can bag, mulch or side-discharge.",
+      "highlights": [
+        "80V brushless motor with Smart Cut (2800-3200 RPM)",
+        "21\" steel deck with 3-in-1 bag, mulch and side discharge",
+        "Rear-wheel-drive self-propulsion and push-button start",
+        "Dual battery ports with automatic switching",
+        "Single-lever deck height adjustment",
+        "Uses the cross-platform E-Series battery system"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 5.0Ah battery included"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "400"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "4A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 60 minutes"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "75 minutes"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Width",
+          "value": "21\""
+        },
+        {
+          "group": "General",
+          "label": "Blade Speed",
+          "value": "2800-3200 RPM (Smart Cut)"
+        },
+        {
+          "group": "General",
+          "label": "Wheels",
+          "value": "10\" rear, 8\" front"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "MS80B150A21"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/self-propelled-mower"
+    },
+    {
+      "slug": "tractor-5055",
+      "name": "5055 Compact Utility Tractor",
+      "category": "tractors",
+      "tagline": "Bad Boy's most powerful compact utility tractor",
+      "summary": "The 5055 is the largest tractor in Bad Boy's lineup, with a 55 hp four-cylinder diesel and a 2,700 lb loader lift capacity. It is offered as an open station or with a climate-controlled cab, with either a synchro shuttle-shift or hydrostatic transmission.",
+      "highlights": [
+        "55 hp water-cooled four-cylinder diesel",
+        "2,700 lb loader lift capacity at the pins (BBL500 loader)",
+        "Synchro shuttle-shift (16F/16R) or Hydro Max HST transmission",
+        "Optional climate-controlled cab with heated leather seat",
+        "Selectable 4WD, differential lock, power steering and cruise control",
+        "6-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "A2300T3-UTR_4 water-cooled 4-cylinder diesel, 139.5 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "55 hp @ 2600 rpm"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "44 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "Emissions",
+          "value": "DPF / DOC"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "5055S/CS - synchro, 16F/16R | 5055H/CH - HST, 4 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "4WD (selectable) with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "3,306 lbs. (2,425 lbs. at 24\" behind link ends)"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "5055S/CS - 16.4 gpm total (11.4 implement) | 5055H/CH - 15.7 gpm total (10.7 implement); 5 gpm steering"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "11.8 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "5055S/H - 3,836 lbs. | 5055CS/CH - 4,349 lbs."
+        },
+        {
+          "group": "Comfort",
+          "label": "Cab",
+          "value": "Optional climate-controlled cab (5055CS/CH)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "2,700 lbs. to full height at pivot pin (BBL500)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "106.6\""
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "91.2\" (BBH500)"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "127.4\" (with 3-point)"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "64.9\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "71.1\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "15.5\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540, 540E"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "6-year powertrain"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "5055S (open station, synchro)"
+        },
+        {
+          "name": "5055CS (cab, synchro)"
+        },
+        {
+          "name": "5055H (open station, HST)"
+        },
+        {
+          "name": "5055CH (cab, HST)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/5055-tractor"
+    },
+    {
+      "slug": "tractor-5045",
+      "name": "5045 Compact Utility Tractor",
+      "category": "tractors",
+      "tagline": "48 hp utility tractor with cab or open station",
+      "summary": "The 5045 shares the 50 Series chassis with the 5055 but uses a 48 hp diesel, keeping the 2,700 lb loader lift capacity. Buyers choose an open station or climate-controlled cab and either a shuttle-shift or Hydro Max hydrostatic transmission.",
+      "highlights": [
+        "48 hp water-cooled four-cylinder diesel",
+        "2,700 lb loader lift capacity at the pins (BBL500 loader)",
+        "Synchro shuttle-shift (16F/16R) or Hydro Max HST transmission",
+        "Optional climate-controlled cab with heated leather seat",
+        "Selectable 4WD, differential lock, power steering and cruise control",
+        "6-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "A2300N2-UTR_4 water-cooled 4-cylinder diesel, 139.5 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "48 hp @ 2600 rpm"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "38.4 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "Emissions",
+          "value": "DPF / DOC"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "5045S/CS - synchro, 16F/16R | 5045H/CH - HST, 4 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "4WD (selectable) with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "3,306 lbs. (2,425 lbs. at 24\" behind link ends)"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "5045S/CS - 16.4 gpm total (11.4 implement) | 5045H/CH - 15.7 gpm total (10.7 implement); 5 gpm steering"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "11.8 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "5045S/H - 3,831 lbs. | 5045CS/CH - 4,349 lbs."
+        },
+        {
+          "group": "Comfort",
+          "label": "Cab",
+          "value": "Optional climate-controlled cab (5045CS/CH)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "2,700 lbs. to full height at pivot pin (BBL500)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "106.6\""
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "91.2\" (BBH500)"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "127.4\" (with 3-point)"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "64.9\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "71.1\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "15.5\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540, 540E"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "6-year powertrain"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "5045S (open station, synchro)"
+        },
+        {
+          "name": "5045CS (cab, synchro)"
+        },
+        {
+          "name": "5045H (open station, HST)"
+        },
+        {
+          "name": "5045CH (cab, HST)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/5045-tractor"
+    },
+    {
+      "slug": "tractor-4035",
+      "name": "4035 Compact Tractor",
+      "category": "tractors",
+      "tagline": "35 hp compact tractor with optional factory cab",
+      "summary": "The 4035 is a 35 hp compact tractor with a three-cylinder diesel, Hydro Max three-range hydrostatic transmission and 2,200 lb loader lift capacity. It is available as an open-station 4035H or as the 4035CH with a heated and air-conditioned factory cab.",
+      "highlights": [
+        "35 hp three-cylinder water-cooled diesel",
+        "2,200 lb loader lift capacity at the pins (BBL400 loader)",
+        "Hydro Max three-range HST with dual pedals and cruise control",
+        "Factory cab with heat and air available",
+        "Metal hood and fenders, cast iron axles",
+        "6-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "3-cylinder water-cooled diesel, 104.5 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "35 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "29.5 hp"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "HST (Hydro Max), 3 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "Selectable 4WD with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "2,425 lbs. at 24\" behind lift point"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "12.6 gpm total (4.4 steering + 8.2 implement)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "7.1 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "4035H - 3,164 lbs. | 4035CH - 3,551 lbs."
+        },
+        {
+          "group": "Comfort",
+          "label": "Cab",
+          "value": "Factory cab with heat and air available (4035CH)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "2,200 lbs. to full height at pivot pin (BBL400)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "104\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "134.88\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "4035H - 56.7\" | 4035CH - 55.6\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "65.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "13.1\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540 (independent PTO)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "28x8.50-15"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "43x16.00-20"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "Wet, multi-disc"
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "92.2\" (BBH400)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "6-year powertrain"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "4035H (open station)"
+        },
+        {
+          "name": "4035CH (cab)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/4035-tractor"
+    },
+    {
+      "slug": "tractor-4025",
+      "name": "4025 Compact Tractor",
+      "category": "tractors",
+      "tagline": "25 hp compact workhorse on a full-size frame",
+      "summary": "The 4025 pairs a 25 hp diesel with the same large compact frame and BBL400 loader used on the 4035, giving it a 2,200 lb loader lift capacity. A three-range Hydro Max hydrostatic transmission, independent PTO and selectable 4WD come standard.",
+      "highlights": [
+        "25 hp three-cylinder water-cooled diesel",
+        "2,200 lb loader lift capacity at the pins (BBL400 loader)",
+        "Hydro Max three-range HST with dual pedals",
+        "Independent PTO and selectable 4WD with differential lock",
+        "Metal hood and fenders, cast iron axles",
+        "6-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "3-cylinder water-cooled diesel, 104.5 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "25 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "19.1 hp"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "HST (Hydro Max), 3 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "Selectable 4WD with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "2,425 lbs. at 24\" behind lift point"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "11.5 gpm total (4 steering + 7.5 implement)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "7.1 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "2,970 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "2,200 lbs. to full height at pivot pin (BBL400)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "104\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "134.88\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "56.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "65.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "13.1\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540 (independent PTO)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "25x8.50-14"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "15-19.5"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "Wet, multi-disc"
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "92.2\" (BBH400)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "6-year powertrain"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/4025-tractor"
+    },
+    {
+      "slug": "tractor-3026",
+      "name": "3026 Compact Tractor",
+      "category": "tractors",
+      "tagline": "Bridges compact and sub-compact with high clearance",
+      "summary": "The 3026 sits between Bad Boy's sub-compact and compact tractors, combining a 25 hp diesel with a longer frame, larger tires and 16.4 inches of ground clearance. It has a three-range Hydro Max transmission, a reverse-mount engine and a 1,314 lb loader lift capacity.",
+      "highlights": [
+        "25 hp three-cylinder water-cooled diesel, reverse-mount",
+        "1,314 lb loader lift capacity at the pins (BBL300 loader)",
+        "Hydro Max three-range HST with dual pedals",
+        "16.4\" minimum ground clearance",
+        "Digital control display and power steering",
+        "6-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "3-cylinder water-cooled diesel, 71.7 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "25 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "18 hp"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "HST (Hydro Max), 3 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "Selectable 4WD with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "974 lbs. at 24\" behind lift point"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "7.4 gpm (3.1 + 4.3) / 28.1 (11.7 + 16.4), as listed"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6.0 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "2,106 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "1,314 lbs. to full height at pivot pin (BBL300)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "86\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "110\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "53.8\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "65.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "16.4\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540/960 (live PTO)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "25x8.50-14"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "14x17.5"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "Wet, multi-disc"
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "76\" (BBH200)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "6-year powertrain"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/3026-tractor"
+    },
+    {
+      "slug": "tractor-1025",
+      "name": "1025 Sub-Compact Tractor",
+      "category": "tractors",
+      "tagline": "25 hp sub-compact with optional mid-mount deck",
+      "summary": "The 1025 is a sub-compact tractor with a roughly 25 hp diesel, a two-range Hydro Max transmission and a 992 lb loader lift capacity. It is small enough for barn stalls and gates and accepts an optional drive-over mid-mount mower deck.",
+      "highlights": [
+        "24.6 hp three-cylinder water-cooled diesel",
+        "992 lb loader lift capacity at the pins (BBL105 loader)",
+        "Hydro Max two-range HST with dual pedals",
+        "Optional drive-over 60\" mid-mount mower deck",
+        "Independent PTO, power steering and selectable 4WD",
+        "7-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "3-cylinder water-cooled diesel, 77.3 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "24.6 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "18.8 hp"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "HST (Hydro Max), 2 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "Selectable 4WD with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "1,101 lbs. at 24\" behind lift point"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "7.0 gpm (2.8 + 4.2) / 25.7 (10.5 + 15.8), as listed"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "5.8 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "1,638 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "992 lbs. to full height at pivot pin (BBL105)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "104\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "45.8\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "57.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "9.4\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540 (independent PTO)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "23x8.50-12"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "12-16.5"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "Wet, multi-disc"
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "76\" (BBH105)"
+        },
+        {
+          "group": "General",
+          "label": "Mid-Mount Mower Deck",
+          "value": "Optional; cutting height 1\" - 5\""
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "7-year powertrain"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/1025-tractor"
+    },
+    {
+      "slug": "tractor-1022",
+      "name": "1022 Sub-Compact Tractor",
+      "category": "tractors",
+      "tagline": "Entry sub-compact tractor for small properties",
+      "summary": "The 1022 is the entry point to Bad Boy's tractor lineup, using a 21.5 hp Tier 4 diesel, a two-range Hydro Max transmission with treadle pedals and a 617 lb loader lift capacity. An optional 54-inch drive-over mid-mount deck turns it into a mower as well.",
+      "highlights": [
+        "21.5 hp three-cylinder water-cooled diesel, reverse-mount",
+        "617 lb loader lift capacity at the pins (BBL100 loader)",
+        "Hydro Max two-range HST with treadle-style pedals",
+        "Optional 54\" drive-over mid-mount mower deck",
+        "Independent PTO, power steering and selectable 4WD",
+        "7-year powertrain warranty"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "3-cylinder water-cooled diesel, 60.6 cu in"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "21.5 hp"
+        },
+        {
+          "group": "Engine",
+          "label": "PTO Horsepower",
+          "value": "15.4 hp"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "HST (Hydro Max), 2 range"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "Selectable 4WD with differential lock"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Rear Lift Capacity",
+          "value": "679 lbs. at 24\" behind lift point"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "3-Point Hitch",
+          "value": "Limited Category 1"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "6.3 gpm (2.1 + 4.2) / 23.8 (8 + 15.8), as listed"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6.6 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Weight",
+          "value": "1,433 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Lift Capacity",
+          "value": "617 lbs. to full height at pivot pin (BBL100)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Loader Max Lift Height",
+          "value": "72.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Length",
+          "value": "94.2\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Width",
+          "value": "44.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "53.1\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "8.3\""
+        },
+        {
+          "group": "General",
+          "label": "PTO Speeds",
+          "value": "540 (independent PTO)"
+        },
+        {
+          "group": "General",
+          "label": "Front Tires",
+          "value": "18x8.50-10"
+        },
+        {
+          "group": "General",
+          "label": "Rear Tires",
+          "value": "26x12-12"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "Wet, multi-disc"
+        },
+        {
+          "group": "Capacities",
+          "label": "Backhoe Max Dig Depth",
+          "value": "66\" (BBH100)"
+        },
+        {
+          "group": "General",
+          "label": "Mid-Mount Mower Deck",
+          "value": "Optional 54\"; cutting height 1\" - 4\""
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "7-year powertrain"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/1022-tractor"
+    },
+    {
+      "slug": "implement-rotary-cutters",
+      "name": "Rotary Cutters",
+      "category": "implements",
+      "tagline": "Standard- and heavy-duty brush cutters, 4' to 10'",
+      "summary": "Bad Boy's 3-point rotary cutters come in standard-duty and heavy-duty versions for clearing brush and pasture. Decks are 10-gauge on heavy-duty models (11-gauge on standard-duty), with adjustable tail wheels and a stump-jumper gearbox mount.",
+      "highlights": [
+        "Available in 4', 5', 6', 7' and 10' widths",
+        "Standard-duty (4'-6') and heavy-duty (5'-10') lines",
+        "Slip clutch or shear pin driveline protection",
+        "15-spline stump jumper; puncture-resistant tail wheels"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6, 7 & 10 ft"
+        },
+        {
+          "group": "General",
+          "label": "HP Rating",
+          "value": "24-40 hp (4') up to 60-120 hp (10')"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "Heavy-duty: 2 years; standard-duty: 1 year; 5-year limited on gearboxes"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-flex-wing-cutter",
+      "name": "Flex Wing Cutter",
+      "category": "implements",
+      "tagline": "12-foot pull-type flex wing cutter",
+      "summary": "The flex wing cutter is a 12-foot pull-type mower for covering large open areas quickly. It uses a 10-gauge deck and a slip clutch with a CV U-joint driveline.",
+      "highlights": [
+        "154\" overall cutting width",
+        "Pull-type hitch",
+        "10-gauge deck",
+        "Slip clutch with CV U-joint"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "12 ft"
+        },
+        {
+          "group": "General",
+          "label": "Width",
+          "value": "154\""
+        },
+        {
+          "group": "General",
+          "label": "PTO HP Rating",
+          "value": "35-60 hp"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "2,994 lbs."
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "1 year; 5-year limited on gearboxes"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-box-blades",
+      "name": "Box Blades",
+      "category": "implements",
+      "tagline": "Box blades for grading and leveling, 4' to 7'",
+      "summary": "Box blades handle grading, leveling and spreading material behind the tractor. They have adjustable shanks, two blades for scalping or cutting, and a square-tube main frame.",
+      "highlights": [
+        "Available in 4', 5', 6' and 7' widths",
+        "Adjustable shanks (4 to 7 depending on width)",
+        "1/4\" sides and 3/16\" moldboard",
+        "CAT 1 or quick hitch (7' also CAT 2)"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "389-568 lbs. depending on width"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-land-graders",
+      "name": "Land Graders",
+      "category": "implements",
+      "tagline": "Land graders for driveways and site prep, 5' to 7'",
+      "summary": "Land graders shape and smooth driveways, gravel and dirt. They feature fully adjustable blades, replaceable skids and adjustable shanks.",
+      "highlights": [
+        "Available in 5', 6' and 7' widths",
+        "Fully adjustable blades and replaceable skids",
+        "1/4\" sides with square-tube main frame",
+        "CAT 1 or quick hitch (7' also CAT 2)"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "463-570 lbs. depending on width"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-rotary-tillers",
+      "name": "Rotary Tillers",
+      "category": "implements",
+      "tagline": "Gear-driven PTO tillers, 4' to 7'",
+      "summary": "Rotary tillers break and prepare soil for planting using a gearbox-driven 540 RPM PTO. They offer forward or reverse till options, adjustable skids and slip-clutch protection.",
+      "highlights": [
+        "Available in 4', 5', 6' and 7' widths",
+        "Gearbox drive at 540 PTO RPM",
+        "Forward or reverse tilling options",
+        "Slip clutch driveline protection; quick hitch compatible"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Max Tilling Depth",
+          "value": "6.5\" (BBRT48/BBRT60)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "5-year limited gearbox warranty"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-disc-harrow",
+      "name": "Disc Harrow",
+      "category": "implements",
+      "tagline": "Disc harrows for breaking ground, 4' to 7'",
+      "summary": "Disc harrows cut and break up soil and residue ahead of planting. Gang angles are adjustable, and the frames are built from carbon steel tube.",
+      "highlights": [
+        "Available in 4', 5', 6' and 7' widths",
+        "Adjustable front and rear gang angles",
+        "Carbon steel tube main frame and gang tubes",
+        "CAT 1 hitch (6'/7' also CAT 2)"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "402-770 lbs. depending on width"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-forks-and-hitches",
+      "name": "Forks & Hitches",
+      "category": "implements",
+      "tagline": "Hay spears, pallet forks and trailer movers",
+      "summary": "This group covers hay spears, pallet forks and 3-point trailer movers for handling bales, pallets and trailers. Loader-mounted items use quick attach, while the 3-point items fit a CAT 1 hitch.",
+      "highlights": [
+        "Quick-attach front hay spear rated at 1,800 lbs.",
+        "3-point hay forks and a hay fork/trailer mover combo",
+        "Heavy-duty pallet forks, Class 2, 3,500 lb capacity",
+        "Standard pallet forks, Class 2, 2,200 lb capacity"
+      ],
+      "specs": [],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-front-grapples",
+      "name": "Front Grapples",
+      "category": "implements",
+      "tagline": "Quick-attach loader grapples, large and small",
+      "summary": "Front grapples attach to the loader to grab brush, logs and debris. They come with a hose kit and mount via quick attach.",
+      "highlights": [
+        "Available in 70\" large and 48\" small sizes",
+        "Quick-attach mounting",
+        "2,500 psi cylinder",
+        "Hose kit included"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Sizes",
+          "value": "70\" large, 48\" small"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-grader-blades",
+      "name": "Grader Blades",
+      "category": "implements",
+      "tagline": "Rear blades with 5 forward and 5 reverse positions",
+      "summary": "Grader blades are rear-mounted blades for moving snow, gravel and dirt. Every size offers five forward and five reverse blade positions.",
+      "highlights": [
+        "Available in 4', 5', 6' and 7' widths",
+        "5 forward and 5 reverse blade positions",
+        "Cat 1 and quick hitch compatible",
+        "Heavy-gauge welded and fabricated steel construction"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6 & 7 ft"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-landscape-rakes",
+      "name": "Landscape Rakes",
+      "category": "implements",
+      "tagline": "Landscape rakes for debris and soil prep, 4' to 7'",
+      "summary": "Landscape rakes collect rocks and debris and prepare seedbeds. They have adjustable blade positions and individually mounted tines.",
+      "highlights": [
+        "Available in 4', 5', 6' and 7' widths",
+        "5 forward and 5 reverse positions",
+        "1/4\" frame tubing and 3/8\" swivel plates",
+        "Individually mounted tines"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "4, 5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "175-254 lbs. depending on width"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-mid-mount-mower-deck",
+      "name": "Mid-Mount Mower Deck",
+      "category": "implements",
+      "tagline": "Drive-over decks for the 1022 and 1025H",
+      "summary": "Bad Boy offers drive-over mid-mount mower decks for its 1022 and 1025H sub-compact tractors, built with the same approach as its zero-turn mower decks. They are gearbox-over-belt driven and protected by a shear pin.",
+      "highlights": [
+        "60\" deck for the 1025H, 54\" deck for the 1022",
+        "Drive-over mounting",
+        "Gearbox-over-belt drive with shear pin protection",
+        "Cut range 1\"-5\" (1025H) or 1\"-4\" (1022)"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Sizes",
+          "value": "60\" (1025H), 54\" (1022)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "24 months on deck / 12 months on gearbox"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-spreaders",
+      "name": "Spreaders",
+      "category": "implements",
+      "tagline": "Pull-behind and 3-point spreaders, 600 lb hopper",
+      "summary": "Spreaders broadcast seed, fertilizer and similar materials. Bad Boy offers a ground-driven pull-behind model and a PTO-driven 3-point model, both with galvanized 600 lb hoppers and stainless steel fins.",
+      "highlights": [
+        "Pull-behind (BBS300PB) and 3-point (BBS300L) models",
+        "Galvanized 600 lb hopper",
+        "Stainless steel adjustable fins",
+        "Agitator and vinyl cover standard"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Hopper Capacity",
+          "value": "600 lbs."
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-snow-pusher",
+      "name": "Snow Pusher",
+      "category": "implements",
+      "tagline": "Loader-mounted snow pusher, 5' to 7'",
+      "summary": "The snow pusher mounts to the loader for clearing heavy snow from drives and lots. It has a 27-inch 7-gauge moldboard with 3/8-inch sidewalls and a choice of steel or UHMW edges and skids.",
+      "highlights": [
+        "Available in 5', 6' and 7' widths",
+        "27\" tall 7-gauge moldboard",
+        "3/8\" sidewalls",
+        "Steel or UHMW cutting edge and skids"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "5, 6 & 7 ft"
+        },
+        {
+          "group": "General",
+          "label": "Mounting",
+          "value": "Standard quick attach"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "545 lbs. (710 lbs. with backdrag hood)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "implement-finish-mower",
+      "name": "Finish Mower",
+      "category": "implements",
+      "tagline": "Rear-discharge 3-point finish mower, 5' to 7'",
+      "summary": "The finish mower gives a clean, even cut on large lawns, pastures and fields. It has a 1/4-inch deck, rear discharge and single-pin height adjustment, and is made in the USA.",
+      "highlights": [
+        "Available in 5', 6' and 7' widths",
+        "1/4\" deck construction",
+        "Rear discharge",
+        "Quick-set single-pin height adjustment; quick hitch compatible"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Available Widths",
+          "value": "5, 6 & 7 ft"
+        },
+        {
+          "group": "Deck",
+          "label": "Cutting Height",
+          "value": "1\" - 5\" (5' model)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "5-year limited gearbox; 2-year limited deck"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/tractors/implements"
+    },
+    {
+      "slug": "bandit-550",
+      "name": "Bandit 550",
+      "category": "utvs",
+      "tagline": "Two-seat side-by-side with 545cc engine",
+      "summary": "The Bandit 550 is the smaller-engine version of Bad Boy's regular-cab side-by-side, using a 545cc EFI single and suited to recreation and property chores. It shares the Bandit chassis with independent suspension, 4WD, a dump bed and an included winch.",
+      "highlights": [
+        "545cc single-cylinder EFI engine",
+        "Electronic fuel injection, liquid cooling and automatic CVT",
+        "Selectable 4WD with locking front differential",
+        "Four-wheel independent suspension with nitrogen-assisted shocks",
+        "Gas-assist cargo dump bed rated at 500 lbs.",
+        "Front bumper and 3,500 lb winch included"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "4-stroke single-cylinder OHC, 545cc, EFI, liquid-cooled"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "2WD / 4WD selectable, front locking differential, shaft final drive"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "Automatic CVT"
+        },
+        {
+          "group": "Capacities",
+          "label": "Bed Capacity",
+          "value": "500 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Towing Capacity",
+          "value": "1,200 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "7.5 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "12\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Size (LxWxH)",
+          "value": "118\" x 61\" x 75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "76.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Cargo Bed (LxWxH)",
+          "value": "34\" x 45\" x 11\", gas-assist dump"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Empty Vehicle Weight",
+          "value": "1,638 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Gross Vehicle Weight Rating",
+          "value": "2,341 lbs."
+        },
+        {
+          "group": "Drive",
+          "label": "Suspension",
+          "value": "Dual A-arm front and rear, hydraulic shocks with nitrogen assist"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "4-wheel hydraulic disc"
+        },
+        {
+          "group": "General",
+          "label": "Tires",
+          "value": "27x9-14 front / 27x11-14 rear, aluminum wheels"
+        },
+        {
+          "group": "General",
+          "label": "Winch",
+          "value": "3,500 lbs., included"
+        },
+        {
+          "group": "General",
+          "label": "Power Steering",
+          "value": "EPS"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2-year limited"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/bandit/regular-cab"
+    },
+    {
+      "slug": "bandit-750",
+      "name": "Bandit 750",
+      "category": "utvs",
+      "tagline": "Regular-cab side-by-side with 735cc work engine",
+      "summary": "The Bandit 750 carries the same regular-cab chassis as the 550 but steps up to a 735cc EFI single for heavier work. Standard equipment includes 4WD with a locking differential, a dump bed, a front bumper and a winch.",
+      "highlights": [
+        "735cc single-cylinder EFI engine",
+        "Electronic fuel injection, liquid cooling and automatic CVT",
+        "Selectable 4WD with locking front differential",
+        "Four-wheel independent suspension with nitrogen-assisted shocks",
+        "Gas-assist cargo dump bed rated at 500 lbs.",
+        "Front bumper and 3,500 lb winch included"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "4-stroke single-cylinder OHC, 735cc, EFI, liquid-cooled"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "2WD / 4WD selectable, front locking differential, shaft final drive"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "Automatic CVT"
+        },
+        {
+          "group": "Capacities",
+          "label": "Bed Capacity",
+          "value": "500 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Towing Capacity",
+          "value": "1,200 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "7.5 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "12\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Size (LxWxH)",
+          "value": "118\" x 61\" x 75.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "76.5\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Cargo Bed (LxWxH)",
+          "value": "34\" x 45\" x 11\", gas-assist dump"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Empty Vehicle Weight",
+          "value": "1,638 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Gross Vehicle Weight Rating",
+          "value": "2,341 lbs."
+        },
+        {
+          "group": "Drive",
+          "label": "Suspension",
+          "value": "Dual A-arm front and rear, hydraulic shocks with nitrogen assist"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "4-wheel hydraulic disc"
+        },
+        {
+          "group": "General",
+          "label": "Tires",
+          "value": "27x9-14 front / 27x11-14 rear, aluminum wheels"
+        },
+        {
+          "group": "General",
+          "label": "Winch",
+          "value": "3,500 lbs., included"
+        },
+        {
+          "group": "General",
+          "label": "Power Steering",
+          "value": "EPS"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2-year limited"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/bandit/regular-cab"
+    },
+    {
+      "slug": "bandit-750-crew-cab",
+      "name": "Bandit 750 Crew Cab",
+      "category": "utvs",
+      "tagline": "Four-seat Bandit with two rows and 735cc power",
+      "summary": "The Bandit 750 Crew Cab is Bad Boy's first four-seat UTV, adding a second seating row to the 750 platform while keeping the full cargo bed. It has a longer wheelbase and a higher 1,500 lb tow rating than the regular-cab model.",
+      "highlights": [
+        "Two seating rows for four occupants",
+        "735cc single-cylinder EFI engine with automatic CVT",
+        "Selectable 4WD with locking front differential",
+        "500 lb gas-assist dump bed",
+        "Front bumper and 3,500 lb winch included",
+        "1,500 lb tow rating"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "4-stroke single-cylinder OHC, 735cc, EFI, liquid-cooled"
+        },
+        {
+          "group": "Drive",
+          "label": "Drive",
+          "value": "2WD / 4WD selectable, front locking differential, shaft final drive"
+        },
+        {
+          "group": "Drive",
+          "label": "Transmission",
+          "value": "Automatic CVT"
+        },
+        {
+          "group": "Comfort",
+          "label": "Seating",
+          "value": "4 (2 rows)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Bed Capacity",
+          "value": "500 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Towing Capacity",
+          "value": "1,500 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "7.5 gallons"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Ground Clearance",
+          "value": "12\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Overall Size (LxWxH)",
+          "value": "155\" x 65\" x 74\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Wheelbase",
+          "value": "109\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Cargo Bed (LxWxH)",
+          "value": "34\" x 45\" x 11\", gas-assist dump"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Empty Vehicle Weight",
+          "value": "1,720 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Gross Vehicle Weight Rating",
+          "value": "2,776 lbs."
+        },
+        {
+          "group": "Drive",
+          "label": "Suspension",
+          "value": "Dual A-arm front and rear, hydraulic shocks with nitrogen assist"
+        },
+        {
+          "group": "Drive",
+          "label": "Brakes",
+          "value": "4-wheel hydraulic disc"
+        },
+        {
+          "group": "General",
+          "label": "Tires",
+          "value": "27x9-14 front / 27x11-14 rear, aluminum wheels"
+        },
+        {
+          "group": "General",
+          "label": "Winch",
+          "value": "3,500 lbs., included"
+        },
+        {
+          "group": "General",
+          "label": "Power Steering",
+          "value": "EPS"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2-year limited"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/bandit/crew-cab"
+    },
+    {
+      "slug": "recon",
+      "name": "Recon",
+      "category": "light-construction",
+      "tagline": "Tracked stand-on mini skid steer, 43\" wide",
+      "summary": "The Recon is a stand-on mini skid steer powered by a 25 hp Kubota diesel and running on wide all-terrain tracks. At 43 inches wide it fits tight job sites, and its FlexFlow tandem-pump hydraulics boost pressure for demanding attachments.",
+      "highlights": [
+        "Kubota D902 25 hp liquid-cooled diesel",
+        "Compact 43\" overall width",
+        "Tandem-pump hydraulics with FlexFlow, 12 GPM",
+        "Dual all-terrain wide tracks",
+        "High lift reach of 81.8\" for loading trucks and trailers",
+        "Ergonomic standing platform with cushioned leaning pad"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Kubota D902, 898cc liquid-cooled 3-cylinder diesel"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "25 hp"
+        },
+        {
+          "group": "Capacities",
+          "label": "Rated Operating Capacity",
+          "value": "748 lbs. | 824 lbs. with optional counterweight"
+        },
+        {
+          "group": "Capacities",
+          "label": "Tipping Load",
+          "value": "2,354 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Lift Height",
+          "value": "81.8\""
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "12 GPM"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic System",
+          "value": "Tandem pump with FlexFlow"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Operating Weight",
+          "value": "2,280 lbs."
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "43\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "91\""
+        },
+        {
+          "group": "Drive",
+          "label": "Drive System",
+          "value": "Dual wheel motors, dual all-terrain wide tracks"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 4.3 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "6 gallons, diesel"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/construction/recon"
+    },
+    {
+      "slug": "terrain",
+      "name": "Terrain",
+      "category": "light-construction",
+      "tagline": "Small articulating loader with 40 hp Vanguard EFI",
+      "summary": "The Terrain is a small articulating loader that uses articulated steering to limit turf damage while offering visibility to the bucket edge. A 40 hp Vanguard EFI engine and 19 GPM auxiliary hydraulics run a range of quick-attach implements, and an enclosed cab is available on the premium model.",
+      "highlights": [
+        "Vanguard 40 hp EFI twin-cylinder engine",
+        "Articulated steering for smooth turns and less ground disturbance",
+        "19 GPM piston-style auxiliary hydraulics",
+        "Universal quick attach with 60\" material bucket standard",
+        "Premium suspension seat; enclosed cab with heat and air on premium model",
+        "ROPS/FOPS certified operator station"
+      ],
+      "specs": [
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "Vanguard 993cc twin-cylinder air-cooled EFI/ETC"
+        },
+        {
+          "group": "Engine",
+          "label": "Horsepower",
+          "value": "40 hp"
+        },
+        {
+          "group": "Capacities",
+          "label": "Rated Operating Capacity",
+          "value": "1,718 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Tipping Load",
+          "value": "3,437 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Lift Height",
+          "value": "96\""
+        },
+        {
+          "group": "Capacities",
+          "label": "Breakout Force",
+          "value": "3,484 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Lifting Capacity at Ground Level",
+          "value": "2,600 lbs."
+        },
+        {
+          "group": "Capacities",
+          "label": "Lifting Capacity to 50\"",
+          "value": "2,000 lbs."
+        },
+        {
+          "group": "Hydraulics",
+          "label": "Hydraulic Flow",
+          "value": "19 GPM"
+        },
+        {
+          "group": "Hydraulics",
+          "label": "System Relief at Quick Couplers",
+          "value": "2,900 psi"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Operating Weight",
+          "value": "3,850 lbs."
+        },
+        {
+          "group": "Dimensions",
+          "label": "Width",
+          "value": "57.7\""
+        },
+        {
+          "group": "Dimensions",
+          "label": "Length",
+          "value": "89.4\" (without attachment)"
+        },
+        {
+          "group": "Dimensions",
+          "label": "Height",
+          "value": "72.4\" / 75.4\" (with/without beacon, as listed)"
+        },
+        {
+          "group": "General",
+          "label": "Tires",
+          "value": "26x12.00-12 turf"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "9.3 gallons, gasoline"
+        },
+        {
+          "group": "Drive",
+          "label": "Max Forward Speed",
+          "value": "Up to 8.8 mph"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "Terrain Standard"
+        },
+        {
+          "name": "Terrain Premium (hydraulic quick attach lock, rear remote coupler, electric diff lock, enclosed cab with heat and air)"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/construction/terrain"
+    },
+    {
+      "slug": "e-series-string-trimmer",
+      "name": "E-Series String Trimmer",
+      "category": "e-series-tools",
+      "tagline": "80V brushless trimmer that accepts attachments",
+      "summary": "The E-Series String Trimmer is an 80V brushless trimmer with a 16-inch cutting path, two speeds and an easy-wind head. Its aluminum shaft accepts Bad Boy's attachment heads, and its battery works across the E-Series line.",
+      "highlights": [
+        "16\" cutting path",
+        "Brushless motor, 2-speed with variable trigger",
+        "Easy-wind trimmer head",
+        "Lightweight aluminum shaft with adjustable handle",
+        "Attachment capable",
+        "Cross-platform 80V battery"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Cutting Width",
+          "value": "16\""
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 2Ah battery (page also lists 288Wh)"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "160"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "2A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 45 cuts"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "60 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "ST80B120A16"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/string-trimmer"
+    },
+    {
+      "slug": "e-series-string-trimmer-attachments",
+      "name": "E-Series String Trimmer Attachments",
+      "category": "e-series-tools",
+      "tagline": "Blower, edger, pruner and hedge clipper heads",
+      "summary": "These sold-separately attachments let the E-Series String Trimmer power head run a blower, edger, pruner or hedge clipper. They connect through a universal coupling and run on the same 80V battery system.",
+      "highlights": [
+        "Blower attachment: up to 470 CFM and over 100 mph",
+        "Edger attachment: 9\" metal blade, 0.6\"-2.2\" cutting depth",
+        "Pruner attachment: 10\" bar and chain, cuts branches up to 6\" thick",
+        "Hedge clipper attachment with rotating head",
+        "Universal 1\" (25.4mm) tube connection"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery (via E-Series String Trimmer)"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "Blower attachment: up to 470 CFM"
+        },
+        {
+          "group": "General",
+          "label": "Air Speed",
+          "value": "Blower attachment: over 100 mph"
+        },
+        {
+          "group": "General",
+          "label": "Bar Length",
+          "value": "Pruner attachment: 10\""
+        },
+        {
+          "group": "General",
+          "label": "Edger Blade",
+          "value": "9\" metal blade; cutting depth 0.6\" - 2.2\""
+        },
+        {
+          "group": "General",
+          "label": "Pruner Oil Reservoir",
+          "value": "4.23 oz (125 ml)"
+        },
+        {
+          "group": "General",
+          "label": "Connection",
+          "value": "1\" (25.4mm) tube with 0.197\" (5mm) square drive shaft"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "Blower Attachment"
+        },
+        {
+          "name": "Edger Attachment"
+        },
+        {
+          "name": "Pruner Attachment"
+        },
+        {
+          "name": "Hedge Clipper Attachment"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/string-trimmer-attachments"
+    },
+    {
+      "slug": "e-series-backpack-blower",
+      "name": "E-Series Backpack Blower",
+      "category": "e-series-tools",
+      "tagline": "80V dual-battery backpack blower, 165 mph",
+      "summary": "The E-Series Backpack Blower is an 80V brushless blower with an axial jet fan, variable speed and cruise control. It carries two batteries with automatic switching and offers a turbo mode rated at 690 CFM.",
+      "highlights": [
+        "165 mph air speed",
+        "690 CFM turbo",
+        "Brushless motor with axial jet fan",
+        "Dual battery ports with auto switch",
+        "Variable speed with cruise control",
+        "Removable tube extensions"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "690 CFM (turbo)"
+        },
+        {
+          "group": "General",
+          "label": "Air Speed",
+          "value": "165 mph"
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 5.0Ah battery"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "400"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "4A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 25 minutes"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "75 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "BB80B150A"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/backpack-blower"
+    },
+    {
+      "slug": "e-series-handheld-blower",
+      "name": "E-Series Handheld Blower",
+      "category": "e-series-tools",
+      "tagline": "Lightweight 80V handheld blower, 170 mph",
+      "summary": "The E-Series Handheld Blower is a lightweight 80V brushless blower using jet fan technology. It provides variable speed with cruise control and a turbo button.",
+      "highlights": [
+        "170 mph air speed",
+        "730 CFM motor",
+        "Brushless motor with axial jet fan",
+        "Ultra-lightweight ergonomic design",
+        "Variable speed with cruise control",
+        "Cross-platform 80V battery"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "730 CFM"
+        },
+        {
+          "group": "General",
+          "label": "Air Speed",
+          "value": "170 mph"
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 2.5Ah battery (180Wh)"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "200"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "2A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 30 minutes"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "75 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "BH80B125A"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/handheld-blower"
+    },
+    {
+      "slug": "e-series-chainsaw",
+      "name": "E-Series Chainsaw",
+      "category": "e-series-tools",
+      "tagline": "80V 18\" chainsaw rated like a 42cc gas saw",
+      "summary": "The E-Series Chainsaw is an 18-inch 80V brushless saw that Bad Boy rates as comparable to a 42cc gas chainsaw. It includes steel bucking spikes, a mechanical chain brake and an automatic oiler with fill indicator.",
+      "highlights": [
+        "18\" bar and chain",
+        "Brushless motor rated comparable to a 42cc gas saw",
+        "Mechanical chain brake",
+        "Push-button start",
+        "Automatic oiler with fill indicator",
+        "Steel bucking spikes and wrap-around handle"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Bar Length",
+          "value": "18\""
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 4Ah battery (page also lists 288Wh)"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "320"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "4A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 140 cuts"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "60 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "CS80B140A18"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/chainsaw"
+    },
+    {
+      "slug": "e-series-pole-saw",
+      "name": "E-Series Pole Saw",
+      "category": "e-series-tools",
+      "tagline": "80V 10\" pole saw reaching up to 11 feet",
+      "summary": "The E-Series Pole Saw puts a 10-inch bar and chain on an 8-foot three-piece aluminum shaft, with an extension for up to 11 feet of reach. It runs on an 80V brushless motor with an automatic oiler.",
+      "highlights": [
+        "10\" bar and chain",
+        "8' three-piece aluminum shaft, extends to 11'",
+        "Brushless motor with push-button start",
+        "Automatic oiler with translucent tank",
+        "Manual chain tensioner",
+        "Cross-platform 80V battery"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Bar Length",
+          "value": "10\""
+        },
+        {
+          "group": "General",
+          "label": "Max Reach",
+          "value": "11 ft"
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 2Ah battery (page also lists 288Wh)"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "160"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "2A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 83 cuts"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "60 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "PS80B120A10"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/pole-saw"
+    },
+    {
+      "slug": "e-series-hedge-trimmer",
+      "name": "E-Series Hedge Trimmer",
+      "category": "e-series-tools",
+      "tagline": "80V hedge trimmer with 24\" dual-action blades",
+      "summary": "The E-Series Hedge Trimmer uses 24-inch dual-action blades driven by an 80V brushless motor. A rotating rear handle makes it easier to trim at different angles, with up to an hour of run time.",
+      "highlights": [
+        "24\" dual-action blades",
+        "Brushless motor",
+        "Rotating rear handle",
+        "Up to 60-minute run time",
+        "Universal 80V battery system"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Cutting Width",
+          "value": "24\" blade"
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 2Ah battery"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "160"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "2A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to 60 minutes"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "60 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "HT80B120A24"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/hedge-trimmer"
+    },
+    {
+      "slug": "e-series-snow-thrower",
+      "name": "E-Series Snow Thrower",
+      "category": "e-series-tools",
+      "tagline": "80V 22\" snow thrower with 180° chute",
+      "summary": "The E-Series Snow Thrower is an 80V brushless unit with a 22-inch clearing width and 13-inch clearing depth. Bad Boy rates it to clear up to a six-car driveway on one charge.",
+      "highlights": [
+        "22\" clearing width",
+        "13\" clearing depth",
+        "Discharge chute rotates 180°",
+        "Adjustable deflector for throw distance",
+        "Clears up to a 6-car driveway per charge"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "80V battery"
+        },
+        {
+          "group": "General",
+          "label": "Cutting Width",
+          "value": "22\" clearing width"
+        },
+        {
+          "group": "General",
+          "label": "Clearing Depth",
+          "value": "13\""
+        },
+        {
+          "group": "Battery",
+          "label": "Battery",
+          "value": "(1) 4Ah battery"
+        },
+        {
+          "group": "Battery",
+          "label": "Max Wh",
+          "value": "320"
+        },
+        {
+          "group": "Battery",
+          "label": "Charger",
+          "value": "4A charger"
+        },
+        {
+          "group": "Battery",
+          "label": "Run Time",
+          "value": "Up to a 6-car driveway per charge"
+        },
+        {
+          "group": "Battery",
+          "label": "Charge Time",
+          "value": "Up to 60 minutes"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "SB80B140A22"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "4 years"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/snow-thrower"
+    },
+    {
+      "slug": "e-series-corded-pressure-washer",
+      "name": "Corded Electric Pressure Washer",
+      "category": "e-series-tools",
+      "tagline": "Corded 3,000 CU electric pressure washer",
+      "summary": "This corded electric pressure washer delivers 2,500-3,000 PSI through a AAA triplex brass pump on a welded steel frame. It ships with a turbo nozzle, soap injector, steel lance and high-pressure quick-connect hose.",
+      "highlights": [
+        "2,500-3,000 PSI, 3,000 cleaning units",
+        "AAA triplex brass pump with adjustable external unloader",
+        "Heavy-gauge welded steel frame and 3-ply pneumatic tires",
+        "Turbo nozzle plus 5 quick-connect nozzles",
+        "Commercial-style soap injector and 16\" steel lance",
+        "Detachable pump and motor"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Corded electric"
+        },
+        {
+          "group": "General",
+          "label": "Pressure",
+          "value": "2,500-3,000 PSI"
+        },
+        {
+          "group": "General",
+          "label": "Flow Rate",
+          "value": "1-1.2 GPM"
+        },
+        {
+          "group": "General",
+          "label": "Cleaning Units",
+          "value": "3000 CU"
+        },
+        {
+          "group": "General",
+          "label": "Pump",
+          "value": "AAA triplex brass"
+        },
+        {
+          "group": "General",
+          "label": "Nozzles",
+          "value": "5 QC (0°, 15°, 25°, 40°, soap)"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "BBPW3010E"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "Motor 2 yr; pump 5 yr; frame 10 yr"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/e-series/corded-pressure-washer"
+    },
+    {
+      "slug": "gas-pressure-washers",
+      "name": "Gas Pressure Washers",
+      "category": "gas-tools",
+      "tagline": "3,500 and 3,600 PSI gas pressure washers",
+      "summary": "Bad Boy's gas pressure washers come in two models: the BBPW3525 with a CRX210 engine and AAA axial pump, and the BBPW3625 with a Honda GX200 and AAA triplex pump. Both deliver 2.5 GPM on a welded steel frame with pneumatic tires.",
+      "highlights": [
+        "BBPW3525: 3,500 PSI, CRX210 engine, AAA AX300 axial pump",
+        "BBPW3625: 3,600 PSI, Honda GX200 engine, AAA CY triplex pump",
+        "2.5 GPM on both models",
+        "Turbo nozzle and professional-style trigger gun",
+        "Heavy-gauge welded steel frame and 3-ply pneumatic tires"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "BBPW3525: CRX210 | BBPW3625: Honda GX200"
+        },
+        {
+          "group": "General",
+          "label": "Pressure",
+          "value": "BBPW3525: 3,500 PSI | BBPW3625: 3,600 PSI"
+        },
+        {
+          "group": "General",
+          "label": "Flow Rate",
+          "value": "2.5 GPM"
+        },
+        {
+          "group": "General",
+          "label": "Cleaning Units",
+          "value": "BBPW3525: 8,750 CU | BBPW3625: 9,000 CU"
+        },
+        {
+          "group": "General",
+          "label": "Pump",
+          "value": "BBPW3525: AAA AX300 axial | BBPW3625: AAA CY triplex"
+        },
+        {
+          "group": "General",
+          "label": "Nozzles",
+          "value": "5 QC (0°, 15°, 25°, 40°, soap)"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "Engine: 3 years"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "BBPW3525",
+          "engine": "CRX210"
+        },
+        {
+          "name": "BBPW3625",
+          "engine": "Honda GX200"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/pressure-washers"
+    },
+    {
+      "slug": "gas-chainsaw",
+      "name": "Gas Chainsaw",
+      "category": "gas-tools",
+      "tagline": "30.1cc gas chainsaw with 14\" bar",
+      "summary": "The gas chainsaw is a 30.1cc two-stroke saw with a 14-inch bar, built for quick acceleration and clean cuts. It includes an inertia-activated chain brake, full anti-vibration and the PRE-VENT air cleaning system.",
+      "highlights": [
+        "30.1cc low-emission 2-cycle engine",
+        "14\" bar",
+        "Inertia-activated chain brake and reduced kickback system",
+        "PRE-VENT system keeps debris out of the carburetor",
+        "Full anti-vibration system",
+        "Easy start"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "30.1cc 2-cycle"
+        },
+        {
+          "group": "General",
+          "label": "Bar Length",
+          "value": "14\""
+        },
+        {
+          "group": "General",
+          "label": "Max Output",
+          "value": "9,500 rpm"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "8.1 oz."
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "7.1 lbs. (approx.)"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "CS300-14"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/chainsaw"
+    },
+    {
+      "slug": "gas-backpack-blowers",
+      "name": "Gas Backpack Blowers",
+      "category": "gas-tools",
+      "tagline": "Commercial gas backpack blowers, up to 1,068 CFM",
+      "summary": "Bad Boy offers two gas backpack blowers: the 60.9cc BB880 and the larger 79.2cc BB1060. Both use low-emission two-stroke engines, a spring-loaded anti-vibration frame and padded straps.",
+      "highlights": [
+        "BB880: 60.9cc, 885 CFM, 180 mph",
+        "BB1060: 79.2cc, 1,068 CFM, 185 mph",
+        "Variable trigger-controlled throttle",
+        "Anti-vibration frame with wide padded straps",
+        "BB1060 adds a commercial 2-stage filtration system"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "BB880: 60.9cc 2-cycle | BB1060: 79.2cc 2-cycle"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "BB880: 885 CFM | BB1060: 1,068 CFM"
+        },
+        {
+          "group": "General",
+          "label": "Air Speed",
+          "value": "BB880: 180 mph | BB1060: 185 mph"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "71 oz"
+        },
+        {
+          "group": "General",
+          "label": "Run Time",
+          "value": "BB1060: 1 hr 45 min"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "BB880",
+          "engine": "60.9cc 2-cycle"
+        },
+        {
+          "name": "BB1060",
+          "engine": "79.2cc 2-cycle"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/backpack-blowers"
+    },
+    {
+      "slug": "gas-handheld-blower",
+      "name": "Gas Handheld Blower",
+      "category": "gas-tools",
+      "tagline": "30.1cc handheld blower with cruise control",
+      "summary": "The gas handheld blower is a 30.1cc unit rated at 180 mph with variable speed and cruise control. It is designed to stay light and relatively quiet for long days of cleanup.",
+      "highlights": [
+        "180 mph air speed",
+        "450 CFM",
+        "30.1cc low-emission 2-cycle engine",
+        "Variable speed with cruise control",
+        "70 dB sound rating",
+        "9.5 lb dry weight"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "30.1cc 2-cycle"
+        },
+        {
+          "group": "General",
+          "label": "Air Speed",
+          "value": "180 mph"
+        },
+        {
+          "group": "General",
+          "label": "Air Volume",
+          "value": "450 CFM"
+        },
+        {
+          "group": "General",
+          "label": "Sound Rating",
+          "value": "70 dB"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "9.5 lbs. (dry)"
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "HB450"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/handheld-blower"
+    },
+    {
+      "slug": "gas-edger",
+      "name": "Gas Edger",
+      "category": "gas-tools",
+      "tagline": "25.4cc stick edger with tool-free blade height",
+      "summary": "The gas edger is a 25.4cc commercial-grade stick edger with tool-free blade height adjustment and adjustable throttle control. It has a heavy-duty gliding plate, anti-vibration grip and a steel driveshaft with a lifetime warranty.",
+      "highlights": [
+        "25.4cc low-emission 2-cycle engine",
+        "Tool-free adjustable blade height",
+        "Adjustable throttle control",
+        "High-visibility shield and heavy-duty gliding plate",
+        "Steel driveshaft with lifetime warranty",
+        "Waterproof kill switch"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "25.4cc 2-cycle"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "14.3 lbs. (dry)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "20.3 oz."
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "ED254"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing; steel driveshaft lifetime warranty"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/edger"
+    },
+    {
+      "slug": "gas-hedge-trimmer",
+      "name": "Gas Hedge Trimmer",
+      "category": "gas-tools",
+      "tagline": "22.5cc trimmer with 24\" double-reciprocating blades",
+      "summary": "The gas hedge trimmer pairs a 22.5cc engine with 24-inch double-reciprocating chrome steel blades. A forward-facing exhaust keeps hot exhaust off shrubs, and the gearbox uses ball and roller bearings.",
+      "highlights": [
+        "22.5cc low-emission 2-cycle engine",
+        "24\" double-reciprocating chrome steel blades",
+        "Forward-facing exhaust",
+        "Professional-grade gearbox",
+        "Superior air filter",
+        "12.1 lb dry weight"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "22.5cc 2-cycle"
+        },
+        {
+          "group": "General",
+          "label": "Cutting Width",
+          "value": "24\" blade, double reciprocating"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "12.1 lbs. (dry)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "13.5 oz."
+        },
+        {
+          "group": "General",
+          "label": "Model Number",
+          "value": "HT225-24"
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/hedge-trimmer"
+    },
+    {
+      "slug": "gas-string-trimmers",
+      "name": "Gas String Trimmers",
+      "category": "gas-tools",
+      "tagline": "Three gas string trimmers from 22.5cc to 30.1cc",
+      "summary": "Bad Boy's gas string trimmer line includes the 22.5cc ST225, the 25.4cc ST254 and the 30.1cc ST300T Turbo, which adds torque for wet grass and thick brush. All feature adjustable throttle, anti-vibration grips and a lifetime-warranty steel driveshaft.",
+      "highlights": [
+        "ST225: 22.5cc, 10.5 lbs.",
+        "ST254: 25.4cc, 11.7 lbs., threaded driveshaft",
+        "ST300T Turbo: 30.1cc with extra torque",
+        "Adjustable throttle control and anti-vibration grip",
+        "Steel driveshaft lifetime warranty; waterproof kill switch"
+      ],
+      "specs": [
+        {
+          "group": "General",
+          "label": "Power Source",
+          "value": "Gasoline"
+        },
+        {
+          "group": "Engine",
+          "label": "Engine",
+          "value": "ST225: 22.5cc | ST254: 25.4cc | ST300T Turbo: 30.1cc (all 2-cycle)"
+        },
+        {
+          "group": "General",
+          "label": "Weight",
+          "value": "ST225: 10.5 lbs. | ST254: 11.7 lbs. | ST300T Turbo: 12.2 lbs. (approx.)"
+        },
+        {
+          "group": "Capacities",
+          "label": "Fuel Capacity",
+          "value": "ST225: 16.9 oz. | ST254: 20.3 oz. | ST300T Turbo: 20.3 oz."
+        },
+        {
+          "group": "Warranty",
+          "label": "Warranty",
+          "value": "2 years residential, 1 year commercial, 90 days leasing; steel driveshaft lifetime warranty"
+        }
+      ],
+      "configurations": [
+        {
+          "name": "ST225",
+          "engine": "22.5cc 2-cycle"
+        },
+        {
+          "name": "ST254",
+          "engine": "25.4cc 2-cycle"
+        },
+        {
+          "name": "ST300T Turbo",
+          "engine": "30.1cc 2-cycle"
+        }
+      ],
+      "sourceUrl": "https://badboycountry.com/gas-tools/string-trimmers"
+    }
+  ],
+  "notes": [
+    "Source pages were retrieved directly from badboycountry.com on 2026-10-25 (all 48 URLs returned HTTP 200); specs were transcribed from each page's spec table. No images were fetched.",
+    "Category count: the brief lists 11 category slugs but only 10 distinct slugs appear in it (zero-turn, walk-behind, stand-on, push, tractors, implements, utvs, light-construction, e-series-tools, gas-tools); 10 categories were output.",
+    "Warranty: mower pages (except the Revolt Fury blower, '2 Years, Unlimited Hours') do not state a warranty, so Warranty is omitted for those mowers. Tractor warranties are powertrain-only as stated (6-yr: 5055/5045/4035/4025/3026; 7-yr: 1025/1022).",
+    "Horsepower ranges for multi-engine mowers list the per-engine hp values stated on the page; see configurations for the exact deck/engine pairings.",
+    "Maverick page header lists Kawasaki, Rehlko & Vanguard engines but its prose mentions only Rehlko and Kawasaki; ZT Elite prose says '2 engines' while 3 are listed. Spec tables were used.",
+    "Renegade Gas page labels its tire row 'Front Tires/Rear Tires' but lists 26x12-12 Reaper first; it was recorded as 26x12-12 rear / 15x6-6 front, matching every other model and the Renegade Diesel page.",
+    "5055 and 5045 pages list four variants (S/CS synchro and H/CH HST), not only S/CS; all four are listed as configurations. Their PTO row reads '540, 540E' followed by '584, 791' with no labels; only '540, 540E' was kept.",
+    "4035 page copy still calls it 'the largest tractor in the Bad Boy stable' with 35hp, which conflicts with the 5045/5055; this claim was not used.",
+    "3026, 1025 and 1022 hydraulic flow rows show two figures separated by '/' (e.g. '7.4 (3.1+4.3) / 28.1 (11.7+16.4)') with no explanation of the second figure; recorded as listed.",
+    "4025 overall height is stated as 104.06\", which is taller than the 4035H (97\"); recorded as stated but worth confirming.",
+    "Bandit regular-cab page uses a single spec table for both Bandit 550 and 750, differing only in displacement (545cc vs 735cc); other specs were applied to both. Person capacity is blank on both Bandit pages; Crew Cab seating (4, two rows) comes from the page copy ('first 4-seat UTV'). Top speed is not stated.",
+    "The regular-cab page says the Bandit 750 'comes standard with a front bumper and winch', while its feature list and spec table show the winch included for the Bandit in general; the winch was listed for both 550 and 750. Confirm for the 550.",
+    "Recon feature bullets say '824 lb Operating Capacity' while its spec table says 748 lbs (824 lbs with optional counterweight); the spec table value was used.",
+    "Terrain height is listed as '72.4\"/75.4\" (with/without Beacon)', which looks reversed; recorded as stated.",
+    "E-Series String Trimmer, Chainsaw and Pole Saw pages list a battery with '(288Wh)' that does not match the Max Wh row (160/320/160); both are recorded as stated.",
+    "Gas handheld blower spec table labels 450 cfm as 'Air Velocity'; it was recorded as Air Volume 450 CFM.",
+    "Implements: one entry per implement type on /tractors/implements (14 types); only summary-level specs (available sizes, warranties, select ratings) were included. The page lists more detailed per-size specs.",
+    "Light construction: Recon and Terrain pages do not state a warranty. E-Magnum and both push mowers do not state a warranty except the E-Series self-propelled mower (4 years).",
+    "Prices and payment estimates appear on every page and were intentionally excluded."
+  ]
+}

@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+
+/*
+ * Roanoke Mowers design tokens
+ * Blue Ridge haze palette; Bad Boy orange is reserved for primary actions.
+ */
+@theme {
+  --color-ridge: #2f4a5c;
+  --color-ridge-deep: #1f3442;
+  --color-haze: #c9d3d6;
+  --color-fescue: #e9ece3;
+  --color-paper: #f7f8f4;
+  --color-ink: #1b2630;
+  --color-steel: #5d6a73;
+  --color-steel-light: #8b959c;
+  --color-field: #56723a;
+  --color-signal: #e8641b;
+  --color-signal-deep: #c4500f;
+
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --radius-plate: 6px;
+}
+
+@layer base {
+  html {
+    color: var(--color-ink);
+    background: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    font-variation-settings: 'wdth' 100;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Wide, heavy decal-style display type. */
+  .type-decal {
+    font-variation-settings: 'wdth' 125;
+    font-weight: 850;
+    letter-spacing: -0.01em;
+    line-height: 0.98;
+  }
+
+  .type-decal-md {
+    font-variation-settings: 'wdth' 118;
+    font-weight: 780;
+    letter-spacing: -0.005em;
+    line-height: 1.08;
+  }
+
+  .type-narrow {
+    font-variation-settings: 'wdth' 82;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.875rem;
+    padding: 0 1.25rem;
+    border-radius: var(--radius-plate);
+    font-weight: 650;
+    font-variation-settings: 'wdth' 108;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  }
+
+  .btn-primary {
+    background: var(--color-signal);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-signal-deep);
+  }
+
+  .btn-quiet {
+    border: 1.5px solid currentColor;
+  }
+  .btn-quiet:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .prose-plain p + p {
+    margin-top: 0.85em;
+  }
+}

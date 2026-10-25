@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Types, lint, tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PAYLOAD_SECRET: ci-only-not-a-real-secret
+      PAYLOAD_LOCAL_BINDINGS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generated types are up to date
+        run: |
+          pnpm generate:types:payload
+          git diff --exit-code src/payload-types.ts || (echo "Run 'pnpm generate:types:payload' and commit the result." && exit 1)
+
+      - name: Database migrations match the schema
+        run: |
+          pnpm payload migrate
+          pnpm payload migrate:create ci-check --skip-empty
+          if git status --porcelain src/migrations | grep -q .; then
+            echo "Schema changed without a migration. Run 'pnpm payload migrate:create <name>' and commit it."
+            exit 1
+          fi
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Integration tests
+        run: pnpm test:int
+
+      - name: Seed demo data
+        run: pnpm seed
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: pnpm test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
