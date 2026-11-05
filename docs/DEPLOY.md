@@ -1,11 +1,12 @@
 # Deploying to Cloudflare
 
-Not needed until launch. This is a draft checklist; we'll walk through and verify each step together
+Written for Roanoke (RoanokeMowers.com). For another dealer, read [NEW-DEALER.md](NEW-DEALER.md) first and
+use that dealer's names and domain. This is a draft checklist; we'll walk through and verify each step together
 in stage 6 (launch prep) before anything goes live.
 
 ## What you need
 
-- A Cloudflare account on the **Workers Paid** plan. The site's Worker is about 3.5 MB compressed,
+- A Cloudflare account on the **Workers Paid** plan. The site's Worker is about 4.5 MB compressed,
   over the free plan's 3 MB limit.
 - The `roanokemowers.com` domain added to Cloudflare (DNS managed there).
 
@@ -34,7 +35,7 @@ pnpm wrangler secret put TURNSTILE_SITE_KEY    # from step 5 below
 4. **Email alerts:** in the Cloudflare dashboard, open **Email Service** and onboard
    `roanokemowers.com` as a sending domain (Cloudflare adds the DNS records). Add the lead address
    (currently anattalife@icloud.com) as a verified destination if Cloudflare asks. The site sends
-   from `leads@roanokemowers.com` by default (change with the `EMAIL_FROM_ADDRESS` variable).
+   from `EMAIL_FROM_ADDRESS` in `wrangler.jsonc` (`leads@roanokemowers.com` for Roanoke).
 5. **Spam protection:** in the dashboard, open **Turnstile**, add a widget for `roanokemowers.com`,
    and copy its site key and secret key into the two secrets above. The forms refuse to submit in
    production until these are set.
@@ -62,7 +63,7 @@ After that, every push to `main` that passes CI deploys automatically.
 The live database starts empty. To load dealership info and the Bad Boy catalog once:
 
 ```bash
-CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
+CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true DEALER_PROFILE=roanoke-golf-cars pnpm seed
 ```
 
 The seed refuses to run against production without `ALLOW_PRODUCTION_SEED=true`. It never creates

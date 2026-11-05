@@ -22,7 +22,7 @@ import {
 import { getPayloadClient } from '@/lib/payload'
 import { checkSpam } from '@/lib/spam'
 
-import { CONSENT_TEXT } from './financing/consent'
+import { consentText } from './financing/consent'
 
 async function requestInfo() {
   const h = await headers()
@@ -324,6 +324,7 @@ export async function submitCreditApplication(_prev: FormState, form: FormData):
   const summary = `${applicant.firstName} ${applicant.lastName.slice(0, 1)}. · ${about}`
 
   const payload = await getPayloadClient()
+  const site = await payload.findGlobal({ slug: 'site-settings', overrideAccess: true })
   const app = await payload.create({
     collection: 'credit-applications',
     overrideAccess: true,
@@ -341,7 +342,7 @@ export async function submitCreditApplication(_prev: FormState, form: FormData):
       coApplicant: coApplicant ? [toRecord(coApplicant)] : [],
       consent: {
         agreedAt: new Date().toISOString(),
-        text: CONSENT_TEXT,
+        text: consentText(site.legalName ?? site.siteName),
         ip: ip ?? undefined,
         userAgent: userAgent ?? undefined,
       },

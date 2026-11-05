@@ -15,6 +15,7 @@ test.describe('Admin Panel', () => {
   })
 
   test.afterAll(async () => {
+    await page.context().close()
     await cleanupTestUser()
   })
 

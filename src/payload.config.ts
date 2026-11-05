@@ -78,7 +78,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      titleSuffix: ' · Roanoke Mowers admin',
+      titleSuffix: ' · Dealer admin',
     },
   },
   collections: [
@@ -100,8 +100,9 @@ export default buildConfig({
   email: cloudflareEmailAdapter({
     binding: (cloudflare.env as { EMAIL?: Parameters<typeof cloudflareEmailAdapter>[0]['binding'] }).EMAIL,
     send: inWorker,
-    fromAddress: process.env.EMAIL_FROM_ADDRESS || 'leads@roanokemowers.com',
-    fromName: process.env.EMAIL_FROM_NAME || 'Roanoke Mowers website',
+    // Set per dealer: an address on the dealer's own domain (see docs/NEW-DEALER.md).
+    fromAddress: process.env.EMAIL_FROM_ADDRESS || 'website@example.com',
+    fromName: process.env.EMAIL_FROM_NAME || 'Dealer website',
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

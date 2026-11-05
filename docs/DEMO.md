@@ -42,7 +42,7 @@ The first page load after starting can take 20–30 seconds while the site compi
 
 | | |
 | --- | --- |
-| Email | `admin@roanokemowers.com` |
+| Email | `admin@roanokemowers.com` (the `adminEmail` in the dealer profile) |
 | Password | `demo-admin-password` |
 
 This login exists only inside your Codespace's demo database. It is never used on the live site.

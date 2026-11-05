@@ -14,8 +14,60 @@ export const SiteSettings: GlobalConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'siteName', type: 'text', required: true, defaultValue: 'Roanoke Mowers' },
-        { name: 'legalName', type: 'text', defaultValue: 'Roanoke Golf Cars, LLC' },
+        { name: 'siteName', label: 'Website name', type: 'text', required: true },
+        { name: 'legalName', label: 'Legal business name', type: 'text', required: true },
+      ],
+    },
+    {
+      name: 'siteUrl',
+      label: 'Website address',
+      type: 'text',
+      admin: { description: 'e.g. https://www.example.com. Used in links, emails and search results.' },
+    },
+    {
+      type: 'collapsible',
+      label: 'Look and home page',
+      fields: [
+        {
+          name: 'logo',
+          type: 'upload',
+          relationTo: 'media',
+          admin: { description: 'Optional. A wide logo on a transparent background works best. Without one, the website name is shown.' },
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'brandColor',
+              label: 'Main color',
+              type: 'text',
+              defaultValue: '#2f4a5c',
+              validate: (v: unknown) => !v || /^#[0-9a-f]{6}$/i.test(String(v)) || 'Use a hex color like #2f4a5c.',
+              admin: { description: 'Headings, header bar and footer. Hex, e.g. #2f4a5c.' },
+            },
+            {
+              name: 'accentColor',
+              label: 'Button color',
+              type: 'text',
+              defaultValue: '#e8641b',
+              validate: (v: unknown) => !v || /^#[0-9a-f]{6}$/i.test(String(v)) || 'Use a hex color like #e8641b.',
+              admin: { description: 'Main buttons. Hex, e.g. #e8641b.' },
+            },
+          ],
+        },
+        {
+          name: 'regionName',
+          label: 'Area you serve (short)',
+          type: 'text',
+          admin: { description: 'Completes the headline “Bad Boy equipment for …”, e.g. “the Roanoke Valley”.' },
+        },
+        { name: 'heroText', label: 'Home page intro', type: 'textarea' },
+        {
+          name: 'showMountains',
+          label: 'Mountain horizon under the home page headline',
+          type: 'checkbox',
+          defaultValue: false,
+        },
       ],
     },
     {

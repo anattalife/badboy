@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { telHref } from '@/lib/format'
@@ -17,6 +18,7 @@ export const NAV = [
 ]
 
 export function Header({ settings }: { settings: SiteSetting }) {
+  const logo = typeof settings.logo === 'object' ? settings.logo : null
   const hoursSummary = (settings.hours ?? [])
     .filter((row) => !/closed/i.test(row.hours))
     .map((row) => `${row.days} ${row.hours}`)
@@ -46,7 +48,11 @@ export function Header({ settings }: { settings: SiteSetting }) {
       <div className="border-b border-haze bg-paper">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
           <Link href="/" className="group flex items-baseline gap-2" aria-label={`${settings.siteName} home`}>
-            <span className="type-decal text-2xl text-ridge sm:text-[1.7rem]">Roanoke Mowers</span>
+            {logo?.url ? (
+              <Image src={logo.url} alt={settings.siteName} width={logo.width ?? 240} height={logo.height ?? 60} className="h-10 w-auto sm:h-12" priority />
+            ) : (
+              <span className="type-decal text-2xl text-ridge sm:text-[1.7rem]">{settings.siteName}</span>
+            )}
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">

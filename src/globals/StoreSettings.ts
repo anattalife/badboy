@@ -62,17 +62,17 @@ export const StoreSettings: GlobalConfig = {
         {
           name: 'shipFrom',
           type: 'group',
-          admin: { description: 'The address packages ship from.' },
+          admin: { description: 'The address packages ship from. Leave blank to use the dealership address.' },
           fields: [
-            { name: 'name', type: 'text', defaultValue: 'Roanoke Golf Cars' },
-            { name: 'phone', type: 'text', defaultValue: '5409860098' },
-            { name: 'street', type: 'text', defaultValue: '4802 Melrose Ave NW' },
+            { name: 'name', type: 'text' },
+            { name: 'phone', type: 'text' },
+            { name: 'street', type: 'text' },
             {
               type: 'row',
               fields: [
-                { name: 'city', type: 'text', defaultValue: 'Roanoke' },
-                { name: 'state', type: 'text', defaultValue: 'VA' },
-                { name: 'zip', type: 'text', defaultValue: '24017' },
+                { name: 'city', type: 'text' },
+                { name: 'state', type: 'text' },
+                { name: 'zip', type: 'text' },
               ],
             },
           ],
@@ -105,9 +105,9 @@ export const StoreSettings: GlobalConfig = {
         {
           type: 'row',
           fields: [
-            { name: 'taxEnabled', label: 'Charge sales tax', type: 'checkbox', defaultValue: true },
-            { name: 'taxState', label: 'State', type: 'text', defaultValue: 'VA' },
-            { name: 'taxRatePercent', label: 'Rate (%)', type: 'number', min: 0, max: 20, defaultValue: 5.3 },
+            { name: 'taxEnabled', label: 'Charge sales tax', type: 'checkbox', defaultValue: false },
+            { name: 'taxState', label: 'State', type: 'text' },
+            { name: 'taxRatePercent', label: 'Rate (%)', type: 'number', min: 0, max: 20 },
             { name: 'taxShipping', label: 'Tax shipping charges', type: 'checkbox', defaultValue: false },
           ],
         },

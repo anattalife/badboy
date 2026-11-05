@@ -3,13 +3,16 @@ import Link from 'next/link'
 
 import { LeadForm } from '@/components/forms/LeadForm'
 import { PageIntro } from '@/components/PageIntro'
-import { fullAddress, telHref } from '@/lib/format'
+import { fullAddress, inPlace, telHref } from '@/lib/format'
 import { getSiteSettings, resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
-export const metadata: Metadata = {
-  title: 'Contact us',
-  description: 'Get a quote, ask a question, or get directions to Roanoke Mowers on Melrose Ave NW in Roanoke, VA.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'Contact us',
+    description: `Get a quote, ask a question, or get directions to ${s.siteName}${inPlace(s)}.`,
+  }
 }
 
 export default async function ContactPage(props: PageProps<'/contact'>) {

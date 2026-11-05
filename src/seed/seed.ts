@@ -1,6 +1,7 @@
 import type { Payload } from 'payload'
 
 import catalog from './data/catalog.json'
+import { loadDealerProfile } from './dealer'
 
 type CatalogModel = {
   slug: string
@@ -38,7 +39,6 @@ const SPEC_GROUPS = new Set([
   'Warranty',
 ])
 
-export const DEMO_ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@roanokemowers.com'
 const DEMO_ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD || 'demo-admin-password'
 
 /**
@@ -52,32 +52,40 @@ export async function seed(payload: Payload): Promise<void> {
 
   const log = (msg: string) => payload.logger.info(`[seed] ${msg}`)
 
+  const dealer = loadDealerProfile()
   await payload.updateGlobal({
     slug: 'site-settings',
     data: {
-      siteName: 'Roanoke Mowers',
-      legalName: 'Roanoke Golf Cars, LLC',
-      phone: '540.986.0098',
-      fax: '540.904.6500',
-      leadEmail: process.env.LEAD_EMAIL || 'anattalife@icloud.com',
-      address: {
-        street: '4802 Melrose Ave NW',
-        city: 'Roanoke',
-        state: 'VA',
-        zip: '24017',
-        mapUrl: 'https://maps.google.com/?q=4802+Melrose+Ave+NW,+Roanoke,+VA+24017',
-      },
-      hours: [
-        { days: 'Mon–Fri', hours: '9am–5pm' },
-        { days: 'Saturday', hours: '9am–2pm' },
-        { days: 'Sunday', hours: 'Closed' },
-      ],
-      serviceArea:
-        'Roanoke, Salem, Blacksburg, Lynchburg, Moneta, Smith Mountain Lake and the surrounding Roanoke Valley.',
-      facebookUrl: 'https://www.facebook.com/roanoketurfandtrail/',
+      siteName: dealer.siteName,
+      legalName: dealer.legalName,
+      siteUrl: dealer.siteUrl || null,
+      phone: dealer.phone,
+      fax: dealer.fax || null,
+      leadEmail: process.env.LEAD_EMAIL || dealer.leadEmail,
+      address: { ...dealer.address, mapUrl: dealer.address.mapUrl || null },
+      hours: dealer.hours ?? [],
+      serviceArea: dealer.serviceArea || null,
+      facebookUrl: dealer.facebookUrl || null,
+      regionName: dealer.regionName || null,
+      heroText: dealer.heroText || null,
+      brandColor: dealer.brandColor || '#2f4a5c',
+      accentColor: dealer.accentColor || '#e8641b',
+      showMountains: dealer.showMountains ?? false,
     },
   })
-  log('Dealership info saved')
+  if (dealer.tax) {
+    await payload.updateGlobal({
+      slug: 'store-settings',
+      data: {
+        taxEnabled: dealer.tax.enabled,
+        taxState: dealer.tax.state || null,
+        taxRatePercent: dealer.tax.ratePercent ?? null,
+        taxShipping: dealer.tax.taxShipping ?? false,
+      },
+    })
+  }
+  log(`Dealership info saved (${dealer.siteName})`)
+  const adminEmail = process.env.SEED_ADMIN_EMAIL || dealer.adminEmail || 'admin@example.com'
 
   const categoryIds = new Map<string, number>()
   for (const [index, cat] of catalog.categories.entries()) {
@@ -158,12 +166,12 @@ export async function seed(payload: Payload): Promise<void> {
       collection: 'users',
       data: {
         name: 'Demo Admin',
-        email: DEMO_ADMIN_EMAIL,
+        email: adminEmail,
         password: DEMO_ADMIN_PASSWORD,
         roles: ['admin'],
       },
     })
-    log(`Demo admin created: ${DEMO_ADMIN_EMAIL} / ${DEMO_ADMIN_PASSWORD}  (change this password)`)
+    log(`Demo admin created: ${adminEmail} / ${DEMO_ADMIN_PASSWORD}  (change this password)`)
   }
 }
 

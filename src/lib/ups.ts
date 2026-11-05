@@ -72,7 +72,7 @@ export function buildRateRequest(from: Address & { phone?: string }, to: Address
   const accountNumber = process.env.UPS_ACCOUNT_NUMBER ?? ''
   return {
     RateRequest: {
-      Request: { TransactionReference: { CustomerContext: 'Roanoke Mowers parts' } },
+      Request: { TransactionReference: { CustomerContext: 'Parts order' } },
       Shipment: {
         Shipper: { Name: from.name ?? 'Shipper', ShipperNumber: accountNumber, Address: upsAddress(from) },
         ShipFrom: { Name: from.name ?? 'Shipper', Address: upsAddress(from) },
@@ -122,9 +122,10 @@ export function parseRateResponse(json: unknown): { code: string; amount: number
 }
 
 /** Rough, clearly-labeled sample rates for demos when UPS isn't connected. */
-export function sampleRates(packages: Package[], to: Address): { code: string; amount: number }[] {
+export function sampleRates(packages: Package[], to: Address, from?: Address): { code: string; amount: number }[] {
   const weight = packages.reduce((s, p) => s + Math.max(1, p.weightLb), 0)
-  const far = Math.abs(Number(to.zip.slice(0, 1)) - 2) // Roanoke ZIPs start with 2
+  // Rough distance: difference between the first digits of the two ZIP codes.
+  const far = Math.abs(Number(to.zip.slice(0, 1)) - Number((from?.zip ?? '2').slice(0, 1)))
   const ground = 11 + weight * 0.9 + far * 2.5 + packages.length * 2
   const r = (n: number) => Math.round(n * 100) / 100
   return [
@@ -141,7 +142,7 @@ export async function getUpsRates(from: Address & { phone?: string }, to: Addres
     if (process.env.NODE_ENV === 'production') {
       throw new ShippingUnavailableError('UPS isn’t connected yet.')
     }
-    return sampleRates(packages, to).map((r) => ({ ...r, sample: true }))
+    return sampleRates(packages, to, from).map((r) => ({ ...r, sample: true }))
   }
 
   const token = await getToken()
@@ -151,7 +152,7 @@ export async function getUpsRates(from: Address & { phone?: string }, to: Addres
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
       transId: crypto.randomUUID().replace(/-/g, '').slice(0, 32),
-      transactionSrc: 'roanokemowers',
+      transactionSrc: 'baddealersite',
     },
     body: JSON.stringify(buildRateRequest(from, to, packages)),
   })

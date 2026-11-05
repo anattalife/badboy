@@ -9,7 +9,7 @@ export function Footer({ settings, categories }: { settings: SiteSetting; catego
     <footer className="mt-24 bg-ridge-deep text-haze">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="type-decal text-2xl text-white">Roanoke Mowers</p>
+          <p className="type-decal text-2xl text-white">{settings.siteName}</p>
           <p className="mt-3 max-w-sm">
             Bad Boy mowers, tractors, UTVs and equipment, sold and serviced by {settings.legalName}.
           </p>

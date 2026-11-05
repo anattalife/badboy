@@ -4,6 +4,7 @@ import React from 'react'
 import { CompareTray } from '@/components/CompareControls'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { cityState, themeStyle } from '@/lib/format'
 import { getCategories, getSiteSettings } from '@/lib/payload'
 
 import './styles.css'
@@ -13,14 +14,15 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings()
-  const city = settings.address?.city ?? 'Roanoke'
+  const place = cityState(settings)
+  const siteUrl = settings.siteUrl || process.env.NEXT_PUBLIC_SITE_URL
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://roanokemowers.com'),
+    ...(siteUrl && URL.canParse(siteUrl) ? { metadataBase: new URL(siteUrl) } : {}),
     title: {
-      default: `${settings.siteName} · Bad Boy mowers, tractors & UTVs in ${city}, VA`,
+      default: `${settings.siteName} · Bad Boy mowers, tractors & UTVs${place ? ` in ${place}` : ''}`,
       template: `%s · ${settings.siteName}`,
     },
-    description: `Authorized Bad Boy dealer in ${city}, Virginia. Zero-turn and stand-on mowers, compact tractors, UTVs and light construction equipment, with financing, parts and service.`,
+    description: `Authorized Bad Boy dealer${place ? ` in ${place}` : ''}. Zero-turn and stand-on mowers, compact tractors, UTVs and light construction equipment, with financing, parts and service.`,
   }
 }
 
@@ -28,7 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const [settings, categories] = await Promise.all([getSiteSettings(), getCategories()])
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col">
+      <body className="flex min-h-screen flex-col" style={themeStyle(settings)}>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-paper focus:px-4 focus:py-2"

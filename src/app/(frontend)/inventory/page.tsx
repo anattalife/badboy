@@ -3,12 +3,15 @@ import Link from 'next/link'
 
 import { PageIntro } from '@/components/PageIntro'
 import { UnitCard } from '@/components/UnitCard'
-import { telHref } from '@/lib/format'
+import { inPlace, telHref } from '@/lib/format'
 import { getCategories, getInventory, getSiteSettings, type InventoryFilters } from '@/lib/payload'
 
-export const metadata: Metadata = {
-  title: 'In stock',
-  description: 'New and used Bad Boy equipment on our lot in Roanoke, VA, with prices and stock numbers.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'In stock',
+    description: `New and used Bad Boy equipment on our lot${inPlace(s)}, with prices and stock numbers.`,
+  }
 }
 
 const DECK_RANGES = [

@@ -6,9 +6,10 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 
 - **Business:** Roanoke Golf Cars, LLC, 4802 Melrose Ave NW, Roanoke, VA 24017 · 540.986.0098 ·
   fax 540.904.6500 · Mon–Fri 9–5, Sat 9–2, Sun closed. Existing site: roanokegolfcars1.com (Dealer Spike).
-- **This site:** RoanokeMowers.com, the full Bad Boy line only.
+- **This site:** a Bad Boy dealer website that any dealer can use (the owner now works for Bad Boy).
+  Roanoke Golf Cars / RoanokeMowers.com is the first dealer profile (`dealers/roanoke-golf-cars.json`).
 - **Leads go to:** anattalife@icloud.com (temporary, set in Admin → Dealership info).
-- **Photos:** placeholders until real/dealer media is available.
+- **Photos:** the owner is supplying a zip of product photos to commit and seed (pending).
 - **Working agreement:** the owner wants to be consulted before major decisions. Build in stages and
   stop for review after each.
 - **No third-party services without explicit owner approval.** Default to what Cloudflare already
@@ -23,7 +24,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 | 1 | Foundation, admin, roles, full model catalog | Done, approved |
 | 2 | Inventory (stock units, photos, prices), search/filters, side-by-side compare; catalog expanded with configurations, model numbers, MSRP and implement sizes | Done |
 | 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | Done |
-| 4 | Parts store: catalog, CSV price-list import, cart, checkout, UPS live rates, VA sales tax, orders (shipping only) | **Done, awaiting review; payment processor not yet chosen** |
+| 4 | Parts store: catalog, CSV price-list import, cart, checkout, UPS live rates, sales tax, orders (shipping only) | **Done, awaiting review; payment processor not yet chosen** |
+| 4b | Dealer-neutral: dealer profiles, settings-driven name, logo, colors, home page and metadata | Done |
 | 5 | Service info pages and service request form | Not started |
 | 6 | Launch prep: SEO, caching, Cloudflare Images, security docs for loan data | Not started |
 
@@ -49,6 +51,22 @@ Running notes for whoever works on this next (including future AI sessions). Kee
   orange `#E8641B` for primary actions only. Archivo variable font, using its wide cut (`.type-decal`)
   for headlines. Signature element: the acreage chooser in the home hero. Placeholder art is generic
   machine silhouettes (`src/components/EquipmentArt.tsx`), not Bad Boy imagery.
+
+## Multi-dealer setup
+
+- **Nothing dealer-specific is hardcoded in `src/`.** The name, legal name, address, phone, logo,
+  colors (`brandColor`, `accentColor`), home headline area (`regionName`), intro (`heroText`) and the
+  mountain horizon (`showMountains`) all come from Admin → Dealership info.
+- **Dealer profiles** live in `dealers/<name>.json` (start from `dealers/_template.json`). `pnpm seed`
+  loads the one named by `DEALER_PROFILE` (default `roanoke-golf-cars`) into Dealership info and the
+  store's tax settings; `adminEmail` is the demo admin login.
+- **Colors** are applied as CSS variables on `<body>` (`themeStyle` in `src/lib/format.ts`); deep
+  variants are derived with `color-mix`. Invalid hex values fall back to the stylesheet.
+- **Ship-from** falls back to the dealership address when Store settings → ship-from is blank.
+- **Consent text** names the dealer's legal name (`consentText(legalName)`).
+- **Per-dealer Worker vars** (`wrangler.jsonc`): `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME`,
+  `NEXT_PUBLIC_SITE_URL`, plus the Worker, D1 and R2 names. One deployment per dealer.
+- Migration `dealer_branding` was written by hand (see the comment in it); the generated one was wrong.
 
 ## Inventory (stage 2)
 
@@ -125,8 +143,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
   in production checkout shows an error instead.
 - **Signed quotes:** each rate shown is HMAC-signed with the cart and address fingerprints and a
   30-minute expiry, so the price can't be edited in the browser and stale quotes are rejected.
-- **Tax:** charged only when shipping to `taxState` (default VA, 5.3%; shipping not taxed by default).
-  Editable in Store settings; **owner to confirm with accountant**.
+- **Tax:** charged only when shipping to `taxState`. Off by default; the dealer profile sets it (Roanoke:
+  VA, 5.3%, shipping not taxed). Editable in Store settings; **owner to confirm with accountant**.
 - **Orders** (`src/collections/Orders.ts`): created only by `placeOrder`; parts and manager roles
   manage them. Customers see their order at `/order/<number>?t=<token>`; the token is unreadable even
   to staff. Paid orders decrement `stockQty` when set and email an alert (no customer email yet).

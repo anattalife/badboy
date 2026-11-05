@@ -1,0 +1,29 @@
+{
+  "siteName": "Roanoke Mowers",
+  "legalName": "Roanoke Golf Cars, LLC",
+  "siteUrl": "https://roanokemowers.com",
+  "phone": "540.986.0098",
+  "fax": "540.904.6500",
+  "leadEmail": "anattalife@icloud.com",
+  "adminEmail": "admin@roanokemowers.com",
+  "address": {
+    "street": "4802 Melrose Ave NW",
+    "city": "Roanoke",
+    "state": "VA",
+    "zip": "24017",
+    "mapUrl": "https://maps.google.com/?q=4802+Melrose+Ave+NW,+Roanoke,+VA+24017"
+  },
+  "hours": [
+    { "days": "Mon–Fri", "hours": "9am–5pm" },
+    { "days": "Saturday", "hours": "9am–2pm" },
+    { "days": "Sunday", "hours": "Closed" }
+  ],
+  "regionName": "the Roanoke Valley",
+  "heroText": "Mowers, tractors, UTVs and tools, sold, financed and serviced at our shop on Melrose Avenue.",
+  "serviceArea": "Roanoke, Salem, Blacksburg, Lynchburg, Moneta, Smith Mountain Lake and the surrounding Roanoke Valley.",
+  "facebookUrl": "https://www.facebook.com/roanoketurfandtrail/",
+  "brandColor": "#2f4a5c",
+  "accentColor": "#e8641b",
+  "showMountains": true,
+  "tax": { "enabled": true, "state": "VA", "ratePercent": 5.3, "taxShipping": false }
+}

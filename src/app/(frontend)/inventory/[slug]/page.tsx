@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { Breadcrumbs } from '@/components/PageIntro'
 import { PriceLine, unitCategory } from '@/components/UnitCard'
-import { kindForCategory, modelHref, telHref } from '@/lib/format'
+import { inPlace, kindForCategory, modelHref, telHref } from '@/lib/format'
 import { getSiteSettings, getUnitBySlug } from '@/lib/payload'
 import type { Media, Model } from '@/payload-types'
 
@@ -19,11 +19,11 @@ const STATUS: Record<string, string> = {
 
 export async function generateMetadata(props: PageProps<'/inventory/[slug]'>): Promise<Metadata> {
   const { slug } = await props.params
-  const unit = await getUnitBySlug(slug)
+  const [unit, settings] = await Promise.all([getUnitBySlug(slug), getSiteSettings()])
   if (!unit) return {}
   return {
     title: `${unit.title} · Stock ${unit.stockNumber}`,
-    description: unit.description ?? `${CONDITION[unit.condition]} ${unit.title} for sale in Roanoke, VA.`,
+    description: unit.description ?? `${CONDITION[unit.condition]} ${unit.title} for sale${inPlace(settings)}.`,
   }
 }
 

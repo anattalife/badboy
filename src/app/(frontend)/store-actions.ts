@@ -158,7 +158,18 @@ export async function getShippingRates(items: CartItem[], form: FormData): Promi
 
   const settings = await storeSettings()
   const packages = packLines(cart.lines, settings.defaultBox ?? {})
-  const from = settings.shipFrom as Address & { phone?: string }
+  const site = await (await getPayloadClient()).findGlobal({ slug: 'site-settings', overrideAccess: true })
+  // Ship from the store-settings address, or the dealership address if that's blank.
+  const from: Address & { phone?: string } = settings.shipFrom?.street
+    ? (settings.shipFrom as Address & { phone?: string })
+    : {
+        name: site.legalName ?? site.siteName,
+        phone: site.phone,
+        street: site.address?.street ?? '',
+        city: site.address?.city ?? '',
+        state: site.address?.state ?? '',
+        zip: site.address?.zip ?? '',
+      }
 
   let rates
   try {

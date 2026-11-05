@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 
 import { ModelCard } from '@/components/ModelCard'
 import { PageIntro } from '@/components/PageIntro'
-import { categoryOf } from '@/lib/format'
-import { getAllModels, getCategories } from '@/lib/payload'
+import { categoryOf, inPlace } from '@/lib/format'
+import { getAllModels, getCategories, getSiteSettings } from '@/lib/payload'
 import Link from 'next/link'
 
-export const metadata: Metadata = {
-  title: 'All Bad Boy equipment',
-  description: 'Every Bad Boy mower, tractor, UTV, construction machine and tool we sell in Roanoke, VA.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'All Bad Boy equipment',
+    description: `Every Bad Boy mower, tractor, UTV, construction machine and tool we sell${inPlace(s)}.`,
+  }
 }
 
 export default async function EquipmentPage() {

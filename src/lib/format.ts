@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { Category, Media, Model, SiteSetting } from '@/payload-types'
 
 const usd = new Intl.NumberFormat('en-US', {
@@ -66,4 +67,29 @@ export const kindForCategory = (slug?: string | null): EquipmentKind => {
     default:
       return 'zero-turn'
   }
+}
+
+/** "Roanoke, VA" from the dealership address, or "" when not set. */
+export const cityState = (settings: { address?: { city?: string | null; state?: string | null } | null }) =>
+  [settings.address?.city, settings.address?.state].filter(Boolean).join(', ')
+
+/** " in Roanoke, VA" for page descriptions, or "" when no address is set. */
+export const inPlace = (settings: Parameters<typeof cityState>[0]) => {
+  const place = cityState(settings)
+  return place ? ` in ${place}` : ''
+}
+
+const HEX = /^#[0-9a-f]{6}$/i
+/** Inline CSS variables for the dealer's colors. Invalid values fall back to the stylesheet. */
+export function themeStyle(settings: { brandColor?: string | null; accentColor?: string | null }) {
+  const style: Record<string, string> = {}
+  if (settings.brandColor && HEX.test(settings.brandColor)) {
+    style['--color-ridge'] = settings.brandColor
+    style['--color-ridge-deep'] = `color-mix(in srgb, ${settings.brandColor} 68%, black)`
+  }
+  if (settings.accentColor && HEX.test(settings.accentColor)) {
+    style['--color-signal'] = settings.accentColor
+    style['--color-signal-deep'] = `color-mix(in srgb, ${settings.accentColor} 82%, black)`
+  }
+  return style as React.CSSProperties
 }

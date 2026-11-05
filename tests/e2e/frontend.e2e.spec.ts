@@ -7,6 +7,8 @@ test.describe('Public site', () => {
     await page.goto(BASE)
     await expect(page).toHaveTitle(/Roanoke Mowers/)
     await expect(page.locator('h1')).toHaveText('Bad Boy equipment for the Roanoke Valley')
+    // Dealer colors from Dealership info are applied as CSS variables.
+    await expect(page.locator('body')).toHaveCSS('--color-signal', '#e8641b')
 
     await page.getByRole('button', { name: '1–3 acres' }).click()
     await expect(page.getByRole('link', { name: /^ZT Elite 48/ })).toBeVisible()

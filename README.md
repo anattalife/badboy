@@ -1,7 +1,11 @@
-# RoanokeMowers.com
+# Bad Boy dealer website
 
-Dealer website for **Roanoke Golf Cars, LLC** focused on the full Bad Boy line: mowers, tractors,
-implements, UTVs, light construction equipment and outdoor power tools.
+A ready-to-deploy website for any Bad Boy dealer: the full Bad Boy line (mowers, tractors,
+implements, UTVs, light construction equipment and outdoor power tools), inventory, compare, lead
+forms, an in-house credit application and a parts store. The first dealer set up on it is
+**Roanoke Golf Cars, LLC** (RoanokeMowers.com).
+
+- **Set it up for a new dealer:** [docs/NEW-DEALER.md](docs/NEW-DEALER.md)
 
 - **Demo it:** [docs/DEMO.md](docs/DEMO.md) (GitHub Codespaces, no installs needed)
 - **Deploy it:** [docs/DEPLOY.md](docs/DEPLOY.md) (Cloudflare Workers checklist)
@@ -35,7 +39,7 @@ and re-run the setup script to start over.
 | Command | What it does |
 | --- | --- |
 | `pnpm dev` | Run the site locally |
-| `pnpm seed` | Load or refresh dealership info and the Bad Boy catalog (safe to re-run) |
+| `pnpm seed` | Load or refresh dealership info (from `dealers/$DEALER_PROFILE.json`) and the Bad Boy catalog (safe to re-run) |
 | `pnpm payload migrate:create <name>` | Create a migration after changing a collection |
 | `pnpm payload migrate` | Apply migrations to the local database |
 | `pnpm generate:types` | Regenerate Payload and Cloudflare types |

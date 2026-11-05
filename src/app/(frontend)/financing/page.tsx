@@ -2,15 +2,18 @@ import type { Metadata } from 'next'
 
 import { CreditApplicationForm } from '@/components/forms/CreditApplicationForm'
 import { PageIntro } from '@/components/PageIntro'
-import { telHref } from '@/lib/format'
+import { inPlace, telHref } from '@/lib/format'
 import { getSiteSettings, resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
-import { CONSENT_TEXT } from './consent'
+import { consentText } from './consent'
 
-export const metadata: Metadata = {
-  title: 'Apply for financing',
-  description: 'Apply online for financing on Bad Boy mowers, tractors, UTVs and equipment in Roanoke, VA.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'Apply for financing',
+    description: `Apply online for financing on Bad Boy mowers, tractors, UTVs and equipment${inPlace(s)}.`,
+  }
 }
 
 export default async function FinancingPage(props: PageProps<'/financing'>) {
@@ -29,7 +32,7 @@ export default async function FinancingPage(props: PageProps<'/financing'>) {
           stockNumber={interest.stockNumber}
           subject={interest.subject}
           suggestedPrice={interest.price}
-          consentText={CONSENT_TEXT}
+          consentText={consentText(settings.legalName ?? settings.siteName)}
           siteKey={turnstileSiteKey()}
           renderedAt={formRenderedAt()}
         />

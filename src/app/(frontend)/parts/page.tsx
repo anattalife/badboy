@@ -4,12 +4,15 @@ import Link from 'next/link'
 import { PageIntro } from '@/components/PageIntro'
 import { PartCard } from '@/components/store/PartCard'
 import { PART_CATEGORIES } from '@/collections/Parts'
-import { categoryOf, telHref } from '@/lib/format'
+import { categoryOf, inPlace, telHref } from '@/lib/format'
 import { getAllModels, getParts, getSiteSettings } from '@/lib/payload'
 
-export const metadata: Metadata = {
-  title: 'Parts and accessories',
-  description: 'Bad Boy parts and accessories shipped by UPS from Roanoke Mowers in Roanoke, VA.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'Parts and accessories',
+    description: `Bad Boy parts and accessories shipped by UPS from ${s.siteName}${inPlace(s)}.`,
+  }
 }
 
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? ''

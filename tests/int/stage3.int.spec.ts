@@ -222,7 +222,8 @@ describe('Credit applications', () => {
     await payload.updateGlobal({
       slug: 'site-settings',
       data: {
-        siteName: settings.siteName || 'Roanoke Mowers',
+        siteName: settings.siteName || 'Test Dealer',
+        legalName: settings.legalName || 'Test Dealer, LLC',
         phone: settings.phone || '540.986.0098',
         leadEmail: settings.leadEmail || 'test@roanokemowers.test',
         address: {

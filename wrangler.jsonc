@@ -26,6 +26,12 @@
   // Cloudflare Email Sending, used for lead alerts and staff password resets.
   // The sending domain must be onboarded in Cloudflare Email Service (see docs/DEPLOY.md).
   "send_email": [{ "name": "EMAIL" }],
+  // Per-dealer values. See docs/NEW-DEALER.md.
+  "vars": {
+    "EMAIL_FROM_ADDRESS": "leads@roanokemowers.com",
+    "EMAIL_FROM_NAME": "Roanoke Mowers",
+    "NEXT_PUBLIC_SITE_URL": "https://roanokemowers.com",
+  },
   "services": [
     // The service should match the "name" of your worker
     // {

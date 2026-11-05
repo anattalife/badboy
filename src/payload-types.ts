@@ -1273,7 +1273,29 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: number;
   siteName: string;
-  legalName?: string | null;
+  legalName: string;
+  /**
+   * e.g. https://www.example.com. Used in links, emails and search results.
+   */
+  siteUrl?: string | null;
+  /**
+   * Optional. A wide logo on a transparent background works best. Without one, the website name is shown.
+   */
+  logo?: (number | null) | Media;
+  /**
+   * Headings, header bar and footer. Hex, e.g. #2f4a5c.
+   */
+  brandColor?: string | null;
+  /**
+   * Main buttons. Hex, e.g. #e8641b.
+   */
+  accentColor?: string | null;
+  /**
+   * Completes the headline “Bad Boy equipment for …”, e.g. “the Roanoke Valley”.
+   */
+  regionName?: string | null;
+  heroText?: string | null;
+  showMountains?: boolean | null;
   phone: string;
   fax?: string | null;
   /**
@@ -1334,7 +1356,7 @@ export interface StoreSetting {
    */
   freeShippingOver?: number | null;
   /**
-   * The address packages ship from.
+   * The address packages ship from. Leave blank to use the dealership address.
    */
   shipFrom?: {
     name?: string | null;
@@ -1363,6 +1385,13 @@ export interface StoreSetting {
 export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   legalName?: T;
+  siteUrl?: T;
+  logo?: T;
+  brandColor?: T;
+  accentColor?: T;
+  regionName?: T;
+  heroText?: T;
+  showMountains?: T;
   phone?: T;
   fax?: T;
   leadEmail?: T;

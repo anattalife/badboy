@@ -2,12 +2,15 @@ import type { Metadata } from 'next'
 
 import { LeadForm } from '@/components/forms/LeadForm'
 import { PageIntro } from '@/components/PageIntro'
-import { resolveInterest } from '@/lib/payload'
+import { getSiteSettings, resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
-export const metadata: Metadata = {
-  title: 'Value your trade',
-  description: 'Tell us about your mower, tractor or UTV and get a trade-in value from Roanoke Mowers.',
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSiteSettings()
+  return {
+    title: 'Value your trade',
+    description: `Tell us about your mower, tractor or UTV and get a trade-in value from ${s.siteName}.`,
+  }
 }
 
 export default async function TradeInPage(props: PageProps<'/trade-in'>) {

@@ -27,5 +27,6 @@ pnpm seed
 cat <<'MSG'
 
 Setup complete. The website starts automatically on port 3000.
-Admin sign-in (local demo only): admin@roanokemowers.com / demo-admin-password
+Admin sign-in (local demo only): the adminEmail in the dealer profile
+(admin@roanokemowers.com for Roanoke) / demo-admin-password
 MSG

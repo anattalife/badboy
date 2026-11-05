@@ -67,6 +67,8 @@ export default async function HomePage() {
       .map((m) => ({ name: m.name, href: modelHref(m), note: pickNote(m) })),
   }))
   const featured = models.filter((m) => m.featured).slice(0, 6)
+  const region =
+    settings.regionName || (settings.address?.city ? `the ${settings.address.city} area` : 'your property')
 
   return (
     <>
@@ -74,11 +76,11 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-28 pt-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pb-36 lg:pt-20">
           <div>
             <h1 className="type-decal text-[2.6rem] sm:text-6xl xl:text-7xl">
-              Bad Boy equipment for the Roanoke Valley
+              Bad Boy equipment for {region}
             </h1>
             <p className="mt-6 max-w-xl text-lg text-haze">
-              Mowers, tractors, UTVs and tools, sold, financed and serviced at our shop on Melrose
-              Avenue.
+              {settings.heroText ||
+                'Mowers, tractors, UTVs and tools, sold, financed and serviced by people who know them.'}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/equipment" className="btn btn-primary">
@@ -91,7 +93,7 @@ export default async function HomePage() {
           </div>
           <AcreageChooser options={acreageOptions} />
         </div>
-        <RidgeLine className="absolute inset-x-0 bottom-0 h-20 sm:h-28" />
+        {settings.showMountains ? <RidgeLine className="absolute inset-x-0 bottom-0 h-20 sm:h-28" /> : null}
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6" aria-labelledby="categories-heading">
