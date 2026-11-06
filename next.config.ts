@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
   // Lets the dev server work behind GitHub Codespaces port forwarding.
   allowedDevOrigins: ['*.app.github.dev'],
 
+  // Payload's own first-account screen is replaced by the setup wizard (it's only reachable on a
+  // site with no accounts, and the wizard checks the setup code).
+  async redirects() {
+    return [{ source: '/admin/create-first-user', destination: '/setup', permanent: false }]
+  },
+
   async headers() {
     return [
       {

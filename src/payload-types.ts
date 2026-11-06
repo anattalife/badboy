@@ -72,6 +72,7 @@ export interface Config {
     orders: Order;
     inventory: Inventory;
     models: Model;
+    offers: Offer;
     categories: Category;
     parts: Part;
     'part-imports': PartImport;
@@ -90,6 +91,7 @@ export interface Config {
     orders: OrdersSelect<false> | OrdersSelect<true>;
     inventory: InventorySelect<false> | InventorySelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
+    offers: OffersSelect<false> | OffersSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     parts: PartsSelect<false> | PartsSelect<true>;
     'part-imports': PartImportsSelect<false> | PartImportsSelect<true>;
@@ -160,6 +162,11 @@ export interface Lead {
   message?: string | null;
   model?: (number | null) | Model;
   unit?: (number | null) | Inventory;
+  /**
+   * Configuration picked on the model page (with Bad Boy model number).
+   */
+  configuration?: string | null;
+  offer?: (number | null) | Offer;
   tradeIn?: {
     year?: number | null;
     make?: string | null;
@@ -249,13 +256,17 @@ export interface Model {
       }[]
     | null;
   /**
-   * Reference only, from Bad Boy’s build page for the base configuration. Not shown on the website.
+   * From Bad Boy’s build page for the base configuration. Shown only if you choose to show MSRP.
    */
   msrp?: number | null;
   /**
    * Optional “starting at” price in dollars. Leave blank to show “Call for price”.
    */
   startingPrice?: number | null;
+  /**
+   * Overrides the default set in Dealership info for this item only.
+   */
+  priceDisplay?: ('default' | 'dealer' | 'both' | 'msrp' | 'hidden') | null;
   /**
    * Use the same labels across models (e.g. “Engine”, “Cutting Widths”) so they line up in comparisons.
    */
@@ -409,6 +420,10 @@ export interface Inventory {
    */
   serialNumber?: string | null;
   /**
+   * Overrides the default set in Dealership info for this item only.
+   */
+  priceDisplay?: ('default' | 'dealer' | 'both' | 'msrp' | 'hidden') | null;
+  /**
    * First photo is the main image.
    */
   photos?: (number | Media)[] | null;
@@ -429,6 +444,46 @@ export interface Inventory {
   soldAt?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offers".
+ */
+export interface Offer {
+  id: number;
+  /**
+   * e.g. “0% for 48 months on Rogue”
+   */
+  title: string;
+  /**
+   * Used in the page address. Leave blank to generate it from the title.
+   */
+  slug?: string | null;
+  kind: 'financing' | 'rebate' | 'sale' | 'other';
+  /**
+   * Blank: starts now.
+   */
+  startsAt?: string | null;
+  /**
+   * Blank: no end date.
+   */
+  endsAt?: string | null;
+  /**
+   * One or two sentences.
+   */
+  summary: string;
+  image?: (number | null) | Media;
+  /**
+   * Leave blank if it applies to everything. The offer shows on these models’ pages.
+   */
+  models?: (number | Model)[] | null;
+  /**
+   * Terms, eligibility and “with approved credit” wording.
+   */
+  disclaimer?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * Finance and Admin only. SSN, date of birth and income are encrypted and every view is logged.
@@ -748,6 +803,10 @@ export interface PayloadLockedDocument {
         value: number | Model;
       } | null)
     | ({
+        relationTo: 'offers';
+        value: number | Offer;
+      } | null)
+    | ({
         relationTo: 'categories';
         value: number | Category;
       } | null)
@@ -831,6 +890,8 @@ export interface LeadsSelect<T extends boolean = true> {
   message?: T;
   model?: T;
   unit?: T;
+  configuration?: T;
+  offer?: T;
   tradeIn?:
     | T
     | {
@@ -1044,6 +1105,7 @@ export interface InventorySelect<T extends boolean = true> {
   price?: T;
   msrp?: T;
   serialNumber?: T;
+  priceDisplay?: T;
   photos?: T;
   description?: T;
   featured?: T;
@@ -1074,6 +1136,7 @@ export interface ModelsSelect<T extends boolean = true> {
       };
   msrp?: T;
   startingPrice?: T;
+  priceDisplay?: T;
   specs?:
     | T
     | {
@@ -1097,6 +1160,24 @@ export interface ModelsSelect<T extends boolean = true> {
   images?: T;
   brochure?: T;
   sourceUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offers_select".
+ */
+export interface OffersSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  kind?: T;
+  startsAt?: T;
+  endsAt?: T;
+  summary?: T;
+  image?: T;
+  models?: T;
+  disclaimer?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1283,7 +1364,7 @@ export interface SiteSetting {
    */
   logo?: (number | null) | Media;
   /**
-   * Headings, header bar and footer. Hex, e.g. #2f4a5c.
+   * Headings, header bar and footer. Hex, e.g. #1d1d1b.
    */
   brandColor?: string | null;
   /**
@@ -1295,6 +1376,10 @@ export interface SiteSetting {
    */
   regionName?: string | null;
   heroText?: string | null;
+  /**
+   * Optional. Without one, the main photo of a featured Bad Boy model is used.
+   */
+  heroImage?: (number | null) | Media;
   showMountains?: boolean | null;
   phone: string;
   fax?: string | null;
@@ -1302,6 +1387,14 @@ export interface SiteSetting {
    * Where new leads and requests are sent. Not shown on the site.
    */
   leadEmail: string;
+  /**
+   * Optional. Credit application alerts. Blank uses the lead email.
+   */
+  financeEmail?: string | null;
+  /**
+   * Optional. Service request alerts. Blank uses the lead email.
+   */
+  serviceEmail?: string | null;
   address: {
     street: string;
     city: string;
@@ -1328,6 +1421,19 @@ export interface SiteSetting {
    * Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.
    */
   creditApplicationRetentionDays: number;
+  /**
+   * The default for every model and unit. Each model or unit can override it. When no price shows, visitors get a “Get today’s price” button that sends you a quote request.
+   */
+  priceDisplay: 'dealer' | 'both' | 'msrp' | 'hidden';
+  showPaymentEstimate?: boolean | null;
+  financeApr?: number | null;
+  financeTermMonths?: number | null;
+  financeDownPercent?: number | null;
+  financeDisclaimer?: string | null;
+  /**
+   * When the setup wizard was finished.
+   */
+  setupCompletedAt?: string | null;
   /**
    * Optional banner across the top of every page (e.g. a sale or holiday hours).
    */
@@ -1391,10 +1497,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   accentColor?: T;
   regionName?: T;
   heroText?: T;
+  heroImage?: T;
   showMountains?: T;
   phone?: T;
   fax?: T;
   leadEmail?: T;
+  financeEmail?: T;
+  serviceEmail?: T;
   address?:
     | T
     | {
@@ -1414,6 +1523,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   serviceArea?: T;
   facebookUrl?: T;
   creditApplicationRetentionDays?: T;
+  priceDisplay?: T;
+  showPaymentEstimate?: T;
+  financeApr?: T;
+  financeTermMonths?: T;
+  financeDownPercent?: T;
+  financeDisclaimer?: T;
+  setupCompletedAt?: T;
   announcement?: T;
   updatedAt?: T;
   createdAt?: T;

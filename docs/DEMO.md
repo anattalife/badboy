@@ -36,7 +36,11 @@ The first page load after starting can take 20–30 seconds while the site compi
 - **Cart and checkout**: add parts, check out with any US address, choose a UPS service and place
   the order. The demo uses **sample shipping rates** (UPS isn't connected yet) and a **test payment**
   (no card is asked for or charged). Try a Virginia address to see sales tax added
-- Resize the window narrow to see the phone layout
+- **Offers**: a sample offer shows on the home page, `/offers` and the Rogue page. "Claim this offer"
+  sends a lead tagged with the offer
+- **Build your quote** on any mower page: pick a deck and engine and the quote request carries that
+  exact Bad Boy model number
+- Resize the window narrow to see the phone layout and the Call / Get a quote / Apply bar
 
 **Admin panel** — add `/admin` to the end of the site address.
 
@@ -63,8 +67,21 @@ This login exists only inside your Codespace's demo database. It is never used o
   then find it under **In stock**. Mark it **Sold** and it disappears from the website
 - **Equipment models**: edit a model, add a “starting at” price, or upload a photo, then click
   **Publish** and refresh the public page
-- **Dealership info**: change hours or add an announcement banner (it appears on every page)
+- **Dealership info**: change hours or add an announcement banner (it appears on every page). Under
+  **Prices and financing**, switch between showing your price, price with MSRP, MSRP only or hiding
+  prices, and turn on the monthly payment estimate. Upload a logo and it appears beside the Bad Boy logo
+- **Content → Offers**: post a Bad Boy program or your own special with start and end dates
 - **Staff**: create accounts with roles (Sales, Finance, Service, Parts, Manager, Admin)
+
+## Try the setup wizard
+
+A new dealer's site starts with a four-step setup wizard. To see it in the Codespace terminal:
+
+```bash
+rm -rf .wrangler && pnpm payload migrate && DEALER_PROFILE=none pnpm seed
+```
+
+Then open the site; it goes to `/setup`. Run the reset below to get the Roanoke demo back.
 
 ## Stop or delete it
 

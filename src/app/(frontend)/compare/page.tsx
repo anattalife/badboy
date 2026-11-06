@@ -6,8 +6,9 @@ import { redirect } from 'next/navigation'
 import { CompareSync } from '@/components/CompareControls'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { PageIntro } from '@/components/PageIntro'
+import { Price } from '@/components/Price'
 import { buildComparison, compareHref, MAX_COMPARE, parseCompareParam } from '@/lib/compare'
-import { categoryOf, firstImage, formatPrice, kindForCategory, modelHref } from '@/lib/format'
+import { categoryOf, firstImage, kindForCategory, modelHref } from '@/lib/format'
 import { getAllModels, getCategories, getModelsBySlugs } from '@/lib/payload'
 
 export async function generateMetadata(props: PageProps<'/compare'>): Promise<Metadata> {
@@ -119,7 +120,6 @@ export default async function ComparePage(props: PageProps<'/compare'>) {
                     {picked.map((m) => {
                       const image = firstImage(m)
                       const without = pickedSlugs.filter((s) => s !== m.slug)
-                      const price = formatPrice(m.startingPrice)
                       return (
                         <th key={m.id} scope="col" className="p-4 font-normal">
                           {image?.url ? (
@@ -131,7 +131,9 @@ export default async function ComparePage(props: PageProps<'/compare'>) {
                           <Link href={modelHref(m)} className="type-decal-md block text-xl text-ridge hover:underline">
                             {m.name}
                           </Link>
-                          <p className="mt-1 font-semibold">{price ? `From ${price}` : 'Call for price'}</p>
+                          <div className="mt-1">
+                            <Price model={m} quoteHref={`/contact?model=${encodeURIComponent(m.slug ?? '')}`} size="sm" />
+                          </div>
                           <Link href={compareHref(without)} className="mt-2 inline-block text-sm text-steel underline">
                             Remove<span className="sr-only"> {m.name}</span>
                           </Link>

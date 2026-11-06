@@ -98,7 +98,7 @@ export function CompareTray() {
     <>
       {/* Spacer so the fixed bar never covers the end of the page. */}
       <div aria-hidden="true" className="h-20" />
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-haze bg-paper/95 shadow-[0_-4px_16px_rgba(27,38,48,0.12)] backdrop-blur">
+      <div className="fixed inset-x-0 bottom-14 z-30 lg:bottom-0 border-t border-haze bg-paper/95 shadow-[0_-4px_16px_rgba(27,38,48,0.12)] backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <p className="text-sm">
             <strong>{list.length}</strong> of {MAX_COMPARE} models selected

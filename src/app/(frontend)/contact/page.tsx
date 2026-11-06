@@ -22,7 +22,7 @@ export default async function ContactPage(props: PageProps<'/contact'>) {
   return (
     <>
       <PageIntro
-        title={isQuote ? 'Get a quote' : 'Contact us'}
+        title={interest.offerSlug ? 'Claim this offer' : isQuote ? 'Get a quote' : 'Contact us'}
         lede={
           isQuote
             ? 'Tell us how to reach you and we’ll send pricing and availability.'
@@ -36,6 +36,8 @@ export default async function ContactPage(props: PageProps<'/contact'>) {
             type={isQuote ? 'quote' : 'contact'}
             modelSlug={interest.modelSlug}
             stockNumber={interest.stockNumber}
+            configuration={interest.configuration}
+            offerSlug={interest.offerSlug}
             subject={interest.subject}
             page={isQuote ? `/contact (quote: ${interest.subject})` : '/contact'}
             siteKey={turnstileSiteKey()}

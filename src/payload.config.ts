@@ -18,6 +18,7 @@ import { PartImports } from './collections/PartImports'
 import { Parts } from './collections/Parts'
 import { Media } from './collections/Media'
 import { Models } from './collections/Models'
+import { Offers } from './collections/Offers'
 import { Users } from './collections/Users'
 import { SiteSettings } from './globals/SiteSettings'
 import { StoreSettings } from './globals/StoreSettings'
@@ -87,6 +88,7 @@ export default buildConfig({
     Orders,
     Inventory,
     Models,
+    Offers,
     Categories,
     Parts,
     PartImports,

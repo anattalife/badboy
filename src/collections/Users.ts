@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import { APIError, type CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminField, ROLE_LABELS, ROLES, userHasRole, type Role } from '../access/roles'
 
@@ -31,7 +31,15 @@ export const Users: CollectionConfig = {
       async ({ req, operation, data }) => {
         if (operation !== 'create') return data
         const { totalDocs } = await req.payload.count({ collection: 'users', req })
-        if (totalDocs === 0) data.roles = ['admin']
+        if (totalDocs === 0) {
+          // On a fresh site the first account comes from the setup wizard (/setup), which checks the
+          // setup code. Payload's own "create first user" screen is turned off so nobody who finds a
+          // new site before the dealer does can claim it.
+          if (req.payloadAPI !== 'local') {
+            throw new APIError('Finish setting up the website at /setup first.', 403, null, true)
+          }
+          data.roles = ['admin']
+        }
         return data
       },
     ],

@@ -14,16 +14,30 @@
     "mapUrl": "https://maps.google.com/?q=4802+Melrose+Ave+NW,+Roanoke,+VA+24017"
   },
   "hours": [
-    { "days": "Mon–Fri", "hours": "9am–5pm" },
-    { "days": "Saturday", "hours": "9am–2pm" },
-    { "days": "Sunday", "hours": "Closed" }
+    {
+      "days": "Mon–Fri",
+      "hours": "9am–5pm"
+    },
+    {
+      "days": "Saturday",
+      "hours": "9am–2pm"
+    },
+    {
+      "days": "Sunday",
+      "hours": "Closed"
+    }
   ],
   "regionName": "the Roanoke Valley",
   "heroText": "Mowers, tractors, UTVs and tools, sold, financed and serviced at our shop on Melrose Avenue.",
   "serviceArea": "Roanoke, Salem, Blacksburg, Lynchburg, Moneta, Smith Mountain Lake and the surrounding Roanoke Valley.",
   "facebookUrl": "https://www.facebook.com/roanoketurfandtrail/",
-  "brandColor": "#2f4a5c",
+  "brandColor": "#1d1d1b",
   "accentColor": "#e8641b",
   "showMountains": true,
-  "tax": { "enabled": true, "state": "VA", "ratePercent": 5.3, "taxShipping": false }
+  "tax": {
+    "enabled": true,
+    "state": "VA",
+    "ratePercent": 5.3,
+    "taxShipping": false
+  }
 }

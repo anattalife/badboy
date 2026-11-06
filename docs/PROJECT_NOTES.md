@@ -26,6 +26,7 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 | 3 | Lead forms (quote, trade-in, contact), full in-house loan application (encrypted SSN/income) | Done |
 | 4 | Parts store: catalog, CSV price-list import, cart, checkout, UPS live rates, sales tax, orders (shipping only) | **Done, awaiting review; payment processor not yet chosen** |
 | 4b | Dealer-neutral: dealer profiles, settings-driven name, logo, colors, home page and metadata | Done |
+| 4c | Dealer website in a box: setup wizard, dealer + Bad Boy logo lockup, Bad Boy black/orange look, dealer price display choice, payment estimate, offers, build & quote, phone action bar | Done, awaiting review |
 | 5 | Service info pages and service request form | Not started |
 | 6 | Launch prep: SEO, caching, Cloudflare Images, security docs for loan data | Not started |
 
@@ -47,8 +48,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Roles:** admin, manager, sales, finance, service, parts (`src/access/roles.ts`). Only admin
   manages staff and site settings. The first account created becomes admin. Finance plus admin will be
   the only roles that can read SSN/income (stage 3).
-- **Design:** Blue Ridge palette (ridge slate `#2F4A5C`, fescue `#E9ECE3`, ink `#1B2630`), Bad Boy
-  orange `#E8641B` for primary actions only. Archivo variable font, using its wide cut (`.type-decal`)
+- **Design:** Bad Boy black (`#1D1D1B`) and orange (`#E8641B`) by default, neutral greys; each
+  dealer's main and button colors override them. Archivo variable font, using its wide cut (`.type-decal`)
   for headlines. Signature element: the acreage chooser in the home hero. Models without photos fall
   back to generic machine silhouettes (`src/components/EquipmentArt.tsx`).
 
@@ -67,6 +68,39 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Per-dealer Worker vars** (`wrangler.jsonc`): `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME`,
   `NEXT_PUBLIC_SITE_URL`, plus the Worker, D1 and R2 names. One deployment per dealer.
 - Migration `dealer_branding` was written by hand (see the comment in it); the generated one was wrong.
+
+## Dealer website in a box (stage 4c)
+
+- **Setup wizard** (`/setup`, `src/app/(setup)/`, `src/components/setup/SetupWizard.tsx`). Until
+  `site-settings.setupCompletedAt` is set, the public layout redirects every page to `/setup`.
+  Steps: dealership, logo/colors (live lockup preview), prices/financing/tax, admin account.
+  `completeSetup` (server action) re-validates everything, creates the admin, uploads the logo and
+  saves the settings; it rolls back the account if a later step fails.
+- **Security:** production requires the `SETUP_CODE` secret (12+ characters, constant-time compare,
+  `src/lib/setupCode.ts`); without it `/setup` only explains how to set it. The Users hook refuses
+  the first account from anything but the local API, and `/admin/create-first-user` redirects to
+  `/setup`, so nobody can claim a fresh site through Payload's own screen or REST. Once set up,
+  `/setup` shows "already set up".
+- **Seed:** production seeds load no dealer profile and never create a login. Demos load
+  `DEALER_PROFILE` (default Roanoke) and mark setup complete. `DEALER_PROFILE=none` gives a fresh
+  wizard install. The migration marks existing sites (with a site name) as set up.
+- **Logo lockup** (`DealerLockup` in `Header.tsx`): dealer logo or name, divider, Bad Boy logo,
+  "Authorized dealer". Header and footer (white plate behind the logo on dark backgrounds).
+- **Prices** (`src/lib/pricing.ts`, `src/components/Price.tsx`): `priceDisplay` = dealer / both /
+  msrp / hidden, set in Dealership info with a per-model and per-unit override. Never invents a
+  price; with nothing to show it's a "Get today's price" link to the quote form. Model MSRP is
+  `models.msrp` or the lowest configuration MSRP.
+- **Payment estimate:** optional, amortized from the dealer's APR, term and down payment; disclaimer
+  printed once per page above the footer.
+- **Offers** collection (drafts, start/end dates, models they apply to). Shown on `/offers`, the
+  home page and matching model pages. "Claim this offer" → quote lead with `offer` set.
+- **Build & quote:** model pages with several configurations have a picker; the lead stores the
+  configuration label (name + Bad Boy model number), validated against the model.
+- **Lead routing:** credit application alerts go to `financeEmail` when set; `serviceEmail` is for
+  stage 5.
+- **Phones:** fixed Call / Get a quote / Apply bar; cart moves into the menu.
+- Migration `dealer_box` was hand-edited (adds site_settings columns in place; a rebuild would
+  cascade-delete the hours rows).
 
 ## Photos
 
@@ -182,8 +216,8 @@ tables on 2026-10-25. As of 2026-10-25 Bad Boy had not published a 2027 lineup.
   those pages look like placeholders ($111, $222, $555…) and were ignored; the per-configuration MSRP
   is a separate value on each option. Rebel X, MZ Rambler and E-Magnum have no build page, so their
   configurations come from the product pages without model numbers or MSRP.
-- **MSRP is stored but not shown publicly** (`models.msrp`, `configurations.msrp`). Showing it is the
-  owner's call.
+- **MSRP** (`models.msrp`, `configurations.msrp`) shows only when the dealer picks an MSRP price
+  display (see stage 4c).
 - **Implements**: 14 types with 50 sizes; per-size specs render as a size table. Model numbers exist
   only for rotary tillers and spreaders. No implement MSRP is published.
 - **Accessories**: 82 (68 mower, 7 Bandit, 7 E-Series) are saved in `src/seed/data/accessories.json`

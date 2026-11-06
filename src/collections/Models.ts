@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { isContentManager, publishedOrStaff } from '../access/roles'
+import { priceDisplayOverride } from '../fields/pricing'
 import { slugField } from '../fields/slug'
 
 export const SPEC_GROUPS = [
@@ -90,7 +91,7 @@ export const Models: CollectionConfig = {
               min: 0,
               admin: {
                 description:
-                  'Reference only, from Bad Boy’s build page for the base configuration. Not shown on the website.',
+                  'From Bad Boy’s build page for the base configuration. Shown only if you choose to show MSRP.',
               },
             },
             {
@@ -101,6 +102,7 @@ export const Models: CollectionConfig = {
                 description: 'Optional “starting at” price in dollars. Leave blank to show “Call for price”.',
               },
             },
+            priceDisplayOverride,
           ],
         },
         {

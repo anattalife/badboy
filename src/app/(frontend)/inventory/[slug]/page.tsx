@@ -5,7 +5,8 @@ import { notFound } from 'next/navigation'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { Breadcrumbs } from '@/components/PageIntro'
 import { ProductGallery } from '@/components/ProductGallery'
-import { PriceLine, unitCategory } from '@/components/UnitCard'
+import { Price } from '@/components/Price'
+import { unitCategory } from '@/components/UnitCard'
 import { inPlace, kindForCategory, modelHref, modelImages, telHref } from '@/lib/format'
 import { getSiteSettings, getUnitBySlug } from '@/lib/payload'
 import type { Media, Model } from '@/payload-types'
@@ -87,10 +88,8 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
               </p>
               <h1 className="type-decal-md mt-2 text-3xl text-ridge sm:text-4xl">{unit.title}</h1>
               <div className="mt-5">
-                <PriceLine unit={unit} size="lg" />
-                {unit.price ? (
-                  <p className="mt-1 text-sm text-steel">Taxes and fees not included.</p>
-                ) : null}
+                <Price unit={unit} quoteHref={quoteHref} size="lg" />
+                {unit.price ? <p className="mt-1 text-sm text-steel">Taxes and fees not included.</p> : null}
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href={quoteHref} className="btn btn-primary">

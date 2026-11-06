@@ -2,16 +2,21 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { BuildQuote, type BuildOption } from '@/components/BuildQuote'
 import { CompareToggle } from '@/components/CompareControls'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { ModelCard } from '@/components/ModelCard'
+import { OfferCard } from '@/components/OfferCard'
 import { UnitCard } from '@/components/UnitCard'
 import { PartCard } from '@/components/store/PartCard'
+import { Price } from '@/components/Price'
 import { ProductGallery } from '@/components/ProductGallery'
 import { Breadcrumbs } from '@/components/PageIntro'
-import { categoryOf, formatPrice, kindForCategory, modelImages, telHref } from '@/lib/format'
+import { categoryOf, kindForCategory, modelImages, telHref } from '@/lib/format'
 import { toSizeMatrix } from '@/lib/specs'
 import {
+  configurationLabel,
+  getCurrentOffers,
   getModelBySlug,
   getModelsByCategory,
   getPartsForModel,
@@ -49,9 +54,9 @@ export default async function ModelPage(props: Params) {
     getUnitsForModel(model.id),
     getPartsForModel(model.id),
   ])
+  const offers = await getCurrentOffers(model.id)
 
   const images = modelImages(model)
-  const price = formatPrice(model.startingPrice)
   const specGroups = new Map<string, { label: string; value: string }[]>()
   for (const spec of model.specs ?? []) {
     const group = spec.group ?? 'General'
@@ -70,6 +75,13 @@ export default async function ModelPage(props: Params) {
   }
   const related = siblings.filter((m) => m.id !== model.id).slice(0, 3)
   const quoteHref = `/contact?model=${encodeURIComponent(model.slug ?? '')}`
+  const buildOptions: BuildOption[] = (model.configurations ?? []).map((c) => ({
+    label: configurationLabel(c),
+    name: c.name,
+    modelNumber: c.modelNumber,
+    engine: c.engine,
+    horsepower: c.horsepower,
+  }))
 
   return (
     <>
@@ -97,9 +109,9 @@ export default async function ModelPage(props: Params) {
               <p className="font-medium text-steel">Bad Boy {category.name}</p>
               <h1 className="type-decal mt-2 text-4xl text-ridge sm:text-6xl">{model.name}</h1>
               {model.tagline ? <p className="mt-4 text-xl text-ink">{model.tagline}</p> : null}
-              <p className="mt-6 text-2xl font-bold text-ridge [font-variation-settings:'wdth'_110]">
-                {price ? `From ${price}` : 'Call for price'}
-              </p>
+              <div className="mt-6">
+                <Price model={model} quoteHref={quoteHref} size="lg" />
+              </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href={quoteHref} className="btn btn-primary">
                   Get a quote
@@ -125,10 +137,28 @@ export default async function ModelPage(props: Params) {
                   </a>
                 ) : null}
               </div>
+              {buildOptions.length > 1 && model.slug ? (
+                <div className="mt-6">
+                  <BuildQuote modelSlug={model.slug} modelName={model.name} options={buildOptions} />
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
       </div>
+
+      {offers.length ? (
+        <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-6" aria-labelledby="model-offers">
+          <h2 id="model-offers" className="type-decal-md text-2xl text-ridge">
+            Current offers
+          </h2>
+          <div className="mt-5 grid gap-5 md:grid-cols-3">
+            {offers.slice(0, 3).map((o) => (
+              <OfferCard key={o.id} offer={o} compact />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <div className="mx-auto grid max-w-7xl gap-14 px-4 pt-14 sm:px-6 lg:grid-cols-[1fr_1.4fr]">
         <div>

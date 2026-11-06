@@ -4,7 +4,7 @@ import config from '@payload-config'
 import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
 
-import type { Category, Inventory as InventoryUnit, Model, SiteSetting } from '@/payload-types'
+import type { Category, Inventory as InventoryUnit, Model, Offer, SiteSetting } from '@/payload-types'
 
 export const getPayloadClient = () => getPayload({ config })
 
@@ -187,9 +187,26 @@ export async function getModelsBySlugs(slugs: string[]): Promise<Model[]> {
 }
 
 /** Resolves `?model=` / `?unit=` from a quote or financing link into what the customer is asking about. */
-export async function resolveInterest(params: { model?: string | string[]; unit?: string | string[] }) {
+type Configuration = NonNullable<Model['configurations']>[number]
+
+export const configurationLabel = (c: Configuration) => `${c.name}${c.modelNumber ? ` (${c.modelNumber})` : ''}`
+
+/** Finds a model's configuration by its label, Bad Boy model number or name. */
+export const findConfiguration = (model: Model, key: string): Configuration | null =>
+  (model.configurations ?? []).find(
+    (c) => configurationLabel(c) === key || (c.modelNumber && c.modelNumber === key) || c.name === key,
+  ) ?? null
+
+export async function resolveInterest(params: {
+  model?: string | string[]
+  unit?: string | string[]
+  config?: string | string[]
+  offer?: string | string[]
+}) {
   const modelSlug = typeof params.model === 'string' ? params.model.slice(0, 80) : undefined
   const stockNumber = typeof params.unit === 'string' ? params.unit.slice(0, 40) : undefined
+  const configKey = typeof params.config === 'string' ? params.config.slice(0, 120) : undefined
+  const offer = typeof params.offer === 'string' ? await getOfferBySlug(params.offer.slice(0, 120)) : null
   const payload = await getPayloadClient()
   const unit = stockNumber
     ? ((
@@ -203,10 +220,18 @@ export async function resolveInterest(params: { model?: string | string[]; unit?
       ).docs[0] ?? null)
     : null
   const model = !unit && modelSlug ? await getModelBySlug(modelSlug) : null
+  const configuration = model && configKey ? findConfiguration(model, configKey) : null
+  const subject = unit
+    ? `${unit.title} (stock ${unit.stockNumber})`
+    : model
+      ? `Bad Boy ${model.name}${configuration ? ` ${configurationLabel(configuration)}` : ''}`
+      : null
   return {
     modelSlug: model?.slug ?? undefined,
     stockNumber: unit?.stockNumber ?? undefined,
-    subject: unit ? `${unit.title} (stock ${unit.stockNumber})` : model ? `Bad Boy ${model.name}` : null,
+    configuration: configuration ? configurationLabel(configuration) : undefined,
+    offerSlug: offer?.slug ?? undefined,
+    subject: [offer ? `Offer: ${offer.title}` : null, subject].filter(Boolean).join(' · ') || null,
     price: unit?.price ?? model?.startingPrice ?? null,
   }
 }
@@ -265,4 +290,44 @@ export const getPartsForModel = cache(async (modelId: number) => {
     overrideAccess: false,
   })
   return { docs, totalDocs }
+})
+
+/* ------------------------------------------------------------------ */
+/* Offers                                                              */
+/* ------------------------------------------------------------------ */
+
+/** Published offers running today, optionally only those for one model (or for everything). */
+export const getCurrentOffers = cache(async (modelId?: number): Promise<Offer[]> => {
+  const payload = await getPayloadClient()
+  const now = new Date().toISOString()
+  const and: Where[] = [
+    { or: [{ startsAt: { exists: false } }, { startsAt: { less_than_equal: now } }] },
+    { or: [{ endsAt: { exists: false } }, { endsAt: { greater_than_equal: now } }] },
+  ]
+  const { docs } = await payload.find({
+    collection: 'offers',
+    where: { and },
+    sort: 'endsAt',
+    limit: 24,
+    depth: 1,
+    overrideAccess: false,
+  })
+  if (!modelId) return docs
+  // Offers with no models listed apply to everything.
+  return docs.filter((o) => {
+    const ids = (o.models ?? []).map((m) => (typeof m === 'object' ? m.id : m))
+    return ids.length === 0 || ids.includes(modelId)
+  })
+})
+
+export const getOfferBySlug = cache(async (slug: string): Promise<Offer | null> => {
+  const payload = await getPayloadClient()
+  const { docs } = await payload.find({
+    collection: 'offers',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 0,
+    overrideAccess: false,
+  })
+  return docs[0] ?? null
 })

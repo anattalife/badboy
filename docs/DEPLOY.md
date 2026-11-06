@@ -27,6 +27,7 @@ pnpm wrangler secret put PAYLOAD_SECRET        # paste the output of: openssl ra
 pnpm wrangler secret put FIELD_ENCRYPTION_KEY  # paste the output of: openssl rand -base64 32
 pnpm wrangler secret put TURNSTILE_SECRET_KEY  # from step 5 below
 pnpm wrangler secret put TURNSTILE_SITE_KEY    # from step 5 below
+pnpm wrangler secret put SETUP_CODE            # paste the output of: openssl rand -hex 12
 ```
 
 > **Keep a copy of `FIELD_ENCRYPTION_KEY` somewhere safe** (for example a password manager). If it's
@@ -53,8 +54,9 @@ Then in the Cloudflare dashboard:
    - Build variables: `CLOUDFLARE_ENV` = *(leave empty)*. Add `PAYLOAD_SECRET` as a build secret too
      (migrations need it).
 2. **Settings → Domains & Routes**: add `roanokemowers.com` and `www.roanokemowers.com`.
-3. Visit `https://roanokemowers.com/admin` and create the first account. The first account becomes
-   the admin automatically. Do not reuse the demo password.
+3. Load the catalog (below), then visit the site. It opens the **setup wizard** at `/setup`. Enter
+   the `SETUP_CODE`, the dealership details, logo, pricing choices and the admin account. The wizard
+   locks itself once it's done.
 
 After that, every push to `main` that passes CI deploys automatically.
 
@@ -64,11 +66,12 @@ The live database starts empty. To load dealership info, the Bad Boy catalog and
 (uploaded to the R2 bucket) once:
 
 ```bash
-CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true DEALER_PROFILE=roanoke-golf-cars pnpm seed
+CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
 ```
 
-The seed refuses to run against production without `ALLOW_PRODUCTION_SEED=true`. It never creates
-the demo admin there if an account already exists.
+The seed refuses to run against production without `ALLOW_PRODUCTION_SEED=true`. In production it
+loads no dealer details and never creates a login; the dealer does that in the setup wizard.
+(Add `DEALER_PROFILE=roanoke-golf-cars` to pre-fill Roanoke's details instead.)
 
 ## Later stages will add
 

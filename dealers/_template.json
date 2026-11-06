@@ -14,16 +14,30 @@
     "mapUrl": ""
   },
   "hours": [
-    { "days": "Mon–Fri", "hours": "8am–5pm" },
-    { "days": "Saturday", "hours": "8am–12pm" },
-    { "days": "Sunday", "hours": "Closed" }
+    {
+      "days": "Mon–Fri",
+      "hours": "8am–5pm"
+    },
+    {
+      "days": "Saturday",
+      "hours": "8am–12pm"
+    },
+    {
+      "days": "Sunday",
+      "hours": "Closed"
+    }
   ],
   "regionName": "the Anytown area",
   "heroText": "Bad Boy mowers, tractors, UTVs and tools, sold, financed and serviced locally.",
   "serviceArea": "Towns you serve, separated by commas.",
   "facebookUrl": "",
-  "brandColor": "#2f4a5c",
+  "brandColor": "#1d1d1b",
   "accentColor": "#e8641b",
   "showMountains": false,
-  "tax": { "enabled": false, "state": "", "ratePercent": 0, "taxShipping": false }
+  "tax": {
+    "enabled": false,
+    "state": "",
+    "ratePercent": 0,
+    "taxShipping": false
+  }
 }

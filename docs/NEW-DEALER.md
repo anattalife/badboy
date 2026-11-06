@@ -1,67 +1,66 @@
 # Setting up the site for a new dealer
 
-Each dealer gets its own copy of the site on Cloudflare: its own Worker, database and file bucket.
-The code is the same for every dealer; only the settings below change.
+Each dealer gets their own copy of the site on Cloudflare: their own Worker, database and photo
+storage. The code is the same for every dealer. The dealer enters their own details, logo, colors
+and pricing in a **setup wizard** the first time the site opens.
 
-## 1. Make a dealer profile
+## 1. Deploy a copy
 
-```bash
-cp dealers/_template.json dealers/<dealer-name>.json
-```
-
-Use lowercase letters, numbers and dashes for `<dealer-name>` (for example `smith-farm-supply`).
-Fill in every field:
-
-| Field | What it's for |
-| --- | --- |
-| `siteName` | Shown in the header, page titles and emails |
-| `legalName` | Footer and the credit application consent wording |
-| `siteUrl` | The live web address, e.g. `https://www.smithmowers.com` |
-| `phone`, `fax`, `address`, `hours` | Contact details shown across the site |
-| `leadEmail` | Where quote, trade-in, contact and credit application alerts go |
-| `adminEmail` | The demo admin login (demo only, never created on the live site if an account exists) |
-| `regionName` | Finishes the home headline “Bad Boy equipment for …”, e.g. `the Shenandoah Valley` |
-| `heroText` | One or two sentences under the home headline |
-| `serviceArea`, `facebookUrl` | Optional |
-| `brandColor`, `accentColor` | Main color and button color, as `#rrggbb` |
-| `showMountains` | `true` to show the mountain horizon on the home page |
-| `tax` | Sales tax for parts orders: state, rate and whether shipping is taxed. Confirm with the dealer's accountant |
-
-Everything here can be changed later in **Admin → Dealership info** and **Parts store → Store
-settings**. A logo can be uploaded there too (a wide logo on a transparent background).
-
-## 2. Try it in a Codespace
-
-```bash
-rm -rf .wrangler && pnpm payload migrate && DEALER_PROFILE=<dealer-name> pnpm seed
-pnpm dev
-```
-
-## 3. Cloudflare names and variables
-
-In `wrangler.jsonc` set, for this dealer:
+Follow [DEPLOY.md](DEPLOY.md) with the dealer's names and domain. In `wrangler.jsonc` set:
 
 - `name`: the Worker name, e.g. `smithmowers`
 - `d1_databases[0].database_name` and `database_id` (from `pnpm wrangler d1 create <name>`)
 - `r2_buckets[0].bucket_name` (from `pnpm wrangler r2 bucket create <name>-media`)
 - `vars.EMAIL_FROM_ADDRESS`: an address on the dealer's domain, e.g. `leads@smithmowers.com`
-- `vars.EMAIL_FROM_NAME`: usually the `siteName`
-- `vars.NEXT_PUBLIC_SITE_URL`: the same as `siteUrl`
+- `vars.EMAIL_FROM_NAME`: the dealer's name
+- `vars.NEXT_PUBLIC_SITE_URL`: the live web address
 
 Keep each dealer's `wrangler.jsonc` on its own branch or fork so deployments don't overwrite each other.
 
-## 4. Secrets, email, spam check, UPS
-
-Follow [DEPLOY.md](DEPLOY.md) with the dealer's domain. Every dealer needs **its own**
-`PAYLOAD_SECRET` and `FIELD_ENCRYPTION_KEY`. Never copy these from another dealer or from the demo.
-
-## 5. Load the catalog
+Every dealer needs **their own** secrets. Never copy them from another dealer or from the demo:
 
 ```bash
-CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true DEALER_PROFILE=<dealer-name> pnpm seed
+pnpm wrangler secret put PAYLOAD_SECRET        # openssl rand -hex 32
+pnpm wrangler secret put FIELD_ENCRYPTION_KEY  # openssl rand -base64 32  (keep a safe copy)
+pnpm wrangler secret put SETUP_CODE            # openssl rand -hex 12  (give this to the dealer)
 ```
 
-Bad Boy's product photos and logos are part of the site and load with the catalog for every dealer.
+## 2. Load the Bad Boy catalog
 
-Then sign in at `/admin`, create the first account (it becomes the admin), and set prices,
-inventory and parts weights.
+```bash
+CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
+```
+
+This loads the full Bad Boy line, specs, product photos and accessories. It doesn't add any dealer
+details or accounts; the wizard does that.
+
+## 3. The dealer runs the setup wizard
+
+Until setup is finished, every page of the site sends visitors to `/setup`. The dealer enters the
+**setup code** and then, in four steps:
+
+1. **Dealership**: name, legal name, phone, lead email, address, website, hours
+2. **Logo and look**: logo upload, main and button colors (with a live preview of their logo beside
+   the Bad Boy logo), the area they serve and a home page intro
+3. **Prices and financing**: show their price, price with MSRP crossed out, MSRP only, or hide
+   prices ("Get today's price" button); optional monthly payment estimate (APR, term, down payment);
+   sales tax on parts
+4. **Admin account**: their name, email and password
+
+When they finish, the site is live and `/setup` is locked. Everything can be changed later in the
+admin under **Settings → Dealership info**, along with a home page photo, a separate finance email
+and per-model or per-unit price display.
+
+Why the setup code: a brand-new site has no accounts. Without the code, whoever opened it first
+could create the admin account. Payload's own "create first user" screen is turned off for the same
+reason.
+
+## Demos and dealer profiles
+
+For a demo that skips the wizard, `pnpm seed` can load a dealer profile from `dealers/<name>.json`
+(start from `dealers/_template.json`): `DEALER_PROFILE=<name> pnpm seed`. Demos default to
+`roanoke-golf-cars`. To try the wizard locally:
+
+```bash
+rm -rf .wrangler && pnpm payload migrate && DEALER_PROFILE=none pnpm seed && pnpm dev
+```

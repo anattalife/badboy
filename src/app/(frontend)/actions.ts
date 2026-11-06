@@ -19,7 +19,7 @@ import {
   money,
   str,
 } from '@/lib/forms'
-import { getPayloadClient } from '@/lib/payload'
+import { configurationLabel, getOfferBySlug, getPayloadClient } from '@/lib/payload'
 import { checkSpam } from '@/lib/spam'
 
 import { consentText } from './financing/consent'
@@ -53,12 +53,19 @@ async function findModelAndUnit(modelSlug: string, stockNumber: string) {
   return { model, unit }
 }
 
-async function notify(subject: string, body: { text: string; html: string }, replyTo?: string) {
+async function notify(
+  subject: string,
+  body: { text: string; html: string },
+  replyTo?: string,
+  team: 'sales' | 'finance' = 'sales',
+) {
   const payload = await getPayloadClient()
   try {
     const settings = await payload.findGlobal({ slug: 'site-settings', overrideAccess: true })
-    if (!settings.leadEmail) return
-    await payload.sendEmail({ to: settings.leadEmail, subject, replyTo, ...body })
+    // Credit applications can go to a separate finance inbox; everything else to the lead email.
+    const to = (team === 'finance' && settings.financeEmail) || settings.leadEmail
+    if (!to) return
+    await payload.sendEmail({ to, subject, replyTo, ...body })
   } catch (error) {
     // The lead is already saved; a failed alert must not lose it or show an error to the customer.
     payload.logger.error({ err: error, msg: `Alert email failed: ${subject}` })
@@ -115,7 +122,18 @@ export async function submitLead(_prev: FormState, form: FormData): Promise<Form
   }
 
   const { model, unit } = await findModelAndUnit(str(form, 'model', 80), str(form, 'unit', 40))
-  const about = unit ? `${unit.title} (stock ${unit.stockNumber})` : model ? `Bad Boy ${model.name}` : null
+  // Only accept a build that really belongs to the model, and only published, current offers.
+  const configKey = str(form, 'config', 160)
+  const config = model && configKey ? (model.configurations ?? []).find((c) => configurationLabel(c) === configKey) : null
+  const configuration = config ? configurationLabel(config) : undefined
+  const offerSlug = str(form, 'offer', 120)
+  const offer = offerSlug ? await getOfferBySlug(offerSlug) : null
+  const aboutItem = unit
+    ? `${unit.title} (stock ${unit.stockNumber})`
+    : model
+      ? `Bad Boy ${model.name}${configuration ? ` ${configuration}` : ''}`
+      : null
+  const about = [offer ? `Offer: ${offer.title}` : null, aboutItem].filter(Boolean).join(' · ') || null
   const tradeLabel = tradeIn ? `${tradeIn.year} ${tradeIn.make} ${tradeIn.model}` : null
   const typeLabel = { quote: 'Quote request', 'trade-in': 'Trade-in', contact: 'Contact' }[type]!
   const summary = [typeLabel, about ?? tradeLabel, name].filter(Boolean).join(' · ')
@@ -145,6 +163,8 @@ export async function submitLead(_prev: FormState, form: FormData): Promise<Form
       message: message || undefined,
       model: model?.id,
       unit: unit?.id,
+      configuration,
+      offer: offer?.id,
       tradeIn: tradeIn
         ? {
             ...tradeIn,
@@ -362,6 +382,8 @@ export async function submitCreditApplication(_prev: FormState, form: FormData):
       ],
       `${siteUrl}/admin/collections/credit-applications/${app.id}`,
     ),
+    undefined,
+    'finance',
   )
 
   await purgeExpiredApplications(payload).catch((error) =>

@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { formatPrice, kindForCategory } from '@/lib/format'
+import { kindForCategory } from '@/lib/format'
 import type { Category, Inventory, Media } from '@/payload-types'
 
 import { EquipmentArt } from './EquipmentArt'
+import { Price } from './Price'
 
 export const unitHref = (unit: Inventory) => `/inventory/${unit.slug}`
 
@@ -25,22 +26,6 @@ export const unitCategory = (unit: Inventory): Category | null =>
 
 const CONDITION: Record<string, string> = { new: 'New', used: 'Used', demo: 'Demo' }
 const STATUS_TAG: Record<string, string> = { 'on-order': 'On order', pending: 'Sale pending' }
-
-export function PriceLine({ unit, size = 'md' }: { unit: Inventory; size?: 'md' | 'lg' }) {
-  const price = formatPrice(unit.price)
-  const msrp = unit.msrp && unit.price && unit.msrp > unit.price ? formatPrice(unit.msrp) : null
-  return (
-    <p className={`font-bold text-ridge [font-variation-settings:'wdth'_110] ${size === 'lg' ? 'text-3xl' : 'text-lg'}`}>
-      {price ?? 'Call for price'}
-      {msrp ? (
-        <span className={`ml-2 font-normal text-steel line-through ${size === 'lg' ? 'text-lg' : 'text-sm'}`}>
-          <span className="sr-only">MSRP </span>
-          {msrp}
-        </span>
-      ) : null}
-    </p>
-  )
-}
 
 export function UnitCard({ unit }: { unit: Inventory }) {
   const photo = unitPhoto(unit)
@@ -98,7 +83,7 @@ export function UnitCard({ unit }: { unit: Inventory }) {
           ) : null}
         </dl>
         <div className="mt-auto pt-4">
-          <PriceLine unit={unit} />
+          <Price unit={unit} quoteHref={`/contact?unit=${encodeURIComponent(unit.stockNumber)}`} size="sm" inCard />
         </div>
       </div>
     </article>

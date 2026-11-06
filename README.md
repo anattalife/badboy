@@ -5,7 +5,8 @@ implements, UTVs, light construction equipment and outdoor power tools), invento
 forms, an in-house credit application and a parts store. The first dealer set up on it is
 **Roanoke Golf Cars, LLC** (RoanokeMowers.com).
 
-- **Set it up for a new dealer:** [docs/NEW-DEALER.md](docs/NEW-DEALER.md)
+- **Set it up for a new dealer:** [docs/NEW-DEALER.md](docs/NEW-DEALER.md) (deploy, load the catalog,
+  the dealer runs the built-in setup wizard)
 
 - **Demo it:** [docs/DEMO.md](docs/DEMO.md) (GitHub Codespaces, no installs needed)
 - **Deploy it:** [docs/DEPLOY.md](docs/DEPLOY.md) (Cloudflare Workers checklist)

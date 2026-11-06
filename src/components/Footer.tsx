@@ -1,8 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { fullAddress, telHref } from '@/lib/format'
 import type { Category, SiteSetting } from '@/payload-types'
+
+import { DealerLockup } from './Header'
 
 export function Footer({ settings, categories }: { settings: SiteSetting; categories: Category[] }) {
   const year = new Date().getFullYear()
@@ -10,17 +11,7 @@ export function Footer({ settings, categories }: { settings: SiteSetting; catego
     <footer className="mt-24 bg-ridge-deep text-haze">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="type-decal text-2xl text-white">{settings.siteName}</p>
-          <p className="mt-3 flex items-center gap-3 text-sm">
-            <Image
-              src="/brand/bbm_logo_primary_reverse.webp"
-              alt="Bad Boy Mowers"
-              width={80}
-              height={51}
-              className="h-[51px] w-auto"
-            />
-            <span>Authorized Bad Boy dealer</span>
-          </p>
+          <DealerLockup settings={settings} reverse />
           <p className="mt-3 max-w-sm">
             Bad Boy mowers, tractors, UTVs and equipment, sold and serviced by {settings.legalName}.
           </p>

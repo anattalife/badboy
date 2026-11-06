@@ -1,6 +1,7 @@
 import type { Access, CollectionBeforeValidateHook, CollectionConfig, FieldAccess } from 'payload'
 
 import { hasRole } from '../access/roles'
+import { priceDisplayOverride } from '../fields/pricing'
 import { slugify } from '../fields/slug'
 
 /** Statuses the public can see. Everything else is staff-only. */
@@ -207,6 +208,7 @@ export const Inventory: CollectionConfig = {
         },
       ],
     },
+    priceDisplayOverride,
     {
       name: 'photos',
       type: 'upload',

@@ -1,12 +1,14 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { AcreageChooser, type AcreageOption } from '@/components/AcreageChooser'
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { ModelCard } from '@/components/ModelCard'
+import { OfferCard } from '@/components/OfferCard'
 import { RidgeLine } from '@/components/RidgeLine'
-import { fullAddress, kindForCategory, modelHref, telHref } from '@/lib/format'
-import { countModelsByCategory, getAllModels, getCategories, getSiteSettings } from '@/lib/payload'
-import type { Model } from '@/payload-types'
+import { firstImage, fullAddress, kindForCategory, modelHref, telHref } from '@/lib/format'
+import { countModelsByCategory, getAllModels, getCategories, getCurrentOffers, getSiteSettings } from '@/lib/payload'
+import type { Media, Model } from '@/payload-types'
 
 /** Starting suggestions by property size. Model slugs come from the catalog. */
 const ACREAGE: { id: string; label: string; advice: string; slugs: string[] }[] = [
@@ -49,11 +51,12 @@ const pickNote = (model: Model) =>
   ''
 
 export default async function HomePage() {
-  const [settings, categories, models, counts] = await Promise.all([
+  const [settings, categories, models, counts, offers] = await Promise.all([
     getSiteSettings(),
     getCategories(),
     getAllModels(),
     countModelsByCategory(),
+    getCurrentOffers(),
   ])
 
   const bySlug = new Map(models.map((m) => [m.slug, m]))
@@ -67,34 +70,78 @@ export default async function HomePage() {
       .map((m) => ({ name: m.name, href: modelHref(m), note: pickNote(m) })),
   }))
   const featured = models.filter((m) => m.featured).slice(0, 6)
+  // Each category shows the main photo of its first model that has one.
+  const categoryPhoto = new Map<number, Media>()
+  for (const m of models) {
+    const cat = typeof m.category === 'object' ? m.category?.id : m.category
+    const img = firstImage(m)
+    if (cat && img?.url && !categoryPhoto.has(cat)) categoryPhoto.set(cat, img)
+  }
+  const customHero = typeof settings.heroImage === 'object' && settings.heroImage?.url ? settings.heroImage : null
+  const heroModel = [...featured, ...models].find((m) => firstImage(m)?.url)
+  const heroImage = customHero ?? (heroModel ? firstImage(heroModel) : null)
+  const heroIsProduct = !customHero
   const region =
     settings.regionName || (settings.address?.city ? `the ${settings.address.city} area` : 'your property')
 
   return (
     <>
-      <section className="relative bg-ridge text-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-28 pt-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pb-36 lg:pt-20">
+      <section className="relative overflow-hidden bg-ridge text-white">
+        <div
+          aria-hidden="true"
+          className="absolute -right-24 top-0 hidden h-full w-[46%] -skew-x-12 bg-white/[0.04] lg:block"
+        />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:pb-24 lg:pt-16">
           <div>
-            <h1 className="type-decal text-[2.6rem] sm:text-6xl xl:text-7xl">
+            <p className="text-sm font-bold uppercase tracking-[0.16em] text-signal">Authorized Bad Boy dealer</p>
+            <h1 className="type-decal mt-3 text-[2.5rem] leading-[1.02] sm:text-6xl xl:text-7xl">
               Bad Boy equipment for {region}
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-haze">
+            <p className="mt-6 max-w-xl text-lg text-white/80">
               {settings.heroText ||
                 'Mowers, tractors, UTVs and tools, sold, financed and serviced by people who know them.'}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/equipment" className="btn btn-primary">
-                Browse equipment
+                Shop equipment
               </Link>
-              <a href={telHref(settings.phone)} className="btn btn-quiet text-white">
-                Call {settings.phone}
-              </a>
+              <Link href="/financing" className="btn btn-quiet text-white">
+                Apply for financing
+              </Link>
             </div>
           </div>
-          <AcreageChooser options={acreageOptions} />
+          {heroImage?.url ? (
+            <Image
+              src={heroImage.url}
+              alt={heroImage.alt}
+              width={heroImage.width ?? 1600}
+              height={heroImage.height ?? 1000}
+              priority
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className={`w-full ${heroIsProduct ? 'object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.45)]' : 'aspect-[4/3] rounded-[var(--radius-plate)] object-cover'}`}
+            />
+          ) : null}
         </div>
-        {settings.showMountains ? <RidgeLine className="absolute inset-x-0 bottom-0 h-20 sm:h-28" /> : null}
+        {settings.showMountains ? <RidgeLine className="absolute inset-x-0 bottom-0 h-16 sm:h-20" /> : null}
       </section>
+
+      {offers.length ? (
+        <section className="mx-auto max-w-7xl px-4 pt-14 sm:px-6" aria-labelledby="offers-heading">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <h2 id="offers-heading" className="type-decal-md text-3xl text-ridge">
+              Current offers
+            </h2>
+            <Link href="/offers" className="font-semibold text-ridge underline-offset-4 hover:underline">
+              See all offers
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            {offers.slice(0, 3).map((o) => (
+              <OfferCard key={o.id} offer={o} compact />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6" aria-labelledby="categories-heading">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -106,25 +153,45 @@ export default async function HomePage() {
           </Link>
         </div>
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link
-                href={`/equipment/${category.slug}`}
-                className="group block h-full overflow-hidden rounded-[var(--radius-plate)] border border-haze bg-white hover:border-ridge"
-              >
-                <EquipmentArt kind={kindForCategory(category.slug)} className="aspect-[12/7]" notice={false} />
-                <span className="block p-3 sm:p-4">
-                  <span className="block font-bold text-ink [font-variation-settings:'wdth'_112] group-hover:text-ridge">
-                    {category.name}
+          {categories.map((category) => {
+            const photo = categoryPhoto.get(category.id)
+            return (
+              <li key={category.id}>
+                <Link
+                  href={`/equipment/${category.slug}`}
+                  className="group block h-full overflow-hidden rounded-[var(--radius-plate)] border border-haze bg-white hover:border-signal"
+                >
+                  {photo?.url ? (
+                    <Image
+                      src={photo.url}
+                      alt=""
+                      width={480}
+                      height={280}
+                      sizes="(min-width: 1024px) 20vw, 50vw"
+                      className="aspect-[12/7] w-full object-contain p-3 transition-transform group-hover:scale-105"
+                    />
+                  ) : (
+                    <EquipmentArt kind={kindForCategory(category.slug)} className="aspect-[12/7]" notice={false} />
+                  )}
+                  <span className="block border-t border-fescue p-3 sm:p-4">
+                    <span className="block font-bold text-ink [font-variation-settings:'wdth'_112] group-hover:text-signal-deep">
+                      {category.name}
+                    </span>
+                    <span className="text-sm text-steel">
+                      {counts[category.id] ?? 0} {counts[category.id] === 1 ? 'model' : 'models'}
+                    </span>
                   </span>
-                  <span className="text-sm text-steel">
-                    {counts[category.id] ?? 0} {counts[category.id] === 1 ? 'model' : 'models'}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
+      </section>
+
+      <section className="mt-20 bg-ridge text-white" aria-label="Find the right mower">
+        <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
+          <AcreageChooser options={acreageOptions} />
+        </div>
       </section>
 
       {featured.length ? (
@@ -139,6 +206,22 @@ export default async function HomePage() {
           </div>
         </section>
       ) : null}
+
+      <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6" aria-labelledby="finance-heading">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-[var(--radius-plate)] bg-signal p-8 text-white sm:p-10 md:flex-row md:items-center">
+          <div>
+            <h2 id="finance-heading" className="type-decal-md text-3xl">
+              Financing available
+            </h2>
+            <p className="mt-2 max-w-xl text-lg text-white/90">
+              Apply online in about ten minutes. Our finance team follows up with your options, usually the same day.
+            </p>
+          </div>
+          <Link href="/financing" className="btn shrink-0 bg-white text-ink hover:bg-paper">
+            Apply now
+          </Link>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6" aria-labelledby="dealer-heading">
         <div className="grid gap-10 rounded-[var(--radius-plate)] bg-fescue p-8 sm:p-10 lg:grid-cols-[1fr_2fr]">

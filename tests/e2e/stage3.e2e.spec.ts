@@ -19,7 +19,7 @@ async function waitForTurnstile(page: Page) {
 test.describe('Lead forms', () => {
   test('quote request from a model page', async ({ page }) => {
     await page.goto(`${BASE}/equipment/zero-turn-mowers/rogue`)
-    await page.getByRole('main').getByRole('link', { name: 'Get a quote' }).click()
+    await page.getByRole('main').getByRole('link', { name: 'Get a quote', exact: true }).click()
     await expect(page).toHaveURL(/\/contact\?model=rogue/)
     await expect(page.getByText('Bad Boy Rogue', { exact: true })).toBeVisible()
 

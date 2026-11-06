@@ -102,6 +102,18 @@ export const Leads: CollectionConfig = {
       ],
     },
     {
+      type: 'row',
+      fields: [
+        {
+          name: 'configuration',
+          label: 'Build',
+          type: 'text',
+          admin: { readOnly: true, description: 'Configuration picked on the model page (with Bad Boy model number).' },
+        },
+        { name: 'offer', type: 'relationship', relationTo: 'offers', admin: { readOnly: true } },
+      ],
+    },
+    {
       name: 'tradeIn',
       type: 'group',
       admin: { condition: (data) => data?.type === 'trade-in' || Boolean(data?.tradeIn?.make) },

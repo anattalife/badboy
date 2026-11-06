@@ -1,7 +1,8 @@
 import type { Payload } from 'payload'
 
 import catalog from './data/catalog.json'
-import { loadDealerProfile } from './dealer'
+import { DEFAULT_ACCENT_COLOR, DEFAULT_BRAND_COLOR } from '../globals/SiteSettings'
+import { DEFAULT_DEALER_PROFILE, loadDealerProfile } from './dealer'
 import { seedPhotos } from './photos'
 
 type CatalogModel = {
@@ -25,7 +26,14 @@ type CatalogModel = {
   sourceUrl?: string
 }
 
-const FEATURED = new Set(['rogue', 'zt-elite', 'maverick', 'revolt', 'tractor-1025', 'bandit-750-crew-cab'])
+const FEATURED = new Set([
+  'rogue',
+  'zt-elite',
+  'maverick',
+  'revolt',
+  'tractor-1025',
+  'bandit-750-crew-cab',
+])
 
 const SPEC_GROUPS = new Set([
   'General',
@@ -53,44 +61,58 @@ export async function seed(payload: Payload): Promise<void> {
 
   const log = (msg: string) => payload.logger.info(`[seed] ${msg}`)
 
-  const dealer = loadDealerProfile()
-  await payload.updateGlobal({
-    slug: 'site-settings',
-    data: {
-      siteName: dealer.siteName,
-      legalName: dealer.legalName,
-      siteUrl: dealer.siteUrl || null,
-      phone: dealer.phone,
-      fax: dealer.fax || null,
-      leadEmail: process.env.LEAD_EMAIL || dealer.leadEmail,
-      address: { ...dealer.address, mapUrl: dealer.address.mapUrl || null },
-      hours: dealer.hours ?? [],
-      serviceArea: dealer.serviceArea || null,
-      facebookUrl: dealer.facebookUrl || null,
-      regionName: dealer.regionName || null,
-      heroText: dealer.heroText || null,
-      brandColor: dealer.brandColor || '#2f4a5c',
-      accentColor: dealer.accentColor || '#e8641b',
-      showMountains: dealer.showMountains ?? false,
-    },
-  })
-  if (dealer.tax) {
+  // Production installs normally skip this: the dealer fills in their details in the setup wizard
+  // (/setup). Demos load a dealer profile so the site is ready to browse.
+  const isProduction = process.env.NODE_ENV === 'production'
+  const profileName = process.env.DEALER_PROFILE || (isProduction ? 'none' : DEFAULT_DEALER_PROFILE)
+  const dealer = profileName === 'none' ? null : loadDealerProfile(profileName)
+  if (dealer) {
     await payload.updateGlobal({
-      slug: 'store-settings',
+      slug: 'site-settings',
       data: {
-        taxEnabled: dealer.tax.enabled,
-        taxState: dealer.tax.state || null,
-        taxRatePercent: dealer.tax.ratePercent ?? null,
-        taxShipping: dealer.tax.taxShipping ?? false,
+        siteName: dealer.siteName,
+        legalName: dealer.legalName,
+        siteUrl: dealer.siteUrl || null,
+        phone: dealer.phone,
+        fax: dealer.fax || null,
+        leadEmail: process.env.LEAD_EMAIL || dealer.leadEmail,
+        address: { ...dealer.address, mapUrl: dealer.address.mapUrl || null },
+        hours: dealer.hours ?? [],
+        serviceArea: dealer.serviceArea || null,
+        facebookUrl: dealer.facebookUrl || null,
+        regionName: dealer.regionName || null,
+        heroText: dealer.heroText || null,
+        brandColor: dealer.brandColor || DEFAULT_BRAND_COLOR,
+        accentColor: dealer.accentColor || DEFAULT_ACCENT_COLOR,
+        showMountains: dealer.showMountains ?? false,
+        setupCompletedAt: new Date().toISOString(),
       },
     })
+    if (dealer.tax) {
+      await payload.updateGlobal({
+        slug: 'store-settings',
+        data: {
+          taxEnabled: dealer.tax.enabled,
+          taxState: dealer.tax.state || null,
+          taxRatePercent: dealer.tax.ratePercent ?? null,
+          taxShipping: dealer.tax.taxShipping ?? false,
+        },
+      })
+    }
+    log(`Dealership info saved (${dealer.siteName})`)
+  } else {
+    log('No dealer profile loaded. The dealer enters their details in the setup wizard at /setup.')
   }
-  log(`Dealership info saved (${dealer.siteName})`)
-  const adminEmail = process.env.SEED_ADMIN_EMAIL || dealer.adminEmail || 'admin@example.com'
+  const adminEmail = process.env.SEED_ADMIN_EMAIL || dealer?.adminEmail || 'admin@example.com'
 
   const categoryIds = new Map<string, number>()
   for (const [index, cat] of catalog.categories.entries()) {
-    const data = { name: cat.name, slug: cat.slug, description: cat.description, order: (index + 1) * 10 }
+    const data = {
+      name: cat.name,
+      slug: cat.slug,
+      description: cat.description,
+      order: (index + 1) * 10,
+    }
     const existing = await payload.find({
       collection: 'categories',
       where: { slug: { equals: cat.slug } },
@@ -132,7 +154,12 @@ export async function seed(payload: Payload): Promise<void> {
         deck: c.deck ?? undefined,
         engine: c.engine ?? undefined,
         horsepower: c.horsepower ?? undefined,
-        discharge: c.discharge === 'rear' ? ('rear' as const) : c.discharge === 'side' ? ('side' as const) : undefined,
+        discharge:
+          c.discharge === 'rear'
+            ? ('rear' as const)
+            : c.discharge === 'side'
+              ? ('side' as const)
+              : undefined,
         modelNumber: c.modelNumber ?? undefined,
         msrp: c.msrp ?? undefined,
       })),
@@ -163,10 +190,12 @@ export async function seed(payload: Payload): Promise<void> {
 
   if (process.env.NODE_ENV !== 'production') {
     await seedSampleInventory(payload)
+    await seedSampleOffer(payload)
   }
 
+  // The demo login exists only in demos that loaded a dealer profile, never on the live site.
   const { totalDocs: userCount } = await payload.count({ collection: 'users' })
-  if (userCount === 0) {
+  if (userCount === 0 && dealer && !isProduction) {
     await payload.create({
       collection: 'users',
       data: {
@@ -201,21 +230,89 @@ async function seedSampleInventory(payload: Payload) {
     featured?: boolean
     extra?: string
   }[] = [
-    { stockNumber: 'DEMO-1001', modelSlug: 'rogue', modelNumber: 'BRG61385KA', condition: 'new', status: 'available', year, featured: true },
-    { stockNumber: 'DEMO-1002', modelSlug: 'maverick', modelNumber: 'BMR54ZT740', condition: 'new', status: 'available', year, featured: true },
-    { stockNumber: 'DEMO-1003', modelSlug: 'zt-elite', modelNumber: 'BZS54FR730', condition: 'new', status: 'on-order', year },
-    { stockNumber: 'DEMO-1004', modelSlug: 'revolt', modelNumber: 'BRV48FX730', condition: 'new', status: 'available', year },
-    { stockNumber: 'DEMO-1005', modelSlug: 'mz-magnum', modelNumber: 'BMZ54PXI24', condition: 'new', status: 'available', year },
-    { stockNumber: 'DEMO-1006', modelSlug: 'maverick-hd', modelNumber: 'BMH60FX730', condition: 'used', status: 'available', year: year - 3, hours: 214, price: 7450, extra: 'One owner, serviced here.' },
-    { stockNumber: 'DEMO-1007', modelSlug: 'bandit-750', condition: 'used', status: 'pending', year: year - 2, hours: 85, price: 11900 },
-    { stockNumber: 'DEMO-1008', modelSlug: 'tractor-1025', condition: 'new', status: 'available', year },
+    {
+      stockNumber: 'DEMO-1001',
+      modelSlug: 'rogue',
+      modelNumber: 'BRG61385KA',
+      condition: 'new',
+      status: 'available',
+      year,
+      featured: true,
+    },
+    {
+      stockNumber: 'DEMO-1002',
+      modelSlug: 'maverick',
+      modelNumber: 'BMR54ZT740',
+      condition: 'new',
+      status: 'available',
+      year,
+      featured: true,
+    },
+    {
+      stockNumber: 'DEMO-1003',
+      modelSlug: 'zt-elite',
+      modelNumber: 'BZS54FR730',
+      condition: 'new',
+      status: 'on-order',
+      year,
+    },
+    {
+      stockNumber: 'DEMO-1004',
+      modelSlug: 'revolt',
+      modelNumber: 'BRV48FX730',
+      condition: 'new',
+      status: 'available',
+      year,
+    },
+    {
+      stockNumber: 'DEMO-1005',
+      modelSlug: 'mz-magnum',
+      modelNumber: 'BMZ54PXI24',
+      condition: 'new',
+      status: 'available',
+      year,
+    },
+    {
+      stockNumber: 'DEMO-1006',
+      modelSlug: 'maverick-hd',
+      modelNumber: 'BMH60FX730',
+      condition: 'used',
+      status: 'available',
+      year: year - 3,
+      hours: 214,
+      price: 7450,
+      extra: 'One owner, serviced here.',
+    },
+    {
+      stockNumber: 'DEMO-1007',
+      modelSlug: 'bandit-750',
+      condition: 'used',
+      status: 'pending',
+      year: year - 2,
+      hours: 85,
+      price: 11900,
+    },
+    {
+      stockNumber: 'DEMO-1008',
+      modelSlug: 'tractor-1025',
+      condition: 'new',
+      status: 'available',
+      year,
+    },
   ]
 
   for (const s of samples) {
-    const { docs } = await payload.find({ collection: 'models', where: { slug: { equals: s.modelSlug } }, limit: 1, draft: true })
+    const { docs } = await payload.find({
+      collection: 'models',
+      where: { slug: { equals: s.modelSlug } },
+      limit: 1,
+      draft: true,
+    })
     const model = docs[0]
     if (!model) continue
-    const config = model.configurations?.find((c) => c.modelNumber && c.modelNumber === s.modelNumber)
+    const config = model.configurations?.find(
+      (c) => c.modelNumber && c.modelNumber === s.modelNumber,
+    )
     const data = {
       stockNumber: s.stockNumber,
       model: model.id,
@@ -232,14 +329,20 @@ async function seedSampleInventory(payload: Payload) {
       featured: s.featured ?? false,
       description: [s.extra, SAMPLE_NOTE].filter(Boolean).join('\n\n'),
     }
-    const existing = await payload.find({ collection: 'inventory', where: { stockNumber: { equals: s.stockNumber } }, limit: 1 })
+    const existing = await payload.find({
+      collection: 'inventory',
+      where: { stockNumber: { equals: s.stockNumber } },
+      limit: 1,
+    })
     if (existing.docs[0]) {
       await payload.update({ collection: 'inventory', id: existing.docs[0].id, data })
     } else {
       await payload.create({ collection: 'inventory', data })
     }
   }
-  payload.logger.info(`[seed] ${samples.length} sample inventory units saved (stock numbers DEMO-…)`)
+  payload.logger.info(
+    `[seed] ${samples.length} sample inventory units saved (stock numbers DEMO-…)`,
+  )
 }
 
 type Accessory = {
@@ -263,7 +366,8 @@ export async function seedAccessories(payload: Payload) {
   const { default: data } = await import('./data/accessories.json')
   const { matchModels } = await import('../lib/partsImport')
   const { slugify } = await import('../fields/slug')
-  const models = (await payload.find({ collection: 'models', limit: 500, depth: 0, draft: true })).docs
+  const models = (await payload.find({ collection: 'models', limit: 500, depth: 0, draft: true }))
+    .docs
   const demo = process.env.NODE_ENV !== 'production'
   const category = (line: string) =>
     line === 'bandit' ? 'utv-accessories' : line === 'e-series' ? 'e-series' : 'mower-accessories'
@@ -281,10 +385,18 @@ export async function seedAccessories(payload: Payload) {
 
     for (const group of groups.values()) {
       const partNumber = group[0].partNumber ?? null
-      const suffix = groups.size > 1 ? group.map((v) => v.name).filter(Boolean).join(', ') : ''
+      const suffix =
+        groups.size > 1
+          ? group
+              .map((v) => v.name)
+              .filter(Boolean)
+              .join(', ')
+          : ''
       const name = suffix ? `${acc.name} — ${suffix}` : acc.name
       const price = group.find((v) => v.msrp)?.msrp ?? acc.msrp ?? null
-      const fitsText = [...new Set(group.flatMap((v) => [v.name, ...(v.fits ?? [])]).filter(Boolean))]
+      const fitsText = [
+        ...new Set(group.flatMap((v) => [v.name, ...(v.fits ?? [])]).filter(Boolean)),
+      ]
       const modelIds = matchModels(fitsText.join(' ; '), models)
       const slug = slugify(`${name} ${partNumber ?? ''}`)
 
@@ -299,17 +411,44 @@ export async function seedAccessories(payload: Payload) {
         msrp: price ?? undefined,
         availability: 'special-order' as const,
         models: modelIds,
-        fits: group.map((v) => v.name).filter(Boolean).slice(0, 10).map((text) => ({ text })),
+        fits: group
+          .map((v) => v.name)
+          .filter(Boolean)
+          .slice(0, 10)
+          .map((text) => ({ text })),
         source: 'bad-boy' as const,
         active: true,
         ...(demo && price ? { weightLb: Math.min(40, Math.max(1, Math.round(price / 25))) } : {}),
       }
       const where = partNumber ? { partNumber: { equals: partNumber } } : { slug: { equals: slug } }
       const existing = await payload.find({ collection: 'parts', where, limit: 1, depth: 0 })
-      if (existing.docs[0]) await payload.update({ collection: 'parts', id: existing.docs[0].id, data: doc })
+      if (existing.docs[0])
+        await payload.update({ collection: 'parts', id: existing.docs[0].id, data: doc })
       else await payload.create({ collection: 'parts', data: doc })
       count++
     }
   }
-  payload.logger.info(`[seed] ${count} accessory parts saved${demo ? ' (with sample shipping weights for the demo)' : ''}`)
+  payload.logger.info(
+    `[seed] ${count} accessory parts saved${demo ? ' (with sample shipping weights for the demo)' : ''}`,
+  )
+}
+
+/** One clearly labeled sample offer so the demo shows how offers look. Demo only. */
+async function seedSampleOffer(payload: Payload) {
+  const slug = 'sample-offer'
+  const { docs: rogue } = await payload.find({ collection: 'models', where: { slug: { equals: 'rogue' } }, limit: 1, depth: 0 })
+  const data = {
+    title: 'Sample offer: special financing on Rogue',
+    slug,
+    kind: 'financing' as const,
+    summary: 'An example of how a Bad Boy financing program looks on the site. Replace it with a current offer or delete it.',
+    endsAt: new Date(Date.now() + 60 * 86400000).toISOString(),
+    models: rogue[0] ? [rogue[0].id] : [],
+    disclaimer: 'Sample only. Not a real offer.',
+    _status: 'published' as const,
+  }
+  const existing = await payload.find({ collection: 'offers', where: { slug: { equals: slug } }, limit: 1, draft: true })
+  if (existing.docs[0]) await payload.update({ collection: 'offers', id: existing.docs[0].id, data })
+  else await payload.create({ collection: 'offers', data })
+  payload.logger.info('[seed] Sample offer saved')
 }

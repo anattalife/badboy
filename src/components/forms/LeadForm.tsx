@@ -12,6 +12,8 @@ export type LeadFormProps = {
   modelSlug?: string
   stockNumber?: string
   subject?: string | null
+  configuration?: string
+  offerSlug?: string
   page: string
   siteKey: string | null
   renderedAt: number
@@ -31,7 +33,17 @@ const CONTACT_OPTIONS = [
   { value: 'email', label: 'Email' },
 ]
 
-export function LeadForm({ type, modelSlug, stockNumber, subject, page, siteKey, renderedAt }: LeadFormProps) {
+export function LeadForm({
+  type,
+  modelSlug,
+  stockNumber,
+  configuration,
+  offerSlug,
+  subject,
+  page,
+  siteKey,
+  renderedAt,
+}: LeadFormProps) {
   const [state, dispatch, pending] = useActionState(submitLead, idle)
   const err = state.status === 'error' ? (state.fieldErrors ?? {}) : {}
 
@@ -61,6 +73,8 @@ export function LeadForm({ type, modelSlug, stockNumber, subject, page, siteKey,
       <input type="hidden" name="page" value={page} />
       {modelSlug ? <input type="hidden" name="model" value={modelSlug} /> : null}
       {stockNumber ? <input type="hidden" name="unit" value={stockNumber} /> : null}
+      {configuration ? <input type="hidden" name="config" value={configuration} /> : null}
+      {offerSlug ? <input type="hidden" name="offer" value={offerSlug} /> : null}
 
       <FormMessage state={state} />
 

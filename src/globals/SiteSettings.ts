@@ -1,6 +1,14 @@
 import type { GlobalConfig } from 'payload'
 
 import { anyone, isAdmin } from '../access/roles'
+import { PRICE_DISPLAY } from '../fields/pricing'
+
+export const DEFAULT_BRAND_COLOR = '#1d1d1b'
+export const DEFAULT_ACCENT_COLOR = '#e8641b'
+export const DEFAULT_FINANCE_DISCLAIMER =
+  'Estimated payment for illustration only, with approved credit. Not an offer of credit. Taxes, fees and down payment not included unless stated. See us for current rates and terms.'
+
+const staffOnly = ({ req }: { req: { user?: unknown } }) => Boolean(req.user)
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
@@ -41,15 +49,15 @@ export const SiteSettings: GlobalConfig = {
               name: 'brandColor',
               label: 'Main color',
               type: 'text',
-              defaultValue: '#2f4a5c',
-              validate: (v: unknown) => !v || /^#[0-9a-f]{6}$/i.test(String(v)) || 'Use a hex color like #2f4a5c.',
-              admin: { description: 'Headings, header bar and footer. Hex, e.g. #2f4a5c.' },
+              defaultValue: DEFAULT_BRAND_COLOR,
+              validate: (v: unknown) => !v || /^#[0-9a-f]{6}$/i.test(String(v)) || 'Use a hex color like #1d1d1b.',
+              admin: { description: 'Headings, header bar and footer. Hex, e.g. #1d1d1b.' },
             },
             {
               name: 'accentColor',
               label: 'Button color',
               type: 'text',
-              defaultValue: '#e8641b',
+              defaultValue: DEFAULT_ACCENT_COLOR,
               validate: (v: unknown) => !v || /^#[0-9a-f]{6}$/i.test(String(v)) || 'Use a hex color like #e8641b.',
               admin: { description: 'Main buttons. Hex, e.g. #e8641b.' },
             },
@@ -62,6 +70,13 @@ export const SiteSettings: GlobalConfig = {
           admin: { description: 'Completes the headline “Bad Boy equipment for …”, e.g. “the Roanoke Valley”.' },
         },
         { name: 'heroText', label: 'Home page intro', type: 'textarea' },
+        {
+          name: 'heroImage',
+          label: 'Home page photo',
+          type: 'upload',
+          relationTo: 'media',
+          admin: { description: 'Optional. Without one, the main photo of a featured Bad Boy model is used.' },
+        },
         {
           name: 'showMountains',
           label: 'Mountain horizon under the home page headline',
@@ -83,6 +98,23 @@ export const SiteSettings: GlobalConfig = {
       required: true,
       admin: { description: 'Where new leads and requests are sent. Not shown on the site.' },
       access: { read: ({ req }) => Boolean(req.user) },
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'financeEmail',
+          type: 'email',
+          access: { read: staffOnly },
+          admin: { width: '50%', description: 'Optional. Credit application alerts. Blank uses the lead email.' },
+        },
+        {
+          name: 'serviceEmail',
+          type: 'email',
+          access: { read: staffOnly },
+          admin: { width: '50%', description: 'Optional. Service request alerts. Blank uses the lead email.' },
+        },
+      ],
     },
     {
       name: 'address',
@@ -132,6 +164,52 @@ export const SiteSettings: GlobalConfig = {
         description:
           'Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.',
       },
+    },
+    {
+      type: 'collapsible',
+      label: 'Prices and financing',
+      fields: [
+        {
+          name: 'priceDisplay',
+          label: 'How prices show on the website',
+          type: 'select',
+          required: true,
+          defaultValue: 'dealer',
+          options: [...PRICE_DISPLAY],
+          admin: {
+            description:
+              'The default for every model and unit. Each model or unit can override it. When no price shows, visitors get a “Get today’s price” button that sends you a quote request.',
+          },
+        },
+        {
+          name: 'showPaymentEstimate',
+          label: 'Show an estimated monthly payment next to prices',
+          type: 'checkbox',
+          defaultValue: false,
+        },
+        {
+          type: 'row',
+          admin: { condition: (data) => Boolean(data?.showPaymentEstimate) },
+          fields: [
+            { name: 'financeApr', label: 'APR (%)', type: 'number', min: 0, max: 40, defaultValue: 6.99 },
+            { name: 'financeTermMonths', label: 'Term (months)', type: 'number', min: 6, max: 120, defaultValue: 60 },
+            { name: 'financeDownPercent', label: 'Down payment (%)', type: 'number', min: 0, max: 90, defaultValue: 0 },
+          ],
+        },
+        {
+          name: 'financeDisclaimer',
+          label: 'Payment estimate disclaimer',
+          type: 'textarea',
+          defaultValue: DEFAULT_FINANCE_DISCLAIMER,
+          admin: { condition: (data) => Boolean(data?.showPaymentEstimate) },
+        },
+      ],
+    },
+    {
+      name: 'setupCompletedAt',
+      type: 'date',
+      access: { read: staffOnly, update: () => false },
+      admin: { position: 'sidebar', readOnly: true, description: 'When the setup wizard was finished.' },
     },
     {
       name: 'announcement',

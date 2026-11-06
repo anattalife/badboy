@@ -2,19 +2,19 @@
 @import '@fontsource-variable/archivo/wdth.css';
 
 /*
- * Roanoke Mowers design tokens
- * Blue Ridge haze palette; Bad Boy orange is reserved for primary actions.
+ * Design tokens. Defaults follow Bad Boy's black and orange; each dealer's main and button colors
+ * override --color-ridge and --color-signal at runtime (themeStyle in src/lib/format.ts).
  */
 @theme {
-  --color-ridge: #2f4a5c;
-  --color-ridge-deep: #1f3442;
-  --color-haze: #c9d3d6;
-  --color-fescue: #e9ece3;
-  --color-paper: #f7f8f4;
-  --color-ink: #1b2630;
-  --color-steel: #5d6a73;
-  --color-steel-light: #8b959c;
-  --color-field: #56723a;
+  --color-ridge: #1d1d1b;
+  --color-ridge-deep: #0e0e0d;
+  --color-haze: #d9d9d5;
+  --color-fescue: #eeeeeb;
+  --color-paper: #f7f7f5;
+  --color-ink: #1d1d1b;
+  --color-steel: #5c5c58;
+  --color-steel-light: #8e8e89;
+  --color-field: #3e7a39;
   --color-signal: #e8641b;
   --color-signal-deep: #c4500f;
 

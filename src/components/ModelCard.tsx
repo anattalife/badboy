@@ -1,16 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { categoryOf, firstImage, formatPrice, kindForCategory, modelHref } from '@/lib/format'
+import { categoryOf, firstImage, kindForCategory, modelHref } from '@/lib/format'
 import type { Model } from '@/payload-types'
 
 import { CompareToggle } from './CompareControls'
 import { EquipmentArt } from './EquipmentArt'
+import { Price } from './Price'
 
 export function ModelCard({ model, showCategory = false }: { model: Model; showCategory?: boolean }) {
   const category = categoryOf(model)
   const image = firstImage(model)
-  const price = formatPrice(model.startingPrice)
   const deckSpec = model.specs?.find((s) => s.label === 'Cutting Widths')?.value
   const hpSpec = model.specs?.find((s) => s.label === 'Horsepower')?.value
 
@@ -52,8 +52,8 @@ export function ModelCard({ model, showCategory = false }: { model: Model; showC
             ) : null}
           </dl>
         ) : null}
-        <div className="mt-auto flex items-center justify-between gap-3 pt-4">
-          <p className="font-semibold text-ridge">{price ? `From ${price}` : 'Call for price'}</p>
+        <div className="mt-auto flex items-end justify-between gap-3 pt-4">
+          <Price model={model} quoteHref={`/contact?model=${encodeURIComponent(model.slug ?? '')}`} size="sm" inCard />
           {model.slug ? <CompareToggle slug={model.slug} name={model.name} /> : null}
         </div>
       </div>
