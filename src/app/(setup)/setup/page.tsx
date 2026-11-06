@@ -1,14 +1,27 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { SetupWizard } from '@/components/setup/SetupWizard'
+import { type CatalogCategory, SetupWizard } from '@/components/setup/SetupWizard'
 import { getPayloadClient } from '@/lib/payload'
 import { isSetupComplete, setupCodeRequired } from '@/lib/setup'
 
 export default async function SetupPage() {
   const done = await isSetupComplete()
   const payload = await getPayloadClient()
-  const catalogLoaded = done ? true : (await payload.count({ collection: 'models', overrideAccess: true })).totalDocs > 0
+  const catalog: CatalogCategory[] = []
+  if (!done) {
+    const [cats, models] = await Promise.all([
+      payload.find({ collection: 'categories', sort: 'order', limit: 100, depth: 0, overrideAccess: true }),
+      payload.find({ collection: 'models', sort: 'order', limit: 500, depth: 0, overrideAccess: true, draft: true }),
+    ])
+    for (const c of cats.docs) {
+      catalog.push({
+        id: c.id,
+        name: c.name,
+        models: models.docs.filter((m) => m.category === c.id).map((m) => ({ id: m.id, name: m.name })),
+      })
+    }
+  }
   const codeMissing = setupCodeRequired() && (process.env.SETUP_CODE ?? '').length < 12
 
   return (
@@ -45,11 +58,11 @@ export default async function SetupPage() {
           <>
             <h1 className="type-decal text-3xl text-ridge sm:text-4xl">Welcome! Let’s set up your website</h1>
             <p className="mt-3 text-lg text-steel">
-              Four short steps. The full Bad Boy line, photos, specs, compare, financing application and parts
+              Five short steps. The full Bad Boy line, photos, specs, compare, financing application and parts
               store are already built in.
             </p>
             <div className="mt-8">
-              <SetupWizard codeRequired={setupCodeRequired()} catalogLoaded={catalogLoaded} />
+              <SetupWizard codeRequired={setupCodeRequired()} catalog={catalog} />
             </div>
           </>
         )}

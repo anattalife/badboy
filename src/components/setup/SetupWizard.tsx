@@ -8,14 +8,15 @@ import { completeSetup, verifySetupCode } from '@/app/(setup)/setup/actions'
 import { FormMessage, TextField } from '@/components/forms/Fields'
 import { idle } from '@/lib/forms'
 
-const STEPS = ['Your dealership', 'Logo and look', 'Prices and financing', 'Your admin account'] as const
+const STEPS = ['Your dealership', 'What you sell', 'Logo and look', 'Prices and financing', 'Your admin account'] as const
 
 /** Which step each server-validated field lives on, so errors jump to the right place. */
 const FIELD_STEP: Record<string, number> = {
   setupCode: 0, siteName: 0, legalName: 0, phone: 0, leadEmail: 0, street: 0, city: 0, state: 0, zip: 0, siteUrl: 0,
-  logo: 1, brandColor: 1, accentColor: 1,
-  priceDisplay: 2, financeApr: 2, financeTermMonths: 2, financeDownPercent: 2, taxRatePercent: 2,
-  adminName: 3, adminEmail: 3, password: 3, passwordConfirm: 3,
+  carry: 1,
+  logo: 2, brandColor: 2, accentColor: 2,
+  priceDisplay: 3, financeApr: 3, financeTermMonths: 3, financeDownPercent: 3, taxRatePercent: 3,
+  adminName: 4, adminEmail: 4, password: 4, passwordConfirm: 4,
 }
 
 const PRESETS = [
@@ -34,7 +35,16 @@ const PRICE_CHOICES = [
 
 const card = 'rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-8'
 
-export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boolean; catalogLoaded: boolean }) {
+export type CatalogCategory = { id: number; name: string; models: { id: number; name: string }[] }
+
+export function SetupWizard({
+  codeRequired,
+  catalog,
+}: {
+  codeRequired: boolean
+  catalog: CatalogCategory[]
+}) {
+  const catalogLoaded = catalog.length > 0
   const [state, dispatch, pending] = useActionState(completeSetup, idle)
   const [step, setStep] = useState(0)
   const [checking, setChecking] = useState(false)
@@ -45,6 +55,7 @@ export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boo
   const [accent, setAccent] = useState(PRESETS[0].accent)
   const [estimate, setEstimate] = useState(false)
   const [tax, setTax] = useState(false)
+  const [offCategories, setOffCategories] = useState<Set<number>>(new Set())
   const fieldsets = useRef<(HTMLFieldSetElement | null)[]>([])
   const top = useRef<HTMLDivElement>(null)
   const err = state.status === 'error' ? (state.fieldErrors ?? {}) : {}
@@ -122,7 +133,7 @@ export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boo
 
   return (
     <div ref={top} className="scroll-mt-6">
-      <ol className="mb-6 grid grid-cols-4 gap-2" aria-label="Setup steps">
+      <ol className="mb-6 grid grid-cols-5 gap-2" aria-label="Setup steps">
         {STEPS.map((label, i) => (
           <li key={label} aria-current={i === step ? 'step' : undefined}>
             <div className={`h-1.5 rounded-full ${i <= step ? 'bg-signal' : 'bg-haze'}`} />
@@ -209,10 +220,87 @@ export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boo
           </div>
         </fieldset>
 
+        {/* What you sell */}
+        <fieldset
+          ref={(el) => {
+            fieldsets.current[1] = el
+          }}
+          hidden={step !== 1}
+          className="space-y-5"
+        >
+          <legend className="type-decal-md mb-2 text-2xl text-ridge">What you sell</legend>
+          {catalogLoaded ? (
+            <>
+              <p className="text-steel">
+                Untick anything you don’t sell and it won’t appear on your website. Open a category to pick single
+                models. You can change this any time in the admin.
+              </p>
+              <input type="hidden" name="catalogShown" value="1" />
+              <ul className="divide-y divide-haze rounded-[var(--radius-plate)] border border-haze">
+                {catalog.map((cat) => {
+                  const off = offCategories.has(cat.id)
+                  return (
+                    <li key={cat.id} className="p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <label className="flex items-center gap-3 font-semibold">
+                          <input
+                            type="checkbox"
+                            name="carryCategory"
+                            value={cat.id}
+                            checked={!off}
+                            onChange={(e) =>
+                              setOffCategories((prev) => {
+                                const next = new Set(prev)
+                                if (e.target.checked) next.delete(cat.id)
+                                else next.add(cat.id)
+                                return next
+                              })
+                            }
+                            className="h-5 w-5 accent-[var(--color-signal)]"
+                          />
+                          {cat.name}
+                        </label>
+                        <span className="text-sm text-steel">
+                          {cat.models.length} {cat.models.length === 1 ? 'model' : 'models'}
+                        </span>
+                      </div>
+                      {cat.models.length > 1 ? (
+                        <details className="mt-2 pl-8" hidden={off}>
+                          <summary className="cursor-pointer text-sm font-semibold text-ridge">Choose models</summary>
+                          <div className="mt-2 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                            {cat.models.map((m) => (
+                              <label key={m.id} className="flex items-center gap-2 text-sm">
+                                <input
+                                  type="checkbox"
+                                  name="carryModel"
+                                  value={m.id}
+                                  defaultChecked
+                                  disabled={off}
+                                  className="h-4 w-4 accent-[var(--color-signal)]"
+                                />
+                                {m.name}
+                              </label>
+                            ))}
+                          </div>
+                        </details>
+                      ) : (
+                        cat.models.map((m) => <input key={m.id} type="hidden" name="carryModel" value={m.id} />)
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+              {err.carry ? <p className="text-sm font-medium text-signal-deep">{err.carry}</p> : null}
+            </>
+          ) : (
+            <p className="text-steel">You can choose what you sell in the admin once the Bad Boy catalog is loaded.</p>
+          )}
+        </fieldset>
+
         {/* Step 2 */}
         <fieldset ref={(el) => {
-          fieldsets.current[1] = el
-        }} hidden={step !== 1} className="space-y-6">
+          fieldsets.current[2] = el
+        }} hidden={step !== 2} className="space-y-6">
           <legend className="type-decal-md mb-2 text-2xl text-ridge">Logo and look</legend>
           <div>
             <label htmlFor="logo" className="text-sm font-medium text-ink">
@@ -300,8 +388,8 @@ export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boo
 
         {/* Step 3 */}
         <fieldset ref={(el) => {
-          fieldsets.current[2] = el
-        }} hidden={step !== 2} className="space-y-6">
+          fieldsets.current[3] = el
+        }} hidden={step !== 3} className="space-y-6">
           <legend className="type-decal-md mb-2 text-2xl text-ridge">Prices and financing</legend>
           <div role="radiogroup" aria-label="How prices show" className="grid gap-3 sm:grid-cols-2">
             {PRICE_CHOICES.map((c, i) => (
@@ -351,8 +439,8 @@ export function SetupWizard({ codeRequired, catalogLoaded }: { codeRequired: boo
 
         {/* Step 4 */}
         <fieldset ref={(el) => {
-          fieldsets.current[3] = el
-        }} hidden={step !== 3} className="space-y-5">
+          fieldsets.current[4] = el
+        }} hidden={step !== 4} className="space-y-5">
           <legend className="type-decal-md mb-2 text-2xl text-ridge">Your admin account</legend>
           <p className="text-steel">This is the main account for the website’s admin. You can add staff accounts later.</p>
           <div className="grid gap-5 sm:grid-cols-2">

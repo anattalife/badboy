@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-import { anyone, isContentManager } from '../access/roles'
+import { categoryRead, notCarriedField } from '../access/carried'
+import { isContentManager } from '../access/roles'
 import { slugField } from '../fields/slug'
 
 export const Categories: CollectionConfig = {
@@ -8,18 +9,19 @@ export const Categories: CollectionConfig = {
   labels: { singular: 'Equipment category', plural: 'Equipment categories' },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'slug', 'order'],
+    defaultColumns: ['name', 'notCarried', 'order'],
     group: 'Equipment',
   },
   defaultSort: 'order',
   access: {
-    read: anyone,
+    read: categoryRead,
     create: isContentManager,
     update: isContentManager,
     delete: isContentManager,
   },
   fields: [
     { name: 'name', type: 'text', required: true },
+    notCarriedField('category'),
     slugField('name'),
     {
       name: 'description',

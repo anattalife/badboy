@@ -230,6 +230,10 @@ export interface User {
  */
 export interface Model {
   id: number;
+  /**
+   * Hides this model from the website. Switch off to show it again.
+   */
+  notCarried?: boolean | null;
   name: string;
   category: number | Category;
   /**
@@ -332,6 +336,10 @@ export interface Model {
 export interface Category {
   id: number;
   name: string;
+  /**
+   * Hides this whole category and its models from the website. Switch off to show it again.
+   */
+  notCarried?: boolean | null;
   /**
    * Used in the page address. Leave blank to generate it from the name.
    */
@@ -1121,6 +1129,7 @@ export interface InventorySelect<T extends boolean = true> {
  * via the `definition` "models_select".
  */
 export interface ModelsSelect<T extends boolean = true> {
+  notCarried?: T;
   name?: T;
   category?: T;
   slug?: T;
@@ -1188,6 +1197,7 @@ export interface OffersSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
+  notCarried?: T;
   slug?: T;
   description?: T;
   image?: T;

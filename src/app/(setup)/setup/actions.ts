@@ -93,6 +93,17 @@ export async function completeSetup(_prev: FormState, form: FormData): Promise<F
   const taxRatePercent = num(str(form, 'taxRatePercent', 6), 0, 20)
   if (taxEnabled && (taxRatePercent === null || Number.isNaN(taxRatePercent))) e.taxRatePercent = 'Enter a rate between 0 and 20.'
 
+  // What they sell (only checked when the catalog is loaded)
+  const ids = (name: string) =>
+    form
+      .getAll(name)
+      .map((v) => Number(v))
+      .filter((n) => Number.isInteger(n) && n > 0)
+      .slice(0, 1000)
+  const carryCategories = new Set(ids('carryCategory'))
+  const carryModels = new Set(ids('carryModel'))
+  if (form.get('catalogShown') === '1' && carryCategories.size === 0) e.carry = 'Pick at least one kind of equipment you sell.'
+
   // Admin account
   const adminName = need('adminName', 'your name')
   const adminEmail = need('adminEmail', 'your email', 200).toLowerCase()
@@ -131,6 +142,28 @@ export async function completeSetup(_prev: FormState, form: FormData): Promise<F
         },
       })
       logoId = media.id
+    }
+
+    // Hide what they don't sell. Models in a hidden category are hidden with it, so only models in
+    // categories they kept are looked at one by one.
+    const [cats, models] = await Promise.all([
+      payload.find({ collection: 'categories', limit: 100, depth: 0, overrideAccess: true }),
+      payload.find({ collection: 'models', limit: 500, depth: 0, overrideAccess: true, draft: true }),
+    ])
+    if (cats.docs.length) {
+      for (const c of cats.docs) {
+        const notCarried = !carryCategories.has(c.id)
+        if (Boolean(c.notCarried) !== notCarried) {
+          await payload.update({ collection: 'categories', id: c.id, data: { notCarried }, overrideAccess: true })
+        }
+      }
+      for (const m of models.docs) {
+        if (!carryCategories.has(m.category as number)) continue
+        const notCarried = !carryModels.has(m.id)
+        if (Boolean(m.notCarried) !== notCarried) {
+          await payload.update({ collection: 'models', id: m.id, data: { notCarried }, overrideAccess: true })
+        }
+      }
     }
 
     await payload.updateGlobal({

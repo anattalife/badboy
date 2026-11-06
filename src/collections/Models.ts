@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-import { isContentManager, publishedOrStaff } from '../access/roles'
+import { modelRead, notCarriedField } from '../access/carried'
+import { isContentManager } from '../access/roles'
 import { priceDisplayOverride } from '../fields/pricing'
 import { slugField } from '../fields/slug'
 
@@ -27,7 +28,7 @@ export const Models: CollectionConfig = {
   labels: { singular: 'Equipment model', plural: 'Equipment models' },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'category', 'featured', '_status', 'updatedAt'],
+    defaultColumns: ['name', 'category', 'notCarried', 'featured', '_status'],
     group: 'Equipment',
     listSearchableFields: ['name', 'slug', 'tagline'],
   },
@@ -38,12 +39,13 @@ export const Models: CollectionConfig = {
     maxPerDoc: 20,
   },
   access: {
-    read: publishedOrStaff,
+    read: modelRead,
     create: isContentManager,
     update: isContentManager,
     delete: isContentManager,
   },
   fields: [
+    notCarriedField('model'),
     {
       type: 'row',
       fields: [

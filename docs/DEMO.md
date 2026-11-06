@@ -71,11 +71,13 @@ This login exists only inside your Codespace's demo database. It is never used o
   **Prices and financing**, switch between showing your price, price with MSRP, MSRP only or hiding
   prices, and turn on the monthly payment estimate. Upload a logo and it appears beside the Bad Boy logo
 - **Content → Offers**: post a Bad Boy program or your own special with start and end dates
+- **Equipment models** or **Equipment categories**: tick **We don't sell this** (e.g. on Bandit 550 or
+  the whole UTVs category) and it disappears from the website. Untick to bring it back
 - **Staff**: create accounts with roles (Sales, Finance, Service, Parts, Manager, Admin)
 
 ## Try the setup wizard
 
-A new dealer's site starts with a four-step setup wizard. To see it in the Codespace terminal:
+A new dealer's site starts with a five-step setup wizard. To see it in the Codespace terminal:
 
 ```bash
 rm -rf .wrangler && pnpm payload migrate && DEALER_PROFILE=none pnpm seed

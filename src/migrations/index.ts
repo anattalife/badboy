@@ -5,6 +5,7 @@ import * as migration_20261025_164330_leads_credit_apps from './20261025_164330_
 import * as migration_20261025_193658_parts_store from './20261025_193658_parts_store';
 import * as migration_20261105_210450_dealer_branding from './20261105_210450_dealer_branding';
 import * as migration_20261106_202624_dealer_box from './20261106_202624_dealer_box';
+import * as migration_20261106_210200_equipment_carried from './20261106_210200_equipment_carried';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20261106_202624_dealer_box.up,
     down: migration_20261106_202624_dealer_box.down,
-    name: '20261106_202624_dealer_box'
+    name: '20261106_202624_dealer_box',
+  },
+  {
+    up: migration_20261106_210200_equipment_carried.up,
+    down: migration_20261106_210200_equipment_carried.down,
+    name: '20261106_210200_equipment_carried'
   },
 ];

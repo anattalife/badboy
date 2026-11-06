@@ -73,7 +73,7 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 
 - **Setup wizard** (`/setup`, `src/app/(setup)/`, `src/components/setup/SetupWizard.tsx`). Until
   `site-settings.setupCompletedAt` is set, the public layout redirects every page to `/setup`.
-  Steps: dealership, logo/colors (live lockup preview), prices/financing/tax, admin account.
+  Steps: dealership, what you sell, logo/colors (live lockup preview), prices/financing/tax, admin account.
   `completeSetup` (server action) re-validates everything, creates the admin, uploads the logo and
   saves the settings; it rolls back the account if a later step fails.
 - **Security:** production requires the `SETUP_CODE` secret (12+ characters, constant-time compare,
@@ -99,6 +99,11 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Lead routing:** credit application alerts go to `financeEmail` when set; `serviceEmail` is for
   stage 5.
 - **Phones:** fixed Call / Get a quote / Apply bar; cart moves into the menu.
+- **Equipment a dealer doesn't sell:** `notCarried` ("We don't sell this") on categories and models
+  (`src/access/carried.ts`). Public access and every public getter in `src/lib/payload.ts` exclude
+  them, also for signed-in staff browsing the site; the admin still lists them. A hidden category
+  hides its models. Models are filtered by hidden category **IDs**: querying `category.notCarried`
+  through the relationship made Payload build a runaway join. Wizard step 2 sets these.
 - Migration `dealer_box` was hand-edited (adds site_settings columns in place; a rebuild would
   cascade-delete the hours rows).
 

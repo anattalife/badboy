@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { carried, modelCarriedWhere } from '@/access/carried'
+
 import config from '@payload-config'
 import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
@@ -7,6 +9,9 @@ import { cache } from 'react'
 import type { Category, Inventory as InventoryUnit, Model, Offer, SiteSetting } from '@/payload-types'
 
 export const getPayloadClient = () => getPayload({ config })
+
+/** Models the dealer sells (see src/access/carried.ts). Cached per request. */
+const getModelCarried = cache(async () => modelCarriedWhere(await getPayloadClient()))
 
 /*
  * Public reads go through the Local API with `overrideAccess: false`, so the same
@@ -24,6 +29,7 @@ export const getCategories = cache(async (): Promise<Category[]> => {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'categories',
+    where: carried(),
     sort: 'order',
     limit: 100,
     depth: 1,
@@ -36,7 +42,7 @@ export const getCategoryBySlug = cache(async (slug: string): Promise<Category | 
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'categories',
-    where: { slug: { equals: slug } },
+    where: { and: [{ slug: { equals: slug } }, carried()] },
     limit: 1,
     depth: 1,
     ...publicRead,
@@ -48,7 +54,7 @@ export const getModelsByCategory = cache(async (categoryId: number): Promise<Mod
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'models',
-    where: { category: { equals: categoryId } },
+    where: { and: [{ category: { equals: categoryId } }, await getModelCarried()] },
     sort: 'order',
     limit: 200,
     depth: 1,
@@ -61,6 +67,7 @@ export const getAllModels = cache(async (): Promise<Model[]> => {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'models',
+    where: await getModelCarried(),
     sort: 'order',
     limit: 500,
     depth: 1,
@@ -73,7 +80,7 @@ export const getModelBySlug = cache(async (slug: string): Promise<Model | null> 
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'models',
-    where: { slug: { equals: slug } },
+    where: { and: [{ slug: { equals: slug } }, await getModelCarried()] },
     limit: 1,
     depth: 2,
     ...publicRead,
@@ -177,7 +184,7 @@ export async function getModelsBySlugs(slugs: string[]): Promise<Model[]> {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'models',
-    where: { slug: { in: slugs } },
+    where: { and: [{ slug: { in: slugs } }, await getModelCarried()] },
     limit: slugs.length,
     depth: 1,
     ...publicRead,

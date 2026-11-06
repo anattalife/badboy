@@ -37,18 +37,21 @@ details or accounts; the wizard does that.
 ## 3. The dealer runs the setup wizard
 
 Until setup is finished, every page of the site sends visitors to `/setup`. The dealer enters the
-**setup code** and then, in four steps:
+**setup code** and then, in five steps:
 
 1. **Dealership**: name, legal name, phone, lead email, address, website, hours
-2. **Logo and look**: logo upload, main and button colors (with a live preview of their logo beside
+2. **What you sell**: untick categories they don't carry (e.g. UTVs) or single models (e.g. the
+   Bandit 550). Hidden equipment disappears from the website everywhere
+3. **Logo and look**: logo upload, main and button colors (with a live preview of their logo beside
    the Bad Boy logo), the area they serve and a home page intro
-3. **Prices and financing**: show their price, price with MSRP crossed out, MSRP only, or hide
+4. **Prices and financing**: show their price, price with MSRP crossed out, MSRP only, or hide
    prices ("Get today's price" button); optional monthly payment estimate (APR, term, down payment);
    sales tax on parts
-4. **Admin account**: their name, email and password
+5. **Admin account**: their name, email and password
 
 When they finish, the site is live and `/setup` is locked. Everything can be changed later in the
-admin under **Settings → Dealership info**, along with a home page photo, a separate finance email
+admin under **Settings → Dealership info** (and **We don't sell this** on any category or model),
+along with a home page photo, a separate finance email
 and per-model or per-unit price display.
 
 Why the setup code: a brand-new site has no accounts. Without the code, whoever opened it first
