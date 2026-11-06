@@ -54,7 +54,7 @@ export default async function PartPage(props: PageProps<'/parts/[slug]'>) {
             width={900}
             height={675}
             priority
-            className="aspect-[4/3] w-full rounded-[var(--radius-plate)] object-cover"
+            className="aspect-[4/3] w-full rounded-[var(--radius-plate)] border border-haze bg-white object-contain p-6"
           />
         ) : (
           <EquipmentArt

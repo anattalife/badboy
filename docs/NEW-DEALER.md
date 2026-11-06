@@ -61,5 +61,7 @@ Follow [DEPLOY.md](DEPLOY.md) with the dealer's domain. Every dealer needs **its
 CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true DEALER_PROFILE=<dealer-name> pnpm seed
 ```
 
+Bad Boy's product photos and logos are part of the site and load with the catalog for every dealer.
+
 Then sign in at `/admin`, create the first account (it becomes the admin), and set prices,
 inventory and parts weights.

@@ -22,7 +22,8 @@ export function ModelCard({ model, showCategory = false }: { model: Model; showC
           alt={image.alt}
           width={image.width ?? 960}
           height={image.height ?? 560}
-          className="aspect-[12/7] w-full object-cover"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="aspect-[12/7] w-full object-contain p-3"
         />
       ) : (
         <EquipmentArt kind={kindForCategory(category?.slug)} className="aspect-[12/7]" label={model.name} />

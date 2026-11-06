@@ -35,4 +35,12 @@ test.describe('Public site', () => {
     const response = await page.goto(`${BASE}/equipment/tractors/rogue`)
     expect(response?.status()).toBe(404)
   })
+
+  test('model pages show the Bad Boy photo gallery', async ({ page }) => {
+    await page.goto('http://localhost:3000/equipment/zero-turn-mowers/rogue')
+    const main = page.locator('img[alt^="Bad Boy Rogue zero-turn mower"]').first()
+    await expect(main).toBeVisible()
+    await page.getByRole('button', { name: /Show photo 7/ }).click()
+    await expect(page.getByRole('img', { name: 'Bad Boy Rogue zero-turn mower, rear view' })).toBeVisible()
+  })
 })

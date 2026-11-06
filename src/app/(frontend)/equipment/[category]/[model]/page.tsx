@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -8,8 +7,9 @@ import { EquipmentArt } from '@/components/EquipmentArt'
 import { ModelCard } from '@/components/ModelCard'
 import { UnitCard } from '@/components/UnitCard'
 import { PartCard } from '@/components/store/PartCard'
+import { ProductGallery } from '@/components/ProductGallery'
 import { Breadcrumbs } from '@/components/PageIntro'
-import { categoryOf, firstImage, formatPrice, kindForCategory, telHref } from '@/lib/format'
+import { categoryOf, formatPrice, kindForCategory, modelImages, telHref } from '@/lib/format'
 import { toSizeMatrix } from '@/lib/specs'
 import {
   getModelBySlug,
@@ -50,7 +50,7 @@ export default async function ModelPage(props: Params) {
     getPartsForModel(model.id),
   ])
 
-  const image = firstImage(model)
+  const images = modelImages(model)
   const price = formatPrice(model.startingPrice)
   const specGroups = new Map<string, { label: string; value: string }[]>()
   for (const spec of model.specs ?? []) {
@@ -84,15 +84,8 @@ export default async function ModelPage(props: Params) {
             ]}
           />
           <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
-            {image?.url ? (
-              <Image
-                src={image.url}
-                alt={image.alt}
-                width={image.width ?? 1200}
-                height={image.height ?? 700}
-                priority
-                className="aspect-[12/7] w-full rounded-[var(--radius-plate)] object-cover"
-              />
+            {images.length ? (
+              <ProductGallery images={images.map((m) => ({ ...m, url: m.url! }))} />
             ) : (
               <EquipmentArt
                 kind={kindForCategory(category.slug)}

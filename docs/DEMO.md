@@ -18,8 +18,8 @@ The first page load after starting can take 20–30 seconds while the site compi
 **Public site**
 - Home page: pick an acreage size under “How much ground are you covering?”
 - **Equipment**: all 62 Bad Boy models across 10 categories
-- Open any model (try **Rogue** or the **1025 Sub-Compact Tractor**) to see specs and every
-  configuration with its Bad Boy model number
+- Open any model (try **Rogue** or the **1025 Sub-Compact Tractor**) to see the photo gallery, specs
+  and every configuration with its Bad Boy model number
 - **Implements → Rotary Cutters**: specs for each size side by side
 - **In stock**: eight sample units (stock numbers starting with `DEMO-`). Try the filters, then open a unit
 - **Compare**: tick “Compare” on two to four models, then **Compare now** at the bottom of the screen.

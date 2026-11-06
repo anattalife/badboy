@@ -9,7 +9,7 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **This site:** a Bad Boy dealer website that any dealer can use (the owner now works for Bad Boy).
   Roanoke Golf Cars / RoanokeMowers.com is the first dealer profile (`dealers/roanoke-golf-cars.json`).
 - **Leads go to:** anattalife@icloud.com (temporary, set in Admin → Dealership info).
-- **Photos:** the owner is supplying a zip of product photos to commit and seed (pending).
+- **Photos:** Bad Boy's official product photos and logos, supplied by the owner on 2026-11-06 (see Photos).
 - **Working agreement:** the owner wants to be consulted before major decisions. Build in stages and
   stop for review after each.
 - **No third-party services without explicit owner approval.** Default to what Cloudflare already
@@ -49,8 +49,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
   the only roles that can read SSN/income (stage 3).
 - **Design:** Blue Ridge palette (ridge slate `#2F4A5C`, fescue `#E9ECE3`, ink `#1B2630`), Bad Boy
   orange `#E8641B` for primary actions only. Archivo variable font, using its wide cut (`.type-decal`)
-  for headlines. Signature element: the acreage chooser in the home hero. Placeholder art is generic
-  machine silhouettes (`src/components/EquipmentArt.tsx`), not Bad Boy imagery.
+  for headlines. Signature element: the acreage chooser in the home hero. Models without photos fall
+  back to generic machine silhouettes (`src/components/EquipmentArt.tsx`).
 
 ## Multi-dealer setup
 
@@ -67,6 +67,25 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Per-dealer Worker vars** (`wrangler.jsonc`): `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME`,
   `NEXT_PUBLIC_SITE_URL`, plus the Worker, D1 and R2 names. One deployment per dealer.
 - Migration `dealer_branding` was written by hand (see the comment in it); the generated one was wrong.
+
+## Photos
+
+- Source: the owner's `Bad_Boy_Pictures.zip` (Bad Boy studio photos). `scripts/prepare_photos.py`
+  matches files **by file name** (some folders hold another model's photos: Revolt SD frames were in
+  the Revolt folder, MZ Rambler inside MZ Magnum, ZT Elite inside Raider), trims empty margins,
+  resizes to 1600 px WebP and writes `src/seed/media/` plus `src/seed/data/photos.json`.
+  Re-run it with a new photo folder, then `pnpm seed`.
+- 171 photos for 30 models and 1 part (the 4A charger). 360° sets are 8 frames; the front
+  three-quarter frame is the main photo. Every file name starts with `bb-`.
+- `pnpm seed` (`src/seed/photos.ts`) uploads them once to Media (R2) and attaches them. A model or
+  part whose photos staff have changed is left alone. Production gets them through the same
+  production seed command as the catalog.
+- Model pages show a gallery (`ProductGallery`); cards show the whole machine (`object-contain`).
+  Inventory units without their own photos show the model's photos, labeled "Factory photos".
+- Bad Boy logos are in `public/brand/` (authorized-dealer mark in the header top bar and footer).
+- **No photos yet** for: Revolt Fury blower, push mower, all implements, Bandit UTVs, Recon,
+  Terrain, E-Series hedge trimmer/snow thrower/pressure washer/trimmer attachments, all gas tools.
+  Two charger photos (2A single-port, dual-port) have no matching part in the catalog.
 
 ## Inventory (stage 2)
 

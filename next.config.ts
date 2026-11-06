@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
       {
         pathname: '/api/media/file/**',
       },
+      // Bad Boy logos for the authorized-dealer mark.
+      { pathname: '/brand/**' },
     ],
   },
   // Packages with Cloudflare Workers (workerd) specific code

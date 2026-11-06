@@ -2,6 +2,7 @@ import type { Payload } from 'payload'
 
 import catalog from './data/catalog.json'
 import { loadDealerProfile } from './dealer'
+import { seedPhotos } from './photos'
 
 type CatalogModel = {
   slug: string
@@ -155,6 +156,10 @@ export async function seed(payload: Payload): Promise<void> {
   log(`${catalog.models.length} models saved`)
 
   await seedAccessories(payload)
+
+  const photos = await seedPhotos(payload)
+  log(`${photos.attached} product photos attached`)
+  for (const s of photos.skipped) payload.logger.warn(`[seed] Photos skipped: ${s}`)
 
   if (process.env.NODE_ENV !== 'production') {
     await seedSampleInventory(payload)

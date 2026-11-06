@@ -60,7 +60,8 @@ After that, every push to `main` that passes CI deploys automatically.
 
 ## Loading the catalog into production
 
-The live database starts empty. To load dealership info and the Bad Boy catalog once:
+The live database starts empty. To load dealership info, the Bad Boy catalog and the product photos
+(uploaded to the R2 bucket) once:
 
 ```bash
 CLOUDFLARE_ENV= NODE_ENV=production ALLOW_PRODUCTION_SEED=true DEALER_PROFILE=roanoke-golf-cars pnpm seed

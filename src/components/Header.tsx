@@ -33,8 +33,18 @@ export function Header({ settings }: { settings: SiteSetting }) {
 
       <div className="bg-ridge-deep text-sm text-haze">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 sm:px-6">
-          <p>
-            Authorized Bad Boy dealer · {settings.address?.city}, {settings.address?.state}
+          <p className="flex items-center gap-2.5">
+            <Image
+              src="/brand/bbm_logo_horizontal_reverse.webp"
+              alt="Bad Boy Mowers"
+              width={96}
+              height={22}
+              className="h-[22px] w-auto"
+            />
+            <span>
+              Authorized dealer
+              {settings.address?.city ? ` · ${settings.address.city}, ${settings.address.state}` : ''}
+            </span>
           </p>
           <div className="flex items-center gap-5">
             {hoursSummary ? <span className="hidden md:inline">{hoursSummary}</span> : null}

@@ -123,7 +123,7 @@ export default async function ComparePage(props: PageProps<'/compare'>) {
                       return (
                         <th key={m.id} scope="col" className="p-4 font-normal">
                           {image?.url ? (
-                            <Image src={image.url} alt="" width={320} height={187} className="aspect-[12/7] w-full rounded object-cover" />
+                            <Image src={image.url} alt="" width={320} height={187} className="aspect-[12/7] w-full rounded bg-white object-contain p-2" />
                           ) : (
                             <EquipmentArt kind={kindForCategory(categoryOf(m)?.slug)} className="aspect-[12/7] rounded" notice={false} />
                           )}

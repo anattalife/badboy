@@ -140,7 +140,8 @@ export async function getInventory(filters: InventoryFilters) {
     sort: SORTS[filters.sort ?? 'newest'],
     limit: INVENTORY_PAGE_SIZE,
     page: filters.page ?? 1,
-    depth: 1,
+    // Depth 2 reaches the model's photos, shown when a unit has none of its own.
+    depth: 2,
     overrideAccess: false,
   })
 }
@@ -164,7 +165,7 @@ export const getUnitsForModel = cache(async (modelId: number): Promise<Inventory
     where: { model: { equals: modelId } },
     sort: ['price', '-createdAt'],
     limit: 12,
-    depth: 1,
+    depth: 2,
     overrideAccess: false,
   })
   return docs

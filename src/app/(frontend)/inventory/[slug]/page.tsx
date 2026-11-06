@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { EquipmentArt } from '@/components/EquipmentArt'
 import { Breadcrumbs } from '@/components/PageIntro'
+import { ProductGallery } from '@/components/ProductGallery'
 import { PriceLine, unitCategory } from '@/components/UnitCard'
-import { inPlace, kindForCategory, modelHref, telHref } from '@/lib/format'
+import { inPlace, kindForCategory, modelHref, modelImages, telHref } from '@/lib/format'
 import { getSiteSettings, getUnitBySlug } from '@/lib/payload'
 import type { Media, Model } from '@/payload-types'
 
@@ -35,7 +35,8 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
   const category = unitCategory(unit)
   const model: Model | null = typeof unit.model === 'object' ? unit.model : null
   const photos = (unit.photos ?? []).filter((p): p is Media => typeof p === 'object' && Boolean(p?.url))
-  const [main, ...rest] = photos
+  // No photos of this unit yet: show the model's factory photos, labeled as such.
+  const factory = photos.length || !model ? [] : modelImages(model)
   const quoteHref = `/contact?unit=${encodeURIComponent(unit.stockNumber)}`
 
   const details: [string, string | number | null | undefined][] = [
@@ -65,15 +66,13 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
           />
           <div className="mt-6 grid gap-10 lg:grid-cols-[1.15fr_1fr]">
             <div>
-              {main ? (
-                <Image
-                  src={main.url!}
-                  alt={main.alt}
-                  width={main.width ?? 1200}
-                  height={main.height ?? 700}
-                  priority
-                  className="aspect-[12/7] w-full rounded-[var(--radius-plate)] object-cover"
-                />
+              {photos.length ? (
+                <ProductGallery images={photos.map((p) => ({ ...p, url: p.url! }))} fit="cover" />
+              ) : factory.length ? (
+                <>
+                  <ProductGallery images={factory.map((p) => ({ ...p, url: p.url! }))} />
+                  <p className="mt-2 text-sm text-steel">Factory photos. Ask us for pictures of this unit.</p>
+                </>
               ) : (
                 <EquipmentArt
                   kind={kindForCategory(category?.slug)}
@@ -81,23 +80,6 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
                   label={unit.title ?? ''}
                 />
               )}
-              {rest.length ? (
-                <ul className="mt-3 grid grid-cols-4 gap-3">
-                  {rest.slice(0, 8).map((p) => (
-                    <li key={p.id}>
-                      <a href={p.url!} target="_blank" rel="noreferrer">
-                        <Image
-                          src={p.url!}
-                          alt={p.alt}
-                          width={300}
-                          height={175}
-                          className="aspect-[12/7] w-full rounded object-cover"
-                        />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
             </div>
             <div>
               <p className="font-medium text-steel">

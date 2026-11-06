@@ -28,6 +28,9 @@ export const firstImage = (model: Model): Media | null => {
   return image && typeof image === 'object' ? image : null
 }
 
+export const modelImages = (model: Model): Media[] =>
+  (model.images ?? []).filter((m): m is Media => typeof m === 'object' && m !== null && Boolean(m.url))
+
 export const fullAddress = (settings: SiteSetting) => {
   const a = settings.address
   return a ? `${a.street}, ${a.city}, ${a.state} ${a.zip}` : ''

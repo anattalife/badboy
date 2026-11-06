@@ -13,6 +13,13 @@ export const unitPhoto = (unit: Inventory): Media | null => {
   return p && typeof p === 'object' ? p : null
 }
 
+/** The model's factory photo, used when a unit has no photos of its own yet. */
+export const unitFactoryPhoto = (unit: Inventory): Media | null => {
+  const model = typeof unit.model === 'object' ? unit.model : null
+  const img = model?.images?.[0]
+  return img && typeof img === 'object' && img.url ? img : null
+}
+
 export const unitCategory = (unit: Inventory): Category | null =>
   typeof unit.category === 'object' ? unit.category : null
 
@@ -37,6 +44,7 @@ export function PriceLine({ unit, size = 'md' }: { unit: Inventory; size?: 'md' 
 
 export function UnitCard({ unit }: { unit: Inventory }) {
   const photo = unitPhoto(unit)
+  const factory = photo ? null : unitFactoryPhoto(unit)
   const category = unitCategory(unit)
   const tag = STATUS_TAG[unit.status]
 
@@ -50,6 +58,14 @@ export function UnitCard({ unit }: { unit: Inventory }) {
             width={photo.width ?? 960}
             height={photo.height ?? 560}
             className="aspect-[12/7] w-full object-cover"
+          />
+        ) : factory?.url ? (
+          <Image
+            src={factory.url}
+            alt={factory.alt}
+            width={factory.width ?? 960}
+            height={factory.height ?? 560}
+            className="aspect-[12/7] w-full object-contain p-3"
           />
         ) : (
           <EquipmentArt kind={kindForCategory(category?.slug)} className="aspect-[12/7]" label={unit.title ?? ''} />
