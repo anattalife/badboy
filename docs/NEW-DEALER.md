@@ -13,7 +13,7 @@ Follow [DEPLOY.md](DEPLOY.md) with the dealer's names and domain. In `wrangler.j
 - `r2_buckets[0].bucket_name` (from `pnpm wrangler r2 bucket create <name>-media`)
 - `vars.EMAIL_FROM_ADDRESS`: an address on the dealer's domain, e.g. `leads@smithmowers.com`
 - `vars.EMAIL_FROM_NAME`: the dealer's name
-- `vars.NEXT_PUBLIC_SITE_URL`: the live web address
+- `vars.SITE_URL`: the live web address
 
 Keep each dealer's `wrangler.jsonc` on its own branch or fork so deployments don't overwrite each other.
 

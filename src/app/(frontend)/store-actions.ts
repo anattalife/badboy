@@ -234,7 +234,7 @@ export async function placeOrder(items: CartItem[], form: FormData): Promise<Pla
   const h = await headers()
   const ip = h.get('cf-connecting-ip') ?? h.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null
   const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost:3000'
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || `${host.startsWith('localhost') ? 'http' : 'https'}://${host}`
+  const siteUrl = process.env.SITE_URL || `${host.startsWith('localhost') ? 'http' : 'https'}://${host}`
 
   const spam = await checkSpam(form, ip)
   if (!spam.ok) return { status: 'error', message: 'We couldn’t place your order. Please wait a few seconds and try again.' }

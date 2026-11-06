@@ -66,7 +66,7 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Ship-from** falls back to the dealership address when Store settings → ship-from is blank.
 - **Consent text** names the dealer's legal name (`consentText(legalName)`).
 - **Per-dealer Worker vars** (`wrangler.jsonc`): `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME`,
-  `NEXT_PUBLIC_SITE_URL`, plus the Worker, D1 and R2 names. One deployment per dealer.
+  `SITE_URL`, plus the Worker, D1 and R2 names. One deployment per dealer.
 - Migration `dealer_branding` was written by hand (see the comment in it); the generated one was wrong.
 
 ## Dealer website in a box (stage 4c)

@@ -30,7 +30,7 @@ async function requestInfo() {
   const ip = h.get('cf-connecting-ip') ?? h.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null
   const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost:3000'
   const proto = h.get('x-forwarded-proto') ?? (host.startsWith('localhost') ? 'http' : 'https')
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || `${proto}://${host}`
+  const siteUrl = process.env.SITE_URL || `${proto}://${host}`
   return { ip, userAgent: h.get('user-agent')?.slice(0, 300) ?? null, siteUrl }
 }
 

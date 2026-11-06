@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!(await isSetupComplete())) return { title: 'Set up your website' }
   const settings = await getSiteSettings()
   const place = cityState(settings)
-  const siteUrl = settings.siteUrl || process.env.NEXT_PUBLIC_SITE_URL
+  const siteUrl = settings.siteUrl || process.env.SITE_URL
   return {
     ...(siteUrl && URL.canParse(siteUrl) ? { metadataBase: new URL(siteUrl) } : {}),
     title: {
