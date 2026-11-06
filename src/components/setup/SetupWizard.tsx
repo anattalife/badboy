@@ -15,7 +15,8 @@ const FIELD_STEP: Record<string, number> = {
   setupCode: 0, siteName: 0, legalName: 0, phone: 0, leadEmail: 0, street: 0, city: 0, state: 0, zip: 0, siteUrl: 0,
   carry: 1,
   logo: 2, brandColor: 2, accentColor: 2,
-  priceDisplay: 3, financeApr: 3, financeTermMonths: 3, financeDownPercent: 3, taxRatePercent: 3,
+  priceDisplay: 3, financeApplication: 3, financeApr: 3,
+  financeLinkLabel0: 3, financeLinkUrl0: 3, financeLinkLabel1: 3, financeLinkUrl1: 3, financeLinkLabel2: 3, financeLinkUrl2: 3, financeTermMonths: 3, financeDownPercent: 3, taxRatePercent: 3,
   adminName: 4, adminEmail: 4, password: 4, passwordConfirm: 4,
 }
 
@@ -32,6 +33,12 @@ const PRICE_CHOICES = [
   { value: 'msrp', title: 'MSRP only', example: 'MSRP $9,299' },
   { value: 'hidden', title: 'Hide prices', example: '“Get today’s price” button (sends you a quote request)' },
 ]
+
+const FINANCE_CHOICES = [
+  { value: 'builtin', title: 'Our secure online application', hint: 'Built in. Applications arrive in your admin, encrypted.' },
+  { value: 'links', title: 'Our lender’s online application', hint: 'Paste the link your lender gave you.' },
+  { value: 'both', title: 'Both', hint: 'Lender links first, with our application below.' },
+] as const
 
 const card = 'rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-8'
 
@@ -56,6 +63,7 @@ export function SetupWizard({
   const [estimate, setEstimate] = useState(false)
   const [tax, setTax] = useState(false)
   const [offCategories, setOffCategories] = useState<Set<number>>(new Set())
+  const [financeMode, setFinanceMode] = useState<(typeof FINANCE_CHOICES)[number]['value']>('builtin')
   const fieldsets = useRef<(HTMLFieldSetElement | null)[]>([])
   const top = useRef<HTMLDivElement>(null)
   const err = state.status === 'error' ? (state.fieldErrors ?? {}) : {}
@@ -409,6 +417,54 @@ export function SetupWizard({
             ))}
           </div>
           <p className="text-sm text-steel">You can change this any time, and set it differently for a single model or unit.</p>
+
+          <div className="rounded-[var(--radius-plate)] border border-haze p-4">
+            <p className="font-semibold">Financing application</p>
+            <p className="mt-1 text-sm text-steel">Where the site’s “Apply for financing” buttons take customers.</p>
+            <div role="radiogroup" aria-label="Financing application" className="mt-3 space-y-2">
+              {FINANCE_CHOICES.map((c) => (
+                <label key={c.value} className="flex cursor-pointer items-start gap-3">
+                  <input
+                    type="radio"
+                    name="financeApplication"
+                    value={c.value}
+                    checked={financeMode === c.value}
+                    onChange={() => setFinanceMode(c.value)}
+                    className="mt-1 accent-[var(--color-signal)]"
+                  />
+                  <span>
+                    <span className="block font-medium">{c.title}</span>
+                    <span className="block text-sm text-steel">{c.hint}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+            {financeMode !== 'builtin' ? (
+              <div className="mt-4 space-y-3">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="grid gap-3 sm:grid-cols-[14rem_1fr]">
+                    <TextField
+                      name={`financeLinkLabel${i}`}
+                      label={i === 0 ? 'Button text' : `Button text ${i + 1}`}
+                      defaultValue={i === 0 ? 'Apply with our lender' : undefined}
+                      required={i === 0}
+                      error={err[`financeLinkLabel${i}`]}
+                    />
+                    <TextField
+                      name={`financeLinkUrl${i}`}
+                      label={i === 0 ? 'Application link' : `Application link ${i + 1}`}
+                      type="url"
+                      placeholder="https://"
+                      required={i === 0}
+                      pattern="https://.+"
+                      hint={i === 0 ? 'The online credit application link your lender gave you.' : undefined}
+                      error={err[`financeLinkUrl${i}`]}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
 
           <div className="rounded-[var(--radius-plate)] bg-fescue p-4">
             <label className="flex items-center gap-3 font-semibold">

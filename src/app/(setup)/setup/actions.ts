@@ -80,6 +80,25 @@ export async function completeSetup(_prev: FormState, form: FormData): Promise<F
   // Prices, financing, tax
   const priceDisplay = str(form, 'priceDisplay', 10) as PriceDisplay
   if (!PRICE_MODES.includes(priceDisplay)) e.priceDisplay = 'Choose how prices show.'
+  const financeApplication = str(form, 'financeApplication', 10) || 'builtin'
+  if (!['builtin', 'links', 'both'].includes(financeApplication)) e.financeApplication = 'Choose a financing application.'
+  const financeLinks: { label: string; url: string }[] = []
+  if (financeApplication !== 'builtin') {
+    for (let i = 0; i < 3; i++) {
+      const label = str(form, `financeLinkLabel${i}`, 60)
+      const url = str(form, `financeLinkUrl${i}`, 500)
+      if (!url && !(i === 0)) continue
+      if (!/^https:\/\/\S+$/i.test(url) || !URL.canParse(url)) {
+        e[`financeLinkUrl${i}`] = 'Paste the full link, starting with https://'
+        continue
+      }
+      if (!label) {
+        e[`financeLinkLabel${i}`] = 'Enter the button text.'
+        continue
+      }
+      financeLinks.push({ label, url })
+    }
+  }
   const showPaymentEstimate = form.get('showPaymentEstimate') === 'on'
   const financeApr = num(str(form, 'financeApr', 8), 0, 40)
   const financeTermMonths = num(str(form, 'financeTermMonths', 4), 6, 120)
@@ -193,6 +212,8 @@ export async function completeSetup(_prev: FormState, form: FormData): Promise<F
         regionName: regionName || null,
         heroText: heroText || null,
         priceDisplay,
+        financeApplication: financeApplication as 'builtin' | 'links' | 'both',
+        financeLinks,
         showPaymentEstimate,
         financeApr: financeApr ?? undefined,
         financeTermMonths: financeTermMonths ?? undefined,

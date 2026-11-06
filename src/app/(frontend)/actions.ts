@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 
 import { purgeExpiredApplications } from '@/collections/CreditApplications'
 import { hasEncryptionKey } from '@/lib/crypto'
+import { financeOptions } from '@/lib/financing'
 import { alertEmail } from '@/lib/email'
 import {
   ageFrom,
@@ -307,6 +308,12 @@ export async function submitCreditApplication(_prev: FormState, form: FormData):
   const { ip, userAgent, siteUrl } = await requestInfo()
   const spam = await checkSpam(form, ip)
   if (!spam.ok) return { status: 'error', message: SPAM_MESSAGE }
+
+  // A dealer who only uses a lender's application doesn't collect SSNs or income on this site.
+  const settingsForFinance = await (await getPayloadClient()).findGlobal({ slug: 'site-settings', depth: 0, overrideAccess: true })
+  if (!financeOptions(settingsForFinance).showForm) {
+    return { status: 'error', message: 'Please use the Apply button on our Financing page.' }
+  }
 
   if (!hasEncryptionKey()) {
     // Never store applications unencrypted.

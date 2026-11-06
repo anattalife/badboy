@@ -1369,42 +1369,8 @@ export interface SiteSetting {
    * e.g. https://www.example.com. Used in links, emails and search results.
    */
   siteUrl?: string | null;
-  /**
-   * Optional. A wide logo on a transparent background works best. Without one, the website name is shown.
-   */
-  logo?: (number | null) | Media;
-  /**
-   * Headings, header bar and footer. Hex, e.g. #1d1d1b.
-   */
-  brandColor?: string | null;
-  /**
-   * Main buttons. Hex, e.g. #e8641b.
-   */
-  accentColor?: string | null;
-  /**
-   * Completes the headline “Bad Boy equipment for …”, e.g. “the Roanoke Valley”.
-   */
-  regionName?: string | null;
-  heroText?: string | null;
-  /**
-   * Optional. Without one, the main photo of a featured Bad Boy model is used.
-   */
-  heroImage?: (number | null) | Media;
-  showMountains?: boolean | null;
   phone: string;
   fax?: string | null;
-  /**
-   * Where new leads and requests are sent. Not shown on the site.
-   */
-  leadEmail: string;
-  /**
-   * Optional. Credit application alerts. Blank uses the lead email.
-   */
-  financeEmail?: string | null;
-  /**
-   * Optional. Service request alerts. Blank uses the lead email.
-   */
-  serviceEmail?: string | null;
   address: {
     street: string;
     city: string;
@@ -1428,26 +1394,81 @@ export interface SiteSetting {
   serviceArea?: string | null;
   facebookUrl?: string | null;
   /**
-   * Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.
+   * Optional banner across the top of every page (e.g. a sale or holiday hours).
    */
-  creditApplicationRetentionDays: number;
+  announcement?: string | null;
+  /**
+   * Optional. A wide logo on a transparent background works best. Without one, the website name is shown.
+   */
+  logo?: (number | null) | Media;
+  /**
+   * Headings, header bar and footer. Hex, e.g. #1d1d1b.
+   */
+  brandColor?: string | null;
+  /**
+   * Main buttons. Hex, e.g. #e8641b.
+   */
+  accentColor?: string | null;
+  /**
+   * Completes the headline “Bad Boy equipment for …”, e.g. “the Roanoke Valley”.
+   */
+  regionName?: string | null;
+  heroText?: string | null;
+  /**
+   * Optional. Without one, the main photo of a featured Bad Boy model is used.
+   */
+  heroImage?: (number | null) | Media;
+  showMountains?: boolean | null;
   /**
    * The default for every model and unit. Each model or unit can override it. When no price shows, visitors get a “Get today’s price” button that sends you a quote request.
    */
   priceDisplay: 'dealer' | 'both' | 'msrp' | 'hidden';
+  /**
+   * Every “Apply for financing” button on the site opens your Financing page, which shows what you pick here.
+   */
+  financeApplication: 'builtin' | 'links' | 'both';
+  /**
+   * The online credit applications your lenders gave you. Opens in a new tab.
+   */
+  financeLinks?:
+    | {
+        /**
+         * e.g. “Apply with our lender”
+         */
+        label: string;
+        url: string;
+        /**
+         * Optional, e.g. “Promotional rates on Bad Boy equipment”
+         */
+        note?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   showPaymentEstimate?: boolean | null;
   financeApr?: number | null;
   financeTermMonths?: number | null;
   financeDownPercent?: number | null;
   financeDisclaimer?: string | null;
   /**
+   * Where new leads and requests are sent. Not shown on the site.
+   */
+  leadEmail: string;
+  /**
+   * Optional. Credit application alerts. Blank uses the lead email.
+   */
+  financeEmail?: string | null;
+  /**
+   * Optional. Service request alerts. Blank uses the lead email.
+   */
+  serviceEmail?: string | null;
+  /**
+   * Applications older than this are deleted automatically. Check with your accountant or lender how long you must keep them.
+   */
+  creditApplicationRetentionDays: number;
+  /**
    * When the setup wizard was finished.
    */
   setupCompletedAt?: string | null;
-  /**
-   * Optional banner across the top of every page (e.g. a sale or holiday hours).
-   */
-  announcement?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1502,18 +1523,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   legalName?: T;
   siteUrl?: T;
-  logo?: T;
-  brandColor?: T;
-  accentColor?: T;
-  regionName?: T;
-  heroText?: T;
-  heroImage?: T;
-  showMountains?: T;
   phone?: T;
   fax?: T;
-  leadEmail?: T;
-  financeEmail?: T;
-  serviceEmail?: T;
   address?:
     | T
     | {
@@ -1532,15 +1543,34 @@ export interface SiteSettingsSelect<T extends boolean = true> {
       };
   serviceArea?: T;
   facebookUrl?: T;
-  creditApplicationRetentionDays?: T;
+  announcement?: T;
+  logo?: T;
+  brandColor?: T;
+  accentColor?: T;
+  regionName?: T;
+  heroText?: T;
+  heroImage?: T;
+  showMountains?: T;
   priceDisplay?: T;
+  financeApplication?: T;
+  financeLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        note?: T;
+        id?: T;
+      };
   showPaymentEstimate?: T;
   financeApr?: T;
   financeTermMonths?: T;
   financeDownPercent?: T;
   financeDisclaimer?: T;
+  leadEmail?: T;
+  financeEmail?: T;
+  serviceEmail?: T;
+  creditApplicationRetentionDays?: T;
   setupCompletedAt?: T;
-  announcement?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

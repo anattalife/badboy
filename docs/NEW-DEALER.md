@@ -45,12 +45,14 @@ Until setup is finished, every page of the site sends visitors to `/setup`. The 
 3. **Logo and look**: logo upload, main and button colors (with a live preview of their logo beside
    the Bad Boy logo), the area they serve and a home page intro
 4. **Prices and financing**: show their price, price with MSRP crossed out, MSRP only, or hide
-   prices ("Get today's price" button); optional monthly payment estimate (APR, term, down payment);
-   sales tax on parts
+   prices ("Get today's price" button); where "Apply for financing" goes (the built-in secure
+   application, their lender's online application link, or both); optional monthly payment estimate
+   (APR, term, down payment); sales tax on parts
 5. **Admin account**: their name, email and password
 
 When they finish, the site is live and `/setup` is locked. Everything can be changed later in the
-admin under **Settings → Dealership info** (and **We don't sell this** on any category or model),
+admin under **Settings → Dealership info** (tabs: Dealership, Look and home page, Prices and
+financing, Leads and privacy) (and **We don't sell this** on any category or model),
 along with a home page photo, a separate finance email
 and per-model or per-unit price display.
 

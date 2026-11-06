@@ -46,3 +46,24 @@ describe('setup code', () => {
     expect(setupCodeMatches('A-long-enough-setup-code')).toBe(false)
   })
 })
+
+describe('financing application choice', async () => {
+  const { financeOptions } = await import('@/lib/financing')
+  const link = { label: 'Apply with our lender', url: 'https://lender.example/apply' }
+
+  it('uses the built-in application by default', () => {
+    expect(financeOptions({})).toEqual({ links: [], showForm: true })
+    expect(financeOptions({ financeApplication: 'builtin', financeLinks: [link] })).toEqual({ links: [], showForm: true })
+  })
+
+  it('shows lender links instead of, or above, the built-in application', () => {
+    expect(financeOptions({ financeApplication: 'links', financeLinks: [link] })).toEqual({ links: [link], showForm: false })
+    expect(financeOptions({ financeApplication: 'both', financeLinks: [link] })).toEqual({ links: [link], showForm: true })
+  })
+
+  it('never leaves customers without a way to apply, and only allows https links', () => {
+    expect(financeOptions({ financeApplication: 'links', financeLinks: [] }).showForm).toBe(true)
+    const bad = { label: 'x', url: 'javascript:alert(1)' }
+    expect(financeOptions({ financeApplication: 'links', financeLinks: [bad] })).toEqual({ links: [], showForm: true })
+  })
+})

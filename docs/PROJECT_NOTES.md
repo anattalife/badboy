@@ -99,6 +99,13 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 - **Lead routing:** credit application alerts go to `financeEmail` when set; `serviceEmail` is for
   stage 5.
 - **Phones:** fixed Call / Get a quote / Apply bar; cart moves into the menu.
+- **Financing application choice:** `financeApplication` = builtin / links / both, with up to 4
+  `financeLinks` (https only) to a lender's online application (`src/lib/financing.ts`). The
+  Financing page shows lender buttons and/or the built-in form. With "links only" the built-in
+  form is hidden and `submitCreditApplication` refuses submissions, so no SSNs are collected; with no
+  valid link it falls back to the built-in form. Set in wizard step 4 or Dealership info.
+- **Dealership info** is organized in tabs (Dealership, Look and home page, Prices and financing,
+  Leads and privacy). Tabs and collapsibles don't change the database.
 - **Equipment a dealer doesn't sell:** `notCarried` ("We don't sell this") on categories and models
   (`src/access/carried.ts`). Public access and every public getter in `src/lib/payload.ts` exclude
   them, also for signed-in staff browsing the site; the admin still lists them. A hidden category
