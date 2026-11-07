@@ -7,6 +7,8 @@ import * as migration_20261105_210450_dealer_branding from './20261105_210450_de
 import * as migration_20261106_202624_dealer_box from './20261106_202624_dealer_box';
 import * as migration_20261106_210200_equipment_carried from './20261106_210200_equipment_carried';
 import * as migration_20261106_211840_finance_links from './20261106_211840_finance_links';
+import * as migration_20261107_015830_pages_and_menus from './20261107_015830_pages_and_menus';
+import * as migration_20261107_022602_inventory_brands from './20261107_022602_inventory_brands';
 
 export const migrations = [
   {
@@ -52,6 +54,16 @@ export const migrations = [
   {
     up: migration_20261106_211840_finance_links.up,
     down: migration_20261106_211840_finance_links.down,
-    name: '20261106_211840_finance_links'
+    name: '20261106_211840_finance_links',
+  },
+  {
+    up: migration_20261107_015830_pages_and_menus.up,
+    down: migration_20261107_015830_pages_and_menus.down,
+    name: '20261107_015830_pages_and_menus',
+  },
+  {
+    up: migration_20261107_022602_inventory_brands.up,
+    down: migration_20261107_022602_inventory_brands.down,
+    name: '20261107_022602_inventory_brands',
   },
 ];

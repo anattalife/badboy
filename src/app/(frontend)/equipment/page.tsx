@@ -1,27 +1,23 @@
 import type { Metadata } from 'next'
 
 import { ModelCard } from '@/components/ModelCard'
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
-import { categoryOf, inPlace } from '@/lib/format'
-import { getAllModels, getCategories, getSiteSettings } from '@/lib/payload'
+import { categoryOf } from '@/lib/format'
+import { getAllModels, getCategories } from '@/lib/payload'
 import Link from 'next/link'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'All Bad Boy equipment',
-    description: `Every Bad Boy mower, tractor, UTV, construction machine and tool we sell${inPlace(s)}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('equipment')
 
 export default async function EquipmentPage() {
+  const { page, title, intro } = await pageText('equipment')
   const [categories, models] = await Promise.all([getCategories(), getAllModels()])
 
   return (
     <>
       <PageIntro
-        title="All Bad Boy equipment"
-        lede="The complete 2026 Bad Boy lineup. Ask us about what's on the lot today, or order any configuration."
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'Equipment' }]}
       >
         <nav aria-label="Categories" className="mt-8">
@@ -64,6 +60,7 @@ export default async function EquipmentPage() {
           )
         })}
       </div>
+      <PageBlocks page={page} path="/equipment" />
     </>
   )
 }

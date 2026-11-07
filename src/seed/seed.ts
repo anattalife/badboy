@@ -3,6 +3,7 @@ import type { Payload } from 'payload'
 import catalog from './data/catalog.json'
 import { DEFAULT_ACCENT_COLOR, DEFAULT_BRAND_COLOR } from '../globals/SiteSettings'
 import { DEFAULT_DEALER_PROFILE, loadDealerProfile } from './dealer'
+import { seedPages } from './pages'
 import { seedPhotos } from './photos'
 
 type CatalogModel = {
@@ -184,6 +185,10 @@ export async function seed(payload: Payload): Promise<void> {
 
   await seedAccessories(payload)
 
+  await seedInventoryCategories(payload, dealer?.inventoryCategories ?? [])
+  const pages = await seedPages(payload)
+  log(pages.created.length ? `Pages created: ${pages.created.join(', ')}` : 'Pages already exist (left as edited)')
+
   const photos = await seedPhotos(payload)
   log(`${photos.attached} product photos attached`)
   for (const s of photos.skipped) payload.logger.warn(`[seed] Photos skipped: ${s}`)
@@ -315,6 +320,7 @@ async function seedSampleInventory(payload: Payload) {
     )
     const data = {
       stockNumber: s.stockNumber,
+      brand: 'badboy' as const,
       model: model.id,
       category: typeof model.category === 'object' ? model.category.id : model.category,
       condition: s.condition,
@@ -340,9 +346,51 @@ async function seedSampleInventory(payload: Payload) {
       await payload.create({ collection: 'inventory', data })
     }
   }
+  // One used, other-brand unit so the demo shows how trade-ins and golf carts look.
+  const { docs: carts } = await payload.find({ collection: 'categories', where: { slug: { equals: 'golf-carts' } }, limit: 1 })
+  if (carts[0]) {
+    const cart = {
+      stockNumber: 'DEMO-2001',
+      brand: 'other' as const,
+      make: 'Club Car',
+      otherModelName: 'Onward 4 Passenger',
+      category: carts[0].id,
+      condition: 'used' as const,
+      status: 'available' as const,
+      year: 2021,
+      price: 8995,
+      description: ['Trade-in in good shape. New tires last spring. Charger included.', SAMPLE_NOTE].join('\n\n'),
+      details: [
+        { label: 'Seats', value: '4' },
+        { label: 'Power', value: '48V electric' },
+        { label: 'Batteries', value: 'Lead-acid, 2022' },
+        { label: 'Street legal', value: 'No' },
+      ],
+    }
+    const existing = await payload.find({ collection: 'inventory', where: { stockNumber: { equals: cart.stockNumber } }, limit: 1 })
+    if (existing.docs[0]) await payload.update({ collection: 'inventory', id: existing.docs[0].id, data: cart })
+    else await payload.create({ collection: 'inventory', data: cart })
+  }
   payload.logger.info(
-    `[seed] ${samples.length} sample inventory units saved (stock numbers DEMO-…)`,
+    `[seed] ${samples.length + (carts[0] ? 1 : 0)} sample inventory units saved (stock numbers DEMO-…)`,
   )
+}
+
+/**
+ * The dealer's own inventory-only categories (golf carts, trailers…) from the dealer profile, plus
+ * a general one every dealer can use. Only creates what's missing.
+ */
+async function seedInventoryCategories(payload: Payload, names: string[]) {
+  const all = ['Other equipment', ...names]
+  for (const [i, name] of all.entries()) {
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    const { docs } = await payload.find({ collection: 'categories', where: { slug: { equals: slug } }, limit: 1 })
+    if (docs[0]) continue
+    await payload.create({
+      collection: 'categories',
+      data: { name, slug, inventoryOnly: true, order: 900 + i, description: `${name} we have in stock.` },
+    })
+  }
 }
 
 type Accessory = {

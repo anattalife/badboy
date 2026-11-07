@@ -2,25 +2,21 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { OfferCard } from '@/components/OfferCard'
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
 import { telHref } from '@/lib/format'
 import { getCurrentOffers, getSiteSettings } from '@/lib/payload'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'Current offers',
-    description: `Current Bad Boy financing offers, rebates and sales at ${s.siteName}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('offers')
 
 export default async function OffersPage() {
+  const { page, title, intro } = await pageText('offers')
   const [offers, settings] = await Promise.all([getCurrentOffers(), getSiteSettings()])
   return (
     <>
       <PageIntro
-        title="Current offers"
-        lede="Bad Boy financing programs, rebates and our own specials. Claim one and we’ll get back to you with the details."
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'Offers' }]}
       />
       <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6">
@@ -47,6 +43,7 @@ export default async function OffersPage() {
           </div>
         )}
       </div>
+      <PageBlocks page={page} path="/offers" />
     </>
   )
 }

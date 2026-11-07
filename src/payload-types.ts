@@ -73,6 +73,7 @@ export interface Config {
     inventory: Inventory;
     models: Model;
     offers: Offer;
+    pages: Page;
     categories: Category;
     parts: Part;
     'part-imports': PartImport;
@@ -92,6 +93,7 @@ export interface Config {
     inventory: InventorySelect<false> | InventorySelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     offers: OffersSelect<false> | OffersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     parts: PartsSelect<false> | PartsSelect<true>;
     'part-imports': PartImportsSelect<false> | PartImportsSelect<true>;
@@ -110,10 +112,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'store-settings': StoreSetting;
+    navigation: Navigation;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'store-settings': StoreSettingsSelect<false> | StoreSettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   widgets: {
@@ -341,6 +345,10 @@ export interface Category {
    */
   notCarried?: boolean | null;
   /**
+   * For things you list in inventory that aren’t Bad Boy (golf carts, trailers, other brands). Shows as a filter on In stock, never in the Bad Boy catalog.
+   */
+  inventoryOnly?: boolean | null;
+  /**
    * Used in the page address. Leave blank to generate it from the name.
    */
   slug?: string | null;
@@ -391,8 +399,14 @@ export interface Inventory {
   stockNumber: string;
   condition: 'new' | 'used' | 'demo';
   status: 'available' | 'on-order' | 'pending' | 'sold' | 'hidden';
+  brand: 'badboy' | 'other';
   /**
-   * Pick the Bad Boy model. Leave empty for other brands (trade-ins).
+   * e.g. Club Car, Kubota
+   */
+  make?: string | null;
+  otherModelName?: string | null;
+  /**
+   * Pick the Bad Boy model. Specs and photos come from it.
    */
   model?: (number | null) | Model;
   year: number;
@@ -400,10 +414,8 @@ export interface Inventory {
    * Engine hours (used units).
    */
   hours?: number | null;
-  make?: string | null;
-  otherModelName?: string | null;
   /**
-   * Filled in automatically from the Bad Boy model.
+   * Filled in automatically for Bad Boy models. For other brands pick one; add your own (e.g. Golf carts) under Equipment categories with “Only for in-stock listings” ticked.
    */
   category?: (number | null) | Category;
   /**
@@ -439,6 +451,16 @@ export interface Inventory {
    * Condition notes, included attachments, warranty remaining, etc.
    */
   description?: string | null;
+  /**
+   * Your own spec list for this unit, e.g. “Seats: 4”, “Battery: 48V lithium”. Most useful for used and other-brand units (Bad Boy units also link to the model’s full specs).
+   */
+  details?:
+    | {
+        label: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * Show first on the In Stock page.
    */
@@ -723,6 +745,241 @@ export interface Part {
   createdAt: string;
 }
 /**
+ * Every page on the website. Edit the text and blocks, then Publish. Use Preview to see changes before they go live.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  /**
+   * The page heading.
+   */
+  title: string;
+  /**
+   * The part after the domain, e.g. “about-us” for /about-us. Fixed for the website’s built-in pages.
+   */
+  slug?: string | null;
+  /**
+   * One or two sentences under the heading. Not used when the page starts with a hero banner.
+   */
+  intro?: string | null;
+  /**
+   * Add, reorder and edit sections. On built-in pages like Financing or In stock, these appear below the page’s form or listing.
+   */
+  layout?:
+    | (
+        | {
+            eyebrow?: string | null;
+            /**
+             * {region} is replaced with the area you serve (Dealership info → Look and home page).
+             */
+            heading: string;
+            /**
+             * Leave blank to use the home page intro from Dealership info.
+             */
+            text?: string | null;
+            buttons?:
+              | {
+                  label: string;
+                  /**
+                   * A page on this site like /financing, or a full address starting with https://
+                   */
+                  url: string;
+                  style?: ('primary' | 'outline') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Leave blank to show a featured Bad Boy model, or the home page photo from Dealership info.
+             */
+            image?: (number | null) | Media;
+            showMountains?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            body: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            width?: ('narrow' | 'wide') | null;
+            background?: ('none' | 'panel') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            image: number | Media;
+            imagePosition?: ('left' | 'right') | null;
+            heading?: string | null;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            buttonLabel?: string | null;
+            /**
+             * A page on this site like /financing, or a full address starting with https://
+             */
+            buttonUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaText';
+          }
+        | {
+            heading?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'categoryGrid';
+          }
+        | {
+            heading?: string | null;
+            /**
+             * Leave blank to show the models marked “Featured”.
+             */
+            models?: (number | Model)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featuredModels';
+          }
+        | {
+            heading?: string | null;
+            limit?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'offers';
+          }
+        | {
+            heading?: string | null;
+            limit?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'inStock';
+          }
+        | {
+            heading?: string | null;
+            options?:
+              | {
+                  /**
+                   * e.g. “1–3 acres”
+                   */
+                  label: string;
+                  advice: string;
+                  models?: (number | Model)[] | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'acreage';
+          }
+        | {
+            heading: string;
+            text?: string | null;
+            buttonLabel: string;
+            /**
+             * A page on this site like /financing, or a full address starting with https://
+             */
+            buttonUrl: string;
+            color?: ('accent' | 'brand' | 'light') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'callToAction';
+          }
+        | {
+            heading?: string | null;
+            intro?: string | null;
+            items?:
+              | {
+                  title: string;
+                  text?: string | null;
+                  linkLabel?: string | null;
+                  /**
+                   * A page on this site like /financing, or a full address starting with https://
+                   */
+                  linkUrl?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            background?: ('panel' | 'none') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            heading?: string | null;
+            items?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            heading?: string | null;
+            /**
+             * Optional. Address, phone and hours come from Dealership info.
+             */
+            text?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'visit';
+          }
+        | {
+            heading?: string | null;
+            intro?: string | null;
+            /**
+             * Submissions arrive in Leads and by email, like the other forms.
+             */
+            formType?: ('contact' | 'quote' | 'trade-in') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'leadForm';
+          }
+      )[]
+    | null;
+  seo?: {
+    /**
+     * Blank: the page heading.
+     */
+    title?: string | null;
+    /**
+     * Blank: the intro.
+     */
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * Upload a CSV price list to add or update parts. Rows are matched by part number. A template is at /parts-import-template.csv on the website.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -813,6 +1070,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'offers';
         value: number | Offer;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'categories';
@@ -1101,11 +1362,12 @@ export interface InventorySelect<T extends boolean = true> {
   stockNumber?: T;
   condition?: T;
   status?: T;
+  brand?: T;
+  make?: T;
+  otherModelName?: T;
   model?: T;
   year?: T;
   hours?: T;
-  make?: T;
-  otherModelName?: T;
   category?: T;
   configuration?: T;
   deck?: T;
@@ -1116,6 +1378,13 @@ export interface InventorySelect<T extends boolean = true> {
   priceDisplay?: T;
   photos?: T;
   description?: T;
+  details?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
   featured?: T;
   title?: T;
   slug?: T;
@@ -1193,11 +1462,180 @@ export interface OffersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  intro?: T;
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              text?: T;
+              buttons?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    style?: T;
+                    id?: T;
+                  };
+              image?: T;
+              showMountains?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              body?: T;
+              width?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+        mediaText?:
+          | T
+          | {
+              image?: T;
+              imagePosition?: T;
+              heading?: T;
+              body?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        categoryGrid?:
+          | T
+          | {
+              heading?: T;
+              id?: T;
+              blockName?: T;
+            };
+        featuredModels?:
+          | T
+          | {
+              heading?: T;
+              models?: T;
+              id?: T;
+              blockName?: T;
+            };
+        offers?:
+          | T
+          | {
+              heading?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        inStock?:
+          | T
+          | {
+              heading?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        acreage?:
+          | T
+          | {
+              heading?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    advice?: T;
+                    models?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        callToAction?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              buttonLabel?: T;
+              buttonUrl?: T;
+              color?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              heading?: T;
+              intro?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                    linkLabel?: T;
+                    linkUrl?: T;
+                    id?: T;
+                  };
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              heading?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        visit?:
+          | T
+          | {
+              heading?: T;
+              text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        leadForm?:
+          | T
+          | {
+              heading?: T;
+              intro?: T;
+              formType?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   notCarried?: T;
+  inventoryOnly?: T;
   slug?: T;
   description?: T;
   image?: T;
@@ -1516,6 +1954,41 @@ export interface StoreSetting {
   createdAt?: string | null;
 }
 /**
+ * The main menu and the footer links. Drag rows to reorder.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  mainMenu?:
+    | {
+        label: string;
+        /**
+         * A page on this site like /financing, or a full address starting with https://
+         */
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerLinks?:
+    | {
+        label: string;
+        /**
+         * A page on this site like /financing, or a full address starting with https://
+         */
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Blank: “Bad Boy mowers, tractors, UTVs and equipment, sold and serviced by <legal name>.”
+   */
+  footerText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
@@ -1606,6 +2079,30 @@ export interface StoreSettingsSelect<T extends boolean = true> {
   taxState?: T;
   taxRatePercent?: T;
   taxShipping?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  mainMenu?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  footerLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  footerText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

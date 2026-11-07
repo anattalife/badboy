@@ -1,33 +1,29 @@
 import type { Metadata } from 'next'
 
 import { CreditApplicationForm } from '@/components/forms/CreditApplicationForm'
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
 import { financeOptions } from '@/lib/financing'
-import { inPlace, telHref } from '@/lib/format'
+import { telHref } from '@/lib/format'
 import { getSiteSettings, resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
 import { consentText } from './consent'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'Apply for financing',
-    description: `Apply online for financing on Bad Boy mowers, tractors, UTVs and equipment${inPlace(s)}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('financing')
 
 export default async function FinancingPage(props: PageProps<'/financing'>) {
+  const { page, title, intro } = await pageText('financing')
   const [settings, interest] = await Promise.all([getSiteSettings(), resolveInterest(await props.searchParams)])
   const { links, showForm } = financeOptions(settings)
 
   return (
     <>
       <PageIntro
-        title="Apply for financing"
+        title={title}
         lede={
           showForm
-            ? 'Fill this out once and our finance team will work with our lenders to find you options. It takes about 10 minutes.'
+            ? intro
             : 'Apply online with our lender. It only takes a few minutes, and our team will follow up with you.'
         }
         trail={[{ href: '/', label: 'Home' }, { label: 'Financing' }]}
@@ -96,6 +92,7 @@ export default async function FinancingPage(props: PageProps<'/financing'>) {
           </div>
         </aside>
       </div>
+      <PageBlocks page={page} path="/financing" />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import type { Access, CollectionBeforeValidateHook, CollectionConfig, FieldAccess } from 'payload'
+import { APIError, type Access, type CollectionBeforeValidateHook, type CollectionConfig, type FieldAccess } from 'payload'
 
 import { hasRole } from '../access/roles'
 import { priceDisplayOverride } from '../fields/pricing'
@@ -38,9 +38,17 @@ const fillDerivedFields: CollectionBeforeValidateHook = async ({ data, req, orig
   if (!data) return data
   const merged = { ...originalDoc, ...data }
 
+  // Other brands have no Bad Boy model; make, model name and category are typed in.
+  if (merged.brand === 'other') {
+    data.model = null
+    if (!merged.make || /^bad boy$/i.test(String(merged.make).trim())) {
+      throw new APIError('Enter the make (brand) for an other-brand unit, e.g. Club Car.', 400, null, true)
+    }
+  }
+
   // Category, make and display name follow the linked Bad Boy model.
   let modelName: string | undefined = merged.otherModelName ?? undefined
-  const modelId = typeof merged.model === 'object' ? merged.model?.id : merged.model
+  const modelId = merged.brand === 'other' ? null : typeof merged.model === 'object' ? merged.model?.id : merged.model
   if (modelId) {
     const model = await req.payload.findByID({
       collection: 'models',
@@ -124,6 +132,25 @@ export const Inventory: CollectionConfig = {
       ],
     },
     {
+      name: 'brand',
+      type: 'radio',
+      required: true,
+      defaultValue: 'badboy',
+      options: [
+        { label: 'Bad Boy', value: 'badboy' },
+        { label: 'Other brand (trade-ins, golf carts, trailers…)', value: 'other' },
+      ],
+      admin: { layout: 'horizontal' },
+    },
+    {
+      type: 'row',
+      admin: { condition: (data) => data?.brand === 'other' },
+      fields: [
+        { name: 'make', type: 'text', admin: { width: '50%', description: 'e.g. Club Car, Kubota' } },
+        { name: 'otherModelName', label: 'Model name', type: 'text', admin: { width: '50%' } },
+      ],
+    },
+    {
       type: 'row',
       fields: [
         {
@@ -133,7 +160,8 @@ export const Inventory: CollectionConfig = {
           index: true,
           admin: {
             width: '50%',
-            description: 'Pick the Bad Boy model. Leave empty for other brands (trade-ins).',
+            condition: (data) => data?.brand !== 'other',
+            description: 'Pick the Bad Boy model. Specs and photos come from it.',
           },
         },
         {
@@ -154,22 +182,15 @@ export const Inventory: CollectionConfig = {
       ],
     },
     {
-      type: 'row',
-      admin: { condition: (data) => !data?.model },
-      fields: [
-        { name: 'make', type: 'text', defaultValue: 'Bad Boy', admin: { width: '50%' } },
-        { name: 'otherModelName', label: 'Model name', type: 'text', admin: { width: '50%' } },
-      ],
-    },
-    {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories',
       required: true,
       index: true,
       admin: {
-        description: 'Filled in automatically from the Bad Boy model.',
-        condition: (data) => !data?.model,
+        description:
+          'Filled in automatically for Bad Boy models. For other brands pick one; add your own (e.g. Golf carts) under Equipment categories with “Only for in-stock listings” ticked.',
+        condition: (data) => data?.brand === 'other' || !data?.model,
       },
     },
     {
@@ -220,6 +241,26 @@ export const Inventory: CollectionConfig = {
       name: 'description',
       type: 'textarea',
       admin: { description: 'Condition notes, included attachments, warranty remaining, etc.' },
+    },
+    {
+      name: 'details',
+      label: 'Details',
+      type: 'array',
+      maxRows: 30,
+      labels: { singular: 'Detail', plural: 'Details' },
+      admin: {
+        description:
+          'Your own spec list for this unit, e.g. “Seats: 4”, “Battery: 48V lithium”. Most useful for used and other-brand units (Bad Boy units also link to the model’s full specs).',
+      },
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            { name: 'label', type: 'text', required: true, admin: { width: '40%' } },
+            { name: 'value', type: 'text', required: true, admin: { width: '60%' } },
+          ],
+        },
+      ],
     },
     {
       name: 'featured',

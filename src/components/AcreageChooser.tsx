@@ -13,14 +13,14 @@ export type AcreageOption = {
 /**
  * Hero tool: pick how much ground you cover, get a short list of machines to look at.
  */
-export function AcreageChooser({ options }: { options: AcreageOption[] }) {
+export function AcreageChooser({ options, heading = 'How much ground are you covering?' }: { options: AcreageOption[]; heading?: string }) {
   const [selected, setSelected] = useState<string | null>(null)
   const current = options.find((o) => o.id === selected)
 
   return (
     <div>
       <fieldset>
-        <legend className="mb-3 text-lg font-semibold text-white">How much ground are you covering?</legend>
+        <legend className="mb-3 text-lg font-semibold text-white">{heading}</legend>
         <div className="flex flex-wrap gap-2">
           {options.map((option) => {
             const active = option.id === selected

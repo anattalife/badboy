@@ -1,25 +1,21 @@
 import type { Metadata } from 'next'
 
 import { LeadForm } from '@/components/forms/LeadForm'
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
-import { getSiteSettings, resolveInterest } from '@/lib/payload'
+import { resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'Value your trade',
-    description: `Tell us about your mower, tractor or UTV and get a trade-in value from ${s.siteName}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('trade-in')
 
 export default async function TradeInPage(props: PageProps<'/trade-in'>) {
+  const { page, title, intro } = await pageText('trade-in')
   const interest = await resolveInterest(await props.searchParams)
   return (
     <>
       <PageIntro
-        title="Value your trade"
-        lede="Tell us about the machine you’re trading in and we’ll get back to you with a value."
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'Value your trade' }]}
       />
       <div className="mx-auto max-w-3xl px-4 pt-10 sm:px-6">
@@ -35,6 +31,7 @@ export default async function TradeInPage(props: PageProps<'/trade-in'>) {
           />
         </div>
       </div>
+      <PageBlocks page={page} path="/trade-in" />
     </>
   )
 }

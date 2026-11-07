@@ -7,18 +7,9 @@ import type { SiteSetting } from '@/payload-types'
 import { MobileNav } from './MobileNav'
 import { CartLink } from './store/CartWidgets'
 
-export const NAV = [
-  { href: '/equipment', label: 'Equipment' },
-  { href: '/inventory', label: 'In stock' },
-  { href: '/offers', label: 'Offers' },
-  { href: '/compare', label: 'Compare' },
-  { href: '/financing', label: 'Financing' },
-  { href: '/parts', label: 'Parts' },
-  { href: '/service', label: 'Service' },
-  { href: '/contact', label: 'Contact' },
-]
+export type MenuItem = { href: string; label: string }
 
-export function Header({ settings }: { settings: SiteSetting }) {
+export function Header({ settings, menu }: { settings: SiteSetting; menu: MenuItem[] }) {
   const hoursSummary = (settings.hours ?? [])
     .filter((row) => !/closed/i.test(row.hours))
     .map((row) => `${row.days} ${row.hours}`)
@@ -44,7 +35,7 @@ export function Header({ settings }: { settings: SiteSetting }) {
           <div className="flex items-center gap-3">
             <a
               href={telHref(settings.phone)}
-              className="hidden text-right leading-tight md:block"
+              className="hidden text-right leading-tight xl:block"
             >
               <span className="block text-xs text-steel">Call us</span>
               <span className="text-lg font-bold text-ink hover:underline">{settings.phone}</span>
@@ -55,7 +46,7 @@ export function Header({ settings }: { settings: SiteSetting }) {
             <Link href="/contact" className="btn btn-primary hidden sm:inline-flex">
               Get a quote
             </Link>
-            <MobileNav items={[...NAV, { href: '/cart', label: 'Cart' }]} phone={settings.phone} />
+            <MobileNav items={[...menu, { href: '/cart', label: 'Cart' }]} phone={settings.phone} />
           </div>
         </div>
       </div>
@@ -63,7 +54,7 @@ export function Header({ settings }: { settings: SiteSetting }) {
       <div className="hidden bg-ridge lg:block">
         <nav aria-label="Main" className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
           <ul className="flex items-center">
-            {NAV.map((item) => (
+            {menu.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -117,6 +108,7 @@ export function DealerLockup({ settings, reverse = false }: { settings: SiteSett
           alt="Bad Boy Mowers"
           width={150}
           height={34}
+          priority={!reverse}
           className="h-5 w-auto sm:h-8"
         />
         <p className={`mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.1em] sm:text-xs sm:tracking-[0.14em] ${reverse ? 'text-white/70' : 'text-steel'}`}>

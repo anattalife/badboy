@@ -3,9 +3,19 @@ import Link from 'next/link'
 import { fullAddress, telHref } from '@/lib/format'
 import type { Category, SiteSetting } from '@/payload-types'
 
-import { DealerLockup } from './Header'
+import { DealerLockup, type MenuItem } from './Header'
 
-export function Footer({ settings, categories }: { settings: SiteSetting; categories: Category[] }) {
+export function Footer({
+  settings,
+  categories,
+  links,
+  text,
+}: {
+  settings: SiteSetting
+  categories: Category[]
+  links: MenuItem[]
+  text?: string | null
+}) {
   const year = new Date().getFullYear()
   return (
     <footer className="mt-24 bg-ridge-deep text-haze">
@@ -13,7 +23,7 @@ export function Footer({ settings, categories }: { settings: SiteSetting; catego
         <div>
           <DealerLockup settings={settings} reverse />
           <p className="mt-3 max-w-sm">
-            Bad Boy mowers, tractors, UTVs and equipment, sold and serviced by {settings.legalName}.
+            {text || `Bad Boy mowers, tractors, UTVs and equipment, sold and serviced by ${settings.legalName}.`}
           </p>
           <address className="mt-6 not-italic leading-relaxed">
             {fullAddress(settings)}
@@ -28,21 +38,19 @@ export function Footer({ settings, categories }: { settings: SiteSetting; catego
             </a>
           ) : null}
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-            <li>
-              <Link href="/financing" className="underline hover:text-white">
-                Apply for financing
-              </Link>
-            </li>
-            <li>
-              <Link href="/trade-in" className="underline hover:text-white">
-                Value your trade
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="underline hover:text-white">
-                Contact us
-              </Link>
-            </li>
+            {links.map((l) => (
+              <li key={l.href + l.label}>
+                {l.href.startsWith('/') ? (
+                  <Link href={l.href} className="underline hover:text-white">
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a href={l.href} className="underline hover:text-white">
+                    {l.label}
+                  </a>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
 

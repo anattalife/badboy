@@ -39,5 +39,9 @@
     "state": "VA",
     "ratePercent": 5.3,
     "taxShipping": false
-  }
+  },
+  "inventoryCategories": [
+    "Golf carts",
+    "Trailers"
+  ]
 }

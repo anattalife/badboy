@@ -132,6 +132,25 @@ export default async function UnitPage(props: PageProps<'/inventory/[slug]'>) {
             <p className="mt-4 whitespace-pre-line text-lg">{unit.description}</p>
           </section>
         ) : null}
+        {unit.details?.length ? (
+          <section aria-labelledby="unit-details">
+            <h2 id="unit-details" className="type-decal-md text-2xl text-ridge">
+              Details
+            </h2>
+            <table className="mt-4 w-full border-collapse text-left">
+              <tbody>
+                {unit.details.map((d) => (
+                  <tr key={d.id ?? d.label} className="border-t border-haze align-top">
+                    <th scope="row" className="w-2/5 py-2.5 pr-4 font-normal text-steel">
+                      {d.label}
+                    </th>
+                    <td className="py-2.5">{d.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        ) : null}
         {model && keySpecs.length ? (
           <section aria-labelledby="model-specs">
             <h2 id="model-specs" className="type-decal-md text-2xl text-ridge">

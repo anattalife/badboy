@@ -2,31 +2,27 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { LeadForm } from '@/components/forms/LeadForm'
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
-import { fullAddress, inPlace, telHref } from '@/lib/format'
+import { fullAddress, telHref } from '@/lib/format'
 import { getSiteSettings, resolveInterest } from '@/lib/payload'
 import { formRenderedAt, turnstileSiteKey } from '@/lib/spam'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'Contact us',
-    description: `Get a quote, ask a question, or get directions to ${s.siteName}${inPlace(s)}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('contact')
 
 export default async function ContactPage(props: PageProps<'/contact'>) {
+  const { page, title, intro } = await pageText('contact')
   const [settings, interest] = await Promise.all([getSiteSettings(), resolveInterest(await props.searchParams)])
   const isQuote = Boolean(interest.subject)
 
   return (
     <>
       <PageIntro
-        title={interest.offerSlug ? 'Claim this offer' : isQuote ? 'Get a quote' : 'Contact us'}
+        title={interest.offerSlug ? 'Claim this offer' : isQuote ? 'Get a quote' : title}
         lede={
           isQuote
             ? 'Tell us how to reach you and we’ll send pricing and availability.'
-            : 'Questions about equipment, financing, parts or service? Send us a note or give us a call.'
+            : intro
         }
         trail={[{ href: '/', label: 'Home' }, { label: isQuote ? 'Get a quote' : 'Contact' }]}
       />
@@ -79,6 +75,7 @@ export default async function ContactPage(props: PageProps<'/contact'>) {
           </div>
         </aside>
       </div>
+      <PageBlocks page={page} path="/contact" />
     </>
   )
 }

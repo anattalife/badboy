@@ -4,9 +4,10 @@ import { carried, modelCarriedWhere } from '@/access/carried'
 
 import config from '@payload-config'
 import { getPayload, type Where } from 'payload'
+import { draftMode } from 'next/headers'
 import { cache } from 'react'
 
-import type { Category, Inventory as InventoryUnit, Model, Offer, SiteSetting } from '@/payload-types'
+import type { Category, Inventory as InventoryUnit, Model, Offer, Page, SiteSetting } from '@/payload-types'
 
 export const getPayloadClient = () => getPayload({ config })
 
@@ -20,16 +21,20 @@ const getModelCarried = cache(async () => modelCarriedWhere(await getPayloadClie
  */
 const publicRead = { overrideAccess: false, draft: false } as const
 
+/** Excludes the dealer's inventory-only categories from the Bad Boy catalog pages and menus. */
+const catalogOnly: Where = { or: [{ inventoryOnly: { equals: false } }, { inventoryOnly: { exists: false } }] }
+
 export const getSiteSettings = cache(async (): Promise<SiteSetting> => {
   const payload = await getPayloadClient()
   return payload.findGlobal({ slug: 'site-settings', ...publicRead })
 })
 
-export const getCategories = cache(async (): Promise<Category[]> => {
+/** Bad Boy catalog categories, or with `includeInventoryOnly` also the dealer's own (golf carts, trailers…). */
+export const getCategories = cache(async (includeInventoryOnly = false): Promise<Category[]> => {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'categories',
-    where: carried(),
+    where: includeInventoryOnly ? carried() : { and: [carried(), catalogOnly] },
     sort: 'order',
     limit: 100,
     depth: 1,
@@ -38,11 +43,11 @@ export const getCategories = cache(async (): Promise<Category[]> => {
   return docs
 })
 
-export const getCategoryBySlug = cache(async (slug: string): Promise<Category | null> => {
+export const getCategoryBySlug = cache(async (slug: string, includeInventoryOnly = false): Promise<Category | null> => {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'categories',
-    where: { and: [{ slug: { equals: slug } }, carried()] },
+    where: { and: [{ slug: { equals: slug } }, carried(), ...(includeInventoryOnly ? [] : [catalogOnly])] },
     limit: 1,
     depth: 1,
     ...publicRead,
@@ -103,6 +108,7 @@ export const countModelsByCategory = cache(async (): Promise<Record<number, numb
 /* ------------------------------------------------------------------ */
 
 export type InventoryFilters = {
+  brand?: 'badboy' | 'other'
   category?: string
   condition?: string
   minPrice?: number
@@ -127,7 +133,7 @@ export async function getInventory(filters: InventoryFilters) {
   const and: Where[] = []
 
   if (filters.category) {
-    const category = await getCategoryBySlug(filters.category)
+    const category = await getCategoryBySlug(filters.category, true)
     // Unknown category: return nothing rather than everything.
     and.push({ category: { equals: category?.id ?? -1 } })
   }
@@ -136,6 +142,8 @@ export async function getInventory(filters: InventoryFilters) {
     and.push({ model: { equals: model?.id ?? -1 } })
   }
   if (filters.condition) and.push({ condition: { equals: filters.condition } })
+  if (filters.brand === 'badboy') and.push({ brand: { equals: 'badboy' } })
+  if (filters.brand === 'other') and.push({ brand: { equals: 'other' } })
   if (filters.minPrice != null) and.push({ price: { greater_than_equal: filters.minPrice } })
   if (filters.maxPrice != null) and.push({ price: { less_than_equal: filters.maxPrice } })
   if (filters.minDeck != null) and.push({ deckInches: { greater_than_equal: filters.minDeck } })
@@ -337,4 +345,31 @@ export const getOfferBySlug = cache(async (slug: string): Promise<Offer | null> 
     overrideAccess: false,
   })
   return docs[0] ?? null
+})
+
+/* ------------------------------------------------------------------ */
+/* Pages and menus                                                     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * A page by address. In preview (draft mode, only switched on for signed-in staff by /preview) the
+ * latest draft is shown; otherwise only the published version.
+ */
+export const getPage = cache(async (slug: string): Promise<Page | null> => {
+  const payload = await getPayloadClient()
+  const { isEnabled: preview } = await draftMode()
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 2,
+    draft: preview,
+    overrideAccess: preview,
+  })
+  return docs[0] ?? null
+})
+
+export const getNavigation = cache(async () => {
+  const payload = await getPayloadClient()
+  return payload.findGlobal({ slug: 'navigation', depth: 0, overrideAccess: false })
 })

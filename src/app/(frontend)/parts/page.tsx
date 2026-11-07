@@ -1,23 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
 import { PartCard } from '@/components/store/PartCard'
 import { PART_CATEGORIES } from '@/collections/Parts'
-import { categoryOf, inPlace, telHref } from '@/lib/format'
+import { categoryOf, telHref } from '@/lib/format'
 import { getAllModels, getParts, getSiteSettings } from '@/lib/payload'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'Parts and accessories',
-    description: `Bad Boy parts and accessories shipped by UPS from ${s.siteName}${inPlace(s)}.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('parts')
 
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? ''
 
 export default async function PartsPage(props: PageProps<'/parts'>) {
+  const { page, title, intro } = await pageText('parts')
   const sp = await props.searchParams
   const params = {
     q: one(sp.q).slice(0, 80),
@@ -45,8 +41,8 @@ export default async function PartsPage(props: PageProps<'/parts'>) {
   return (
     <>
       <PageIntro
-        title="Parts and accessories"
-        lede="Bad Boy accessories and parts, shipped by UPS. Can’t find a part number? Call our parts counter."
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'Parts' }]}
       />
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
@@ -133,6 +129,7 @@ export default async function PartsPage(props: PageProps<'/parts'>) {
           </nav>
         ) : null}
       </div>
+      <PageBlocks page={page} path="/parts" />
     </>
   )
 }

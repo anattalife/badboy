@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { PageBlocks, pageMetadata, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
 import { UnitCard } from '@/components/UnitCard'
-import { inPlace, telHref } from '@/lib/format'
+import { telHref } from '@/lib/format'
 import { getCategories, getInventory, getSiteSettings, type InventoryFilters } from '@/lib/payload'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const s = await getSiteSettings()
-  return {
-    title: 'In stock',
-    description: `New and used Bad Boy equipment on our lot${inPlace(s)}, with prices and stock numbers.`,
-  }
-}
+export const generateMetadata = (): Promise<Metadata> => pageMetadata('inventory')
 
 const DECK_RANGES = [
   { value: '', label: 'Any deck' },
@@ -44,10 +39,12 @@ const range = (v: string): [number | undefined, number | undefined] => {
 }
 
 export default async function InventoryPage(props: PageProps<'/inventory'>) {
+  const { page, title, intro } = await pageText('inventory')
   const sp = await props.searchParams
   const params = {
     category: one(sp.category),
     condition: one(sp.condition),
+    brand: one(sp.brand),
     price: one(sp.price),
     deck: one(sp.deck),
     sort: one(sp.sort) || 'newest',
@@ -60,6 +57,7 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
   const filters: InventoryFilters = {
     category: params.category || undefined,
     condition: ['new', 'used', 'demo'].includes(params.condition) ? params.condition : undefined,
+    brand: params.brand === 'badboy' || params.brand === 'other' ? params.brand : undefined,
     model: params.model || undefined,
     minPrice,
     maxPrice,
@@ -70,7 +68,7 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
   }
 
   const [categories, settings, result] = await Promise.all([
-    getCategories(),
+    getCategories(true),
     getSiteSettings(),
     getInventory(filters),
   ])
@@ -82,7 +80,7 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
     const s = q.toString()
     return s ? `/inventory?${s}` : '/inventory'
   }
-  const hasFilters = Boolean(params.category || params.condition || params.price || params.deck || params.model)
+  const hasFilters = Boolean(params.category || params.condition || params.brand || params.price || params.deck || params.model)
 
   const selectClass =
     'mt-1 block w-full rounded-[var(--radius-plate)] border border-steel-light bg-white px-3 py-2.5 text-ink'
@@ -90,13 +88,13 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
   return (
     <>
       <PageIntro
-        title="In stock"
-        lede="New and used equipment on our lot or on its way. Don’t see what you want? We can order any Bad Boy configuration."
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'In stock' }]}
       />
 
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
-        <form method="get" action="/inventory" className="grid gap-4 rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:grid-cols-2 lg:grid-cols-[repeat(5,1fr)_auto]" aria-label="Filter inventory">
+        <form method="get" action="/inventory" className="grid gap-4 rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(6,1fr)_auto]" aria-label="Filter inventory">
           {params.model ? <input type="hidden" name="model" value={params.model} /> : null}
           <label className="text-sm font-medium">
             Equipment
@@ -116,6 +114,14 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
               <option value="new">New</option>
               <option value="used">Used</option>
               <option value="demo">Demo</option>
+            </select>
+          </label>
+          <label className="text-sm font-medium">
+            Brand
+            <select name="brand" defaultValue={params.brand} className={selectClass}>
+              <option value="">All brands</option>
+              <option value="badboy">Bad Boy</option>
+              <option value="other">Other brands</option>
             </select>
           </label>
           <label className="text-sm font-medium">
@@ -208,6 +214,7 @@ export default async function InventoryPage(props: PageProps<'/inventory'>) {
           </nav>
         ) : null}
       </div>
+      <PageBlocks page={page} path="/inventory" />
     </>
   )
 }

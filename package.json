@@ -29,6 +29,7 @@
     "@fontsource-variable/archivo": "^5.3.0",
     "@opennextjs/cloudflare": "1.20.1",
     "@payloadcms/db-d1-sqlite": "3.92.0",
+    "@payloadcms/live-preview-react": "3.92.0",
     "@payloadcms/next": "3.92.0",
     "@payloadcms/richtext-lexical": "3.92.0",
     "@payloadcms/storage-r2": "3.92.0",

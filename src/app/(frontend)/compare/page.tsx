@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 
 import { CompareSync } from '@/components/CompareControls'
 import { EquipmentArt } from '@/components/EquipmentArt'
+import { PageBlocks, pageText } from '@/components/CmsPage'
 import { PageIntro } from '@/components/PageIntro'
 import { Price } from '@/components/Price'
 import { buildComparison, compareHref, MAX_COMPARE, parseCompareParam } from '@/lib/compare'
@@ -22,6 +23,7 @@ export async function generateMetadata(props: PageProps<'/compare'>): Promise<Me
 }
 
 export default async function ComparePage(props: PageProps<'/compare'>) {
+  const { page, title, intro } = await pageText('compare')
   const { models: param, current, add } = await props.searchParams
   // The "add a model" form submits ?current=a,b&add=c; turn that into a clean, shareable URL.
   if (add) {
@@ -42,8 +44,8 @@ export default async function ComparePage(props: PageProps<'/compare'>) {
     <>
       <CompareSync slugs={pickedSlugs} />
       <PageIntro
-        title="Compare equipment"
-        lede={`Line up to ${MAX_COMPARE} Bad Boy models side by side. Rows where the models differ are highlighted.`}
+        title={title}
+        lede={intro}
         trail={[{ href: '/', label: 'Home' }, { label: 'Compare' }]}
       >
         {canAdd ? (
@@ -177,6 +179,7 @@ export default async function ComparePage(props: PageProps<'/compare'>) {
           </>
         ) : null}
       </div>
+      <PageBlocks page={page} path="/compare" />
     </>
   )
 }

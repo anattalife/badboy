@@ -19,7 +19,9 @@ import { Parts } from './collections/Parts'
 import { Media } from './collections/Media'
 import { Models } from './collections/Models'
 import { Offers } from './collections/Offers'
+import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'
+import { Navigation } from './globals/Navigation'
 import { SiteSettings } from './globals/SiteSettings'
 import { StoreSettings } from './globals/StoreSettings'
 import { cloudflareEmailAdapter } from './lib/email'
@@ -89,6 +91,7 @@ export default buildConfig({
     Inventory,
     Models,
     Offers,
+    Pages,
     Categories,
     Parts,
     PartImports,
@@ -96,7 +99,7 @@ export default buildConfig({
     Users,
     AuditLog,
   ],
-  globals: [SiteSettings, StoreSettings],
+  globals: [SiteSettings, StoreSettings, Navigation],
   editor: lexicalEditor(),
   // Cloudflare Email Sending in the deployed Worker; written to the log everywhere else.
   email: cloudflareEmailAdapter({

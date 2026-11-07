@@ -19,6 +19,8 @@ export type DealerProfile = {
   brandColor?: string
   accentColor?: string
   showMountains?: boolean
+  /** Extra categories for in-stock listings that aren't Bad Boy, e.g. Golf carts, Trailers. */
+  inventoryCategories?: string[]
   tax?: { enabled: boolean; state?: string; ratePercent?: number; taxShipping?: boolean }
 }
 

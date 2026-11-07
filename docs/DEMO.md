@@ -42,6 +42,16 @@ The first page load after starting can take 20–30 seconds while the site compi
   exact Bad Boy model number
 - Resize the window narrow to see the phone layout and the Call / Get a quote / Apply bar
 
+**Editing pages (like WordPress)**
+- In the admin, open **Content → Pages** and pick **Home**. Turn on **Live Preview** (the eye icon)
+  to see the page beside the editor. Change the hero heading or reorder sections by dragging; the
+  preview updates a moment after you stop typing. Nothing goes live until you click **Publish
+  changes**
+- **Create New** makes a new page (e.g. "About us" → `/about-us`). Add sections with **Add Section**
+- **Content → Menus**: change the main menu and footer links (add your new page there)
+- Every built-in page (Financing, In stock, Parts…) has its heading, intro and extra sections in
+  Pages too
+
 **Admin panel** — add `/admin` to the end of the site address.
 
 | | |
@@ -64,7 +74,9 @@ This login exists only inside your Codespace's demo database. It is never used o
 - **Parts store → Parts**: add a price and shipping weight to make a part orderable online
 - **Parts store → Store settings**: UPS services, handling fee, free shipping threshold, sales tax
 - **Inventory**: add a unit (pick the Bad Boy model, enter a stock number and price, upload photos),
-  then find it under **In stock**. Mark it **Sold** and it disappears from the website
+  then find it under **In stock**. Mark it **Sold** and it disappears from the website. For a
+  trade-in or another brand, choose **Other brand**, type the make and model, pick a category
+  (Golf carts, Trailers, Other equipment) and add **Details**. Try the sample Club Car (`DEMO-2001`)
 - **Equipment models**: edit a model, add a “starting at” price, or upload a photo, then click
   **Publish** and refresh the public page
 - **Dealership info**: change hours or add an announcement banner (it appears on every page). Under

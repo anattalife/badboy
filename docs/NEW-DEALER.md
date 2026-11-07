@@ -50,7 +50,9 @@ Until setup is finished, every page of the site sends visitors to `/setup`. The 
    (APR, term, down payment); sales tax on parts
 5. **Admin account**: their name, email and password
 
-When they finish, the site is live and `/setup` is locked. Everything can be changed later in the
+When they finish, the site is live and `/setup` is locked. Every page's wording, photos and
+sections are then editable in **Content → Pages** (with live preview), and the menus in
+**Content → Menus**. Everything can be changed later in the
 admin under **Settings → Dealership info** (tabs: Dealership, Look and home page, Prices and
 financing, Leads and privacy) (and **We don't sell this** on any category or model),
 along with a home page photo, a separate finance email

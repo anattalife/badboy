@@ -27,7 +27,8 @@ Running notes for whoever works on this next (including future AI sessions). Kee
 | 4 | Parts store: catalog, CSV price-list import, cart, checkout, UPS live rates, sales tax, orders (shipping only) | **Done, awaiting review; payment processor not yet chosen** |
 | 4b | Dealer-neutral: dealer profiles, settings-driven name, logo, colors, home page and metadata | Done |
 | 4c | Dealer website in a box: setup wizard, dealer + Bad Boy logo lockup, Bad Boy black/orange look, dealer price display choice, payment estimate, offers, build & quote, phone action bar | Done, awaiting review |
-| 5 | Service info pages and service request form | Not started |
+| 4d | Editable pages (block builder, live preview, drafts, menus) and other-brand/used inventory | Done, awaiting review |
+| 5 | Service info pages and service request form | Service page is editable with a request form; dedicated service form not started |
 | 6 | Launch prep: SEO, caching, Cloudflare Images, security docs for loan data | Not started |
 
 ## Decisions
@@ -113,6 +114,46 @@ Running notes for whoever works on this next (including future AI sessions). Kee
   through the relationship made Payload build a runaway join. Wizard step 2 sets these.
 - Migration `dealer_box` was hand-edited (adds site_settings columns in place; a rebuild would
   cascade-delete the hours rows).
+
+## Editable pages (stage 4d)
+
+The owner wants every page editable "like WordPress". Built with Payload's own blocks, drafts and
+live preview; no extra services.
+
+- **Pages** collection (`src/collections/Pages.ts`): title, address, intro, `layout` (blocks),
+  search-engine title/description. Drafts with autosave (800 ms) and up to 25 versions.
+- **Blocks** (`src/blocks/config.ts`, rendered by `src/blocks/RenderBlocks.tsx`): Hero banner, Text
+  (rich text), Photo with text, Equipment categories, Featured models, Current offers, In-stock
+  units, Mower finder (acreage), Call to action, Feature list, Questions and answers, Visit us,
+  Contact form. The admin calls them "Sections". Hero headings support `{region}`.
+- **Built-in pages** (`BUILT_IN_PAGES`): home, equipment, inventory, offers, compare, contact,
+  trade-in, financing, parts, service. Fixed address, can't be deleted. Home and Service are all
+  blocks; on the others the title/intro come from the page and its blocks appear **below** the
+  working part (listing, form, store). `src/components/CmsPage.tsx` has `pageText`, `pageMetadata`
+  (SEO falls back to intro plus dealer name and city), `PageBlocks`, `BlockPage`.
+- **New pages** render at `/<address>` (`src/app/(frontend)/[slug]`). Reserved addresses (admin,
+  api, setup, preview, cart, checkout, order…) are refused. New drafts get a null address until
+  titled, so two untitled drafts don't clash on the unique index.
+- **Starting content** is in `src/blocks/defaults.ts`; `seedPages` (every install, demo and live)
+  creates missing pages and the menus and never overwrites edits. Model slugs in defaults are
+  resolved to IDs at seed time.
+- **Menus** global (`src/globals/Navigation.ts`): main menu, footer links, footer text. Defaults in
+  the same file are used if empty.
+- **Preview:** `/preview?path=` (signed-in staff only) turns on Next draft mode; pages then read the
+  latest draft. `PreviewBar` uses `RefreshRouteOnSave` (`@payloadcms/live-preview-react`) so the
+  admin's Live Preview refreshes after each autosave. `/preview/exit` turns it off.
+
+## Inventory: used and other brands (stage 4d)
+
+- `brand` = badboy / other on each unit. Bad Boy units pick a model (category, make, specs and
+  factory photos follow it). Other brands type make + model name and pick a category; the hook
+  refuses an other-brand unit without a make.
+- Categories can be **inventory-only** (`inventoryOnly`): golf carts, trailers, other equipment.
+  They appear as In stock filters but never in the Bad Boy catalog, menus or `/equipment/*`
+  (`getCategories(true)` includes them). Seed creates "Other equipment" for everyone plus the
+  dealer profile's `inventoryCategories` (Roanoke: Golf carts, Trailers).
+- `details` array (label/value) shows as a Details table on the unit page.
+- In stock has a Brand filter. The migration marks existing units without a model as other brand.
 
 ## Photos
 

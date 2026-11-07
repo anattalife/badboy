@@ -22,6 +22,17 @@ export const Categories: CollectionConfig = {
   fields: [
     { name: 'name', type: 'text', required: true },
     notCarriedField('category'),
+    {
+      name: 'inventoryOnly',
+      label: 'Only for in-stock listings',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description:
+          'For things you list in inventory that aren’t Bad Boy (golf carts, trailers, other brands). Shows as a filter on In stock, never in the Bad Boy catalog.',
+      },
+    },
     slugField('name'),
     {
       name: 'description',
