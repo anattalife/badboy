@@ -75,6 +75,8 @@ export const Pages: CollectionConfig = {
     ],
     beforeDelete: [
       async ({ req, id }) => {
+        // Server code (tests cleaning up after themselves) can pass this; the REST API can't set context.
+        if (req.context?.allowBuiltInDelete === true) return
         const page = await req.payload.findByID({ collection: 'pages', id, depth: 0, req, draft: true })
         if (page?.slug && BUILT_IN_PAGES[page.slug]) {
           throw new APIError('This page is part of the website and can’t be deleted. You can edit it instead.', 400, null, true)

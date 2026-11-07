@@ -7,12 +7,27 @@ import { seedPages } from '@/seed/pages'
 
 describe('editable pages', () => {
   let payload: Payload
+  let seeded: string[] = []
+  let financingIntro: string | null | undefined
   beforeAll(async () => {
     payload = await getPayload({ config })
-    await seedPages(payload)
+    const existing = await payload.find({ collection: 'pages', where: { slug: { equals: 'financing' } }, depth: 0 })
+    financingIntro = existing.docs[0]?.intro
+    seeded = (await seedPages(payload)).created
   })
+  // Put the database back the way it was, so `pnpm seed` afterwards (CI) builds the real pages with
+  // the catalog's model IDs instead of keeping test pages seeded before the catalog existed.
   afterAll(async () => {
     await payload.delete({ collection: 'pages', where: { slug: { in: ['test-about', 'about-our-shop'] } } })
+    const mine = seeded.filter((s) => s !== 'menus')
+    if (mine.length) {
+      await payload.delete({ collection: 'pages', where: { slug: { in: mine } }, context: { allowBuiltInDelete: true } })
+    }
+    if (seeded.includes('menus')) await payload.updateGlobal({ slug: 'navigation', data: { mainMenu: [], footerLinks: [] } })
+    if (!mine.includes('financing') && financingIntro !== undefined) {
+      const f = await payload.find({ collection: 'pages', where: { slug: { equals: 'financing' } }, depth: 0 })
+      if (f.docs[0]) await payload.update({ collection: 'pages', id: f.docs[0].id, data: { intro: financingIntro } })
+    }
   })
 
   it('creates every built-in page and the menus, and never overwrites edits', async () => {
