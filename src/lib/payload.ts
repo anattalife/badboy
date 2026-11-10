@@ -7,7 +7,14 @@ import { getPayload, type Where } from 'payload'
 import { draftMode } from 'next/headers'
 import { cache } from 'react'
 
-import type { Category, Inventory as InventoryUnit, Model, Offer, Page, SiteSetting } from '@/payload-types'
+import type {
+  Category,
+  Inventory as InventoryUnit,
+  Model,
+  Offer,
+  Page,
+  SiteSetting,
+} from '@/payload-types'
 
 export const getPayloadClient = () => getPayload({ config })
 
@@ -22,7 +29,9 @@ const getModelCarried = cache(async () => modelCarriedWhere(await getPayloadClie
 const publicRead = { overrideAccess: false, draft: false } as const
 
 /** Excludes the dealer's inventory-only categories from the Bad Boy catalog pages and menus. */
-const catalogOnly: Where = { or: [{ inventoryOnly: { equals: false } }, { inventoryOnly: { exists: false } }] }
+const catalogOnly: Where = {
+  or: [{ inventoryOnly: { equals: false } }, { inventoryOnly: { exists: false } }],
+}
 
 export const getSiteSettings = cache(async (): Promise<SiteSetting> => {
   const payload = await getPayloadClient()
@@ -43,17 +52,25 @@ export const getCategories = cache(async (includeInventoryOnly = false): Promise
   return docs
 })
 
-export const getCategoryBySlug = cache(async (slug: string, includeInventoryOnly = false): Promise<Category | null> => {
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'categories',
-    where: { and: [{ slug: { equals: slug } }, carried(), ...(includeInventoryOnly ? [] : [catalogOnly])] },
-    limit: 1,
-    depth: 1,
-    ...publicRead,
-  })
-  return docs[0] ?? null
-})
+export const getCategoryBySlug = cache(
+  async (slug: string, includeInventoryOnly = false): Promise<Category | null> => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'categories',
+      where: {
+        and: [
+          { slug: { equals: slug } },
+          carried(),
+          ...(includeInventoryOnly ? [] : [catalogOnly]),
+        ],
+      },
+      limit: 1,
+      depth: 1,
+      ...publicRead,
+    })
+    return docs[0] ?? null
+  },
+)
 
 export const getModelsByCategory = cache(async (categoryId: number): Promise<Model[]> => {
   const payload = await getPayloadClient()
@@ -204,12 +221,14 @@ export async function getModelsBySlugs(slugs: string[]): Promise<Model[]> {
 /** Resolves `?model=` / `?unit=` from a quote or financing link into what the customer is asking about. */
 type Configuration = NonNullable<Model['configurations']>[number]
 
-export const configurationLabel = (c: Configuration) => `${c.name}${c.modelNumber ? ` (${c.modelNumber})` : ''}`
+export const configurationLabel = (c: Configuration) =>
+  `${c.name}${c.modelNumber ? ` (${c.modelNumber})` : ''}`
 
 /** Finds a model's configuration by its label, Bad Boy model number or name. */
 export const findConfiguration = (model: Model, key: string): Configuration | null =>
   (model.configurations ?? []).find(
-    (c) => configurationLabel(c) === key || (c.modelNumber && c.modelNumber === key) || c.name === key,
+    (c) =>
+      configurationLabel(c) === key || (c.modelNumber && c.modelNumber === key) || c.name === key,
   ) ?? null
 
 export async function resolveInterest(params: {
@@ -221,7 +240,8 @@ export async function resolveInterest(params: {
   const modelSlug = typeof params.model === 'string' ? params.model.slice(0, 80) : undefined
   const stockNumber = typeof params.unit === 'string' ? params.unit.slice(0, 40) : undefined
   const configKey = typeof params.config === 'string' ? params.config.slice(0, 120) : undefined
-  const offer = typeof params.offer === 'string' ? await getOfferBySlug(params.offer.slice(0, 120)) : null
+  const offer =
+    typeof params.offer === 'string' ? await getOfferBySlug(params.offer.slice(0, 120)) : null
   const payload = await getPayloadClient()
   const unit = stockNumber
     ? ((
@@ -257,7 +277,12 @@ export async function resolveInterest(params: {
 
 export const PARTS_PAGE_SIZE = 24
 
-export async function getParts(filters: { q?: string; category?: string; model?: string; page?: number }) {
+export async function getParts(filters: {
+  q?: string
+  category?: string
+  model?: string
+  page?: number
+}) {
   const payload = await getPayloadClient()
   const and: Where[] = []
   const q = filters.q?.trim().slice(0, 80)

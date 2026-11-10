@@ -19,7 +19,13 @@ export function PartCard({ part }: { part: Part }) {
   return (
     <article className="relative flex flex-col overflow-hidden rounded-[var(--radius-plate)] border border-haze bg-white">
       {img?.url ? (
-        <Image src={img.url} alt={img.alt} width={480} height={360} className="aspect-[4/3] w-full object-contain p-3" />
+        <Image
+          src={img.url}
+          alt={img.alt}
+          width={480}
+          height={360}
+          className="aspect-[4/3] w-full object-contain p-3"
+        />
       ) : (
         <EquipmentArt kind="part" className="aspect-[4/3]" notice={false} />
       )}

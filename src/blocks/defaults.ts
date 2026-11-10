@@ -49,6 +49,27 @@ const FINANCE_BAND = {
   color: 'accent',
 }
 
+/** Minimal Lexical rich text (headings and paragraphs) for starting content. */
+function richText(blocks: ([tag: 'h2' | 'p', text: string])[]) {
+  const text = (t: string) => ({ type: 'text', text: t, format: 0, style: '', mode: 'normal', detail: 0, version: 1 })
+  return {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      direction: 'ltr',
+      children: blocks.map(([tag, t]) =>
+        tag === 'h2'
+          ? { type: 'heading', tag: 'h2', format: '', indent: 0, version: 1, direction: 'ltr', children: [text(t)] }
+          : { type: 'paragraph', format: '', indent: 0, version: 1, direction: 'ltr', textFormat: 0, textStyle: '', children: [text(t)] },
+      ),
+    },
+  }
+}
+
+const EDIT_ME = 'This is starting text. Edit it in the admin (Content → Pages) to match how your dealership works.'
+
 export const DEFAULT_PAGES: DefaultPage[] = [
   {
     slug: 'home',
@@ -190,6 +211,51 @@ export const DEFAULT_PAGES: DefaultPage[] = [
         formType: 'contact',
       },
       { blockType: 'visit', heading: 'Bring it by' },
+    ],
+  },
+  {
+    slug: 'shipping-and-returns',
+    title: 'Shipping and returns',
+    intro: 'How online parts orders ship, and how to return a part.',
+    layout: [
+      {
+        blockType: 'content',
+        body: richText([
+          ['p', EDIT_ME],
+          ['h2', 'Shipping'],
+          ['p', 'Parts ship by UPS to addresses in the United States. You choose the service and see the price at checkout. Orders placed by 2 pm on a business day usually leave the next business day.'],
+          ['p', 'Large or heavy items that can’t ship by UPS are marked “Call to order”; call us and we’ll arrange freight or pickup.'],
+          ['h2', 'Returns'],
+          ['p', 'Unused parts in their original packaging can be returned within 30 days of delivery for a refund of the part price. Call us first so we can give you a return authorization. Return shipping is paid by the customer unless we sent the wrong part or it arrived damaged.'],
+          ['p', 'Electrical parts that have been installed, special-order parts and clearance items can’t be returned.'],
+          ['h2', 'Damaged or wrong parts'],
+          ['p', 'If something arrives damaged or isn’t what you ordered, contact us within 7 days with your order number and a photo and we’ll make it right.'],
+          ['h2', 'Refunds'],
+          ['p', 'Refunds go back to the card you paid with, usually within 5 to 10 business days after we receive the return.'],
+        ]),
+      },
+    ],
+  },
+  {
+    slug: 'privacy',
+    title: 'Privacy',
+    intro: 'What we collect on this website and how we use it.',
+    layout: [
+      {
+        blockType: 'content',
+        body: richText([
+          ['p', EDIT_ME],
+          ['h2', 'What we collect'],
+          ['p', 'When you send a quote request, contact form, trade-in form, financing application or parts order, we keep what you enter so we can respond, process your application or ship your order.'],
+          ['p', 'Card payments are handled by our payment processor on its own secure page. Your card number never reaches this website and we don’t store it.'],
+          ['h2', 'Financing applications'],
+          ['p', 'Sensitive details such as Social Security numbers, birth dates and income are encrypted. Only our finance staff can see them, and they’re shared only with lenders to find you financing.'],
+          ['h2', 'What we don’t do'],
+          ['p', 'We don’t sell your information. We use it to answer you, process your order or application, and keep our own records.'],
+          ['h2', 'Questions'],
+          ['p', 'Call or email us and we’ll tell you what we have on file or remove it where the law allows.'],
+        ]),
+      },
     ],
   },
 ]

@@ -5,7 +5,9 @@ import { mapColumns, parseCsv, parseMoney, parseNumber } from './csv'
 type ModelRef = { id: number; name: string; slug?: string | null }
 
 /** Turns free-text category names from a price list into store categories. */
-export function categoryFromText(text: string): 'mower-accessories' | 'utv-accessories' | 'e-series' | 'maintenance' | 'other' {
+export function categoryFromText(
+  text: string,
+): 'mower-accessories' | 'utv-accessories' | 'e-series' | 'maintenance' | 'other' {
   const t = text.toLowerCase()
   if (/e-?series|battery|80v|charger/.test(t)) return 'e-series'
   if (/utv|bandit|side.?by.?side/.test(t)) return 'utv-accessories'
@@ -31,7 +33,10 @@ export function matchModels(text: string, models: ModelRef[]): number[] {
     .sort((a, b) => b.n.length - a.n.length)
 
   for (const { id, n } of candidates) {
-    const re = new RegExp(`(^|[^a-z0-9])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?=[^a-z0-9]|$)`, 'g')
+    const re = new RegExp(
+      `(^|[^a-z0-9])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?=[^a-z0-9]|$)`,
+      'g',
+    )
     if (re.test(remaining)) {
       found.add(id)
       remaining = remaining.replace(re, '$1 ')
@@ -60,19 +65,34 @@ export async function importPartsCsv(
   const { req, maxRows = 3000 } = options
   const { headers, rows } = parseCsv(csvText)
   const cols = mapColumns(headers)
-  const result: ImportResult = { created: 0, updated: 0, skipped: 0, errors: [], columns: cols as Record<string, string> }
+  const result: ImportResult = {
+    created: 0,
+    updated: 0,
+    skipped: 0,
+    errors: [],
+    columns: cols as Record<string, string>,
+  }
 
   if (!cols.partNumber) {
     result.errors.push('No part number column found. Name a column “Part Number” (or SKU).')
     return result
   }
   if (rows.length > maxRows) {
-    result.errors.push(`This file has ${rows.length} rows. Split it into files of ${maxRows} rows or fewer.`)
+    result.errors.push(
+      `This file has ${rows.length} rows. Split it into files of ${maxRows} rows or fewer.`,
+    )
     return result
   }
 
   const models = (
-    await payload.find({ collection: 'models', limit: 500, depth: 0, select: { name: true, slug: true }, draft: true, req })
+    await payload.find({
+      collection: 'models',
+      limit: 500,
+      depth: 0,
+      select: { name: true, slug: true },
+      draft: true,
+      req,
+    })
   ).docs as ModelRef[]
 
   // Look up existing parts in chunks (D1 limits parameters per query).
@@ -90,7 +110,8 @@ export async function importPartsCsv(
     for (const d of docs) if (d.partNumber) existing.set(d.partNumber, d.id)
   }
 
-  const get = (row: Record<string, string>, key: keyof typeof cols) => (cols[key] ? row[cols[key]!] : undefined)
+  const get = (row: Record<string, string>, key: keyof typeof cols) =>
+    cols[key] ? row[cols[key]!] : undefined
 
   for (const [index, row] of rows.entries()) {
     const line = index + 2 // header is line 1
@@ -103,7 +124,9 @@ export async function importPartsCsv(
     const priceRaw = get(row, 'price')
     const price = parseMoney(priceRaw)
     if (priceRaw && price === null) {
-      result.errors.push(`Line ${line} (${partNumber}): price “${priceRaw}” isn’t a number; skipped.`)
+      result.errors.push(
+        `Line ${line} (${partNumber}): price “${priceRaw}” isn’t a number; skipped.`,
+      )
       result.skipped++
       continue
     }

@@ -9,7 +9,10 @@ export function CartLink() {
   const items = useCart()
   const count = items.reduce((n, i) => n + i.qty, 0)
   return (
-    <Link href="/cart" className="relative rounded-md px-3 py-2 font-medium text-ink hover:bg-fescue">
+    <Link
+      href="/cart"
+      className="relative rounded-md px-3 py-2 font-medium text-ink hover:bg-fescue"
+    >
       Cart
       {count ? (
         <span className="ml-1.5 inline-flex min-w-5 items-center justify-center rounded-full bg-signal px-1.5 text-xs font-bold text-white">
@@ -21,7 +24,15 @@ export function CartLink() {
   )
 }
 
-export function AddToCart({ id, name, compact = false }: { id: number; name: string; compact?: boolean }) {
+export function AddToCart({
+  id,
+  name,
+  compact = false,
+}: {
+  id: number
+  name: string
+  compact?: boolean
+}) {
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
 
@@ -32,7 +43,11 @@ export function AddToCart({ id, name, compact = false }: { id: number; name: str
 
   if (compact) {
     return (
-      <button type="button" onClick={add} className="btn btn-primary relative z-10 min-h-10 px-4 text-sm">
+      <button
+        type="button"
+        onClick={add}
+        className="btn btn-primary relative z-10 min-h-10 px-4 text-sm"
+      >
         {added ? 'Added ✓' : 'Add to cart'}
         <span className="sr-only"> {name}</span>
       </button>

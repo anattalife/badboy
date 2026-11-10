@@ -29,7 +29,10 @@ export function priceView(
   settings: PriceSettings,
   item: { price?: number | null; msrp?: number | null; priceDisplay?: string | null },
 ): PriceView {
-  const mode = (item.priceDisplay && item.priceDisplay !== 'default' ? item.priceDisplay : settings.priceDisplay) ?? 'dealer'
+  const mode =
+    (item.priceDisplay && item.priceDisplay !== 'default'
+      ? item.priceDisplay
+      : settings.priceDisplay) ?? 'dealer'
   const price = positive(item.price)
   const msrp = positive(item.msrp)
 

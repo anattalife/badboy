@@ -9,6 +9,7 @@ import * as migration_20261106_210200_equipment_carried from './20261106_210200_
 import * as migration_20261106_211840_finance_links from './20261106_211840_finance_links';
 import * as migration_20261107_015830_pages_and_menus from './20261107_015830_pages_and_menus';
 import * as migration_20261107_022602_inventory_brands from './20261107_022602_inventory_brands';
+import * as migration_20261110_152430_store_connections from './20261110_152430_store_connections';
 
 export const migrations = [
   {
@@ -65,5 +66,10 @@ export const migrations = [
     up: migration_20261107_022602_inventory_brands.up,
     down: migration_20261107_022602_inventory_brands.down,
     name: '20261107_022602_inventory_brands',
+  },
+  {
+    up: migration_20261110_152430_store_connections.up,
+    down: migration_20261110_152430_store_connections.down,
+    name: '20261110_152430_store_connections'
   },
 ];

@@ -35,6 +35,18 @@ export async function seedPages(payload: Payload): Promise<{ created: string[] }
       data: { mainMenu: DEFAULT_MAIN_MENU, footerLinks: DEFAULT_FOOTER_LINKS },
     })
     created.push('menus')
+  } else if (nav.footerLinks?.length) {
+    // A page added in a later version (e.g. Shipping and returns) also gets its footer link, but
+    // only when the page itself was just created, so a link the dealer removed stays removed.
+    const add = DEFAULT_FOOTER_LINKS.filter(
+      (l) => created.includes(l.url.slice(1)) && !nav.footerLinks!.some((f) => f.url === l.url),
+    )
+    if (add.length && nav.footerLinks.length + add.length <= 12) {
+      await payload.updateGlobal({
+        slug: 'navigation',
+        data: { footerLinks: [...nav.footerLinks.map(({ label, url }) => ({ label, url })), ...add] },
+      })
+    }
   }
   return { created }
 }

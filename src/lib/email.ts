@@ -73,23 +73,30 @@ export const escapeHtml = (value: unknown) =>
     .replace(/'/g, '&#39;')
 
 /** Builds a plain, readable alert email from label/value rows. */
-export function alertEmail(title: string, rows: [string, unknown][], adminUrl?: string) {
+export function alertEmail(
+  title: string,
+  rows: [string, unknown][],
+  adminUrl?: string,
+  linkLabel = 'Open in admin',
+  intro?: string,
+) {
   const filled = rows.filter(([, v]) => v !== undefined && v !== null && v !== '')
   const text = [
     title,
     '',
+    ...(intro ? [intro, ''] : []),
     ...filled.map(([k, v]) => `${k}: ${v}`),
-    ...(adminUrl ? ['', `Open in admin: ${adminUrl}`] : []),
+    ...(adminUrl ? ['', `${linkLabel}: ${adminUrl}`] : []),
   ].join('\n')
   const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1b2630">
-<h2 style="color:#2f4a5c;margin:0 0 12px">${escapeHtml(title)}</h2>
+<h2 style="color:#2f4a5c;margin:0 0 12px">${escapeHtml(title)}</h2>${intro ? `<p>${escapeHtml(intro)}</p>` : ''}
 <table cellpadding="6" style="border-collapse:collapse">${filled
     .map(
       ([k, v]) =>
         `<tr><td style="color:#5d6a73;vertical-align:top">${escapeHtml(k)}</td><td style="white-space:pre-line">${escapeHtml(v)}</td></tr>`,
     )
     .join('')}</table>
-${adminUrl ? `<p style="margin-top:16px"><a href="${escapeHtml(adminUrl)}" style="color:#e8641b">Open in admin</a></p>` : ''}
+${adminUrl ? `<p style="margin-top:16px"><a href="${escapeHtml(adminUrl)}" style="color:#e8641b">${escapeHtml(linkLabel)}</a></p>` : ''}
 </div>`
   return { text, html }
 }

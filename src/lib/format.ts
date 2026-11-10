@@ -13,7 +13,8 @@ const usdCents = new Intl.NumberFormat('en-US', { style: 'currency', currency: '
 /** Prices with cents, for parts. */
 export const formatMoney = (value?: number | null) => (value ? usdCents.format(value) : null)
 
-export const telHref = (phone?: string | null) => `tel:+1${(phone ?? '').replace(/\D/g, '').slice(-10)}`
+export const telHref = (phone?: string | null) =>
+  `tel:+1${(phone ?? '').replace(/\D/g, '').slice(-10)}`
 
 export const categoryOf = (model: Model): Category | null =>
   typeof model.category === 'object' ? model.category : null
@@ -29,7 +30,9 @@ export const firstImage = (model: Model): Media | null => {
 }
 
 export const modelImages = (model: Model): Media[] =>
-  (model.images ?? []).filter((m): m is Media => typeof m === 'object' && m !== null && Boolean(m.url))
+  (model.images ?? []).filter(
+    (m): m is Media => typeof m === 'object' && m !== null && Boolean(m.url),
+  )
 
 export const fullAddress = (settings: SiteSetting) => {
   const a = settings.address
@@ -73,8 +76,9 @@ export const kindForCategory = (slug?: string | null): EquipmentKind => {
 }
 
 /** "Roanoke, VA" from the dealership address, or "" when not set. */
-export const cityState = (settings: { address?: { city?: string | null; state?: string | null } | null }) =>
-  [settings.address?.city, settings.address?.state].filter(Boolean).join(', ')
+export const cityState = (settings: {
+  address?: { city?: string | null; state?: string | null } | null
+}) => [settings.address?.city, settings.address?.state].filter(Boolean).join(', ')
 
 /** " in Roanoke, VA" for page descriptions, or "" when no address is set. */
 export const inPlace = (settings: Parameters<typeof cityState>[0]) => {

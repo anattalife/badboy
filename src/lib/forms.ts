@@ -30,10 +30,7 @@ export const isSsn = (v: string) => {
   const d = digits(v)
   // Basic validity: 9 digits, no all-zero groups, area not 000/666/9xx.
   return (
-    d.length === 9 &&
-    !/^(000|666|9)/.test(d) &&
-    d.slice(3, 5) !== '00' &&
-    d.slice(5) !== '0000'
+    d.length === 9 && !/^(000|666|9)/.test(d) && d.slice(3, 5) !== '00' && d.slice(5) !== '0000'
   )
 }
 
@@ -50,7 +47,8 @@ export const ageFrom = (iso: string, now = new Date()): number | null => {
   if (Number.isNaN(d.getTime()) || d.getDate() !== Number(m[3])) return null
   let age = now.getFullYear() - d.getFullYear()
   const birthdayPassed =
-    now.getMonth() > d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() >= d.getDate())
+    now.getMonth() > d.getMonth() ||
+    (now.getMonth() === d.getMonth() && now.getDate() >= d.getDate())
   if (!birthdayPassed) age--
   return age
 }

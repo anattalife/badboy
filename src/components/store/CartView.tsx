@@ -50,7 +50,9 @@ export function CartView({ phone }: { phone: string }) {
             <li key={line.id} className="flex flex-wrap items-center gap-4 py-4">
               <div className="min-w-48 flex-1">
                 <p className="font-semibold">{line.name}</p>
-                {line.partNumber ? <p className="text-sm text-steel">Part {line.partNumber}</p> : null}
+                {line.partNumber ? (
+                  <p className="text-sm text-steel">Part {line.partNumber}</p>
+                ) : null}
                 <p className="text-sm text-steel">{usd(line.unitPrice)} each</p>
               </div>
               <label className="text-sm">
@@ -65,7 +67,11 @@ export function CartView({ phone }: { phone: string }) {
                 />
               </label>
               <p className="w-24 text-right font-semibold">{usd(line.lineTotal)}</p>
-              <button type="button" onClick={() => setQty(line.id, 0)} className="text-sm text-steel underline">
+              <button
+                type="button"
+                onClick={() => setQty(line.id, 0)}
+                className="text-sm text-steel underline"
+              >
                 Remove<span className="sr-only"> {line.name}</span>
               </button>
             </li>
@@ -80,7 +86,11 @@ export function CartView({ phone }: { phone: string }) {
                   <span>
                     {u.name}: <span className="text-steel">{u.reason}</span>
                   </span>
-                  <button type="button" onClick={() => setQty(u.id, 0)} className="text-sm underline">
+                  <button
+                    type="button"
+                    onClick={() => setQty(u.id, 0)}
+                    className="text-sm underline"
+                  >
                     Remove
                   </button>
                 </li>
@@ -95,7 +105,9 @@ export function CartView({ phone }: { phone: string }) {
           <span>Subtotal</span>
           <span className="font-bold">{usd(priced.subtotal)}</span>
         </div>
-        <p className="mt-1 text-sm text-steel">UPS shipping and any sales tax are calculated at checkout.</p>
+        <p className="mt-1 text-sm text-steel">
+          UPS shipping and any sales tax are calculated at checkout.
+        </p>
         {priced.checkoutOpen ? (
           priced.lines.length && !priced.unavailable.length ? (
             <Link href="/checkout" className="btn btn-primary mt-5 w-full">
@@ -114,7 +126,10 @@ export function CartView({ phone }: { phone: string }) {
             </a>
           </p>
         )}
-        <Link href="/parts" className="mt-4 block text-center text-sm font-semibold text-ridge underline">
+        <Link
+          href="/parts"
+          className="mt-4 block text-center text-sm font-semibold text-ridge underline"
+        >
           Keep shopping
         </Link>
       </aside>

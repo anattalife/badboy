@@ -4,6 +4,8 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [tsconfigPaths(), react()],
+  // Server-only modules (src/lib/orders.ts) are tested directly; the guard is for client bundles.
+  resolve: { alias: { 'server-only': new URL('./node_modules/server-only/empty.js', import.meta.url).pathname } },
   test: {
     environment: 'node',
     setupFiles: ['./vitest.setup.ts'],

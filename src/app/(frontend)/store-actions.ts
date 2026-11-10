@@ -6,6 +6,7 @@ import { canBuyOnline } from '@/collections/Parts'
 import type { Part } from '@/payload-types'
 import { upsServiceName } from '@/globals/StoreSettings'
 import { type FieldErrors, isEmail, isPhone, isZip, str } from '@/lib/forms'
+import { readConnections } from '@/lib/connections'
 import { markOrderPaid, storeSettings } from '@/lib/orders'
 import { getPayloadClient } from '@/lib/payload'
 import { getPaymentProvider } from '@/lib/payments'
@@ -91,8 +92,11 @@ export async function priceCart(rawItems: unknown): Promise<PricedCart> {
     })
   }
 
-  const provider = getPaymentProvider()
-  const checkoutOpen = Boolean(settings.storeOpen && provider)
+  const conns = await readConnections(payload)
+  const provider = getPaymentProvider(conns.stripe)
+  // In production both card payments and UPS rates must be connected before checkout opens.
+  const shippingReady = Boolean(conns.ups) || process.env.NODE_ENV !== 'production'
+  const checkoutOpen = Boolean(settings.storeOpen && provider && shippingReady)
   return {
     lines,
     unavailable,
@@ -171,9 +175,10 @@ export async function getShippingRates(items: CartItem[], form: FormData): Promi
         zip: site.address?.zip ?? '',
       }
 
+  const { ups } = await readConnections(await getPayloadClient())
   let rates
   try {
-    rates = await getUpsRates(from, address, packages)
+    rates = await getUpsRates(ups, from, address, packages)
   } catch (error) {
     const message =
       error instanceof ShippingUnavailableError
@@ -221,12 +226,16 @@ export type PlaceOrderState =
 const randomToken = (bytes = 24) =>
   Array.from(crypto.getRandomValues(new Uint8Array(bytes)), (b) => b.toString(16).padStart(2, '0')).join('')
 
-function orderNumber() {
+/** Order numbers start with the dealer's initials, e.g. "Roanoke Mowers" → RM-261110-7KQ2D. */
+const orderPrefix = (siteName?: string | null) =>
+  (siteName ?? '').split(/[^A-Za-z0-9]+/).filter(Boolean).map((w) => w[0]).join('').toUpperCase().slice(0, 3) || 'PO'
+
+function orderNumber(prefix: string) {
   const d = new Date()
   const ymd = `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
   const rand = Array.from(crypto.getRandomValues(new Uint8Array(5)), (b) => alphabet[b % alphabet.length]).join('')
-  return `RM-${ymd}-${rand}`
+  return `${prefix}-${ymd}-${rand}`
 }
 
 /** Re-prices the cart, checks the signed shipping quote, creates the order and takes payment. */
@@ -261,16 +270,17 @@ export async function placeOrder(items: CartItem[], form: FormData): Promise<Pla
   const settings = await storeSettings()
   const tax = computeTax(cart.subtotal, quote.amount, address.state, settings)
   const total = round2(cart.subtotal + quote.amount + tax.amount)
-  const provider = getPaymentProvider()
-  if (!provider) return { status: 'error', message: 'Online checkout isn’t open yet. Please call us to order.' }
-
   const payload = await getPayloadClient()
+  const provider = getPaymentProvider((await readConnections(payload)).stripe)
+  if (!provider) return { status: 'error', message: 'Online checkout isn’t open yet. Please call us to order.' }
+  const site = await payload.findGlobal({ slug: 'site-settings', overrideAccess: true, depth: 0 })
+  const prefix = orderPrefix(site.siteName)
   const accessToken = randomToken()
-  let number = orderNumber()
+  let number = orderNumber(prefix)
   for (let tries = 0; tries < 3; tries++) {
     const { totalDocs } = await payload.count({ collection: 'orders', where: { orderNumber: { equals: number } } })
     if (!totalDocs) break
-    number = orderNumber()
+    number = orderNumber(prefix)
   }
 
   const order = await payload.create({
@@ -312,14 +322,38 @@ export async function placeOrder(items: CartItem[], form: FormData): Promise<Pla
   })
 
   const confirmationUrl = `/order/${order.orderNumber}?t=${accessToken}`
-  const result = await provider.start({
-    orderNumber: order.orderNumber,
-    totalCents: Math.round(total * 100),
-    email: address.email,
-    returnUrl: `${siteUrl}${confirmationUrl}`,
-  })
+  const cents = (n: number) => Math.round(n * 100)
+  let result
+  try {
+    result = await provider.start({
+      orderId: order.id,
+      orderNumber: order.orderNumber,
+      totalCents: cents(total),
+      email: address.email,
+      lines: [
+        ...cart.lines.map((l) => ({ name: l.partNumber ? `${l.name} (${l.partNumber})` : l.name, unitCents: cents(l.unitPrice), qty: l.qty })),
+        ...(quote.amount > 0 ? [{ name: `Shipping: ${upsServiceName(quote.code)}`, unitCents: cents(quote.amount), qty: 1 }] : []),
+        ...(tax.amount > 0 ? [{ name: `Sales tax (${tax.rate}%)`, unitCents: cents(tax.amount), qty: 1 }] : []),
+      ],
+      returnUrl: `${siteUrl}${confirmationUrl}`,
+      cancelUrl: `${siteUrl}/cart`,
+      storeName: site.siteName ?? 'Parts store',
+    })
+  } catch (error) {
+    payload.logger.error({ err: error, msg: `Payment could not start for order ${order.orderNumber}` })
+    await payload.update({ collection: 'orders', id: order.id, overrideAccess: true, data: { status: 'cancelled' } })
+    return { status: 'error', message: 'We couldn’t open the secure payment page. Please try again in a minute, or call us.' }
+  }
 
-  if (result.kind === 'redirect') return { status: 'done', redirectTo: result.url }
+  if (result.kind === 'redirect') {
+    await payload.update({
+      collection: 'orders',
+      id: order.id,
+      overrideAccess: true,
+      data: { payment: { provider: provider.id, reference: result.reference } },
+    })
+    return { status: 'done', redirectTo: result.url }
+  }
 
   await markOrderPaid(order.id, provider.id, result.reference, siteUrl)
   return { status: 'done', redirectTo: confirmationUrl }

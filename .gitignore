@@ -65,3 +65,4 @@ node_modules/
 /.go-live-test/
 .dev.vars
 /.on-live/
+/.migrate-live.sql

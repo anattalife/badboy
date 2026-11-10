@@ -60,4 +60,6 @@ export const DEFAULT_FOOTER_LINKS = [
   { label: 'Apply for financing', url: '/financing' },
   { label: 'Value your trade', url: '/trade-in' },
   { label: 'Contact us', url: '/contact' },
+  { label: 'Shipping and returns', url: '/shipping-and-returns' },
+  { label: 'Privacy', url: '/privacy' },
 ]

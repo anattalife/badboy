@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { headers } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { PageIntro } from '@/components/PageIntro'
+import { ClearCartOnPaid } from '@/components/store/ClearCartOnPaid'
 import { telHref } from '@/lib/format'
+import { confirmStripeOrder } from '@/lib/orders'
 import { getPayloadClient, getSiteSettings } from '@/lib/payload'
 
 export const metadata: Metadata = { title: 'Your order', robots: { index: false } }
@@ -39,12 +42,23 @@ export default async function OrderPage(props: PageProps<'/order/[number]'>) {
     depth: 0,
     overrideAccess: true, // the secret link token below is the access check
   })
-  const order = docs[0]
+  let order = docs[0]
   if (!order || !sameToken(order.accessToken, t)) notFound()
+  // Back from Stripe's payment page: confirm with Stripe now rather than waiting for the webhook.
+  if (order.status === 'pending-payment' && order.payment?.provider === 'stripe') {
+    const h = await headers()
+    const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost:3000'
+    const siteUrl = process.env.SITE_URL || `${host.startsWith('localhost') ? 'http' : 'https'}://${host}`
+    const status = await confirmStripeOrder(order.id, siteUrl).catch((): null => null)
+    if (status && status !== order.status) {
+      order = await payload.findByID({ collection: 'orders', id: order.id, depth: 0, overrideAccess: true })
+    }
+  }
   const settings = await getSiteSettings()
 
   return (
     <>
+      {order.status === 'paid' || order.status === 'shipped' ? <ClearCartOnPaid /> : null}
       <PageIntro
         title={order.status === 'paid' || order.status === 'shipped' ? 'Thank you for your order' : `Order ${order.orderNumber}`}
         lede={`Order ${order.orderNumber} · ${STATUS[order.status] ?? order.status}. Save this page; its address is your link to this order.`}

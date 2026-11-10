@@ -229,7 +229,7 @@ live preview; no extra services.
 
 ## Parts store (stage 4)
 
-- **Owner's choices:** online card payment (processor TBD), **shipping only** (no pickup), parts from
+- **Owner's choices:** online card payment by **Stripe** (chosen 2026-11-10), **shipping only** (no pickup), parts from
   both the Bad Boy accessory catalog and the dealer's own price list, **UPS live rates**.
 - **Parts** (`src/collections/Parts.ts`): part number (unique, import key), price, MSRP, availability,
   stock, weight/dimensions, models it fits, fitment notes. `canBuyOnline` = active + price + weight +
@@ -255,11 +255,33 @@ live preview; no extra services.
   VA, 5.3%, shipping not taxed). Editable in Store settings; **owner to confirm with accountant**.
 - **Orders** (`src/collections/Orders.ts`): created only by `placeOrder`; parts and manager roles
   manage them. Customers see their order at `/order/<number>?t=<token>`; the token is unreadable even
-  to staff. Paid orders decrement `stockQty` when set and email an alert (no customer email yet).
-- **Payment** (`src/lib/payments.ts`): only a demo `test` provider (marks paid, no card). In
-  production `getPaymentProvider()` returns null, so **checkout stays closed until the shop's
-  processor is implemented**. `markOrderPaid` lives in `src/lib/orders.ts` (server-only) so it can't
-  be called from the browser. Never export privileged helpers from a `'use server'` file.
+  to staff. Paid orders decrement `stockQty` when set, alert the shop and email the customer a
+  confirmation. Order numbers start with the dealer's initials (`orderPrefix`).
+- **Connections are configured per dealer in the admin** (Store settings → Card payments / Shipping,
+  admin role only), never as Worker secrets: it's a website in a box.
+  - `secretField` (`src/fields/secret.ts`): stored AES-GCM encrypted, shown only as
+    "Saved ••••1234", never sent to the browser; saving the placeholder keeps the key, clearing it
+    removes it. Server code reads them through `readConnections` (`src/lib/connections.ts`,
+    `context: { rawSecrets: true }`). Field hooks get a masked previous value, so the hook re-reads
+    the stored ciphertext itself (without `req`, so `rawSecrets` can't leak into the response).
+  - `checkConnections` (`src/lib/connections-hook.ts`) checks changed keys with UPS/Stripe before
+    saving and refuses bad ones with the provider's reason. For Stripe it also creates the webhook
+    (`/webhooks/stripe`, events in `WEBHOOK_EVENTS`) and stores its signing secret, so the dealer
+    only pastes the secret key; it re-points the webhook when `SITE_URL` changes (new domain).
+  - UPS Worker secrets (`UPS_CLIENT_ID`…) are still read as a fallback for old installs.
+- **Payment** (`src/lib/payments.ts`, `src/lib/stripe.ts`, fetch only, no SDK): Stripe Checkout
+  (hosted page). Line items = parts + shipping + tax, checked to add up to the order total in cents.
+  The order is marked paid by the webhook or when the customer returns to `/order/…` (the page asks
+  Stripe), whichever is first. `markOrderPaid` claims the order with one conditional
+  `UPDATE … WHERE status IN ('pending-payment','cancelled')`, so it runs once. Paid amounts that
+  don't match the order are logged and left for staff. Expired sessions cancel the order; full
+  refunds in Stripe mark it refunded, partial ones add a staff note. Checkout opens only when the
+  store is on, Stripe is connected and (in production) UPS is connected. The demo `test` provider
+  is used locally when Stripe isn't connected, never in production.
+- `markOrderPaid` lives in `src/lib/orders.ts` (server-only) so it can't be called from the
+  browser. Never export privileged helpers from a `'use server'` file.
+- Starter **Shipping and returns** and **Privacy** pages (`src/blocks/defaults.ts`), with footer
+  links; `seedPages` adds the footer link only when it creates the page.
 
 ## Catalog data
 

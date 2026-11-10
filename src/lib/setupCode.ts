@@ -4,7 +4,8 @@
  * The live site requires the SETUP_CODE secret to run the wizard, so a stranger who finds a new
  * site before the dealer can't claim it. Local and Codespaces demos only need it if it's set.
  */
-export const setupCodeRequired = () => process.env.NODE_ENV === 'production' || Boolean(process.env.SETUP_CODE)
+export const setupCodeRequired = () =>
+  process.env.NODE_ENV === 'production' || Boolean(process.env.SETUP_CODE)
 
 /** Constant-time comparison so the code can't be guessed a character at a time. */
 export function setupCodeMatches(input: string): boolean {

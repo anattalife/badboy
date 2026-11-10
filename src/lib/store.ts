@@ -26,13 +26,21 @@ export const round2 = (n: number) => Math.round(n * 100) / 100
  * Parts with their own dimensions ship in their own box; small parts without dimensions are
  * combined into the store's default box, up to 50 lb per box.
  */
-export function packLines(lines: PricedLine[], defaultBox: { length?: number | null; width?: number | null; height?: number | null }): Package[] {
+export function packLines(
+  lines: PricedLine[],
+  defaultBox: { length?: number | null; width?: number | null; height?: number | null },
+): Package[] {
   const packages: Package[] = []
   let combined: Package | null = null
   for (const line of lines) {
     for (let i = 0; i < line.qty; i++) {
       if (line.lengthIn && line.widthIn && line.heightIn) {
-        packages.push({ weightLb: line.weightLb, lengthIn: line.lengthIn, widthIn: line.widthIn, heightIn: line.heightIn })
+        packages.push({
+          weightLb: line.weightLb,
+          lengthIn: line.lengthIn,
+          widthIn: line.widthIn,
+          heightIn: line.heightIn,
+        })
         continue
       }
       if (!combined || combined.weightLb + line.weightLb > COMBINED_BOX_MAX_LB) {
@@ -57,8 +65,18 @@ export type TaxSettings = {
   taxShipping?: boolean | null
 }
 
-export function computeTax(subtotal: number, shipping: number, shipToState: string, s: TaxSettings) {
-  const applies = Boolean(s.taxEnabled && s.taxRatePercent && s.taxState && shipToState.toUpperCase() === s.taxState.toUpperCase())
+export function computeTax(
+  subtotal: number,
+  shipping: number,
+  shipToState: string,
+  s: TaxSettings,
+) {
+  const applies = Boolean(
+    s.taxEnabled &&
+    s.taxRatePercent &&
+    s.taxState &&
+    shipToState.toUpperCase() === s.taxState.toUpperCase(),
+  )
   const rate = applies ? (s.taxRatePercent ?? 0) : 0
   const base = subtotal + (s.taxShipping ? shipping : 0)
   return { rate, amount: round2((base * rate) / 100) }
@@ -81,7 +99,13 @@ const b64url = (bytes: ArrayBuffer | Uint8Array) =>
 async function hmac(data: string): Promise<string> {
   const secret = process.env.PAYLOAD_SECRET
   if (!secret) throw new Error('PAYLOAD_SECRET is not set.')
-  const key = await crypto.subtle.importKey('raw', enc.encode(`shipping-quote:${secret}`), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
+  const key = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(`shipping-quote:${secret}`),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  )
   return b64url(await crypto.subtle.sign('HMAC', key, enc.encode(data)))
 }
 
@@ -89,7 +113,14 @@ export async function fingerprint(value: unknown): Promise<string> {
   return b64url(await crypto.subtle.digest('SHA-256', enc.encode(JSON.stringify(value))))
 }
 
-export type QuotePayload = { code: string; amount: number; cart: string; address: string; exp: number; sample: boolean }
+export type QuotePayload = {
+  code: string
+  amount: number
+  cart: string
+  address: string
+  exp: number
+  sample: boolean
+}
 
 export async function signQuote(q: QuotePayload): Promise<string> {
   const body = b64url(enc.encode(JSON.stringify(q)))

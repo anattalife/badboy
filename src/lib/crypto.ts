@@ -46,7 +46,11 @@ export const hasEncryptionKey = () => Boolean(process.env.FIELD_ENCRYPTION_KEY)
 export async function encrypt(plain: string): Promise<string> {
   const key = await getKey()
   const iv = crypto.getRandomValues(new Uint8Array(12))
-  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(plain))
+  const ct = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    new TextEncoder().encode(plain),
+  )
   return `${PREFIX}${toB64(iv)}:${toB64(new Uint8Array(ct))}`
 }
 
@@ -54,12 +58,19 @@ export async function decrypt(stored: string): Promise<string> {
   if (!isEncrypted(stored)) return stored as string
   const [ivB64, ctB64] = stored.slice(PREFIX.length).split(':')
   const key = await getKey()
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(ivB64) }, key, fromB64(ctB64))
+  const pt = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv: fromB64(ivB64) },
+    key,
+    fromB64(ctB64),
+  )
   return new TextDecoder().decode(pt)
 }
 
 /** Masked display value, e.g. `•••-••-1234`. Never reveals more than the last 4 characters. */
-export function mask(plain: string | null | undefined, kind: 'ssn' | 'date' | 'money' = 'ssn'): string {
+export function mask(
+  plain: string | null | undefined,
+  kind: 'ssn' | 'date' | 'money' = 'ssn',
+): string {
   if (!plain) return ''
   if (kind === 'ssn') return `•••-••-${plain.replace(/\D/g, '').slice(-4)}`
   if (kind === 'date') return '••/••/••••'

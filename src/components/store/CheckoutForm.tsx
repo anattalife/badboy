@@ -18,7 +18,13 @@ import { usePricedCart } from './CartView'
 
 const usd = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
-export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; renderedAt: number }) {
+export function CheckoutForm({
+  siteKey,
+  renderedAt,
+}: {
+  siteKey: string | null
+  renderedAt: number
+}) {
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
   const { items, priced } = usePricedCart()
@@ -29,7 +35,9 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
   const [placing, startPlacing] = useTransition()
 
   const fieldErrors =
-    (order.status === 'error' && order.fieldErrors) || (rates.status === 'error' && rates.fieldErrors) || {}
+    (order.status === 'error' && order.fieldErrors) ||
+    (rates.status === 'error' && rates.fieldErrors) ||
+    {}
   const message: FormState =
     order.status === 'error'
       ? { status: 'error', message: order.message }
@@ -70,7 +78,9 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
   if (!priced.checkoutOpen || priced.unavailable.length || !priced.lines.length) {
     return (
       <div className="rounded-[var(--radius-plate)] bg-fescue p-8">
-        <p className="text-lg">{priced.closedReason ?? 'Some items in your cart need attention before checkout.'}</p>
+        <p className="text-lg">
+          {priced.closedReason ?? 'Some items in your cart need attention before checkout.'}
+        </p>
         <Link href="/cart" className="btn btn-quiet mt-4 text-ridge">
           Back to cart
         </Link>
@@ -90,8 +100,14 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
           const result = await placeOrder(items, data)
           setOrder(result)
           if (result.status === 'done') {
-            clearCart()
-            router.push(result.redirectTo)
+            if (/^https?:\/\//.test(result.redirectTo)) {
+              // Stripe's secure payment page. The cart is kept until payment goes through, so
+              // backing out of the payment page returns to a full cart.
+              window.location.assign(result.redirectTo)
+            } else {
+              clearCart()
+              router.push(result.redirectTo)
+            }
           }
         })
       }}
@@ -101,25 +117,83 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
       <div className="space-y-8">
         <FormMessage state={message} />
 
-        <fieldset className="space-y-5 rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-7" onChange={resetRates}>
+        <fieldset
+          className="space-y-5 rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-7"
+          onChange={resetRates}
+        >
           <legend className="type-decal-md px-1 text-xl text-ridge">Ship to</legend>
           <div className="grid gap-5 sm:grid-cols-2">
-            <TextField name="name" label="Full name" required autoComplete="name" error={fieldErrors.name} className="sm:col-span-2" />
-            <TextField name="email" label="Email" type="email" required autoComplete="email" hint="For your order confirmation." error={fieldErrors.email} />
-            <TextField name="phone" label="Phone" type="tel" autoComplete="tel" hint="UPS may call about delivery." error={fieldErrors.phone} />
+            <TextField
+              name="name"
+              label="Full name"
+              required
+              autoComplete="name"
+              error={fieldErrors.name}
+              className="sm:col-span-2"
+            />
+            <TextField
+              name="email"
+              label="Email"
+              type="email"
+              required
+              autoComplete="email"
+              hint="For your order confirmation."
+              error={fieldErrors.email}
+            />
+            <TextField
+              name="phone"
+              label="Phone"
+              type="tel"
+              autoComplete="tel"
+              hint="UPS may call about delivery."
+              error={fieldErrors.phone}
+            />
           </div>
-          <TextField name="street" label="Street address" required autoComplete="address-line1" error={fieldErrors.street} />
+          <TextField
+            name="street"
+            label="Street address"
+            required
+            autoComplete="address-line1"
+            error={fieldErrors.street}
+          />
           <TextField name="street2" label="Apt, suite, etc." autoComplete="address-line2" />
           <div className="grid gap-5 sm:grid-cols-[1fr_6rem_8rem]">
-            <TextField name="city" label="City" required autoComplete="address-level2" error={fieldErrors.city} />
-            <TextField name="state" label="State" required maxLength={2} autoComplete="address-level1" error={fieldErrors.state} />
-            <TextField name="zip" label="ZIP" required inputMode="numeric" maxLength={10} autoComplete="postal-code" error={fieldErrors.zip} />
+            <TextField
+              name="city"
+              label="City"
+              required
+              autoComplete="address-level2"
+              error={fieldErrors.city}
+            />
+            <TextField
+              name="state"
+              label="State"
+              required
+              maxLength={2}
+              autoComplete="address-level1"
+              error={fieldErrors.state}
+            />
+            <TextField
+              name="zip"
+              label="ZIP"
+              required
+              inputMode="numeric"
+              maxLength={10}
+              autoComplete="postal-code"
+              error={fieldErrors.zip}
+            />
           </div>
           <label className="flex items-center gap-3 text-sm">
-            <input type="checkbox" name="business" className="h-5 w-5 accent-[var(--color-ridge)]" />
+            <input
+              type="checkbox"
+              name="business"
+              className="h-5 w-5 accent-[var(--color-ridge)]"
+            />
             This is a business address
           </label>
-          <p className="text-sm text-steel">We ship by UPS to the lower 48 states. No P.O. boxes.</p>
+          <p className="text-sm text-steel">
+            We ship by UPS to the lower 48 states. No P.O. boxes.
+          </p>
         </fieldset>
 
         <fieldset className="space-y-4 rounded-[var(--radius-plate)] border border-haze bg-white p-5 sm:p-7">
@@ -150,7 +224,9 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
                       />
                       <span className="font-semibold">{o.name}</span>
                     </span>
-                    <span className="font-semibold">{o.shipping === 0 ? 'Free' : usd(o.shipping)}</span>
+                    <span className="font-semibold">
+                      {o.shipping === 0 ? 'Free' : usd(o.shipping)}
+                    </span>
                   </label>
                 ))}
               </div>
@@ -158,14 +234,24 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
           ) : (
             <>
               <p className="text-steel">Enter your address, then get live UPS rates.</p>
-              <button type="button" onClick={requestRates} disabled={loadingRates} className="btn btn-quiet text-ridge disabled:opacity-60">
+              <button
+                type="button"
+                onClick={requestRates}
+                disabled={loadingRates}
+                className="btn btn-quiet text-ridge disabled:opacity-60"
+              >
                 {loadingRates ? 'Getting rates…' : 'See shipping options'}
               </button>
             </>
           )}
         </fieldset>
 
-        <TextAreaField name="notes" label="Order notes" rows={2} placeholder="Anything we should know?" />
+        <TextAreaField
+          name="notes"
+          label="Order notes"
+          rows={2}
+          placeholder="Anything we should know?"
+        />
         <SpamGuard siteKey={siteKey} renderedAt={renderedAt} state={message} />
       </div>
 
@@ -199,11 +285,23 @@ export function CheckoutForm({ siteKey, renderedAt }: { siteKey: string | null; 
             <dd>{chosen ? usd(chosen.total) : '—'}</dd>
           </div>
         </dl>
-        <button type="submit" disabled={placing || loadingRates} className="btn btn-primary w-full disabled:opacity-60">
-          {placing ? 'Placing order…' : chosen ? `Place order · ${usd(chosen.total)}` : 'See shipping options'}
+        <button
+          type="submit"
+          disabled={placing || loadingRates}
+          className="btn btn-primary w-full disabled:opacity-60"
+        >
+          {placing
+            ? 'Placing order…'
+            : chosen
+              ? `Place order · ${usd(chosen.total)}`
+              : 'See shipping options'}
         </button>
-        {priced.paymentLabel ? <p className="text-xs font-medium text-steel">Payment: {priced.paymentLabel}</p> : null}
-        <p className="text-xs text-steel">Prices, shipping and tax are confirmed when you place the order.</p>
+        {priced.paymentLabel ? (
+          <p className="text-xs font-medium text-steel">Payment: {priced.paymentLabel}</p>
+        ) : null}
+        <p className="text-xs text-steel">
+          Prices, shipping and tax are confirmed when you place the order.
+        </p>
       </aside>
     </form>
   )

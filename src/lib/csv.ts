@@ -55,10 +55,29 @@ const norm = (h: string) => h.toLowerCase().replace(/[^a-z0-9]/g, '')
  * uploaded as-is in most cases. Matching ignores case, spaces and punctuation.
  */
 export const PART_COLUMNS = {
-  partNumber: ['partnumber', 'part', 'partno', 'part#', 'sku', 'item', 'itemnumber', 'itemno', 'number'],
+  partNumber: [
+    'partnumber',
+    'part',
+    'partno',
+    'part#',
+    'sku',
+    'item',
+    'itemnumber',
+    'itemno',
+    'number',
+  ],
   name: ['name', 'partname', 'title', 'itemname', 'productname'],
   description: ['description', 'desc', 'itemdescription', 'details', 'longdescription'],
-  price: ['price', 'yourprice', 'sellprice', 'saleprice', 'unitprice', 'retail', 'retailprice', 'sell'],
+  price: [
+    'price',
+    'yourprice',
+    'sellprice',
+    'saleprice',
+    'unitprice',
+    'retail',
+    'retailprice',
+    'sell',
+  ],
   msrp: ['msrp', 'list', 'listprice', 'suggestedretail', 'suggestedretailprice'],
   category: ['category', 'type', 'department', 'productline', 'line'],
   weightLb: ['weight', 'weightlb', 'weightlbs', 'shippingweight', 'lbs', 'wt'],
@@ -75,7 +94,10 @@ export type PartColumn = keyof typeof PART_COLUMNS
 export function mapColumns(headers: string[]): Partial<Record<PartColumn, string>> {
   const out: Partial<Record<PartColumn, string>> = {}
   const normalized = headers.map((h) => [h, norm(h)] as const)
-  for (const [field, aliases] of Object.entries(PART_COLUMNS) as [PartColumn, readonly string[]][]) {
+  for (const [field, aliases] of Object.entries(PART_COLUMNS) as [
+    PartColumn,
+    readonly string[],
+  ][]) {
     const aliasSet = new Set(aliases.map(norm))
     const hit = normalized.find(([, n]) => aliasSet.has(n))
     if (hit) out[field] = hit[0]

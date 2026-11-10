@@ -24,7 +24,8 @@ export async function checkSpam(form: FormData, ip: string | null): Promise<Chec
   const secret = process.env.TURNSTILE_SECRET_KEY
   if (!secret) {
     // Fail closed in production: forms must not run unprotected on the live site.
-    if (process.env.NODE_ENV === 'production') return { ok: false, reason: 'turnstile-not-configured' }
+    if (process.env.NODE_ENV === 'production')
+      return { ok: false, reason: 'turnstile-not-configured' }
     return { ok: true }
   }
 

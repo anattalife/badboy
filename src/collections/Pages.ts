@@ -25,7 +25,7 @@ export const BUILT_IN_PAGES: Record<string, string> = {
 /** Addresses used by the site itself, so a new page can't take them. */
 const RESERVED = new Set([
   ...Object.keys(BUILT_IN_PAGES),
-  'admin', 'api', 'setup', 'preview', 'cart', 'checkout', 'order', 'brand', 'media', '_next',
+  'admin', 'api', 'setup', 'preview', 'cart', 'checkout', 'order', 'brand', 'media', '_next', 'webhooks',
 ])
 
 export const pagePath = (slug?: string | null) => (slug ? (BUILT_IN_PAGES[slug] ?? `/${slug}`) : '/')

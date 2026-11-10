@@ -57,10 +57,10 @@ pnpm wrangler secret put SETUP_CODE            # paste the output of: openssl ra
 5. **Spam protection:** in the dashboard, open **Turnstile**, add a widget for `roanokemowers.com`,
    and copy its site key and secret key into the two secrets above. The forms refuse to submit in
    production until these are set.
-6. **UPS live rates:** at developer.ups.com, sign in with the shop's UPS account, create an app,
-   add the **Rating** product and link your UPS account number. Then add three secrets:
-   `UPS_CLIENT_ID`, `UPS_CLIENT_SECRET`, `UPS_ACCOUNT_NUMBER`, and the variable `UPS_ENV=production`.
-   Check the ship-from address in Admin → Store settings.
+6. **UPS live rates and Stripe card payments** are set by the dealer in the admin, not here:
+   Admin → Store settings → **Shipping** (UPS Client ID, Client Secret, account number from an app
+   with the Rating product at developer.ups.com) and → **Card payments** (Stripe secret key; saving
+   it sets up Stripe's webhook automatically). Checkout opens once both are connected.
 
 Then in the Cloudflare dashboard:
 

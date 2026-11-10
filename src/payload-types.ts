@@ -1924,6 +1924,26 @@ export interface StoreSetting {
    * Where new order alerts go. Leave blank to use the lead email in Dealership info.
    */
   orderEmail?: string | null;
+  stripe?: {
+    /**
+     * Starts with sk_live_ or sk_test_. Clear the box and save to disconnect Stripe.
+     */
+    secretKey?: string | null;
+    status?: string | null;
+    webhookSecret?: string | null;
+    webhookId?: string | null;
+    webhookUrl?: string | null;
+  };
+  /**
+   * Live UPS rates at checkout. At developer.ups.com sign in with your UPS login, create an app with the “Rating” product, and copy its Client ID and Client Secret here with your 6-character UPS account number. Saving checks them with UPS.
+   */
+  ups?: {
+    clientId?: string | null;
+    clientSecret?: string | null;
+    accountNumber?: string | null;
+    testMode?: boolean | null;
+    status?: string | null;
+  };
   upsServices?: ('03' | '12' | '02' | '13' | '01')[] | null;
   handlingFee?: number | null;
   /**
@@ -2055,6 +2075,24 @@ export interface SiteSettingsSelect<T extends boolean = true> {
 export interface StoreSettingsSelect<T extends boolean = true> {
   storeOpen?: T;
   orderEmail?: T;
+  stripe?:
+    | T
+    | {
+        secretKey?: T;
+        status?: T;
+        webhookSecret?: T;
+        webhookId?: T;
+        webhookUrl?: T;
+      };
+  ups?:
+    | T
+    | {
+        clientId?: T;
+        clientSecret?: T;
+        accountNumber?: T;
+        testMode?: T;
+        status?: T;
+      };
   upsServices?: T;
   handlingFee?: T;
   freeShippingOver?: T;
