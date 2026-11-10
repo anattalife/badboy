@@ -1,8 +1,8 @@
 // Used by scripts/go-live.sh. Reads the scratch database the seed just filled and writes:
-//   <dir>/catalog.sql    clears the live database's content tables and inserts everything
+//   <dir>/rebuild.sql    drops the live database's tables and recreates them with the catalog
 //   <dir>/photo-lists.tsv  content type + upload list (wrangler r2 bulk put format) per file type
 //   <dir>/counts.json    how many models and photos the catalog has
-// Usage: node scripts/export-catalog.mjs <scratch dir>
+// Usage: node scripts/export-catalog.mjs <scratch dir> [JSON file of the live database's tables]
 import fs from 'node:fs'
 import path from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
@@ -33,15 +33,44 @@ const lit = (v) => {
 }
 const q = (name) => `"${name.replaceAll('"', '""')}"`
 
+// Rebuild from scratch: drop every table the live database has, recreate the schema exactly as the
+// scratch database has it, then insert all rows, migration records included. It runs as one import,
+// so it either all happens or none of it does. The live tables come in as JSON [{name, sql}].
+const internal = (t) => /^(sqlite_|_cf_|d1_)/.test(t)
+const live = process.argv[3] && fs.existsSync(process.argv[3]) ? JSON.parse(fs.readFileSync(process.argv[3], 'utf8')) : []
+const allTables = [...tables, 'payload_migrations']
+const sqlOf = new Map()
+for (const r of db.prepare(`SELECT name, sql FROM sqlite_master WHERE type = 'table'`).all()) sqlOf.set(String(r.name), String(r.sql ?? ''))
+for (const r of live) sqlOf.set(String(r.name), String(r.sql ?? ''))
+const toDrop = [...new Set([...live.map((r) => String(r.name)), ...allTables])].filter((t) => !internal(t))
+// A table can only be dropped once nothing still standing points at it, so drop the tables that
+// reference others first.
+const refs = new Map(
+  toDrop.map((t) => [t, new Set([...sqlOf.get(t)?.matchAll(/REFERENCES\s+[`"']?([\w]+)/gi) ?? []].map((m) => m[1]).filter((p) => p !== t))]),
+)
+const dropOrder = []
+const remaining = new Set(toDrop)
+while (remaining.size) {
+  // Drop a table no remaining table references; if there's a loop, just take the first.
+  const next = [...remaining].find((t) => ![...remaining].some((o) => o !== t && refs.get(o)?.has(t))) ?? [...remaining][0]
+  dropOrder.push(next)
+  remaining.delete(next)
+}
 const out = ['PRAGMA defer_foreign_keys = true;']
-for (const t of tables) out.push(`DELETE FROM ${q(t)};`)
-for (const t of tables) {
+for (const t of dropOrder) out.push(`DROP TABLE IF EXISTS ${q(t)};`)
+const schema = db
+  .prepare(`SELECT type, name, sql FROM sqlite_master WHERE sql IS NOT NULL AND type IN ('table', 'index')`)
+  .all()
+  .filter((r) => !/^(sqlite_|_cf_|d1_)/.test(String(r.name)))
+for (const r of schema.filter((r) => r.type === 'table')) out.push(`${r.sql};`)
+for (const r of schema.filter((r) => r.type === 'index')) out.push(`${r.sql};`)
+for (const t of allTables) {
   for (const row of db.prepare(`SELECT * FROM ${q(t)}`).all()) {
     const cols = Object.keys(row)
     out.push(`INSERT INTO ${q(t)} (${cols.map(q).join(', ')}) VALUES (${cols.map((c) => lit(row[c])).join(', ')});`)
   }
 }
-fs.writeFileSync(path.join(dir, 'catalog.sql'), out.join('\n') + '\n')
+fs.writeFileSync(path.join(dir, 'rebuild.sql'), out.join('\n') + '\n')
 
 // Photos: the seed uploads the files in src/seed/media under their own names.
 const mediaDir = path.resolve('src/seed/media')

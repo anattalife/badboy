@@ -88,42 +88,50 @@ if ! wr r2 bucket list 2>/dev/null | grep -q "$BUCKET"; then
   wr r2 bucket create "$BUCKET" || stop "Couldn't create the R2 bucket $BUCKET. Turn on R2 in the Cloudflare dashboard, then run this again."
 fi
 
-# ---------------------------------------------------------------- 4. Database tables and catalog
-say "Setting up the database tables"
-pnpm run deploy:database
-
-say "Building the Bad Boy catalog and photos"
-# Loading the catalog straight into the live database means thousands of slow round trips. Instead
-# the seed fills a scratch database here, and the result is uploaded in one go.
-SCRATCH=.go-live-db
-rm -rf "$SCRATCH"
-export WRANGLER_PERSIST_TO="$PWD/$SCRATCH" PAYLOAD_LOCAL_BINDINGS=true
-NODE_ENV=production pnpm payload migrate >/dev/null
-NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
-unset WRANGLER_PERSIST_TO PAYLOAD_LOCAL_BINDINGS
-node --no-warnings scripts/export-catalog.mjs "$SCRATCH"
-
-live_value() {
+# ---------------------------------------------------------------- 4. Database and catalog
+# Runs a query on the live database and prints the rows as JSON ("?" if it couldn't).
+live_rows() {
   wr d1 execute "$DATABASE" --remote --json --command "$1" 2>/dev/null | node -e '
     let s = ""; process.stdin.on("data", (d) => (s += d)).on("end", () => {
-      try { console.log(Object.values(JSON.parse(s.slice(s.indexOf("[")))[0].results[0])[0] ?? 0) } catch { console.log("?") }
+      try { console.log(JSON.stringify(JSON.parse(s.slice(s.indexOf("[")))[0].results)) } catch { console.log("?") }
     })'
 }
-LIVE_USERS=$(live_value "SELECT count(*) AS n FROM users")
-[ "$LIVE_USERS" = "?" ] && stop "Couldn't read the live database. Run pnpm go-live again."
+say "Checking the live database"
+LIVE_TABLES=$(live_rows "SELECT name, sql FROM sqlite_master WHERE type = 'table'")
+[ "$LIVE_TABLES" = "?" ] && stop "Couldn't read the live database. Run pnpm go-live again."
+LIVE_USERS=0
+if echo "$LIVE_TABLES" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>process.exit(JSON.parse(s).some(t=>t.name==="users")?0:1))'; then
+  LIVE_USERS=$(live_rows "SELECT count(*) AS n FROM users" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s)[0].n)}catch{console.log("?")}})')
+  [ "$LIVE_USERS" = "?" ] && stop "Couldn't read the live database. Run pnpm go-live again."
+fi
 
 if [ "$LIVE_USERS" = "0" ]; then
-  # Nobody has finished the setup wizard yet, so there's nothing of the dealer's to lose.
-  say "Uploading the catalog to Cloudflare"
-  wr d1 execute "$DATABASE" --remote --file "$SCRATCH/catalog.sql" -y
+  # Nobody has finished the setup wizard, so there's nothing of the dealer's to lose. Build the
+  # whole database here (fast) and replace the live one with it in a single import, instead of
+  # thousands of slow round trips. Leftovers from any earlier attempt are dropped with it.
+  say "Building the database and the Bad Boy catalog"
+  SCRATCH=.go-live-db
+  rm -rf "$SCRATCH"
+  export WRANGLER_PERSIST_TO="$PWD/$SCRATCH" PAYLOAD_LOCAL_BINDINGS=true
+  NODE_ENV=production pnpm payload migrate >/dev/null
+  NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
+  unset WRANGLER_PERSIST_TO PAYLOAD_LOCAL_BINDINGS
+  echo "$LIVE_TABLES" >"$SCRATCH/live-tables.json"
+  node --no-warnings scripts/export-catalog.mjs "$SCRATCH" "$SCRATCH/live-tables.json"
+
+  say "Uploading the database to Cloudflare"
+  wr d1 execute "$DATABASE" --remote --file "$SCRATCH/rebuild.sql" -y
+
   say "Uploading the photos"
   while IFS=$'\t' read -r TYPE LIST; do
     [ -n "$LIST" ] && wr r2 bulk put "$BUCKET" --filename "$LIST" --remote --ct "$TYPE"
   done <"$SCRATCH/photo-lists.tsv"
+  rm -rf "$SCRATCH"
 else
-  echo "The site is already set up, so its catalog and pages are left as they are."
+  # A live site: only apply any new database changes. The dealer's catalog and pages stay as they are.
+  say "Updating the database tables"
+  pnpm run deploy:database
 fi
-rm -rf "$SCRATCH"
 
 # ---------------------------------------------------------------- 5. Build and publish
 say "Building the website (about 5 minutes)"
