@@ -19,12 +19,16 @@ const SEED_PREFIX = 'bb-'
  * them to their models and parts. Safe to re-run: photos are matched by file name and uploaded once.
  * A model or part that staff have given their own photos is left alone.
  */
-export async function seedPhotos(payload: Payload): Promise<{ attached: number; skipped: string[] }> {
+export async function seedPhotos(
+  payload: Payload,
+  only?: string[],
+): Promise<{ attached: number; skipped: string[] }> {
   const dir = path.resolve(process.cwd(), 'src', 'seed', 'media')
   const skipped: string[] = []
   let attached = 0
 
   for (const entry of photos.targets as PhotoTarget[]) {
+    if (only && !only.includes(entry.target)) continue
     const collection = entry.kind === 'model' ? 'models' : 'parts'
     const where = entry.kind === 'model' ? { slug: { equals: entry.target } } : { name: { equals: entry.target } }
     const { docs } = await payload.find({ collection, where, limit: 1, depth: 1, draft: true })

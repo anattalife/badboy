@@ -64,3 +64,4 @@ node_modules/
 /.go-live-db/
 /.go-live-test/
 .dev.vars
+/.on-live/

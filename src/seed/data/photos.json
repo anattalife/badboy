@@ -248,6 +248,105 @@
     },
     {
       "kind": "model",
+      "target": "gas-backpack-blowers",
+      "images": [
+        {
+          "file": "gas-backpack-blowers/bb-gas-backpack-blowers-01-bb880.webp",
+          "alt": "Bad Boy BB880 gas backpack blower",
+          "width": 1459,
+          "height": 1080,
+          "source": "BB880/BadBoy_Tools_Gas0478_resized.png"
+        },
+        {
+          "file": "gas-backpack-blowers/bb-gas-backpack-blowers-02-bb1060.webp",
+          "alt": "Bad Boy BB1060 gas backpack blower",
+          "width": 1405,
+          "height": 1078,
+          "source": "BB1060/BadBoy_Tools_Gas0480_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-chainsaw",
+      "images": [
+        {
+          "file": "gas-chainsaw/bb-gas-chainsaw-01-cs300-14.webp",
+          "alt": "Bad Boy CS300-14 gas chainsaw",
+          "width": 1573,
+          "height": 983,
+          "source": "CS300-14/BadBoy_Tools_Gas0416_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-edger",
+      "images": [
+        {
+          "file": "gas-edger/bb-gas-edger-01-ed254.webp",
+          "alt": "Bad Boy ED254 gas edger",
+          "width": 852,
+          "height": 1065,
+          "source": "ED254/BadBoy_Tools_Gas0503_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-handheld-blower",
+      "images": [
+        {
+          "file": "gas-handheld-blower/bb-gas-handheld-blower-01-hb450.webp",
+          "alt": "Bad Boy HB450 gas handheld blower",
+          "width": 1597,
+          "height": 999,
+          "source": "HB450/BadBoy_Tools_Gas0408_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-hedge-trimmer",
+      "images": [
+        {
+          "file": "gas-hedge-trimmer/bb-gas-hedge-trimmer-01-ht225-24.webp",
+          "alt": "Bad Boy HT225-24 gas hedge trimmer",
+          "width": 1597,
+          "height": 1018,
+          "source": "HT225-24/BadBoy_Tools_Gas0411_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-string-trimmers",
+      "images": [
+        {
+          "file": "gas-string-trimmers/bb-gas-string-trimmers-01-st225.webp",
+          "alt": "Bad Boy ST225 gas string trimmer",
+          "width": 919,
+          "height": 1055,
+          "source": "ST225/BadBoy_Tools_Gas0493_resized.png"
+        },
+        {
+          "file": "gas-string-trimmers/bb-gas-string-trimmers-02-st254.webp",
+          "alt": "Bad Boy ST254 gas string trimmer",
+          "width": 808,
+          "height": 1057,
+          "source": "ST254/BadBoy_Tools_Gas0500_resized.png"
+        },
+        {
+          "file": "gas-string-trimmers/bb-gas-string-trimmers-03-st300t.webp",
+          "alt": "Bad Boy ST300T gas string trimmer",
+          "width": 828,
+          "height": 1048,
+          "source": "ST300T/BadBoy_Tools_Gas_ST300T_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "maverick",
       "images": [
         {

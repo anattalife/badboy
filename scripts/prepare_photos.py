@@ -2,6 +2,9 @@
 """Turns the Bad Boy photo folder into web-ready images and a seed manifest.
 
     python3 -I scripts/prepare_photos.py "<unzipped Bad Boy Pictures folder>"
+    python3 -I scripts/prepare_photos.py --add "<folder with more photos>"
+
+--add keeps every photo already prepared and only (re)writes the models found in the new folder.
 
 Writes src/seed/media/<target>/*.webp (max 1600 px, trimmed to the machine) and
 src/seed/data/photos.json, then prints anything it couldn't place. Re-run it whenever the photo
@@ -58,6 +61,20 @@ RULES = [
     (r'^BBM-e-Product_Trimmer_', 'model', 'e-series-string-trimmer', 'E-Series string trimmer'),
     (r'^BBM-e-Product_Charger_4_', 'part', '4A Single Port Battery Charger', 'E-Series 4A single-port battery charger'),
 ]
+
+# Photo sets whose file names say nothing (e.g. BadBoy_Tools_Gas0416_resized.png) are matched by the
+# FOLDER they're in, named after Bad Boy's model number: folder -> (kind, target, display name).
+FOLDER_RULES = {
+    'CS300-14': ('model', 'gas-chainsaw', 'CS300-14 gas chainsaw'),
+    'BB880': ('model', 'gas-backpack-blowers', 'BB880 gas backpack blower'),
+    'BB1060': ('model', 'gas-backpack-blowers', 'BB1060 gas backpack blower'),
+    'HB450': ('model', 'gas-handheld-blower', 'HB450 gas handheld blower'),
+    'ED254': ('model', 'gas-edger', 'ED254 gas edger'),
+    'HT225-24': ('model', 'gas-hedge-trimmer', 'HT225-24 gas hedge trimmer'),
+    'ST225': ('model', 'gas-string-trimmers', 'ST225 gas string trimmer'),
+    'ST254': ('model', 'gas-string-trimmers', 'ST254 gas string trimmer'),
+    'ST300T': ('model', 'gas-string-trimmers', 'ST300T gas string trimmer'),
+}
 
 # The main (first) photo for each target. Everything else follows in file order.
 MAIN = {
@@ -118,7 +135,7 @@ def view_for(name: str, index: int, count: int, spin: bool) -> str:
     return next((w for k, w in VIEW_WORDS if k in stem), 'product view')
 
 
-def main(src_root: str) -> None:
+def main(src_root: str, add: bool = False) -> None:
     files = []
     for d, _, names in os.walk(src_root):
         for n in names:
@@ -127,20 +144,33 @@ def main(src_root: str) -> None:
 
     groups: dict[tuple, list[str]] = {}
     unmatched, logos = [], []
+    labels: dict[str, str] = {}  # photo -> its own name, for folder-matched sets
     for path in sorted(files, key=lambda p: os.path.basename(p)):
         name = os.path.basename(path)
         if name.startswith('bbm_logo_'):
             logos.append(path)
             continue
         rule = next((r for r in RULES if re.search(r[0], name)), None)
-        if not rule:
+        folder_rule = FOLDER_RULES.get(os.path.basename(os.path.dirname(path)))
+        if rule:
+            groups.setdefault(rule[1:], []).append(path)
+        elif folder_rule:
+            # One gallery per model; each photo keeps its own model number in the alt text.
+            kind, target, display = folder_rule
+            key = next((k for k in groups if k[0] == kind and k[1] == target), (kind, target, display))
+            groups.setdefault(key, []).append(path)
+            labels[path] = display
+        else:
             unmatched.append(os.path.relpath(path, src_root))
-            continue
-        groups.setdefault(rule[1:], []).append(path)
 
-    shutil.rmtree(OUT_DIR, ignore_errors=True)
-    os.makedirs(OUT_DIR)
     manifest = []
+    if add:
+        with open(MANIFEST) as f:
+            new_targets = {t for _, t, _ in groups}
+            manifest = [m for m in json.load(f)['targets'] if m['target'] not in new_targets]
+    else:
+        shutil.rmtree(OUT_DIR, ignore_errors=True)
+    os.makedirs(OUT_DIR, exist_ok=True)
     for (kind, target, display), paths in groups.items():
         spin = len(paths) == 8 and all(p.lower().endswith('.png') for p in paths) and kind == 'model' \
             and not target.startswith('tractor')
@@ -151,13 +181,16 @@ def main(src_root: str) -> None:
         order.remove(first)
         order.insert(0, first)
         folder = re.sub(r'[^a-z0-9]+', '-', target.lower()).strip('-')
+        shutil.rmtree(os.path.join(OUT_DIR, folder), ignore_errors=True)
         os.makedirs(os.path.join(OUT_DIR, folder), exist_ok=True)
         images = []
         for pos, i in enumerate(order, 1):
-            view_slug = re.sub(r'[^a-z0-9]+', '-', views[i].lower()).strip('-')
+            label = labels.get(paths[i])
+            view_slug = re.sub(r'[^a-z0-9]+', '-', (label.split(' ')[0] if label else views[i]).lower()).strip('-')
             filename = f'bb-{folder}-{pos:02d}-{view_slug}.webp'
             w, h = save_webp(paths[i], os.path.join(OUT_DIR, folder, filename))
-            images.append({'file': f'{folder}/{filename}', 'alt': f'Bad Boy {display}, {views[i]}',
+            alt = f'Bad Boy {label}' if label else f'Bad Boy {display}, {views[i]}'
+            images.append({'file': f'{folder}/{filename}', 'alt': alt,
                            'width': w, 'height': h, 'source': os.path.relpath(paths[i], src_root)})
         manifest.append({'kind': kind, 'target': target, 'images': images})
 
@@ -181,4 +214,5 @@ def main(src_root: str) -> None:
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    args = sys.argv[1:]
+    main(args[-1], add='--add' in args)
