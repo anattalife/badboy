@@ -17,7 +17,7 @@ SITE=$(grep -m1 '"SITE_URL"' wrangler.jsonc | sed -E 's/.*"SITE_URL": *"([^"]+)"
 SECRETS=.secrets/production.env
 
 # ---------------------------------------------------------------- 1. Sign in to Cloudflare
-if ! wr whoami 2>/dev/null | grep -q "You are logged in"; then
+if ! wr whoami 2>/dev/null | grep "You are logged in" >/dev/null; then
   say "Sign in to Cloudflare"
   if [ -n "${CODESPACES:-}" ]; then
     # In a Codespace, Cloudflare's sign-in page sends you back to "localhost", which is your own
@@ -46,7 +46,7 @@ MSG
   else
     wr login
   fi
-  wr whoami 2>/dev/null | grep -q "You are logged in" || stop "Sign-in didn't finish. Run pnpm go-live again."
+  wr whoami 2>/dev/null | grep "You are logged in" >/dev/null || stop "Sign-in didn't finish. Run pnpm go-live again."
 fi
 echo "Signed in to Cloudflare."
 
@@ -54,7 +54,7 @@ echo "Signed in to Cloudflare."
 if [ ! -f "$SECRETS" ]; then
   # Never make new keys for a site that already has them: saved loan applications would become
   # unreadable. Restore the file from the password manager instead.
-  if wr secret list --name "$WORKER" 2>/dev/null | grep -q FIELD_ENCRYPTION_KEY; then
+  if wr secret list --name "$WORKER" 2>/dev/null | grep FIELD_ENCRYPTION_KEY >/dev/null; then
     stop "This site is already live, but this Codespace doesn't have its passwords file ($SECRETS).
 Recreate it from your password manager (same three lines: PAYLOAD_SECRET=, FIELD_ENCRYPTION_KEY=,
 SETUP_CODE=) and run pnpm go-live again."
@@ -83,8 +83,8 @@ fi
 
 # ---------------------------------------------------------------- 3. Storage
 say "Checking the database and photo storage"
-wr d1 list 2>/dev/null | grep -q "$DATABASE" || stop "No D1 database named $DATABASE in this Cloudflare account."
-if ! wr r2 bucket list 2>/dev/null | grep -q "$BUCKET"; then
+wr d1 list 2>/dev/null | grep "$DATABASE" >/dev/null || stop "No D1 database named $DATABASE in this Cloudflare account."
+if ! wr r2 bucket list 2>/dev/null | grep "$BUCKET" >/dev/null; then
   wr r2 bucket create "$BUCKET" || stop "Couldn't create the R2 bucket $BUCKET. Turn on R2 in the Cloudflare dashboard, then run this again."
 fi
 
@@ -147,13 +147,23 @@ say "Publishing to Cloudflare"
 pnpm exec opennextjs-cloudflare deploy
 
 say "Saving the passwords on Cloudflare"
+# Passwords already on Cloudflare are never replaced (a different FIELD_ENCRYPTION_KEY would lock
+# every saved loan application). Only --turnstile updates the Turnstile keys.
+EXISTING=$(wr secret list --name "$WORKER" --format json 2>/dev/null || echo "[]")
 JSON=$(mktemp)
-node -e '
+EXISTING="$EXISTING" TURNSTILE_UPDATE="${1:-}" node -e '
+  let have = []; try { const s = process.env.EXISTING; have = JSON.parse(s.slice(s.indexOf("["))).map((x) => x.name) } catch {}
   const keys = ["PAYLOAD_SECRET","FIELD_ENCRYPTION_KEY","SETUP_CODE","TURNSTILE_SITE_KEY","TURNSTILE_SECRET_KEY"];
-  const out = {}; for (const k of keys) if (process.env[k]) out[k] = process.env[k];
+  const out = {};
+  for (const k of keys) {
+    if (!process.env[k]) continue;
+    const replaceable = k.startsWith("TURNSTILE_") && process.env.TURNSTILE_UPDATE === "--turnstile";
+    if (have.includes(k) && !replaceable) continue;
+    out[k] = process.env[k];
+  }
   process.stdout.write(JSON.stringify(out));
 ' >"$JSON"
-wr secret bulk "$JSON" --name "$WORKER"
+if [ "$(cat "$JSON")" != "{}" ]; then wr secret bulk "$JSON" --name "$WORKER"; else echo "Already saved."; fi
 rm -f "$JSON"
 
 # ---------------------------------------------------------------- Done

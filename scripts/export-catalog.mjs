@@ -64,8 +64,26 @@ const schema = db
   .filter((r) => !/^(sqlite_|_cf_|d1_)/.test(String(r.name)))
 for (const r of schema.filter((r) => r.type === 'table')) out.push(`${r.sql};`)
 for (const r of schema.filter((r) => r.type === 'index')) out.push(`${r.sql};`)
-for (const t of allTables) {
-  for (const row of db.prepare(`SELECT * FROM ${q(t)}`).all()) {
+// Cloudflare may run a large import in several pieces, so the PRAGMA above can't be relied on:
+// insert parent tables before the tables that point at them, so every row is valid when it lands.
+const parentsOf = new Map(
+  allTables.map((t) => [
+    t,
+    new Set(db.prepare(`SELECT "table" AS parent FROM pragma_foreign_key_list(?)`).all(t).map((r) => String(r.parent)).filter((p) => p !== t)),
+  ]),
+)
+const insertOrder = []
+const pending = new Set(allTables)
+while (pending.size) {
+  const ready = [...pending].filter((t) => ![...parentsOf.get(t)].some((p) => pending.has(p)))
+  if (!ready.length) throw new Error(`Tables point at each other in a loop: ${[...pending].join(', ')}`)
+  for (const t of ready) {
+    insertOrder.push(t)
+    pending.delete(t)
+  }
+}
+for (const t of insertOrder) {
+  for (const row of db.prepare(`SELECT * FROM ${q(t)} ORDER BY rowid`).all()) {
     const cols = Object.keys(row)
     out.push(`INSERT INTO ${q(t)} (${cols.map(q).join(', ')}) VALUES (${cols.map((c) => lit(row[c])).join(', ')});`)
   }
