@@ -74,7 +74,10 @@
       "unrs-resolver",
       "workerd",
       "@tailwindcss/oxide"
-    ]
+    ],
+    "patchedDependencies": {
+      "payload@3.92.0": "patches/payload@3.92.0.patch"
+    }
   },
   "private": true,
   "packageManager": "pnpm@10.28.0"

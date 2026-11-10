@@ -63,3 +63,4 @@ node_modules/
 /.env*.go-live-aside
 /.go-live-db/
 /.go-live-test/
+.dev.vars
