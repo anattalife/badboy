@@ -132,6 +132,8 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
     ({ getPlatformProxy }) =>
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
+        // scripts/go-live.sh builds the starting catalog in a scratch local database, then uploads it.
+        ...(process.env.WRANGLER_PERSIST_TO ? { persist: { path: `${process.env.WRANGLER_PERSIST_TO}/v3` } } : {}),
         // Only production Payload CLI commands (deploy-time migrations) touch the real D1/R2.
         // Builds never need the live database: pages render on request.
         remoteBindings:

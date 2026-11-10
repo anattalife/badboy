@@ -61,3 +61,5 @@ node_modules/
 # production passwords made by scripts/go-live.sh (never commit)
 /.secrets/
 /.env*.go-live-aside
+/.go-live-db/
+/.go-live-test/

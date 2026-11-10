@@ -13,8 +13,9 @@ pnpm go-live
 ```
 
 It signs you in to Cloudflare (in a Codespace you paste back one address), makes the passwords
-(saved in `.secrets/production.env`, never committed), sets up the database tables, loads the
-catalog and photos, builds, publishes and stores the passwords as Worker secrets. At the end it
+(saved in `.secrets/production.env`, never committed), sets up the database tables, builds the
+catalog in a scratch local database and uploads it in one go (plus the photos to R2; only while no
+one has finished the setup wizard), builds, publishes and stores the passwords as Worker secrets. At the end it
 prints the setup code and the three values to keep in a password manager. Run it again to publish
 updates; it reuses the same passwords and refuses to make new ones for a site that already has
 them. `pnpm go-live --turnstile` adds the spam-protection keys. The Codespace's demo `.env` is set

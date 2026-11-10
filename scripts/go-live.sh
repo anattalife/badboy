@@ -92,8 +92,38 @@ fi
 say "Setting up the database tables"
 pnpm run deploy:database
 
-say "Loading the Bad Boy catalog and photos (first time takes a few minutes)"
+say "Building the Bad Boy catalog and photos"
+# Loading the catalog straight into the live database means thousands of slow round trips. Instead
+# the seed fills a scratch database here, and the result is uploaded in one go.
+SCRATCH=.go-live-db
+rm -rf "$SCRATCH"
+export WRANGLER_PERSIST_TO="$PWD/$SCRATCH" PAYLOAD_LOCAL_BINDINGS=true
+NODE_ENV=production pnpm payload migrate >/dev/null
 NODE_ENV=production ALLOW_PRODUCTION_SEED=true pnpm seed
+unset WRANGLER_PERSIST_TO PAYLOAD_LOCAL_BINDINGS
+node --no-warnings scripts/export-catalog.mjs "$SCRATCH"
+
+live_value() {
+  wr d1 execute "$DATABASE" --remote --json --command "$1" 2>/dev/null | node -e '
+    let s = ""; process.stdin.on("data", (d) => (s += d)).on("end", () => {
+      try { console.log(Object.values(JSON.parse(s.slice(s.indexOf("[")))[0].results[0])[0] ?? 0) } catch { console.log("?") }
+    })'
+}
+LIVE_USERS=$(live_value "SELECT count(*) AS n FROM users")
+[ "$LIVE_USERS" = "?" ] && stop "Couldn't read the live database. Run pnpm go-live again."
+
+if [ "$LIVE_USERS" = "0" ]; then
+  # Nobody has finished the setup wizard yet, so there's nothing of the dealer's to lose.
+  say "Uploading the catalog to Cloudflare"
+  wr d1 execute "$DATABASE" --remote --file "$SCRATCH/catalog.sql" -y
+  say "Uploading the photos"
+  while IFS=$'\t' read -r TYPE LIST; do
+    [ -n "$LIST" ] && wr r2 bulk put "$BUCKET" --filename "$LIST" --remote --ct "$TYPE"
+  done <"$SCRATCH/photo-lists.tsv"
+else
+  echo "The site is already set up, so its catalog and pages are left as they are."
+fi
+rm -rf "$SCRATCH"
 
 # ---------------------------------------------------------------- 5. Build and publish
 say "Building the website (about 5 minutes)"
