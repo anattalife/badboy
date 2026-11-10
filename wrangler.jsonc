@@ -30,7 +30,7 @@
   "vars": {
     "EMAIL_FROM_ADDRESS": "leads@roanokemowers.com",
     "EMAIL_FROM_NAME": "Roanoke Mowers",
-    "SITE_URL": "https://roanokemowers.com",
+    "SITE_URL": "https://roanokemowers.anattalife.workers.dev",
   },
   "services": [
     // The service should match the "name" of your worker
