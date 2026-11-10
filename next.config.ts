@@ -3,6 +3,10 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
+    // On Cloudflare, Next's image resizer can only read static files, not photos served by Payload
+    // from R2 (/api/media/file/...), so those came back 404. Photos are already resized to 1600 px
+    // WebP by scripts/prepare_photos.py; resizing per screen size moves to Cloudflare Images in stage 6.
+    unoptimized: true,
     localPatterns: [
       {
         pathname: '/api/media/file/**',
