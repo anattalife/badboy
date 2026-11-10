@@ -162,7 +162,9 @@ live preview; no extra services.
   the Revolt folder, MZ Rambler inside MZ Magnum, ZT Elite inside Raider), trims empty margins,
   resizes to 1600 px WebP and writes `src/seed/media/` plus `src/seed/data/photos.json`.
   Re-run it with a new photo folder, then `pnpm seed`.
-- 171 photos for 30 models and 1 part (the 4A charger). 360° sets are 8 frames; the front
+- 180 photos for 36 models and 1 part (the 4A charger). Gas tools (9 photos, 6 models) came from
+  `Gas_Tool_Dealer_Zone_Assets_2.zip` on 2026-11-10; those files are matched by **folder** (Bad Boy
+  model number, `FOLDER_RULES`) and added with `prepare_photos.py --add`. 360° sets are 8 frames; the front
   three-quarter frame is the main photo. Every file name starts with `bb-`.
 - `pnpm seed` (`src/seed/photos.ts`) uploads them once to Media (R2) and attaches them. A model or
   part whose photos staff have changed is left alone. Production gets them through the same
@@ -171,7 +173,7 @@ live preview; no extra services.
   Inventory units without their own photos show the model's photos, labeled "Factory photos".
 - Bad Boy logos are in `public/brand/` (authorized-dealer mark in the header top bar and footer).
 - **No photos yet** for: Revolt Fury blower, push mower, all implements, Bandit UTVs, Recon,
-  Terrain, E-Series hedge trimmer/snow thrower/pressure washer/trimmer attachments, all gas tools.
+  Terrain, E-Series hedge trimmer/snow thrower/pressure washer/trimmer attachments, gas pressure washers.
   Two charger photos (2A single-port, dual-port) have no matching part in the catalog.
 
 ## Inventory (stage 2)
@@ -291,3 +293,20 @@ Inconsistencies on Bad Boy's own pages to confirm with the dealer/Bad Boy:
 - 7' snow pusher: working width 85" is listed wider than its 83" overall width.
 - Rotary cutter headings and spec tables disagree on which sizes are standard- vs heavy-duty.
 - E-Series battery text says 8AH is available; the size list stops at 5.0AH.
+
+## Live site (Cloudflare)
+
+- Live at https://roanokemowers.anattalife.workers.dev (Worker `roanokemowers`, D1 `roanokemowers`
+  d47d8cb5-…, R2 `roanokemowers-media`). Set up through the wizard on 2026-11-10. No Workers Builds
+  (GitHub) connection yet: publish with `pnpm go-live`, which reuses `.secrets/production.env`.
+- **Don't run Payload scripts straight against the live D1** (remote bindings): it's thousands of
+  slow round trips and the proxy drops queries ("internal error; reference = …"). Use
+  `bash scripts/on-live.sh <payload script> [args] [--dry-run]`: it copies the live database here,
+  runs the script on the copy, and applies only the changed rows (`scripts/db-diff.mjs`) plus new
+  media files in one import. Example: `bash scripts/on-live.sh src/seed/add-photos.ts gas-edger`.
+- Workers limits found at launch: PBKDF2 max 100,000 iterations (Payload patched,
+  `patches/payload@3.92.0.patch`); Next's image resizer can't read R2-served media, so
+  `images.unoptimized` is on; D1 file imports don't keep `PRAGMA defer_foreign_keys`, so imports
+  insert parents first.
+- Still to do at launch: Turnstile keys (forms refuse to submit without them), domain, email.
+

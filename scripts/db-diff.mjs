@@ -40,7 +40,10 @@ const pending = new Set(tables)
 while (pending.size) {
   const ready = [...pending].filter((t) => ![...parentsOf.get(t)].some((p) => pending.has(p)))
   if (!ready.length) throw new Error(`Foreign-key loop between: ${[...pending].join(', ')}`)
-  for (const t of ready) (order.push(t), pending.delete(t))
+  for (const t of ready) {
+    order.push(t)
+    pending.delete(t)
+  }
 }
 
 const deletes = []
@@ -55,7 +58,9 @@ for (const t of order) {
   const newRows = new Map(after.prepare(select).all().map((r) => [key(r), r]))
   const where = (row) => keyCols.map((c) => `${q(c)} = ${lit(row[c])}`).join(' AND ')
   for (const [k, row] of oldRows) {
-    if (!newRows.has(k)) (deletes.unshift(`DELETE FROM ${q(t)} WHERE ${where(row)};`), changed++)
+    if (newRows.has(k)) continue
+    deletes.unshift(`DELETE FROM ${q(t)} WHERE ${where(row)};`)
+    changed++
   }
   for (const [k, row] of newRows) {
     const old = oldRows.get(k)
