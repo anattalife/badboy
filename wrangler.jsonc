@@ -59,7 +59,7 @@
   //     "d1_databases": [
   //       {
   //         "binding": "D1",
-  //         "database_id": "d47d8cb5-5588-4211-a5d4-cfb83d1b0a0c",
+  //         "database_id": "DATABASE_ID",
   //         "database_name": "my-app-staging",
   //         "remote": true
   //       }
