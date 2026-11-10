@@ -4,6 +4,22 @@ Written for Roanoke (RoanokeMowers.com). For another dealer, read [NEW-DEALER.md
 use that dealer's names and domain. This is a draft checklist; we'll walk through and verify each step together
 in stage 6 (launch prep) before anything goes live.
 
+
+## Quickest way: one command from the Codespace
+
+```bash
+git pull
+pnpm go-live
+```
+
+It signs you in to Cloudflare (in a Codespace you paste back one address), makes the passwords
+(saved in `.secrets/production.env`, never committed), sets up the database tables, loads the
+catalog and photos, builds, publishes and stores the passwords as Worker secrets. At the end it
+prints the setup code and the three values to keep in a password manager. Run it again to publish
+updates; it reuses the same passwords and refuses to make new ones for a site that already has
+them. `pnpm go-live --turnstile` adds the spam-protection keys. The Codespace's demo `.env` is set
+aside during the build so its test keys never reach the live site.
+
 ## What you need
 
 - A Cloudflare account on the **Workers Paid** plan. The site's Worker is about 4.5 MB compressed,
