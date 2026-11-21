@@ -60,6 +60,39 @@ RULES = [
     (r'^BBM-e-Product_Mower_', 'model', 'e-series-self-propelled-mower', 'E-Series self-propelled mower'),
     (r'^BBM-e-Product_Trimmer_', 'model', 'e-series-string-trimmer', 'E-Series string trimmer'),
     (r'^BBM-e-Product_Charger_4_', 'part', '4A Single Port Battery Charger', 'E-Series 4A single-port battery charger'),
+    # Implements, from badboycountry.com/tractors/implements (downloaded 2026-11-21).
+    (r'^flex_wing_cutter_', 'model', 'implement-flex-wing-cutter', "12' flex-wing rotary cutter"),
+    (r'^cutter_', 'model', 'implement-rotary-cutters', 'rotary cutter'),
+    (r'^box_blade_', 'model', 'implement-box-blades', 'box blade'),
+    (r'^land_grader_', 'model', 'implement-land-graders', 'land grader'),
+    (r'^rotary_tiller_', 'model', 'implement-rotary-tillers', 'rotary tiller'),
+    (r'^disc_harrow_', 'model', 'implement-disc-harrow', 'disc harrow'),
+    (r'^(qa_front_hay_spear|3_point_hay_fork|hay_fork_trailer_hitch|trailer_mover|hd_pallet_forks|pallet_forks)_',
+     'model', 'implement-forks-and-hitches', 'forks and hitches'),
+    (r'^grappler_', 'model', 'implement-front-grapples', 'front grapple'),
+    (r'^grader_blade_', 'model', 'implement-grader-blades', 'rear grader blade'),
+    (r'^landscape_rake_', 'model', 'implement-landscape-rakes', 'landscape rake'),
+    (r'^mid_mower_deck_', 'model', 'implement-mid-mount-mower-deck', 'mid-mount mower deck'),
+    (r'^spreader_', 'model', 'implement-spreaders', 'spreader'),
+    (r'^snow_pusher_', 'model', 'implement-snow-pusher', 'snow pusher'),
+    (r'^finish_mower_', 'model', 'implement-finish-mower', 'finish mower'),
+]
+
+# Implement photos: file-name start -> what the photo shows (checked before VIEW_WORDS).
+IMPLEMENT_VIEWS = [
+    ('cutter_sd_4_5_6', "standard-duty 4'-6' cutter"), ('cutter_10', "10' pull-type cutter"),
+    ('cutter_6', "6' heavy-duty cutter"), ('cutter_7', "7' heavy-duty cutter"), ('cutter_photo', 'cutting pasture'),
+    ('flex_wing_cutter_photo', 'in the field'), ('box_blade_photo', 'on a tractor'), ('land_grader_photo', 'grading gravel'),
+    ('rotary_tiller_photo', 'tilling'), ('disc_harrow_5', "5' disc harrow"), ('disc_harrow_6', "6' disc harrow"),
+    ('disc_harrow_photo', 'in the field'), ('qa_front_hay_spear_photo', 'quick-attach hay spear carrying a bale'),
+    ('qa_front_hay_spear', 'quick-attach front hay spear'), ('3_point_hay_fork_photo', '3-point hay fork carrying a bale'),
+    ('3_point_hay_fork', '3-prong 3-point hay fork'), ('hay_fork_trailer_hitch_photo', '2-prong hay fork moving a bale'),
+    ('hay_fork_trailer_hitch', '2-prong hay fork and trailer mover combo'), ('trailer_mover', '3-point trailer mover'),
+    ('hd_pallet_forks', 'heavy-duty pallet forks'), ('pallet_forks', 'standard pallet forks'),
+    ('grappler_large', 'rake grapple'), ('grappler_small', 'brush grapple'), ('grappler_photo', 'clearing brush'),
+    ('mid_mower_deck', 'on a 1025 tractor'), ('spreader_pull_behind', 'pull-behind spreader'),
+    ('spreader_3_point', '3-point hitch spreader'), ('finish_mower_duo', 'two sizes'),
+    ('finish_mower_deck_lift', 'single-pin height adjustment'), ('finish_mower_front_forks', 'front forks'),
 ]
 
 # Photo sets whose file names say nothing (e.g. BadBoy_Tools_Gas0416_resized.png) are matched by the
@@ -83,6 +116,11 @@ MAIN = {
     'e-series-chainsaw': 'Front_Right', 'e-series-pole-saw': 'RearLeft',
     'e-series-self-propelled-mower': 'Bagger_Left', 'e-series-string-trimmer': 'FrontRight',
     '4A Single Port Battery Charger': 'Charger_4',
+    'implement-rotary-cutters': 'cutter_6_studio', 'implement-flex-wing-cutter': 'flex_wing_cutter_studio',
+    'implement-box-blades': 'box_blade_studio', 'implement-land-graders': 'land_grader_studio',
+    'implement-rotary-tillers': 'rotary_tiller_studio', 'implement-disc-harrow': 'disc_harrow_6_studio',
+    'implement-forks-and-hitches': 'hd_pallet_forks', 'implement-front-grapples': 'grappler_large',
+    'implement-finish-mower': 'finish_mower_duo', 'implement-spreaders': 'spreader_3_point',
 }
 
 # Studio 360 sets come as 8 frames turning the machine; position -> view.
@@ -128,6 +166,9 @@ def view_for(name: str, index: int, count: int, spin: bool) -> str:
     if spin and count == 8:
         return SPIN_VIEWS[index]
     stem = os.path.splitext(name)[0]
+    implement = next((w for k, w in IMPLEMENT_VIEWS if stem.startswith(k)), None)
+    if implement:
+        return implement
     for key, words in CAB.items():
         if stem.startswith(key):
             extra = next((w for k, w in VIEW_WORDS if k in stem and k != 'Studio'), None)

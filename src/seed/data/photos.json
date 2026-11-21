@@ -347,6 +347,370 @@
     },
     {
       "kind": "model",
+      "target": "implement-box-blades",
+      "images": [
+        {
+          "file": "implement-box-blades/bb-implement-box-blades-01-product-view.webp",
+          "alt": "Bad Boy box blade, product view",
+          "width": 1124,
+          "height": 989,
+          "source": "box_blade_studio_2026_1.png"
+        },
+        {
+          "file": "implement-box-blades/bb-implement-box-blades-02-on-a-tractor.webp",
+          "alt": "Bad Boy box blade, on a tractor",
+          "width": 1600,
+          "height": 1067,
+          "source": "box_blade_photo_2.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-disc-harrow",
+      "images": [
+        {
+          "file": "implement-disc-harrow/bb-implement-disc-harrow-01-6-disc-harrow.webp",
+          "alt": "Bad Boy disc harrow, 6' disc harrow",
+          "width": 1178,
+          "height": 805,
+          "source": "disc_harrow_6_studio_2.png"
+        },
+        {
+          "file": "implement-disc-harrow/bb-implement-disc-harrow-02-5-disc-harrow.webp",
+          "alt": "Bad Boy disc harrow, 5' disc harrow",
+          "width": 1112,
+          "height": 769,
+          "source": "disc_harrow_5_studio_2.png"
+        },
+        {
+          "file": "implement-disc-harrow/bb-implement-disc-harrow-03-in-the-field.webp",
+          "alt": "Bad Boy disc harrow, in the field",
+          "width": 1600,
+          "height": 658,
+          "source": "disc_harrow_photo_1.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-finish-mower",
+      "images": [
+        {
+          "file": "implement-finish-mower/bb-implement-finish-mower-01-two-sizes.webp",
+          "alt": "Bad Boy finish mower, two sizes",
+          "width": 1597,
+          "height": 1600,
+          "source": "finish_mower_duo_1.png"
+        },
+        {
+          "file": "implement-finish-mower/bb-implement-finish-mower-02-single-pin-height-adjustment.webp",
+          "alt": "Bad Boy finish mower, single-pin height adjustment",
+          "width": 900,
+          "height": 600,
+          "source": "finish_mower_deck_lift_2.png"
+        },
+        {
+          "file": "implement-finish-mower/bb-implement-finish-mower-03-front-forks.webp",
+          "alt": "Bad Boy finish mower, front forks",
+          "width": 900,
+          "height": 600,
+          "source": "finish_mower_front_forks_2.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-flex-wing-cutter",
+      "images": [
+        {
+          "file": "implement-flex-wing-cutter/bb-implement-flex-wing-cutter-01-product-view.webp",
+          "alt": "Bad Boy 12' flex-wing rotary cutter, product view",
+          "width": 1200,
+          "height": 624,
+          "source": "flex_wing_cutter_studio_1.png"
+        },
+        {
+          "file": "implement-flex-wing-cutter/bb-implement-flex-wing-cutter-02-in-the-field.webp",
+          "alt": "Bad Boy 12' flex-wing rotary cutter, in the field",
+          "width": 1200,
+          "height": 600,
+          "source": "flex_wing_cutter_photo_1.jpg"
+        },
+        {
+          "file": "implement-flex-wing-cutter/bb-implement-flex-wing-cutter-03-in-the-field.webp",
+          "alt": "Bad Boy 12' flex-wing rotary cutter, in the field",
+          "width": 1200,
+          "height": 600,
+          "source": "flex_wing_cutter_photo_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-forks-and-hitches",
+      "images": [
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-01-heavy-duty-pallet-forks.webp",
+          "alt": "Bad Boy forks and hitches, heavy-duty pallet forks",
+          "width": 900,
+          "height": 600,
+          "source": "hd_pallet_forks_studio_2.png"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-02-3-point-hay-fork-carrying-a-bale.webp",
+          "alt": "Bad Boy forks and hitches, 3-point hay fork carrying a bale",
+          "width": 1600,
+          "height": 1067,
+          "source": "3_point_hay_fork_photo_1.jpg"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-03-3-prong-3-point-hay-fork.webp",
+          "alt": "Bad Boy forks and hitches, 3-prong 3-point hay fork",
+          "width": 900,
+          "height": 480,
+          "source": "3_point_hay_fork_studio_2.png"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-04-2-prong-hay-fork-moving-a-bale.webp",
+          "alt": "Bad Boy forks and hitches, 2-prong hay fork moving a bale",
+          "width": 1600,
+          "height": 1067,
+          "source": "hay_fork_trailer_hitch_photo_1.jpg"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-05-2-prong-hay-fork-and-trailer-mover-combo.webp",
+          "alt": "Bad Boy forks and hitches, 2-prong hay fork and trailer mover combo",
+          "width": 1069,
+          "height": 840,
+          "source": "hay_fork_trailer_hitch_studio_2026_1.png"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-06-standard-pallet-forks.webp",
+          "alt": "Bad Boy forks and hitches, standard pallet forks",
+          "width": 867,
+          "height": 591,
+          "source": "pallet_forks_studio_2.png"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-07-quick-attach-hay-spear-carrying-a-bale.webp",
+          "alt": "Bad Boy forks and hitches, quick-attach hay spear carrying a bale",
+          "width": 1600,
+          "height": 1067,
+          "source": "qa_front_hay_spear_photo_1.jpg"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-08-quick-attach-front-hay-spear.webp",
+          "alt": "Bad Boy forks and hitches, quick-attach front hay spear",
+          "width": 900,
+          "height": 436,
+          "source": "qa_front_hay_spear_studio_2.png"
+        },
+        {
+          "file": "implement-forks-and-hitches/bb-implement-forks-and-hitches-09-3-point-trailer-mover.webp",
+          "alt": "Bad Boy forks and hitches, 3-point trailer mover",
+          "width": 474,
+          "height": 596,
+          "source": "trailer_mover_studio_2026_1.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-front-grapples",
+      "images": [
+        {
+          "file": "implement-front-grapples/bb-implement-front-grapples-01-rake-grapple.webp",
+          "alt": "Bad Boy front grapple, rake grapple",
+          "width": 1109,
+          "height": 720,
+          "source": "grappler_large_studio_2026_1.png"
+        },
+        {
+          "file": "implement-front-grapples/bb-implement-front-grapples-02-clearing-brush.webp",
+          "alt": "Bad Boy front grapple, clearing brush",
+          "width": 1600,
+          "height": 658,
+          "source": "grappler_photo_1.jpg"
+        },
+        {
+          "file": "implement-front-grapples/bb-implement-front-grapples-03-brush-grapple.webp",
+          "alt": "Bad Boy front grapple, brush grapple",
+          "width": 1116,
+          "height": 720,
+          "source": "grappler_small_studio_2026_1.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-grader-blades",
+      "images": [
+        {
+          "file": "implement-grader-blades/bb-implement-grader-blades-01-product-view.webp",
+          "alt": "Bad Boy rear grader blade, product view",
+          "width": 1200,
+          "height": 789,
+          "source": "grader_blade_studio_3.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-land-graders",
+      "images": [
+        {
+          "file": "implement-land-graders/bb-implement-land-graders-01-product-view.webp",
+          "alt": "Bad Boy land grader, product view",
+          "width": 1093,
+          "height": 800,
+          "source": "land_grader_studio_2026_1.png"
+        },
+        {
+          "file": "implement-land-graders/bb-implement-land-graders-02-grading-gravel.webp",
+          "alt": "Bad Boy land grader, grading gravel",
+          "width": 1600,
+          "height": 1067,
+          "source": "land_grader_photo_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-landscape-rakes",
+      "images": [
+        {
+          "file": "implement-landscape-rakes/bb-implement-landscape-rakes-01-product-view.webp",
+          "alt": "Bad Boy landscape rake, product view",
+          "width": 1200,
+          "height": 520,
+          "source": "landscape_rake_studio_3.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-mid-mount-mower-deck",
+      "images": [
+        {
+          "file": "implement-mid-mount-mower-deck/bb-implement-mid-mount-mower-deck-01-on-a-1025-tractor.webp",
+          "alt": "Bad Boy mid-mount mower deck, on a 1025 tractor",
+          "width": 1600,
+          "height": 1067,
+          "source": "mid_mower_deck_photo_2.jpg"
+        },
+        {
+          "file": "implement-mid-mount-mower-deck/bb-implement-mid-mount-mower-deck-02-on-a-1025-tractor.webp",
+          "alt": "Bad Boy mid-mount mower deck, on a 1025 tractor",
+          "width": 1600,
+          "height": 658,
+          "source": "mid_mower_deck_photo_3.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-rotary-cutters",
+      "images": [
+        {
+          "file": "implement-rotary-cutters/bb-implement-rotary-cutters-01-6-heavy-duty-cutter.webp",
+          "alt": "Bad Boy rotary cutter, 6' heavy-duty cutter",
+          "width": 1168,
+          "height": 800,
+          "source": "cutter_6_studio_2.png"
+        },
+        {
+          "file": "implement-rotary-cutters/bb-implement-rotary-cutters-02-10-pull-type-cutter.webp",
+          "alt": "Bad Boy rotary cutter, 10' pull-type cutter",
+          "width": 1337,
+          "height": 755,
+          "source": "cutter_10_studio_2.png"
+        },
+        {
+          "file": "implement-rotary-cutters/bb-implement-rotary-cutters-03-7-heavy-duty-cutter.webp",
+          "alt": "Bad Boy rotary cutter, 7' heavy-duty cutter",
+          "width": 1199,
+          "height": 703,
+          "source": "cutter_7_studio_3.png"
+        },
+        {
+          "file": "implement-rotary-cutters/bb-implement-rotary-cutters-04-cutting-pasture.webp",
+          "alt": "Bad Boy rotary cutter, cutting pasture",
+          "width": 1600,
+          "height": 1067,
+          "source": "cutter_photo_3.jpg"
+        },
+        {
+          "file": "implement-rotary-cutters/bb-implement-rotary-cutters-05-standard-duty-4-6-cutter.webp",
+          "alt": "Bad Boy rotary cutter, standard-duty 4'-6' cutter",
+          "width": 1299,
+          "height": 636,
+          "source": "cutter_sd_4_5_6_studio_3.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-rotary-tillers",
+      "images": [
+        {
+          "file": "implement-rotary-tillers/bb-implement-rotary-tillers-01-product-view.webp",
+          "alt": "Bad Boy rotary tiller, product view",
+          "width": 1100,
+          "height": 826,
+          "source": "rotary_tiller_studio_3.png"
+        },
+        {
+          "file": "implement-rotary-tillers/bb-implement-rotary-tillers-02-tilling.webp",
+          "alt": "Bad Boy rotary tiller, tilling",
+          "width": 1600,
+          "height": 1067,
+          "source": "rotary_tiller_photo_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-snow-pusher",
+      "images": [
+        {
+          "file": "implement-snow-pusher/bb-implement-snow-pusher-01-product-view.webp",
+          "alt": "Bad Boy snow pusher, product view",
+          "width": 937,
+          "height": 1200,
+          "source": "snow_pusher_1.png"
+        },
+        {
+          "file": "implement-snow-pusher/bb-implement-snow-pusher-02-product-view.webp",
+          "alt": "Bad Boy snow pusher, product view",
+          "width": 856,
+          "height": 1200,
+          "source": "snow_pusher_2.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "implement-spreaders",
+      "images": [
+        {
+          "file": "implement-spreaders/bb-implement-spreaders-01-3-point-hitch-spreader.webp",
+          "alt": "Bad Boy spreader, 3-point hitch spreader",
+          "width": 788,
+          "height": 706,
+          "source": "spreader_3_point_studio_1.png"
+        },
+        {
+          "file": "implement-spreaders/bb-implement-spreaders-02-pull-behind-spreader.webp",
+          "alt": "Bad Boy spreader, pull-behind spreader",
+          "width": 896,
+          "height": 734,
+          "source": "spreader_pull_behind_studio_1.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "maverick",
       "images": [
         {
