@@ -3,6 +3,52 @@
   "targets": [
     {
       "kind": "model",
+      "target": "bandit-550",
+      "images": [
+        {
+          "file": "bandit-550/bb-bandit-550-01-product-view.webp",
+          "alt": "Bad Boy Bandit 550 UTV, product view",
+          "width": 533,
+          "height": 514,
+          "source": "site_bandit550_1.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "bandit-750",
+      "images": [
+        {
+          "file": "bandit-750/bb-bandit-750-01-product-view.webp",
+          "alt": "Bad Boy Bandit 750 UTV, product view",
+          "width": 536,
+          "height": 517,
+          "source": "site_bandit750_1.jpg"
+        },
+        {
+          "file": "bandit-750/bb-bandit-750-02-orange-and-camo.webp",
+          "alt": "Bad Boy Bandit 750 UTV, orange and camo",
+          "width": 960,
+          "height": 640,
+          "source": "site_bandit750_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "bandit-750-crew-cab",
+      "images": [
+        {
+          "file": "bandit-750-crew-cab/bb-bandit-750-crew-cab-01-product-view.webp",
+          "alt": "Bad Boy Bandit 750 Crew Cab UTV, product view",
+          "width": 602,
+          "height": 532,
+          "source": "site_banditcrew_1.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "e-magnum",
       "images": [
         {
@@ -91,6 +137,19 @@
     },
     {
       "kind": "model",
+      "target": "e-series-corded-pressure-washer",
+      "images": [
+        {
+          "file": "e-series-corded-pressure-washer/bb-e-series-corded-pressure-washer-01-product-view.webp",
+          "alt": "Bad Boy corded electric pressure washer, product view",
+          "width": 864,
+          "height": 1056,
+          "source": "site_corded_pw_1.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "e-series-handheld-blower",
       "images": [
         {
@@ -106,6 +165,26 @@
           "width": 1600,
           "height": 1127,
           "source": "E-Series/Handheld-Blower/BBM-e-Product_Blower_Rear_Left.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "e-series-hedge-trimmer",
+      "images": [
+        {
+          "file": "e-series-hedge-trimmer/bb-e-series-hedge-trimmer-01-product-view.webp",
+          "alt": "Bad Boy E-Series 80V hedge trimmer, product view",
+          "width": 665,
+          "height": 315,
+          "source": "site_hedge_trimmer_1.jpg"
+        },
+        {
+          "file": "e-series-hedge-trimmer/bb-e-series-hedge-trimmer-02-in-use.webp",
+          "alt": "Bad Boy E-Series 80V hedge trimmer, in use",
+          "width": 960,
+          "height": 600,
+          "source": "site_hedge_trimmer_2.jpg"
         }
       ]
     },
@@ -200,6 +279,26 @@
     },
     {
       "kind": "model",
+      "target": "e-series-snow-thrower",
+      "images": [
+        {
+          "file": "e-series-snow-thrower/bb-e-series-snow-thrower-01-product-view.webp",
+          "alt": "Bad Boy E-Series 80V snow thrower, product view",
+          "width": 612,
+          "height": 668,
+          "source": "site_snow_thrower_1.jpg"
+        },
+        {
+          "file": "e-series-snow-thrower/bb-e-series-snow-thrower-02-studio-view.webp",
+          "alt": "Bad Boy E-Series 80V snow thrower, studio view",
+          "width": 435,
+          "height": 470,
+          "source": "site_snow_thrower_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "e-series-string-trimmer",
       "images": [
         {
@@ -243,6 +342,40 @@
           "width": 1600,
           "height": 289,
           "source": "E-Series/String-Trimmer/BBM-e-Product_Trimmer_SideRight.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "e-series-string-trimmer-attachments",
+      "images": [
+        {
+          "file": "e-series-string-trimmer-attachments/bb-e-series-string-trimmer-attachments-01-blower-attachment.webp",
+          "alt": "Bad Boy E-Series string trimmer attachment, blower attachment",
+          "width": 722,
+          "height": 517,
+          "source": "site_attach_1_blower.jpg"
+        },
+        {
+          "file": "e-series-string-trimmer-attachments/bb-e-series-string-trimmer-attachments-02-edger-attachment.webp",
+          "alt": "Bad Boy E-Series string trimmer attachment, edger attachment",
+          "width": 729,
+          "height": 600,
+          "source": "site_attach_2_edger.jpg"
+        },
+        {
+          "file": "e-series-string-trimmer-attachments/bb-e-series-string-trimmer-attachments-03-hedge-clipper-attachment.webp",
+          "alt": "Bad Boy E-Series string trimmer attachment, hedge clipper attachment",
+          "width": 942,
+          "height": 596,
+          "source": "site_attach_3_hedge.jpg"
+        },
+        {
+          "file": "e-series-string-trimmer-attachments/bb-e-series-string-trimmer-attachments-04-pruner-attachment.webp",
+          "alt": "Bad Boy E-Series string trimmer attachment, pruner attachment",
+          "width": 951,
+          "height": 600,
+          "source": "site_attach_4_pruner.jpg"
         }
       ]
     },
@@ -315,6 +448,26 @@
           "width": 1597,
           "height": 1018,
           "source": "HT225-24/BadBoy_Tools_Gas0411_resized.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "gas-pressure-washers",
+      "images": [
+        {
+          "file": "gas-pressure-washers/bb-gas-pressure-washers-01-bbpw3525.webp",
+          "alt": "Bad Boy gas pressure washer, BBPW3525",
+          "width": 539,
+          "height": 625,
+          "source": "site_gas_pw_1_3525.jpg"
+        },
+        {
+          "file": "gas-pressure-washers/bb-gas-pressure-washers-02-bbpw3625.webp",
+          "alt": "Bad Boy gas pressure washer, BBPW3625",
+          "width": 625,
+          "height": 649,
+          "source": "site_gas_pw_2_3625.jpg"
         }
       ]
     },
@@ -952,6 +1105,26 @@
     },
     {
       "kind": "model",
+      "target": "push-mower",
+      "images": [
+        {
+          "file": "push-mower/bb-push-mower-01-product-view.webp",
+          "alt": "Bad Boy self-propelled push mower, product view",
+          "width": 1102,
+          "height": 997,
+          "source": "site_push_mower_1.png"
+        },
+        {
+          "file": "push-mower/bb-push-mower-02-product-view.webp",
+          "alt": "Bad Boy self-propelled push mower, product view",
+          "width": 535,
+          "height": 475,
+          "source": "site_push_mower_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "raider",
       "images": [
         {
@@ -1200,6 +1373,19 @@
     },
     {
       "kind": "model",
+      "target": "recon",
+      "images": [
+        {
+          "file": "recon/bb-recon-01-product-view.webp",
+          "alt": "Bad Boy Recon mini skid steer, product view",
+          "width": 590,
+          "height": 492,
+          "source": "site_recon_1.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "renegade-diesel",
       "images": [
         {
@@ -1386,6 +1572,26 @@
     },
     {
       "kind": "model",
+      "target": "revolt-fury-blower",
+      "images": [
+        {
+          "file": "revolt-fury-blower/bb-revolt-fury-blower-01-product-view.webp",
+          "alt": "Bad Boy Revolt Fury stand-on blower, product view",
+          "width": 1008,
+          "height": 794,
+          "source": "site_revolt_fury_1.jpg"
+        },
+        {
+          "file": "revolt-fury-blower/bb-revolt-fury-blower-02-product-view.webp",
+          "alt": "Bad Boy Revolt Fury stand-on blower, product view",
+          "width": 903,
+          "height": 775,
+          "source": "site_revolt_fury_2.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "model",
       "target": "revolt-sd",
       "images": [
         {
@@ -1567,6 +1773,19 @@
           "width": 1423,
           "height": 1304,
           "source": "Rogue/RogueMain0029.png"
+        }
+      ]
+    },
+    {
+      "kind": "model",
+      "target": "terrain",
+      "images": [
+        {
+          "file": "terrain/bb-terrain-01-product-view.webp",
+          "alt": "Bad Boy Terrain small articulating loader, product view",
+          "width": 679,
+          "height": 560,
+          "source": "site_terrain_1.jpg"
         }
       ]
     },
@@ -1844,6 +2063,58 @@
           "width": 1600,
           "height": 815,
           "source": "E-Series/Charger/BBM-e-Product_Charger_4_Left.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "part",
+      "target": "80V Power Inverter",
+      "images": [
+        {
+          "file": "80v-power-inverter/bb-80v-power-inverter-01-product-view.webp",
+          "alt": "Bad Boy E-Series 80V power inverter, product view",
+          "width": 1600,
+          "height": 683,
+          "source": "site_part_inverter.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "part",
+      "target": "80V Work Light",
+      "images": [
+        {
+          "file": "80v-work-light/bb-80v-work-light-01-product-view.webp",
+          "alt": "Bad Boy E-Series 80V work light, product view",
+          "width": 1600,
+          "height": 683,
+          "source": "site_part_worklight.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "part",
+      "target": "String Trimmer Line",
+      "images": [
+        {
+          "file": "string-trimmer-line/bb-string-trimmer-line-01-product-view.webp",
+          "alt": "Bad Boy string trimmer line, product view",
+          "width": 534,
+          "height": 612,
+          "source": "site_part_line.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "part",
+      "target": "String Trimmer Line With Cutter",
+      "images": [
+        {
+          "file": "string-trimmer-line-with-cutter/bb-string-trimmer-line-with-cutter-01-product-view.webp",
+          "alt": "Bad Boy string trimmer line with cutter, product view",
+          "width": 562,
+          "height": 605,
+          "source": "site_part_linecutter.jpg"
         }
       ]
     }

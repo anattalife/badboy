@@ -76,6 +76,23 @@ RULES = [
     (r'^spreader_', 'model', 'implement-spreaders', 'spreader'),
     (r'^snow_pusher_', 'model', 'implement-snow-pusher', 'snow pusher'),
     (r'^finish_mower_', 'model', 'implement-finish-mower', 'finish mower'),
+    # More photos from badboycountry.com (downloaded 2026-11-21), renamed site_<name>_N before running.
+    (r'^site_push_mower_', 'model', 'push-mower', 'self-propelled push mower'),
+    (r'^site_revolt_fury_', 'model', 'revolt-fury-blower', 'Revolt Fury stand-on blower'),
+    (r'^site_hedge_trimmer_', 'model', 'e-series-hedge-trimmer', 'E-Series 80V hedge trimmer'),
+    (r'^site_snow_thrower_', 'model', 'e-series-snow-thrower', 'E-Series 80V snow thrower'),
+    (r'^site_attach_', 'model', 'e-series-string-trimmer-attachments', 'E-Series string trimmer attachment'),
+    (r'^site_corded_pw_', 'model', 'e-series-corded-pressure-washer', 'corded electric pressure washer'),
+    (r'^site_gas_pw_', 'model', 'gas-pressure-washers', 'gas pressure washer'),
+    (r'^site_bandit550_', 'model', 'bandit-550', 'Bandit 550 UTV'),
+    (r'^site_bandit750_', 'model', 'bandit-750', 'Bandit 750 UTV'),
+    (r'^site_banditcrew_', 'model', 'bandit-750-crew-cab', 'Bandit 750 Crew Cab UTV'),
+    (r'^site_recon_', 'model', 'recon', 'Recon mini skid steer'),
+    (r'^site_terrain_', 'model', 'terrain', 'Terrain small articulating loader'),
+    (r'^site_part_worklight', 'part', '80V Work Light', 'E-Series 80V work light'),
+    (r'^site_part_inverter', 'part', '80V Power Inverter', 'E-Series 80V power inverter'),
+    (r'^site_part_linecutter', 'part', 'String Trimmer Line With Cutter', 'string trimmer line with cutter'),
+    (r'^site_part_line', 'part', 'String Trimmer Line', 'string trimmer line'),
 ]
 
 # Implement photos: file-name start -> what the photo shows (checked before VIEW_WORDS).
@@ -93,6 +110,10 @@ IMPLEMENT_VIEWS = [
     ('mid_mower_deck', 'on a 1025 tractor'), ('spreader_pull_behind', 'pull-behind spreader'),
     ('spreader_3_point', '3-point hitch spreader'), ('finish_mower_duo', 'two sizes'),
     ('finish_mower_deck_lift', 'single-pin height adjustment'), ('finish_mower_front_forks', 'front forks'),
+    ('site_attach_1', 'blower attachment'), ('site_attach_2', 'edger attachment'),
+    ('site_attach_3', 'hedge clipper attachment'), ('site_attach_4', 'pruner attachment'),
+    ('site_gas_pw_1', 'BBPW3525'), ('site_gas_pw_2', 'BBPW3625'), ('site_bandit750_2', 'orange and camo'),
+    ('site_hedge_trimmer_2', 'in use'), ('site_snow_thrower_2', 'studio view'),
 ]
 
 # Photo sets whose file names say nothing (e.g. BadBoy_Tools_Gas0416_resized.png) are matched by the
