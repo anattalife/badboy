@@ -162,7 +162,7 @@ live preview; no extra services.
   the Revolt folder, MZ Rambler inside MZ Magnum, ZT Elite inside Raider), trims empty margins,
   resizes to 1600 px WebP and writes `src/seed/media/` plus `src/seed/data/photos.json`.
   Re-run it with a new photo folder, then `pnpm seed`.
-- 180 photos for 36 models and 1 part (220 for 51 with gas tools and implements) (the 4A charger). Gas tools (9 photos, 6 models) came from
+- 180 photos for 36 models and 1 part (the 4A charger); 220 for 51 targets with the gas tools and implements. Gas tools (9 photos, 6 models) came from
   `Gas_Tool_Dealer_Zone_Assets_2.zip` on 2026-11-10; those files are matched by **folder** (Bad Boy
   model number, `FOLDER_RULES`) and added with `prepare_photos.py --add`. 360° sets are 8 frames; the front
   three-quarter frame is the main photo. Every file name starts with `bb-`.
