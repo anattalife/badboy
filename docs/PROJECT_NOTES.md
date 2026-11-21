@@ -162,7 +162,7 @@ live preview; no extra services.
   the Revolt folder, MZ Rambler inside MZ Magnum, ZT Elite inside Raider), trims empty margins,
   resizes to 1600 px WebP and writes `src/seed/media/` plus `src/seed/data/photos.json`.
   Re-run it with a new photo folder, then `pnpm seed`.
-- 180 photos for 36 models and 1 part (the 4A charger). Gas tools (9 photos, 6 models) came from
+- 180 photos for 36 models and 1 part (the 4A charger); 245 for 67 targets with the gas tools, implements and website photos. Gas tools (9 photos, 6 models) came from
   `Gas_Tool_Dealer_Zone_Assets_2.zip` on 2026-11-10; those files are matched by **folder** (Bad Boy
   model number, `FOLDER_RULES`) and added with `prepare_photos.py --add`. 360° sets are 8 frames; the front
   three-quarter frame is the main photo. Every file name starts with `bb-`.
@@ -172,9 +172,17 @@ live preview; no extra services.
 - Model pages show a gallery (`ProductGallery`); cards show the whole machine (`object-contain`).
   Inventory units without their own photos show the model's photos, labeled "Factory photos".
 - Bad Boy logos are in `public/brand/` (authorized-dealer mark in the header top bar and footer).
-- **No photos yet** for: Revolt Fury blower, push mower, all implements, Bandit UTVs, Recon,
-  Terrain, E-Series hedge trimmer/snow thrower/pressure washer/trimmer attachments, gas pressure washers.
-  Two charger photos (2A single-port, dual-port) have no matching part in the catalog.
+- **Implements** (40 photos, all 14 types): downloaded from badboycountry.com/tractors/implements on
+  2026-11-21 at the owner's request, matched by file name (`RULES`), each photo described by
+  `IMPLEMENT_VIEWS`. Studio shot first, field photos after.
+- **More website photos** (25, 2026-11-21): push mower, Revolt Fury, Bandit 550/750/750 Crew Cab, Recon,
+  Terrain, E-Series hedge trimmer, snow thrower, trimmer attachments, corded and gas pressure washers, and the
+  work light, inverter and trimmer line parts. Downloaded from badboycountry.com, renamed `site_<name>_N`
+  and added with `prepare_photos.py --add` (`RULES` entries starting `site_`). Bandit, Recon and Terrain use
+  Bad Boy's menu thumbnails (680 px), the only studio shots the site has for them.
+- **No photos yet** for: loaders and backhoes on their own (Bad Boy's site only shows them on tractors),
+  80V batteries (no matching part). Two charger photos (2A single-port, dual-port) have no matching part in
+  the catalog.
 
 ## Inventory (stage 2)
 
